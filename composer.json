@@ -1,0 +1,20 @@
+{
+    "name": "syscover/admin",
+    "description": "Administration package",
+    "keywords": ["syscover","pulsar","laravel","syscover","intranet","admin"],
+    "authors": [
+        {
+            "name": "SYSCOVER GROUP SL",
+            "email": "info@syscover.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "doctrine/dbal": "^2.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Syscover\\Admin\\": "src/Syscover/Admin"
+        }
+    }
+}
