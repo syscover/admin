@@ -31,41 +31,8 @@ class TerritorialArea1 extends CoreModel
             ->select('country.*','territorial_area_1.*','country.name as country_name', 'territorial_area_1.name as territorial_area_1_name');
     }
 
-    public function getTerritorialAreas2()
+    public function territorialAreas2()
     {
-        return $this->hasMany('Syscover\Pulsar\Models\TerritorialArea2', 'territorial_area_1_id_004');
-    }
-
-    public function addToGetIndexRecords($request, $parameters)
-    {
-        $query = $this->builder();
-
-        if(isset($parameters['country'])) $query->where('country_id_003', $parameters['country']);
-        if(isset($parameters['lang']))
-            $query->where('lang_id_002', $parameters['lang']);
-        else
-            $query->where('lang_id_002', base_lang()->id_001);
-
-        return $query;
-    }
-
-    public static function customCount($request, $parameters)
-    {
-        $query = TerritorialArea1::builder();
-
-        if(isset($parameters['country'])) $query->where('country_id_003', $parameters['country']);
-        if(isset($parameters['lang']))
-            $query->where('lang_id_002', $parameters['lang']);
-        else
-            $query->where('lang_id_002', base_lang()->id_001);
-
-        return $query;
-    }
-
-    public static function getTerritorialAreas1FromCountry($country)
-    {
-        return TerritorialArea1::where('country_id_003', $country)
-            ->orderBy('name_003', 'asc')
-            ->get();
+        return $this->hasMany('Syscover\Admin\Models\TerritorialArea2', 'territorial_area_1_id');
     }
 }

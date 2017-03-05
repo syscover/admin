@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class PulsarCreateTableTerritorialArea1 extends Migration
+class AdminCreateTableTerritorialArea1 extends Migration
 {
 	/**
 	 * Run the migrations.

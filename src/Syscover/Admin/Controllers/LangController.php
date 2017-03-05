@@ -31,7 +31,8 @@ class LangController extends CoreController
      */
     public function show($id)
     {
-        $lang = Lang::builder()->find($id);
+        $lang = Lang::builder()
+            ->find($id);
 
         return response()->json($lang);
     }
