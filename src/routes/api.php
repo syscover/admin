@@ -15,7 +15,7 @@ Route::get('api/langs/show/{id}',                               ['as' => 'showLa
 |----------------------------------
 */
 Route::get('api/countries/{lang?}',                             ['as' => 'country',                 'uses' => 'Syscover\Admin\Controllers\CountryController@index']);
-Route::get('api/countries/show/{id}/{lang?}',                   ['as' => 'showCountry',             'uses' => 'Syscover\Admin\Controllers\CountryController@show']);
+Route::get('api/countries/show/{id}/{lang}',                    ['as' => 'showCountry',             'uses' => 'Syscover\Admin\Controllers\CountryController@show']);
 
 /*
 |----------------------------------
@@ -23,4 +23,4 @@ Route::get('api/countries/show/{id}/{lang?}',                   ['as' => 'showCo
 |----------------------------------
 */
 Route::get('api/territorialareas1/{lang?}',                     ['as' => 'territorialArea1',        'uses' => 'Syscover\Admin\Controllers\TerritorialArea1Controller@index']);
-Route::get('api/territorialareas1/show/{id}/{lang?}',           ['as' => 'showTerritorialArea1',    'uses' => 'Syscover\Admin\Controllers\TerritorialArea1Controller@show']);
+Route::get('api/territorialareas1/show/{id}/{lang}',            ['as' => 'showTerritorialArea1',    'uses' => 'Syscover\Admin\Controllers\TerritorialArea1Controller@show']);

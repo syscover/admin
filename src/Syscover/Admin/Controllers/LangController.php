@@ -20,7 +20,9 @@ class LangController extends CoreController
         $langs = Lang::builder()
             ->get();
 
-        return response()->json($langs);
+        $response['data'] = $langs;
+
+        return response()->json($response);
     }
 
     /**

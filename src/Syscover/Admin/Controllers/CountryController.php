@@ -21,7 +21,9 @@ class CountryController extends CoreController
 
         $countries = $query->get();
 
-        return response()->json($countries);
+        $response['data'] = $countries;
+
+        return response()->json($response);
     }
 
     /**
@@ -52,17 +54,16 @@ class CountryController extends CoreController
      * @param   string  $lang
      * @return  \Illuminate\Http\JsonResponse
      */
-    public function show($id, $lang = null)
+    public function show($id, $lang)
     {
-        $query = Country::builder();
+        $country = Country::builder()
+            ->where('country.lang_id', $lang)
+            ->where('country.id', $id)
+            ->first();
 
-        // filter country by lang
-        if($lang !== null)
-            $query->where('country.lang_id', $lang);
+        $response['data'] = $country;
 
-        $countries = $query->where('country.id', $id)->get();
-
-        return response()->json($countries);
+        return response()->json($response);
     }
 
     /**
