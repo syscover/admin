@@ -31,4 +31,4 @@ Route::get('api/territorialareas1/{id}/{lang}',                 ['as' => 'showTe
 |----------------------------------
 */
 Route::get('api/profiles',                                      ['as' => 'profile',                 'uses' => 'Syscover\Admin\Controllers\ProfileController@index']);
-Route::get('api/profiles/show/{id}',                            ['as' => 'showProfile',             'uses' => 'Syscover\Admin\Controllers\ProfileController@show']);
+Route::get('api/profiles/{id}',                                 ['as' => 'showProfile',             'uses' => 'Syscover\Admin\Controllers\ProfileController@show']);

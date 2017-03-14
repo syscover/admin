@@ -25,7 +25,9 @@ class TerritorialArea1Controller extends CoreController
 
         $territorialAreas1 = $query->get();
 
-        return response()->json($territorialAreas1);
+        $response['data'] = $territorialAreas1;
+
+        return response()->json($response);
     }
 
     /**
@@ -65,7 +67,9 @@ class TerritorialArea1Controller extends CoreController
 
         $territorialAreas1 = $query->where('territorial_area_1.id', $id)->get();
 
-        return response()->json($territorialAreas1);
+        $response['data'] = $territorialAreas1;
+
+        return response()->json($response);
     }
 
     /**

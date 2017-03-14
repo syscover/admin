@@ -17,8 +17,7 @@ class LangController extends CoreController
      */
     public function index()
     {
-        $langs = Lang::builder()
-            ->get();
+        $langs = Lang::builder()->get();
 
         $response['data'] = $langs;
 
@@ -33,9 +32,10 @@ class LangController extends CoreController
      */
     public function show($id)
     {
-        $lang = Lang::builder()
-            ->find($id);
+        $lang = Lang::builder()->find($id);
 
-        return response()->json($lang);
+        $response['data'] = $lang;
+
+        return response()->json($response);
     }
 }
