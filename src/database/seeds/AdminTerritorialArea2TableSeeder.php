@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Syscover\Pulsar\Models\TerritorialArea2;
+use Syscover\Admin\Models\TerritorialArea2;
 
 class AdminTerritorialArea2TableSeeder extends Seeder
 {

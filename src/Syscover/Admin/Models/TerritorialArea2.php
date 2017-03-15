@@ -1,11 +1,11 @@
-<?php namespace Syscover\Pulsar\Models;
+<?php namespace Syscover\Admin\Models;
 
 use Syscover\Core\Models\CoreModel;
 use Illuminate\Support\Facades\Validator;
 
 /**
  * Class TerritorialArea2
- * @package Syscover\Pulsar\Models
+ * @package Syscover\Admin\Models
  */
 
 class TerritorialArea2 extends CoreModel
@@ -28,12 +28,14 @@ class TerritorialArea2 extends CoreModel
 
     public function scopeBuilder($query)
     {
-        return $query->join('country', 'territorial_area_2.country_id', '=', 'country.id')
-            ->join('territorial_area_1', 'territorial_area_2.territorial_area_1_id', '=', 'territorial_area_1.id');
+        return $query
+            ->join('country', 'territorial_area_2.country_id', '=', 'country.id')
+            ->join('territorial_area_1', 'territorial_area_2.territorial_area_1_id', '=', 'territorial_area_1.id')
+            ->select('country.*','territorial_area_1.*','territorial_area_2.*','country.name as country_name', 'territorial_area_1.name as territorial_area_1_name', 'territorial_area_2.name as territorial_area_2_name');
     }
 
     public function territorialAreas3()
     {
-         return $this->hasMany('Syscover\Pulsar\Models\TerritorialArea3', 'territorial_area_2_id');
+         return $this->hasMany(TerritorialArea3::class, 'territorial_area_2_id');
     }
 }

@@ -2,26 +2,20 @@
 
 use Illuminate\Http\Request;
 use Syscover\Core\Controllers\CoreController;
-use Syscover\Admin\Models\TerritorialArea1;
+use Syscover\Admin\Models\Resource;
 
-class TerritorialArea1Controller extends CoreController
+class ResourceController extends CoreController
 {
     /**
      * Display a listing of the resource.
      *
-     * @param   string  $lang
      * @return  \Illuminate\Http\JsonResponse
      */
-    public function index($lang = null)
+    public function index()
     {
-        $query = TerritorialArea1::builder();
+        $resources = Resource::builder()->get();
 
-        if($lang !== null)
-            $query->where('country.lang_id', $lang);
-
-        $territorialAreas1 = $query->get();
-
-        $response['data'] = $territorialAreas1;
+        $response['data'] = $resources;
 
         return response()->json($response);
     }
@@ -51,17 +45,14 @@ class TerritorialArea1Controller extends CoreController
      * Display the specified resource.
      *
      * @param   string  $id
-     * @param   string  $lang
      * @return  \Illuminate\Http\JsonResponse
      */
-    public function show($id, $lang)
+    public function show($id)
     {
-        $territorialAreas1 = TerritorialArea1::builder()
-            ->where('country.lang_id', $lang)
-            ->where('territorial_area_1.id', $id)
-            ->first();
+        $resource = Resource::builder()
+            ->find($id);
 
-        $response['data'] = $territorialAreas1;
+        $response['data'] = $resource;
 
         return response()->json($response);
     }

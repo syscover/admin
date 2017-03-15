@@ -1,11 +1,11 @@
-<?php namespace Syscover\Pulsar\Models;
+<?php namespace Syscover\Admin\Models;
 
 use Syscover\Core\Models\CoreModel;
 use Illuminate\Support\Facades\Validator;
 
 /**
  * Class TerritorialArea3
- * @package Syscover\Pulsar\Models
+ * @package Syscover\Admin\Models
  */
 
 class TerritorialArea3 extends CoreModel
@@ -30,6 +30,7 @@ class TerritorialArea3 extends CoreModel
     public function scopeBuilder($query)
     {
         return $query->join('territorial_area_1', 'territorial_area_3.territorial_area_1_id', '=', 'territorial_area_1.id')
-            ->join('territorial_area_2', 'territorial_area_3.territorial_area_2_id', '=', 'territorial_area_2.id');
+            ->join('territorial_area_2', 'territorial_area_3.territorial_area_2_id', '=', 'territorial_area_2.id')
+            ->select('territorial_area_1.*','territorial_area_2.*','territorial_area_3.*','territorial_area_1.name as territorial_area_1_name', 'territorial_area_2.name as territorial_area_2_name', 'territorial_area_3.name as territorial_area_3_name');
     }
 }

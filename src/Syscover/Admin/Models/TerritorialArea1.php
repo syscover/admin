@@ -33,6 +33,6 @@ class TerritorialArea1 extends CoreModel
 
     public function territorialAreas2()
     {
-        return $this->hasMany('Syscover\Admin\Models\TerritorialArea2', 'territorial_area_1_id');
+        return $this->hasMany(TerritorialArea2::class, 'territorial_area_1_id');
     }
 }
