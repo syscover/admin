@@ -80,3 +80,11 @@ Route::get('api/packages/{id}',                                 ['as' => 'showPa
 */
 Route::get('api/resources',                                     ['as' => 'resource',                        'uses' => 'Syscover\Admin\Controllers\ResourceController@index']);
 Route::get('api/resources/{id}',                                ['as' => 'showResource',                    'uses' => 'Syscover\Admin\Controllers\ResourceController@show']);
+
+/*
+|----------------------------------
+| CRON JOBS
+|----------------------------------
+*/
+Route::get('api/cron-jobs',                                     ['as' => 'cronJob',                        'uses' => 'Syscover\Admin\Controllers\CronJobController@index']);
+Route::get('api/cron-jobs/{id}',                                ['as' => 'showCronJob',                    'uses' => 'Syscover\Admin\Controllers\CronJobController@show']);
