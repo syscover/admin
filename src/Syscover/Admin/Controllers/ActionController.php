@@ -15,19 +15,10 @@ class ActionController extends CoreController
     {
         $actions = Action::builder()->get();
 
-        $response['data'] = $actions;
+        $response['status'] = "success";
+        $response['data']   = $actions;
 
         return response()->json($response);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -38,7 +29,15 @@ class ActionController extends CoreController
      */
     public function store(Request $request)
     {
-        //
+        $action = Action::create([
+            'id'    => $request->input('id'),
+            'name'  => $request->input('name')
+        ]);
+
+        $response['status'] = "success";
+        $response['data']   = $action;
+
+        return response()->json($response);
     }
 
     /**
@@ -52,21 +51,10 @@ class ActionController extends CoreController
         $action = Action::builder()
             ->find($id);
 
+        $response['status'] = "success";
         $response['data'] = $action;
 
         return response()->json($response);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param   int     $id
-     * @param   string  $lang
-     * @return  \Illuminate\Http\JsonResponse
-     */
-    public function edit($id, $lang)
-    {
-        //
     }
 
     /**
@@ -74,23 +62,39 @@ class ActionController extends CoreController
      *
      * @param   \Illuminate\Http\Request  $request
      * @param   int     $id
-     * @param   string  $lang
      * @return  \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id, $lang)
+    public function update(Request $request, $id)
     {
-        //
+        Action::where('id', $id)->update([
+            'id'    => $request->input('id'),
+            'name'  => $request->input('name')
+        ]);
+
+        $action = Action::find($request->input('id'));
+
+        $response['status'] = "success";
+        $response['data']   = $action;
+
+        return response()->json($response);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param   int     $id
-     * @param   string  $lang
+     * @param   string  $id
      * @return  \Illuminate\Http\JsonResponse
      */
-    public function destroy($id, $lang = null)
+    public function destroy($id)
     {
-        //
+        $action = Action::builder()
+            ->find($id);
+
+        $action->delete();
+
+        $response['status'] = "success";
+        $response['data']   = $action;
+
+        return response()->json($response);
     }
 }

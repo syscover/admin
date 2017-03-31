@@ -27,16 +27,6 @@ class CountryController extends CoreController
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -44,7 +34,22 @@ class CountryController extends CoreController
      */
     public function store(Request $request)
     {
-        //
+        $country = Country::create([
+            'id'                    => $request->input('id'),
+            'lang_id'               => $request->input('lang_id'),
+            'name'                  => $request->input('name'),
+            'sort'                  => $request->input('sort'),
+            'prefix'                => $request->input('prefix'),
+            'territorial_area_1'    => $request->input('territorial_area_1'),
+            'territorial_area_2'    => $request->input('territorial_area_2'),
+            'territorial_area_3'    => $request->input('territorial_area_3'),
+            'data_lang'             => Country::addLangDataRecord($request->input('lang'), $request->input('id'))
+        ]);
+
+        $response['status'] = "success";
+        $response['data']   = $country;
+
+        return response()->json($response);
     }
 
     /**
@@ -67,18 +72,6 @@ class CountryController extends CoreController
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param   int     $id
-     * @param   string  $lang
-     * @return  \Illuminate\Http\JsonResponse
-     */
-    public function edit($id, $lang)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param   \Illuminate\Http\Request  $request
@@ -88,7 +81,25 @@ class CountryController extends CoreController
      */
     public function update(Request $request, $id, $lang)
     {
-        //
+        Country::where('id', $id)->where('lang_id', $lang)->update([
+            'name'                  => $request->input('name'),
+            'sort'                  => $request->input('sort', 0),
+            'territorial_area_1'    => $request->input('territorial_area_1'),
+            'territorial_area_2'    => $request->input('territorial_area_2'),
+            'territorial_area_3'    => $request->input('territorial_area_3')
+        ]);
+
+        // common data
+        Country::where('id', $id)->update([
+            'prefix' => $request->input('prefix')
+        ]);
+
+        $country = Country::where($request->input('id'));
+
+        $response['status'] = "success";
+        $response['data']   = $country;
+
+        return response()->json($response);
     }
 
     /**
@@ -100,6 +111,34 @@ class CountryController extends CoreController
      */
     public function destroy($id, $lang = null)
     {
-        //
+        if($lang === null)
+        {
+            $countries = Country::builder()
+                ->where('country.id', $id)
+                ->get();
+
+            Country::builder()
+                ->where('country.id', $id)
+                ->delete();
+
+            $response['data'] = $countries;
+        }
+        else
+        {
+            $country = Country::builder()
+                ->where('country.lang_id', $lang)
+                ->where('country.id', $id)
+                ->first();
+
+            $country->delete();
+
+            $response['data'] = $country;
+        }
+
+
+        $response['status'] = "success";
+
+
+        return response()->json($response);
     }
 }

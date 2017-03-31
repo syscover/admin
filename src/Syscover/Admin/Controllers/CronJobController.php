@@ -21,16 +21,6 @@ class CronJobController extends CoreController
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -55,18 +45,6 @@ class CronJobController extends CoreController
         $response['data'] = $cronJob;
 
         return response()->json($response);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param   int     $id
-     * @param   string  $lang
-     * @return  \Illuminate\Http\JsonResponse
-     */
-    public function edit($id, $lang)
-    {
-        //
     }
 
     /**

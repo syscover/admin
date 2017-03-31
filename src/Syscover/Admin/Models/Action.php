@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 class Action extends CoreModel
 {
 	protected $table        = 'action';
+    protected $fillable     = ['id', 'name'];
     public $incrementing    = false;
     public $timestamps      = false;
     private static $rules   = [

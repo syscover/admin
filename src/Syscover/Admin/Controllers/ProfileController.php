@@ -21,16 +21,6 @@ class ProfileController extends CoreController
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -54,18 +44,6 @@ class ProfileController extends CoreController
         $response['data'] = $profile;
 
         return response()->json($response);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param   int     $id
-     * @param   string  $lang
-     * @return  \Illuminate\Http\JsonResponse
-     */
-    public function edit($id, $lang)
-    {
-        //
     }
 
     /**

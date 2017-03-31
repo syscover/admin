@@ -17,17 +17,17 @@ class AdminServiceProvider extends ServiceProvider
 
         // register migrations
         $this->publishes([
-            __DIR__ . '/../../database/migrations/' 			=> base_path('/database/migrations'),
+            __DIR__ . '/../../database/migrations/' => base_path('/database/migrations'),
         ], 'migrations');
 
         // register seeds
         $this->publishes([
-            __DIR__ . '/../../database/seeds/' 					=> base_path('/database/seeds')
+            __DIR__ . '/../../database/seeds/' => base_path('/database/seeds')
         ], 'seeds');
 
         // register config files
         $this->publishes([
-            __DIR__ . '/../../config/pulsar.php' 				=> config_path('pulsar.php'),
+            __DIR__ . '/../../config/pulsar.admin.php' => config_path('pulsar.admin.php'),
         ]);
 	}
 

@@ -16,6 +16,9 @@ Route::get('api/v1/langs/{id}',                                    ['as' => 'sho
 */
 Route::get('api/v1/countries/{lang?}',                             ['as' => 'country',                         'uses' => 'Syscover\Admin\Controllers\CountryController@index']);
 Route::get('api/v1/countries/{id}/{lang}',                         ['as' => 'showCountry',                     'uses' => 'Syscover\Admin\Controllers\CountryController@show']);
+Route::post('api/v1/countries',                                    ['as' => 'storeCountry',                    'uses' => 'Syscover\Admin\Controllers\CountryController@store']);
+Route::put('api/v1/countries/{id}/{lang}',                         ['as' => 'updateAction',                    'uses' => 'Syscover\Admin\Controllers\CountryController@update']);
+Route::delete('api/v1/countries/{id}/{lang?}',                     ['as' => 'destroyAction',                   'uses' => 'Syscover\Admin\Controllers\CountryController@destroy']);
 
 /*
 |----------------------------------
@@ -56,6 +59,9 @@ Route::get('api/v1/profiles/{id}',                                 ['as' => 'sho
 */
 Route::get('api/v1/actions',                                       ['as' => 'action',                          'uses' => 'Syscover\Admin\Controllers\ActionController@index']);
 Route::get('api/v1/actions/{id}',                                  ['as' => 'showAction',                      'uses' => 'Syscover\Admin\Controllers\ActionController@show']);
+Route::post('api/v1/actions',                                      ['as' => 'storeAction',                     'uses' => 'Syscover\Admin\Controllers\ActionController@store']);
+Route::put('api/v1/actions/{id}',                                  ['as' => 'updateAction',                    'uses' => 'Syscover\Admin\Controllers\ActionController@update']);
+Route::delete('api/v1/actions/{id}',                               ['as' => 'destroyAction',                   'uses' => 'Syscover\Admin\Controllers\ActionController@destroy']);
 
 /*
 |----------------------------------

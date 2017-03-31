@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 class Country extends CoreModel
 {
     protected $table        = 'country';
+    protected $fillable     = ['id', 'lang_id', 'name', 'sort', 'prefix', 'territorial_area_1', 'territorial_area_2', 'territorial_area_3'];
     public $incrementing    = false;
     public $timestamps      = false;
     private static $rules   = [
