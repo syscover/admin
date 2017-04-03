@@ -50,9 +50,6 @@ class PulsarCreateTableEmailAccount extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable('email_account'))
-        {
-            Schema::drop('email_account');
-        }
+        Schema::dropIfExists('email_account');
     }
 }

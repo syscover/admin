@@ -33,9 +33,6 @@ class AdminCreateTablePackage extends Migration
 	 */
 	public function down()
 	{
-		if (Schema::hasTable('package'))
-		{
-			Schema::drop('package');
-		}
+	    Schema::drop('dropIfExists');
 	}
 }

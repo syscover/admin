@@ -42,9 +42,6 @@ class AdminCreateTableCronJob extends Migration
 	 */
 	public function down()
 	{
-		if (Schema::hasTable('cron_job'))
-		{
-			Schema::drop('cron_job');
-		}
+		Schema::dropIfExists('cron_job');
 	}
 }

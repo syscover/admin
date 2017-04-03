@@ -49,9 +49,6 @@ class AdminCreateTablePermission extends Migration
 	 */
 	public function down()
 	{
-		if (Schema::hasTable('permission'))
-		{
-			Schema::drop('permission');
-		}
+		Schema::dropIfExists('permission');
 	}
 }

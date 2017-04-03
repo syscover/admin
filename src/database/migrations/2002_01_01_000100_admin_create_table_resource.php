@@ -39,9 +39,6 @@ class AdminCreateTableResource extends Migration
 	 */
 	public function down()
 	{
-		if (Schema::hasTable('resource'))
-		{
-			Schema::drop('resource');
-		}
+		Schema::dropIfExists('resource');
 	}
 }

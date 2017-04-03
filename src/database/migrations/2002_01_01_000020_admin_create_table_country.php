@@ -46,9 +46,6 @@ class AdminCreateTableCountry extends Migration
 	 */
 	public function down()
 	{
-        if (Schema::hasTable('country'))
-        {
-            Schema::drop('country');
-        }
+        Schema::dropIfExists('country');
 	}
 }

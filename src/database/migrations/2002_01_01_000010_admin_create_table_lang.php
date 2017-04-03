@@ -36,9 +36,6 @@ class AdminCreateTableLang extends Migration
 	 */
 	public function down()
 	{
-		if (Schema::hasTable('lang'))
-		{
-			Schema::drop('lang');
-		}
+        Schema::dropIfExists('lang');
 	}
 }

@@ -45,9 +45,6 @@ class AdminCreateTableTerritorialArea2 extends Migration
 	 */
 	public function down()
 	{
-		if (Schema::hasTable('territorial_area_2'))
-		{
-			Schema::drop('territorial_area_2');
-		}
+		Schema::dropIfExists('territorial_area_2');
 	}
 }

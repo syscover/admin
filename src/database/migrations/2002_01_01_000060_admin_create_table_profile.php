@@ -30,9 +30,6 @@ class AdminCreateTableProfile extends Migration
 	 */
 	public function down()
 	{
-		if (Schema::hasTable('profile'))
-		{
-			Schema::drop('profile');
-		}
+		Schema::dropIfExists('profile');
 	}
 }

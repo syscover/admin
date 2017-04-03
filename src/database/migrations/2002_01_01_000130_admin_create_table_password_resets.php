@@ -17,9 +17,9 @@ class AdminCreateTablePasswordResets extends Migration
 			Schema::create('password_resets', function (Blueprint $table) {
 				$table->engine = 'InnoDB';
 				
-				$table->string('email')->index();
-				$table->string('token')->index();
-				$table->timestamp('created_at');
+				$table->string('email', 150)->index();
+				$table->string('token');
+				$table->timestamp('created_at')->nullable();
 			});
 		}
 	}
@@ -31,9 +31,6 @@ class AdminCreateTablePasswordResets extends Migration
 	 */
 	public function down()
 	{
-		if (Schema::hasTable('password_resets'))
-		{
-			Schema::drop('password_resets');
-		}
+		Schema::dropIfExists('password_resets');
 	}
 }

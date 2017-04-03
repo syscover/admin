@@ -21,7 +21,7 @@ class AdminCreateTableUser extends Migration
                 $table->string('name');
                 $table->string('surname')->nullable();
                 $table->string('lang_id', 2);
-                $table->string('email');
+                $table->string('email', 150);
                 $table->integer('profile_id')->unsigned();
                 $table->boolean('access');
                 $table->string('user');
@@ -51,9 +51,6 @@ class AdminCreateTableUser extends Migration
 	 */
 	public function down()
 	{
-        if (Schema::hasTable('user'))
-        {
-            Schema::drop('user');
-        }
+        Schema::dropIfExists('user');
 	}
 }

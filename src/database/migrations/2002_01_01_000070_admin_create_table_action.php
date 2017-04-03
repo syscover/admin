@@ -32,9 +32,6 @@ class AdminCreateTableAction extends Migration
 	 */
 	public function down()
 	{
-		if (Schema::hasTable('action'))
-		{
-			Schema::drop('action');
-		}
+		Schema::dropIfExists('action');
 	}
 }
