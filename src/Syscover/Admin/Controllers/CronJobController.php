@@ -6,19 +6,7 @@ use Syscover\Admin\Models\CronJob;
 
 class CronJobController extends CoreController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return  \Illuminate\Http\JsonResponse
-     */
-    public function index()
-    {
-        $cronJobs = CronJob::builder()->get();
-
-        $response['data'] = $cronJobs;
-
-        return response()->json($response);
-    }
+    protected $model = CronJob::class;
 
     /**
      * Store a newly created resource in storage.

@@ -11,10 +11,11 @@ use Illuminate\Support\Facades\Validator;
 class Lang extends CoreModel
 {
     protected $table        = 'lang';
+    protected $fillable     = ['id', 'name', 'ico', 'sort', 'base', 'active'];
     public $incrementing    = false;
     public $timestamps      = false;
     private static $rules   = [
-        'id'        => 'required|alpha|size:2|unique:001_001_lang,id_001',
+        'id'        => 'required|alpha|size:2|unique:lang,id',
         'name'      => 'required|between:2,255',
         'sorting'   => 'min:0|numeric',
         'image'     => 'required'

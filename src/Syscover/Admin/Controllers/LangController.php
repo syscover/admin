@@ -1,5 +1,6 @@
 <?php namespace Syscover\Admin\Controllers;
 
+use Illuminate\Http\Request;
 use Syscover\Core\Controllers\CoreController;
 use Syscover\Admin\Models\Lang;
 
@@ -10,31 +11,53 @@ use Syscover\Admin\Models\Lang;
 
 class LangController extends CoreController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return  \Illuminate\Http\JsonResponse
-     */
-    public function index()
-    {
-        $langs = Lang::builder()->get();
+    protected $model = Lang::class;
 
-        $response['data'] = $langs;
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $lang = Lang::create([
+            'id'        => $request->input('id'),
+            'name'      => $request->input('name'),
+            'ico'       => $request->input('ico'),
+            'sort'      => $request->input('sort'),
+            'base'      => $request->input('base', false),
+            'active'    => $request->input('active', false)
+        ]);
+
+        $response['status'] = "success";
+        $response['data']   = $lang;
 
         return response()->json($response);
     }
 
     /**
-     * Display the specified resource.
+     * Update the specified resource in storage.
      *
-     * @param   string    $id
+     * @param   \Illuminate\Http\Request  $request
+     * @param   int     $id
      * @return  \Illuminate\Http\JsonResponse
      */
-    public function show($id)
+    public function update(Request $request, $id)
     {
-        $lang = Lang::builder()->find($id);
+        Lang::where('id', $id)->update([
+            'id'        => $request->input('id'),
+            'name'      => $request->input('name'),
+            'ico'       => $request->input('ico'),
+            'sort'      => $request->input('sort'),
+            'base'      => $request->input('base', false),
+            'active'    => $request->input('active', false)
+        ]);
 
-        $response['data'] = $lang;
+        $lang = Lang::find($request->input('id'));
+
+        $response['status'] = "success";
+        $response['data']   = $lang;
 
         return response()->json($response);
     }

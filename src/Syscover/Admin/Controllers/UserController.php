@@ -6,19 +6,7 @@ use Syscover\Admin\Models\User;
 
 class UserController extends CoreController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return  \Illuminate\Http\JsonResponse
-     */
-    public function index()
-    {
-        $users = User::builder()->get();
-
-        $response['data'] = $users;
-
-        return response()->json($response);
-    }
+    protected $model = User::class;
 
     /**
      * Store a newly created resource in storage.
@@ -32,22 +20,6 @@ class UserController extends CoreController
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param   string  $id
-     * @return  \Illuminate\Http\JsonResponse
-     */
-    public function show($id)
-    {
-        $user = User::builder()
-            ->find($id);
-
-        $response['data'] = $user;
-
-        return response()->json($response);
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param   \Illuminate\Http\Request  $request
@@ -56,18 +28,6 @@ class UserController extends CoreController
      * @return  \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id, $lang)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param   int     $id
-     * @param   string  $lang
-     * @return  \Illuminate\Http\JsonResponse
-     */
-    public function destroy($id, $lang = null)
     {
         //
     }

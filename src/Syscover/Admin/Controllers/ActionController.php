@@ -6,20 +6,7 @@ use Syscover\Admin\Models\Action;
 
 class ActionController extends CoreController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return  \Illuminate\Http\JsonResponse
-     */
-    public function index()
-    {
-        $actions = Action::builder()->get();
-
-        $response['status'] = "success";
-        $response['data']   = $actions;
-
-        return response()->json($response);
-    }
+    protected $model = Action::class;
 
     /**
      * Store a newly created resource in storage.
@@ -41,23 +28,6 @@ class ActionController extends CoreController
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param   string  $id
-     * @return  \Illuminate\Http\JsonResponse
-     */
-    public function show($id)
-    {
-        $action = Action::builder()
-            ->find($id);
-
-        $response['status'] = "success";
-        $response['data'] = $action;
-
-        return response()->json($response);
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param   \Illuminate\Http\Request  $request
@@ -72,25 +42,6 @@ class ActionController extends CoreController
         ]);
 
         $action = Action::find($request->input('id'));
-
-        $response['status'] = "success";
-        $response['data']   = $action;
-
-        return response()->json($response);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param   string  $id
-     * @return  \Illuminate\Http\JsonResponse
-     */
-    public function destroy($id)
-    {
-        $action = Action::builder()
-            ->find($id);
-
-        $action->delete();
 
         $response['status'] = "success";
         $response['data']   = $action;

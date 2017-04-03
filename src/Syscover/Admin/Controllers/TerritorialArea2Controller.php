@@ -6,6 +6,8 @@ use Syscover\Admin\Models\TerritorialArea2;
 
 class TerritorialArea2Controller extends CoreController
 {
+    protected $model = TerritorialArea2::class;
+
     /**
      * Display a listing of the resource.
      *

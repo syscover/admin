@@ -6,19 +6,7 @@ use Syscover\Admin\Models\Profile;
 
 class ProfileController extends CoreController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return  \Illuminate\Http\JsonResponse
-     */
-    public function index()
-    {
-        $profiles = Profile::builder()->get();
-
-        $response['data'] = $profiles;
-
-        return response()->json($response);
-    }
+    protected $model = Profile::class;
 
     /**
      * Store a newly created resource in storage.
@@ -32,21 +20,6 @@ class ProfileController extends CoreController
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param   int     $id
-     * @return  \Illuminate\Http\JsonResponse
-     */
-    public function show($id)
-    {
-        $profile = Profile::builder()->find($id);
-
-        $response['data'] = $profile;
-
-        return response()->json($response);
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param   \Illuminate\Http\Request  $request
@@ -55,18 +28,6 @@ class ProfileController extends CoreController
      * @return  \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id, $lang)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param   int     $id
-     * @param   string  $lang
-     * @return  \Illuminate\Http\JsonResponse
-     */
-    public function destroy($id, $lang = null)
     {
         //
     }
