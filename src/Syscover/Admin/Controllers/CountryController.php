@@ -6,25 +6,7 @@ use Syscover\Admin\Models\Country;
 
 class CountryController extends CoreController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @param   string  $lang
-     * @return  \Illuminate\Http\JsonResponse
-     */
-    public function index($lang = null)
-    {
-        $query = Country::builder();
-
-        if($lang !== null)
-            $query->where('country.lang_id', $lang);
-
-        $countries = $query->get();
-
-        $response['data'] = $countries;
-
-        return response()->json($response);
-    }
+    protected $model = Country::class;
 
     /**
      * Store a newly created resource in storage.
@@ -48,25 +30,6 @@ class CountryController extends CoreController
 
         $response['status'] = "success";
         $response['data']   = $country;
-
-        return response()->json($response);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param   int     $id
-     * @param   string  $lang
-     * @return  \Illuminate\Http\JsonResponse
-     */
-    public function show($id, $lang)
-    {
-        $country = Country::builder()
-            ->where('country.lang_id', $lang)
-            ->where('country.id', $id)
-            ->first();
-
-        $response['data'] = $country;
 
         return response()->json($response);
     }
