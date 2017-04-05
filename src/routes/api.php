@@ -10,7 +10,7 @@ Route::get('api/v1/admin/langs/{id}',                                    ['as' =
 Route::post('api/v1/admin/langs',                                        ['as' => 'storeLang',                       'uses' => 'Syscover\Admin\Controllers\LangController@store']);
 Route::post('api/v1/admin/langs/search',                                 ['as' => 'searchLang',                      'uses' => 'Syscover\Admin\Controllers\LangController@search']);
 Route::put('api/v1/admin/langs/{id}',                                    ['as' => 'updateLang',                      'uses' => 'Syscover\Admin\Controllers\LangController@update']);
-Route::delete('api/v1/admin/langs/{id}',                                 ['as' => 'destroyAction',                   'uses' => 'Syscover\Admin\Controllers\LangController@destroy']);
+Route::delete('api/v1/admin/langs/{id}',                                 ['as' => 'destroyLang',                     'uses' => 'Syscover\Admin\Controllers\LangController@destroy']);
 
 /*
 |----------------------------------

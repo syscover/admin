@@ -25,7 +25,7 @@ class CountryController extends CoreController
             'territorial_area_1'    => $request->input('territorial_area_1'),
             'territorial_area_2'    => $request->input('territorial_area_2'),
             'territorial_area_3'    => $request->input('territorial_area_3'),
-            'data_lang'             => Country::addLangDataRecord($request->input('lang'), $request->input('id'))
+            'data_lang'             => Country::addLangDataRecord($request->input('lang_id'), $request->input('id'))
         ]);
 
         $response['status'] = "success";
@@ -61,46 +61,6 @@ class CountryController extends CoreController
 
         $response['status'] = "success";
         $response['data']   = $country;
-
-        return response()->json($response);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param   int     $id
-     * @param   string  $lang
-     * @return  \Illuminate\Http\JsonResponse
-     */
-    public function destroy($id, $lang = null)
-    {
-        if($lang === null)
-        {
-            $countries = Country::builder()
-                ->where('country.id', $id)
-                ->get();
-
-            Country::builder()
-                ->where('country.id', $id)
-                ->delete();
-
-            $response['data'] = $countries;
-        }
-        else
-        {
-            $country = Country::builder()
-                ->where('country.lang_id', $lang)
-                ->where('country.id', $id)
-                ->first();
-
-            $country->delete();
-
-            $response['data'] = $country;
-        }
-
-
-        $response['status'] = "success";
-
 
         return response()->json($response);
     }

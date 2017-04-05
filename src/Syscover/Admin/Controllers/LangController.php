@@ -24,7 +24,7 @@ class LangController extends CoreController
         $lang = Lang::create([
             'id'        => $request->input('id'),
             'name'      => $request->input('name'),
-            'ico'       => $request->input('ico'),
+            'icon'      => $request->input('icon'),
             'sort'      => $request->input('sort'),
             'base'      => $request->input('base', false),
             'active'    => $request->input('active', false)
@@ -48,7 +48,7 @@ class LangController extends CoreController
         Lang::where('id', $id)->update([
             'id'        => $request->input('id'),
             'name'      => $request->input('name'),
-            'ico'       => $request->input('ico'),
+            'icon'      => $request->input('icon'),
             'sort'      => $request->input('sort'),
             'base'      => $request->input('base', false),
             'active'    => $request->input('active', false)
