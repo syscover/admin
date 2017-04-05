@@ -19,7 +19,7 @@ class AdminCreateTableLang extends Migration
 				
 				$table->string('id', 2);
 				$table->string('name');
-				$table->string('ico')->nullable();
+				$table->string('icon')->nullable();
 				$table->smallInteger('sort')->unsigned();
 				$table->boolean('base');
 				$table->boolean('active');
