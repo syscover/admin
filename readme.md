@@ -1,4 +1,4 @@
-# Pulsar App for Laravel 5.4
+# Pulsar Admin App for Laravel 5.4
 
 [![Total Downloads](https://poser.pugx.org/syscover/pulsar-admin/downloads)](https://packagist.org/packages/syscover/pulsar-admin)
 [![Latest Stable Version](http://img.shields.io/github/release/syscover/pulsar-admin.svg)](https://packagist.org/packages/syscover/pulsar-admin)
@@ -19,7 +19,7 @@ composer require syscover/pulsar-admin
 /*
  * Pulsar Application Service Providers...
  */
-Syscover\Pulsar\AdminServiceProvider::class,  // <-- You may have already registered
+Syscover\Pulsar\CoreServiceProvider::class,  // <-- You may have already registered
 Syscover\Pulsar\AdminServiceProvider::class,
 ```
 
