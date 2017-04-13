@@ -64,6 +64,7 @@ Route::get('api/v1/admin/profiles/{id}',                                 ['as' =
 Route::get('api/v1/admin/actions',                                       ['as' => 'action',                          'uses' => 'Syscover\Admin\Controllers\ActionController@index']);
 Route::get('api/v1/admin/actions/{id}',                                  ['as' => 'showAction',                      'uses' => 'Syscover\Admin\Controllers\ActionController@show']);
 Route::post('api/v1/admin/actions',                                      ['as' => 'storeAction',                     'uses' => 'Syscover\Admin\Controllers\ActionController@store']);
+Route::post('api/v1/admin/actions/search',                               ['as' => 'searchAction',                    'uses' => 'Syscover\Admin\Controllers\ActionController@search']);
 Route::put('api/v1/admin/actions/{id}',                                  ['as' => 'updateAction',                    'uses' => 'Syscover\Admin\Controllers\ActionController@update']);
 Route::delete('api/v1/admin/actions/{id}',                               ['as' => 'destroyAction',                   'uses' => 'Syscover\Admin\Controllers\ActionController@destroy']);
 

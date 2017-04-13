@@ -35,6 +35,6 @@ class Country extends CoreModel
     {
         return $query
             ->join('lang', 'country.lang_id', '=', 'lang.id')
-            ->select('lang.*', 'country.*', 'country.name as country_name', 'lang.name as lang_name');
+            ->select('lang.*', 'country.*', 'country.id as country_id', 'country.name as country_name', 'lang.id as lang_id', 'lang.name as lang_name');
     }
 }
