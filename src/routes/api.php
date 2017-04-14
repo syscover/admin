@@ -55,6 +55,10 @@ Route::get('api/v1/admin/territorialareas3/{id}',                        ['as' =
 */
 Route::get('api/v1/admin/profiles',                                      ['as' => 'profile',                         'uses' => 'Syscover\Admin\Controllers\ProfileController@index']);
 Route::get('api/v1/admin/profiles/{id}',                                 ['as' => 'showProfile',                     'uses' => 'Syscover\Admin\Controllers\ProfileController@show']);
+Route::post('api/v1/admin/profiles',                                     ['as' => 'storeProfile',                    'uses' => 'Syscover\Admin\Controllers\ProfileController@store']);
+Route::post('api/v1/admin/profiles/search',                              ['as' => 'searchProfile',                   'uses' => 'Syscover\Admin\Controllers\ProfileController@search']);
+Route::put('api/v1/admin/profiles/{id}',                                 ['as' => 'updateProfile',                   'uses' => 'Syscover\Admin\Controllers\ProfileController@update']);
+Route::delete('api/v1/admin/profiles/{id}',                              ['as' => 'destroyProfile',                  'uses' => 'Syscover\Admin\Controllers\ProfileController@destroy']);
 
 /*
 |----------------------------------
