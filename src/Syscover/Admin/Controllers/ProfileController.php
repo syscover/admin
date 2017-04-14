@@ -16,7 +16,14 @@ class ProfileController extends CoreController
      */
     public function store(Request $request)
     {
-        //
+        $profile = Profile::create([
+            'name'  => $request->input('name')
+        ]);
+
+        $response['status'] = "success";
+        $response['data']   = $profile;
+
+        return response()->json($response);
     }
 
     /**
@@ -24,11 +31,19 @@ class ProfileController extends CoreController
      *
      * @param   \Illuminate\Http\Request  $request
      * @param   int     $id
-     * @param   string  $lang
      * @return  \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id, $lang)
+    public function update(Request $request, $id)
     {
-        //
+        Profile::where('id', $id)->update([
+            'name'  => $request->input('name')
+        ]);
+
+        $profile = Profile::find($request->input('id'));
+
+        $response['status'] = "success";
+        $response['data']   = $profile;
+
+        return response()->json($response);
     }
 }
