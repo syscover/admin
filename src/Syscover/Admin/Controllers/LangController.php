@@ -26,8 +26,8 @@ class LangController extends CoreController
             'name'      => $request->input('name'),
             'icon'      => $request->input('icon'),
             'sort'      => $request->input('sort'),
-            'base'      => $request->input('base', false),
-            'active'    => $request->input('active', false)
+            'base'      => $request->has('base'),
+            'active'    => $request->has('active')
         ]);
 
         $response['status'] = "success";
@@ -50,8 +50,8 @@ class LangController extends CoreController
             'name'      => $request->input('name'),
             'icon'      => $request->input('icon'),
             'sort'      => $request->input('sort'),
-            'base'      => $request->input('base', false),
-            'active'    => $request->input('active', false)
+            'base'      => $request->has('base'),
+            'active'    => $request->has('active')
         ]);
 
         $lang = Lang::find($request->input('id'));

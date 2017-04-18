@@ -21,8 +21,8 @@ Route::get('api/v1/admin/countries/{lang?}',                             ['as' =
 Route::get('api/v1/admin/countries/{id}/{lang}',                         ['as' => 'showCountry',                     'uses' => 'Syscover\Admin\Controllers\CountryController@show']);
 Route::post('api/v1/admin/countries/search',                             ['as' => 'searchCountry',                   'uses' => 'Syscover\Admin\Controllers\CountryController@search']);
 Route::post('api/v1/admin/countries',                                    ['as' => 'storeCountry',                    'uses' => 'Syscover\Admin\Controllers\CountryController@store']);
-Route::put('api/v1/admin/countries/{id}/{lang}',                         ['as' => 'updateAction',                    'uses' => 'Syscover\Admin\Controllers\CountryController@update']);
-Route::delete('api/v1/admin/countries/{id}/{lang?}',                     ['as' => 'destroyAction',                   'uses' => 'Syscover\Admin\Controllers\CountryController@destroy']);
+Route::put('api/v1/admin/countries/{id}/{lang}',                         ['as' => 'updateCountry',                   'uses' => 'Syscover\Admin\Controllers\CountryController@update']);
+Route::delete('api/v1/admin/countries/{id}/{lang?}',                     ['as' => 'destroyCountry',                  'uses' => 'Syscover\Admin\Controllers\CountryController@destroy']);
 
 /*
 |----------------------------------
