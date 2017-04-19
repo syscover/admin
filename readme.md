@@ -1,4 +1,4 @@
-# Pulsar Admin App for Laravel 5.4
+# Pulsar Admin App for Laravel
 
 [![Total Downloads](https://poser.pugx.org/syscover/pulsar-admin/downloads)](https://packagist.org/packages/syscover/pulsar-admin)
 [![Latest Stable Version](http://img.shields.io/github/release/syscover/pulsar-admin.svg)](https://packagist.org/packages/syscover/pulsar-admin)

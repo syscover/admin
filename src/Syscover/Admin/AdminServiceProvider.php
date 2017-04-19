@@ -25,6 +25,11 @@ class AdminServiceProvider extends ServiceProvider
             __DIR__ . '/../../database/seeds/' => base_path('/database/seeds')
         ], 'seeds');
 
+        // register tests
+        $this->publishes([
+            __DIR__ . '/../../tests/Feature/' => base_path('/tests/Feature')
+        ], 'tests');
+
         // register config files
         $this->publishes([
             __DIR__ . '/../../config/pulsar.admin.php' => config_path('pulsar.admin.php'),
