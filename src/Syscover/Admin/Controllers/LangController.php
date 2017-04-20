@@ -21,14 +21,24 @@ class LangController extends CoreController
      */
     public function store(Request $request)
     {
-        $lang = Lang::create([
-            'id'        => $request->input('id'),
-            'name'      => $request->input('name'),
-            'icon'      => $request->input('icon'),
-            'sort'      => $request->input('sort'),
-            'base'      => $request->has('base'),
-            'active'    => $request->has('active')
-        ]);
+        try
+        {
+            $lang = Lang::create([
+                'id'        => $request->input('id'),
+                'name'      => $request->input('name'),
+                'icon'      => $request->input('icon'),
+                'sort'      => $request->input('sort'),
+                'base'      => $request->has('base'),
+                'active'    => $request->has('active')
+            ]);
+        }
+        catch (\Exception $e)
+        {
+            $response['status'] = "error";
+            $response['message'] = $e->getMessage();
+
+            return response()->json($response, 500);
+        }
 
         $response['status'] = "success";
         $response['data']   = $lang;
@@ -45,14 +55,24 @@ class LangController extends CoreController
      */
     public function update(Request $request, $id)
     {
-        Lang::where('id', $id)->update([
-            'id'        => $request->input('id'),
-            'name'      => $request->input('name'),
-            'icon'      => $request->input('icon'),
-            'sort'      => $request->input('sort'),
-            'base'      => $request->has('base'),
-            'active'    => $request->has('active')
-        ]);
+        try
+        {
+            Lang::where('id', $id)->update([
+                'id'        => $request->input('id'),
+                'name'      => $request->input('name'),
+                'icon'      => $request->input('icon'),
+                'sort'      => $request->input('sort'),
+                'base'      => $request->has('base'),
+                'active'    => $request->has('active')
+            ]);
+        }
+        catch (\Exception $e)
+        {
+            $response['status'] = "error";
+            $response['message'] = $e->getMessage();
+
+            return response()->json($response, 500);
+        }
 
         $lang = Lang::find($request->input('id'));
 

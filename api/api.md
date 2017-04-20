@@ -78,6 +78,14 @@ Save lang.
                     active: 1
                 }
             }
+            
++ Response 500 (application/json)
+    + Body
+
+            {
+                status: "error",
+                message: "Error description"
+            }
 
 
 ## Get by id [GET /api/v1/admin/langs/{id}]
@@ -144,6 +152,14 @@ Update a single lang by its unique identifier.
                     base: 0,
                     active: 1
                 }
+            }
+            
++ Response 500 (application/json)
+    + Body
+
+            {
+                status: "error",
+                message: "Error description"
             }
             
             
