@@ -57,7 +57,7 @@ class CountryController extends CoreController
             'prefix' => $request->input('prefix')
         ]);
 
-        $country = Country::where($request->input('id'));
+        $country = Country::where('id', $id)->where('lang_id', $lang)->first();
 
         $response['status'] = "success";
         $response['data']   = $country;
