@@ -24,11 +24,14 @@ class AdminCreateTableUser extends Migration
                 $table->string('email', 150);
                 $table->integer('profile_id')->unsigned();
                 $table->boolean('access');
-                $table->string('user');
+                $table->string('user', 150);
                 $table->string('password');
                 $table->string('remember_token')->nullable();
 
                 $table->timestamps();
+
+
+                $table->unique('user', 'ui01_user');
 
                 $table->foreign('lang_id', 'fk01_user')
                     ->references('id')

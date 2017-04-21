@@ -18,7 +18,7 @@ class Lang extends CoreModel
         'id'        => 'required|alpha|size:2|unique:lang,id',
         'name'      => 'required|between:2,255',
         'icon'      => 'required',
-        'sorting'   => 'min:0|numeric'
+        'sort'      => 'min:0|numeric'
     ];
 
     public static function validate($data, $specialRules = [])

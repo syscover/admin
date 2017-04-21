@@ -29,7 +29,7 @@ class Resource extends CoreModel
     public function scopeBuilder($query)
     {
         return $query->join('package', 'resource.package_id', '=', 'package.id')
-            ->select('package.*','resource.*','package.name as package_name', 'resource.name as resource_name');
+            ->select('resource.*', 'package.*', 'resource.name as resource_name', 'package.name as package_name');
     }
 
     public function package()

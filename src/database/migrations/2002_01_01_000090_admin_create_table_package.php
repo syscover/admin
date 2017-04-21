@@ -19,7 +19,7 @@ class AdminCreateTablePackage extends Migration
 				
 				$table->increments('id')->unsigned();
 				$table->string('name');
-				$table->string('module');
+				$table->string('root');
 				$table->boolean('active');
 				$table->integer('sorting')->unsigned();
 			});
