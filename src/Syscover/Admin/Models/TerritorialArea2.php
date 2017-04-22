@@ -31,7 +31,7 @@ class TerritorialArea2 extends CoreModel
         return $query
             ->join('country', 'territorial_area_2.country_id', '=', 'country.id')
             ->join('territorial_area_1', 'territorial_area_2.territorial_area_1_id', '=', 'territorial_area_1.id')
-            ->select('country.*','territorial_area_1.*','territorial_area_2.*','country.name as country_name', 'territorial_area_1.name as territorial_area_1_name', 'territorial_area_2.name as territorial_area_2_name');
+            ->select('country.*', 'territorial_area_1.*', 'territorial_area_2.*', 'country.name as country_name', 'territorial_area_1.name as territorial_area_1_name', 'territorial_area_2.name as territorial_area_2_name');
     }
 
     public function territorialAreas3()

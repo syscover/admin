@@ -31,6 +31,6 @@ class TerritorialArea3 extends CoreModel
     {
         return $query->join('territorial_area_1', 'territorial_area_3.territorial_area_1_id', '=', 'territorial_area_1.id')
             ->join('territorial_area_2', 'territorial_area_3.territorial_area_2_id', '=', 'territorial_area_2.id')
-            ->select('territorial_area_1.*','territorial_area_2.*','territorial_area_3.*','territorial_area_1.name as territorial_area_1_name', 'territorial_area_2.name as territorial_area_2_name', 'territorial_area_3.name as territorial_area_3_name');
+            ->select('territorial_area_1.*', 'territorial_area_2.*', 'territorial_area_3.*', 'territorial_area_1.name as territorial_area_1_name', 'territorial_area_2.name as territorial_area_2_name', 'territorial_area_3.name as territorial_area_3_name');
     }
 }

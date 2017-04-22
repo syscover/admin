@@ -50,7 +50,7 @@ class User extends CoreModel implements
     public function scopeBuilder($query)
     {
         return $query->join('profile', 'user.profile_id', '=', 'profile.id')
-            ->select('profile.*','user.*','profile.name as profile_name', 'user.name as user_name');
+            ->select('profile.*', 'user.*', 'profile.name as profile_name', 'user.name as user_name');
     }
 
     /**

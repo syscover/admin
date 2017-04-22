@@ -21,7 +21,7 @@ class AdminCreateTablePackage extends Migration
 				$table->string('name');
 				$table->string('root');
 				$table->boolean('active');
-				$table->integer('sorting')->unsigned();
+				$table->integer('sort')->unsigned();
 			});
 		}
 	}
