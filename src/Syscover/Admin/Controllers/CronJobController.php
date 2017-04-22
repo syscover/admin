@@ -20,22 +20,6 @@ class CronJobController extends CoreController
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param   string  $id
-     * @return  \Illuminate\Http\JsonResponse
-     */
-    public function show($id)
-    {
-        $cronJob = CronJob::builder()
-            ->find($id);
-
-        $response['data'] = $cronJob;
-
-        return response()->json($response);
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param   \Illuminate\Http\Request  $request
@@ -44,18 +28,6 @@ class CronJobController extends CoreController
      * @return  \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id, $lang)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param   int     $id
-     * @param   string  $lang
-     * @return  \Illuminate\Http\JsonResponse
-     */
-    public function destroy($id, $lang = null)
     {
         //
     }

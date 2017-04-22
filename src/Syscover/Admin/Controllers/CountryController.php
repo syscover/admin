@@ -16,7 +16,7 @@ class CountryController extends CoreController
      */
     public function store(Request $request)
     {
-        $country = Country::create([
+        $object = Country::create([
             'id'                    => $request->input('id'),
             'lang_id'               => $request->input('lang_id'),
             'name'                  => $request->input('name'),
@@ -29,7 +29,7 @@ class CountryController extends CoreController
         ]);
 
         $response['status'] = "success";
-        $response['data']   = $country;
+        $response['data']   = $object;
 
         return response()->json($response);
     }
@@ -57,10 +57,10 @@ class CountryController extends CoreController
             'prefix' => $request->input('prefix')
         ]);
 
-        $country = Country::where('id', $id)->where('lang_id', $lang)->first();
+        $object = Country::where('id', $id)->where('lang_id', $lang)->first();
 
         $response['status'] = "success";
-        $response['data']   = $country;
+        $response['data']   = $object;
 
         return response()->json($response);
     }

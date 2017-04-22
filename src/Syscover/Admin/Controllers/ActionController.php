@@ -16,13 +16,13 @@ class ActionController extends CoreController
      */
     public function store(Request $request)
     {
-        $action = Action::create([
+        $object = Action::create([
             'id'    => $request->input('id'),
             'name'  => $request->input('name')
         ]);
 
         $response['status'] = "success";
-        $response['data']   = $action;
+        $response['data']   = $object;
 
         return response()->json($response);
     }
@@ -41,10 +41,10 @@ class ActionController extends CoreController
             'name'  => $request->input('name')
         ]);
 
-        $action = Action::find($request->input('id'));
+        $object = Action::find($request->input('id'));
 
         $response['status'] = "success";
-        $response['data']   = $action;
+        $response['data']   = $object;
 
         return response()->json($response);
     }

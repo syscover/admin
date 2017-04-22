@@ -23,7 +23,7 @@ class LangController extends CoreController
     {
         try
         {
-            $lang = Lang::create([
+            $object = Lang::create([
                 'id'        => $request->input('id'),
                 'name'      => $request->input('name'),
                 'icon'      => $request->input('icon'),
@@ -41,7 +41,7 @@ class LangController extends CoreController
         }
 
         $response['status'] = "success";
-        $response['data']   = $lang;
+        $response['data']   = $object;
 
         return response()->json($response);
     }

@@ -16,12 +16,12 @@ class ProfileController extends CoreController
      */
     public function store(Request $request)
     {
-        $profile = Profile::create([
+        $object = Profile::create([
             'name'  => $request->input('name')
         ]);
 
         $response['status'] = "success";
-        $response['data']   = $profile;
+        $response['data']   = $object;
 
         return response()->json($response);
     }
@@ -39,10 +39,10 @@ class ProfileController extends CoreController
             'name'  => $request->input('name')
         ]);
 
-        $profile = Profile::find($request->input('id'));
+        $object = Profile::find($request->input('id'));
 
         $response['status'] = "success";
-        $response['data']   = $profile;
+        $response['data']   = $object;
 
         return response()->json($response);
     }
