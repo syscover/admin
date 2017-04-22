@@ -33,4 +33,9 @@ class Lang extends CoreModel
     {
         return $query;
     }
+
+    public static function getBaseLang()
+    {
+        return Lang::where('base', true)->first();
+    }
 }

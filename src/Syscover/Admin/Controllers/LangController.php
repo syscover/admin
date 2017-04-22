@@ -28,8 +28,8 @@ class LangController extends CoreController
                 'name'      => $request->input('name'),
                 'icon'      => $request->input('icon'),
                 'sort'      => $request->input('sort'),
-                'base'      => $request->has('base'),
-                'active'    => $request->has('active')
+                'base'      => $request->input('base'),
+                'active'    => $request->input('active')
             ]);
         }
         catch (\Exception $e)
@@ -57,13 +57,15 @@ class LangController extends CoreController
     {
         try
         {
+            //dd($request->all());
+
             Lang::where('id', $id)->update([
                 'id'        => $request->input('id'),
                 'name'      => $request->input('name'),
                 'icon'      => $request->input('icon'),
                 'sort'      => $request->input('sort'),
-                'base'      => $request->has('base'),
-                'active'    => $request->has('active')
+                'base'      => $request->input('base'),
+                'active'    => $request->input('active')
             ]);
         }
         catch (\Exception $e)
