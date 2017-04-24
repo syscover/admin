@@ -6,7 +6,8 @@
 |----------------------------------
 */
 Route::get('api/v1/admin/config/env',                                   ['as' => 'adminConfig',                         'uses' => 'Syscover\Admin\Controllers\ConfigController@env']);
-Route::get('api/v1/admin/config/values/{env}',                          ['as' => 'adminValuesConfig',                   'uses' => 'Syscover\Admin\Controllers\ConfigController@values']);
+Route::get('api/v1/admin/config/bootstrap/{env}',                       ['as' => 'adminBootstrapConfig',                'uses' => 'Syscover\Admin\Controllers\ConfigController@bootstrap']);
+Route::post('api/v1/admin/config/values',                               ['as' => 'adminValuesConfig',                   'uses' => 'Syscover\Admin\Controllers\ConfigController@values']);
 
 
 /*
