@@ -14,6 +14,7 @@ class Country extends CoreModel
     protected $fillable     = ['id', 'lang_id', 'name', 'sort', 'prefix', 'territorial_area_1', 'territorial_area_2', 'territorial_area_3', 'data_lang'];
     public $incrementing    = false;
     public $timestamps      = false;
+    public $relations       = ['lang'];
     private static $rules   = [
         'id'                => 'required|alpha|size:2|unique:001_country,id',
         'name'              => 'required|between:2,100',
@@ -35,6 +36,11 @@ class Country extends CoreModel
     {
         return $query
             ->join('lang', 'country.lang_id', '=', 'lang.id')
-            ->select('lang.*', 'country.*', 'lang.id as lang_id', 'lang.name as lang_name', 'country.id as country_id', 'country.name as country_name');
+            ->select('country.*');
+    }
+
+    public function lang()
+    {
+        return $this->belongsTo(Lang::class, 'lang_id');
     }
 }

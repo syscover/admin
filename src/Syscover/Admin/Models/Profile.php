@@ -14,7 +14,7 @@ class Profile extends CoreModel
     protected $fillable     = ['name'];
     public $timestamps      = false;
     private static $rules   = [
-        'name'    =>  'required|between:2,50'
+        'name' => 'required|between:2,50'
     ];
 
     public static function validate($data)

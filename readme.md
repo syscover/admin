@@ -19,8 +19,8 @@ composer require syscover/pulsar-admin
 /*
  * Pulsar Application Service Providers...
  */
-Syscover\Pulsar\CoreServiceProvider::class,  // <-- You may have already registered
-Syscover\Pulsar\AdminServiceProvider::class,
+Syscover\Core\CoreServiceProvider::class,  // <-- You may have already registered
+Syscover\Admin\AdminServiceProvider::class,
 ```
 
 **3 - Execute publish command**
