@@ -14,6 +14,7 @@ class Lang extends CoreModel
     protected $fillable     = ['id', 'name', 'icon', 'sort', 'base', 'active'];
     public $incrementing    = false;
     public $timestamps      = false;
+
     private static $rules   = [
         'id'        => 'required|alpha|size:2|unique:lang,id',
         'name'      => 'required|between:2,255',

@@ -13,6 +13,7 @@ class TerritorialArea3 extends CoreModel
     protected $table        = 'territorial_area_3';
     public $incrementing    = false;
     public $timestamps      = false;
+
     private static $rules   = [
         'id'                => 'required|between:1,10|unique:territorial_area_3,id',
         'name'              => 'required|between:2,50',

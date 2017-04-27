@@ -14,7 +14,8 @@ class Country extends CoreModel
     protected $fillable     = ['id', 'lang_id', 'name', 'sort', 'prefix', 'territorial_area_1', 'territorial_area_2', 'territorial_area_3', 'data_lang'];
     public $incrementing    = false;
     public $timestamps      = false;
-    public $relations       = ['lang'];
+    public $with            = ['lang'];
+
     private static $rules   = [
         'id'                => 'required|alpha|size:2|unique:001_country,id',
         'name'              => 'required|between:2,100',

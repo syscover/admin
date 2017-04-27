@@ -12,7 +12,7 @@ class Package extends CoreModel
 {
 	protected $table        = 'package';
     public $timestamps      = false;
-    protected $casts        = ['active_012' => 'boolean'];
+
     private static $rules   = [
         'name'    =>  'required|between:2,50',
         'folder'  =>  'required|between:2,50'

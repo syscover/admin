@@ -14,9 +14,9 @@ class Permission extends CoreModel
     protected $primaryKey   = 'profile_id';
     public $timestamps      = false;
     private static $rules   = [
-        'profile_id_009'    =>  'required',
-        'resource_id_009'   =>  'required',
-        'action_id_009'     =>  'required'
+        'profile_id'    =>  'required',
+        'resource_id'   =>  'required',
+        'action_id'     =>  'required'
     ];
       
     public static function validate($data)

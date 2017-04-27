@@ -28,6 +28,7 @@ class User extends CoreModel implements
     public $timestamps      = true;
     protected $fillable     = ['id', 'lang_id', 'profile_id', 'access', 'user', 'password', 'email', 'name', 'surname'];
     protected $hidden       = ['password', 'remember_token'];
+
     private static $rules   = [
         'name'      => 'required|between:2,255',
         'surname'   => 'required|between:2,255',

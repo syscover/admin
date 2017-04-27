@@ -12,6 +12,7 @@ class CronJob extends CoreModel
 {
 	protected $table        = 'cron_job';
     public $timestamps      = false;
+
     private static $rules   = [
         'name'              =>  'required|between:2,100',
         'package'           =>  'not_in:null',

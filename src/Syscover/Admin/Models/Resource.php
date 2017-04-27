@@ -13,6 +13,7 @@ class Resource extends CoreModel
 	protected $table        = 'resource';
     public $incrementing    = false;
     public $timestamps      = false;
+
     private static $rules   = [
         'id'        =>  'required|between:2,30|unique:001_007_resource,id_007',
         'package'   =>  'not_in:null',

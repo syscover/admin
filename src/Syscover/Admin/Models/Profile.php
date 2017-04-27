@@ -13,6 +13,7 @@ class Profile extends CoreModel
     protected $table        = 'profile';
     protected $fillable     = ['name'];
     public $timestamps      = false;
+
     private static $rules   = [
         'name' => 'required|between:2,50'
     ];
