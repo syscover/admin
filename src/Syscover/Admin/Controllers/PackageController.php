@@ -16,19 +16,60 @@ class PackageController extends CoreController
      */
     public function store(Request $request)
     {
-        //
+        try
+        {
+            $object = Package::create([
+                'name' => $request->input('name'),
+                'root' => $request->input('root'),
+                'active' => $request->input('active'),
+                'sort' => $request->input('sort')
+            ]);
+        }
+        catch (\Exception $e)
+        {
+            $response['status'] = "error";
+            $response['message'] = $e->getMessage();
+
+            return response()->json($response, 500);
+        }
+
+        $response['status'] = "success";
+        $response['data']   = $object;
+
+        return response()->json($response);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param   \Illuminate\Http\Request  $request
-     * @param   int     $id
-     * @param   string  $lang
+     * @param   \Illuminate\Http\Request $request
+     * @param   int $id
      * @return  \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id, $lang)
+    public function update(Request $request, $id)
     {
-        //
+        try
+        {
+            Package::where('id', $id)->update([
+                'name' => $request->input('name'),
+                'root' => $request->input('root'),
+                'active' => $request->input('active'),
+                'sort' => $request->input('sort')
+            ]);
+        }
+        catch (\Exception $e)
+        {
+            $response['status'] = "error";
+            $response['message'] = $e->getMessage();
+
+            return response()->json($response, 500);
+        }
+
+        $object = Package::find($request->input('id'));
+
+        $response['status'] = "success";
+        $response['data']   = $object;
+
+        return response()->json($response);
     }
 }

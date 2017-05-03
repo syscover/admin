@@ -57,8 +57,6 @@ class LangController extends CoreController
     {
         try
         {
-            //dd($request->all());
-
             Lang::where('id', $id)->update([
                 'id'        => $request->input('id'),
                 'name'      => $request->input('name'),
@@ -76,10 +74,10 @@ class LangController extends CoreController
             return response()->json($response, 500);
         }
 
-        $lang = Lang::find($request->input('id'));
+        $object = Lang::find($request->input('id'));
 
         $response['status'] = "success";
-        $response['data']   = $lang;
+        $response['data']   = $object;
 
         return response()->json($response);
     }

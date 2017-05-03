@@ -9,18 +9,25 @@ Route::get('api/v1/admin/config/env',                                   ['as' =>
 Route::get('api/v1/admin/config/bootstrap/{env}',                       ['as' => 'adminBootstrapConfig',                'uses' => 'Syscover\Admin\Controllers\ConfigController@bootstrap']);
 Route::post('api/v1/admin/config/values',                               ['as' => 'adminValuesConfig',                   'uses' => 'Syscover\Admin\Controllers\ConfigController@values']);
 
+/*
+|----------------------------------
+| USERS
+|----------------------------------
+*/
+Route::get('api/v1/admin/user',                                         ['as' => 'adminUser',                           'uses' => 'Syscover\Admin\Controllers\UserController@index']);
+Route::get('api/v1/admin/user/{id}',                                    ['as' => 'showAdminUser',                       'uses' => 'Syscover\Admin\Controllers\UserController@show']);
 
 /*
 |----------------------------------
 | LANGS
 |----------------------------------
 */
-Route::get('api/v1/admin/lang',                                         ['as' => 'adminLang',                            'uses' => 'Syscover\Admin\Controllers\LangController@index']);
-Route::get('api/v1/admin/lang/{id}',                                    ['as' => 'showAdminLang',                        'uses' => 'Syscover\Admin\Controllers\LangController@show']);
-Route::post('api/v1/admin/lang',                                        ['as' => 'storeAdminLang',                       'uses' => 'Syscover\Admin\Controllers\LangController@store']);
-Route::post('api/v1/admin/lang/search',                                 ['as' => 'searchAdminLang',                      'uses' => 'Syscover\Admin\Controllers\LangController@search']);
-Route::put('api/v1/admin/lang/{id}',                                    ['as' => 'updateAdminLang',                      'uses' => 'Syscover\Admin\Controllers\LangController@update']);
-Route::delete('api/v1/admin/lang/{id}',                                 ['as' => 'destroyAdminLang',                     'uses' => 'Syscover\Admin\Controllers\LangController@destroy']);
+Route::get('api/v1/admin/lang',                                         ['as' => 'adminLang',                           'uses' => 'Syscover\Admin\Controllers\LangController@index']);
+Route::get('api/v1/admin/lang/{id}',                                    ['as' => 'showAdminLang',                       'uses' => 'Syscover\Admin\Controllers\LangController@show']);
+Route::post('api/v1/admin/lang',                                        ['as' => 'storeAdminLang',                      'uses' => 'Syscover\Admin\Controllers\LangController@store']);
+Route::post('api/v1/admin/lang/search',                                 ['as' => 'searchAdminLang',                     'uses' => 'Syscover\Admin\Controllers\LangController@search']);
+Route::put('api/v1/admin/lang/{id}',                                    ['as' => 'updateAdminLang',                     'uses' => 'Syscover\Admin\Controllers\LangController@update']);
+Route::delete('api/v1/admin/lang/{id}',                                 ['as' => 'destroyAdminLang',                    'uses' => 'Syscover\Admin\Controllers\LangController@destroy']);
 
 /*
 |----------------------------------
@@ -39,8 +46,8 @@ Route::delete('api/v1/admin/country/{id}/{lang?}',                     ['as' => 
 | TERRITORIAL AREAS 1
 |----------------------------------
 */
-Route::get('api/v1/admin/territorial-area-1/{lang?}',                     ['as' => 'adminTerritorialArea1',                'uses' => 'Syscover\Admin\Controllers\TerritorialArea1Controller@index']);
-Route::get('api/v1/admin/territorial-area-1/{id}/{lang}',                 ['as' => 'showAdminTerritorialArea1',            'uses' => 'Syscover\Admin\Controllers\TerritorialArea1Controller@show']);
+Route::get('api/v1/admin/territorial-area-1/{lang?}',                     ['as' => 'adminTerritorialArea1',             'uses' => 'Syscover\Admin\Controllers\TerritorialArea1Controller@index']);
+Route::get('api/v1/admin/territorial-area-1/{id}/{lang}',                 ['as' => 'showAdminTerritorialArea1',         'uses' => 'Syscover\Admin\Controllers\TerritorialArea1Controller@show']);
 
 /*
 |----------------------------------
@@ -60,15 +67,43 @@ Route::get('api/v1/admin/territorial-area-3/{id}',                        ['as' 
 
 /*
 |----------------------------------
+| PACKAGES
+|----------------------------------
+*/
+Route::get('api/v1/admin/package',                                      ['as' => 'adminPackage',                        'uses' => 'Syscover\Admin\Controllers\PackageController@index']);
+Route::get('api/v1/admin/package/{id}',                                 ['as' => 'showAdminPackage',                    'uses' => 'Syscover\Admin\Controllers\PackageController@show']);
+Route::post('api/v1/admin/package',                                     ['as' => 'storeAdminPackage',                   'uses' => 'Syscover\Admin\Controllers\PackageController@store']);
+Route::post('api/v1/admin/package/search',                              ['as' => 'searchAdminPackage',                  'uses' => 'Syscover\Admin\Controllers\PackageController@search']);
+Route::put('api/v1/admin/package/{id}',                                 ['as' => 'updateAdminPackage',                  'uses' => 'Syscover\Admin\Controllers\PackageController@update']);
+Route::delete('api/v1/admin/package/{id}',                              ['as' => 'destroyAdminPackage',                 'uses' => 'Syscover\Admin\Controllers\PackageController@destroy']);
+
+/*
+|----------------------------------
+| CRON JOBS
+|----------------------------------
+*/
+Route::get('api/v1/admin/cron-job',                                     ['as' => 'adminCronJob',                        'uses' => 'Syscover\Admin\Controllers\CronJobController@index']);
+Route::get('api/v1/admin/cron-job/{id}',                                ['as' => 'showAdminCronJob',                    'uses' => 'Syscover\Admin\Controllers\CronJobController@show']);
+
+/*
+|----------------------------------
 | PROFILES
 |----------------------------------
 */
-Route::get('api/v1/admin/profile',                                      ['as' => 'adminProfile',                         'uses' => 'Syscover\Admin\Controllers\ProfileController@index']);
-Route::get('api/v1/admin/profile/{id}',                                 ['as' => 'showAdminProfile',                     'uses' => 'Syscover\Admin\Controllers\ProfileController@show']);
-Route::post('api/v1/admin/profile',                                     ['as' => 'storeAdminProfile',                    'uses' => 'Syscover\Admin\Controllers\ProfileController@store']);
-Route::post('api/v1/admin/profile/search',                              ['as' => 'searchAdminProfile',                   'uses' => 'Syscover\Admin\Controllers\ProfileController@search']);
-Route::put('api/v1/admin/profile/{id}',                                 ['as' => 'updateAdminProfile',                   'uses' => 'Syscover\Admin\Controllers\ProfileController@update']);
-Route::delete('api/v1/admin/profile/{id}',                              ['as' => 'destroyAdminProfile',                  'uses' => 'Syscover\Admin\Controllers\ProfileController@destroy']);
+Route::get('api/v1/admin/profile',                                      ['as' => 'adminProfile',                        'uses' => 'Syscover\Admin\Controllers\ProfileController@index']);
+Route::get('api/v1/admin/profile/{id}',                                 ['as' => 'showAdminProfile',                    'uses' => 'Syscover\Admin\Controllers\ProfileController@show']);
+Route::post('api/v1/admin/profile',                                     ['as' => 'storeAdminProfile',                   'uses' => 'Syscover\Admin\Controllers\ProfileController@store']);
+Route::post('api/v1/admin/profile/search',                              ['as' => 'searchAdminProfile',                  'uses' => 'Syscover\Admin\Controllers\ProfileController@search']);
+Route::put('api/v1/admin/profile/{id}',                                 ['as' => 'updateAdminProfile',                  'uses' => 'Syscover\Admin\Controllers\ProfileController@update']);
+Route::delete('api/v1/admin/profile/{id}',                              ['as' => 'destroyAdminProfile',                 'uses' => 'Syscover\Admin\Controllers\ProfileController@destroy']);
+
+/*
+|----------------------------------
+| RESOURCES
+|----------------------------------
+*/
+Route::get('api/v1/admin/resource',                                     ['as' => 'adminResource',                        'uses' => 'Syscover\Admin\Controllers\ResourceController@index']);
+Route::get('api/v1/admin/resource/{id}',                                ['as' => 'showAdminResource',                    'uses' => 'Syscover\Admin\Controllers\ResourceController@show']);
 
 /*
 |----------------------------------
@@ -81,35 +116,3 @@ Route::post('api/v1/admin/action',                                      ['as' =>
 Route::post('api/v1/admin/action/search',                               ['as' => 'searchAdminAction',                    'uses' => 'Syscover\Admin\Controllers\ActionController@search']);
 Route::put('api/v1/admin/action/{id}',                                  ['as' => 'updateAdminAction',                    'uses' => 'Syscover\Admin\Controllers\ActionController@update']);
 Route::delete('api/v1/admin/action/{id}',                               ['as' => 'destroyAdminAction',                   'uses' => 'Syscover\Admin\Controllers\ActionController@destroy']);
-
-/*
-|----------------------------------
-| USERS
-|----------------------------------
-*/
-Route::get('api/v1/admin/user',                                         ['as' => 'adminUser',                            'uses' => 'Syscover\Admin\Controllers\UserController@index']);
-Route::get('api/v1/admin/user/{id}',                                    ['as' => 'showAdminUser',                        'uses' => 'Syscover\Admin\Controllers\UserController@show']);
-
-/*
-|----------------------------------
-| PACKAGES
-|----------------------------------
-*/
-Route::get('api/v1/admin/package',                                      ['as' => 'adminPackage',                         'uses' => 'Syscover\Admin\Controllers\PackageController@index']);
-Route::get('api/v1/admin/package/{id}',                                 ['as' => 'showAdminPackage',                     'uses' => 'Syscover\Admin\Controllers\PackageController@show']);
-
-/*
-|----------------------------------
-| RESOURCES
-|----------------------------------
-*/
-Route::get('api/v1/admin/resource',                                     ['as' => 'adminResource',                        'uses' => 'Syscover\Admin\Controllers\ResourceController@index']);
-Route::get('api/v1/admin/resource/{id}',                                ['as' => 'showAdminResource',                    'uses' => 'Syscover\Admin\Controllers\ResourceController@show']);
-
-/*
-|----------------------------------
-| CRON JOBS
-|----------------------------------
-*/
-Route::get('api/v1/admin/cron-job',                                     ['as' => 'adminCronJob',                        'uses' => 'Syscover\Admin\Controllers\CronJobController@index']);
-Route::get('api/v1/admin/cron-job/{id}',                                ['as' => 'showAdminCronJob',                    'uses' => 'Syscover\Admin\Controllers\CronJobController@show']);
