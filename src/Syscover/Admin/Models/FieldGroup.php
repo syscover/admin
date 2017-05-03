@@ -16,7 +16,6 @@ class FieldGroup extends CoreModel
     public $with            = ['resource'];
 
     private static $rules   = [
-        'id'            => 'required|between:2,25|unique:action,id',
         'name'          => 'required|between:2,50',
         'resource_id'   => 'required'
     ];

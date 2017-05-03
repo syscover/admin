@@ -87,6 +87,19 @@ Route::get('api/v1/admin/cron-job/{id}',                                ['as' =>
 
 /*
 |----------------------------------
+| FIELD GROUPS
+|----------------------------------
+*/
+Route::get('api/v1/admin/field-group',                                  ['as' => 'adminFieldGroup',                     'uses' => 'Syscover\Admin\Controllers\FieldGroupController@index']);
+Route::get('api/v1/admin/field-group/{id}',                             ['as' => 'showAdminFieldGroup',                 'uses' => 'Syscover\Admin\Controllers\FieldGroupController@show']);
+Route::post('api/v1/admin/field-group',                                 ['as' => 'storeAdminFieldGroup',                'uses' => 'Syscover\Admin\Controllers\FieldGroupController@store']);
+Route::post('api/v1/admin/field-group/search',                          ['as' => 'searchAdminFieldGroup',               'uses' => 'Syscover\Admin\Controllers\FieldGroupController@search']);
+Route::put('api/v1/admin/field-group/{id}',                             ['as' => 'updateAdminFieldGroup',               'uses' => 'Syscover\Admin\Controllers\FieldGroupController@update']);
+Route::delete('api/v1/admin/field-group/{id}',                          ['as' => 'destroyAdminFieldGroup',              'uses' => 'Syscover\Admin\Controllers\FieldGroupController@destroy']);
+
+
+/*
+|----------------------------------
 | PROFILES
 |----------------------------------
 */
