@@ -35,9 +35,7 @@ class Country extends CoreModel
 
     public function scopeBuilder($query)
     {
-        return $query
-            ->join('lang', 'country.lang_id', '=', 'lang.id')
-            ->select('country.*');
+        return $query;
     }
 
     public function lang()
