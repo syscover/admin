@@ -16,7 +16,26 @@ class ResourceController extends CoreController
      */
     public function store(Request $request)
     {
-        //
+        try
+        {
+            $object = Resource::create([
+                'id'            => $request->input('id'),
+                'name'          => $request->input('name'),
+                'package_id'    => $request->input('package_id')
+            ]);
+        }
+        catch (\Exception $e)
+        {
+            $response['status'] = "error";
+            $response['message'] = $e->getMessage();
+
+            return response()->json($response, 500);
+        }
+
+        $response['status'] = "success";
+        $response['data']   = $object;
+
+        return response()->json($response);
     }
 
     /**
@@ -24,11 +43,31 @@ class ResourceController extends CoreController
      *
      * @param   \Illuminate\Http\Request  $request
      * @param   int     $id
-     * @param   string  $lang
      * @return  \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id, $lang)
+    public function update(Request $request, $id)
     {
-        //
+        try
+        {
+            Resource::where('id', $id)->update([
+                'id'            => $request->input('id'),
+                'name'          => $request->input('name'),
+                'package_id'    => $request->input('package_id')
+            ]);
+        }
+        catch (\Exception $e)
+        {
+            $response['status'] = "error";
+            $response['message'] = $e->getMessage();
+
+            return response()->json($response, 500);
+        }
+
+        $object = Resource::find($request->input('id'));
+
+        $response['status'] = "success";
+        $response['data']   = $object;
+
+        return response()->json($response);
     }
 }

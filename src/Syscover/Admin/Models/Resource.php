@@ -11,8 +11,10 @@ use Illuminate\Support\Facades\Validator;
 class Resource extends CoreModel
 {
 	protected $table        = 'resource';
+    protected $fillable     = ['id', 'name', 'package_id'];
     public $incrementing    = false;
     public $timestamps      = false;
+    public $with            = ['package'];
 
     private static $rules   = [
         'id'        =>  'required|between:2,30|unique:001_007_resource,id_007',
@@ -29,8 +31,7 @@ class Resource extends CoreModel
 
     public function scopeBuilder($query)
     {
-        return $query->join('package', 'resource.package_id', '=', 'package.id')
-            ->select('package.*', 'resource.*', 'package.name as package_name', 'resource.name as resource_name');
+        return $query;
     }
 
     public function package()

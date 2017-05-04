@@ -115,8 +115,12 @@ Route::delete('api/v1/admin/profile/{id}',                              ['as' =>
 | RESOURCES
 |----------------------------------
 */
-Route::get('api/v1/admin/resource',                                     ['as' => 'adminResource',                        'uses' => 'Syscover\Admin\Controllers\ResourceController@index']);
-Route::get('api/v1/admin/resource/{id}',                                ['as' => 'showAdminResource',                    'uses' => 'Syscover\Admin\Controllers\ResourceController@show']);
+Route::get('api/v1/admin/resource',                                     ['as' => 'adminResource',                       'uses' => 'Syscover\Admin\Controllers\ResourceController@index']);
+Route::get('api/v1/admin/resource/{id}',                                ['as' => 'showAdminResource',                   'uses' => 'Syscover\Admin\Controllers\ResourceController@show']);
+Route::post('api/v1/admin/resource',                                    ['as' => 'storeAdminResource',                  'uses' => 'Syscover\Admin\Controllers\ResourceController@store']);
+Route::post('api/v1/admin/resource/search',                             ['as' => 'searchAdminResource',                 'uses' => 'Syscover\Admin\Controllers\ResourceController@search']);
+Route::put('api/v1/admin/resource/{id}',                                ['as' => 'updateAdminResource',                 'uses' => 'Syscover\Admin\Controllers\ResourceController@update']);
+Route::delete('api/v1/admin/resource/{id}',                             ['as' => 'destroyAdminResource',                'uses' => 'Syscover\Admin\Controllers\ResourceController@destroy']);
 
 /*
 |----------------------------------
