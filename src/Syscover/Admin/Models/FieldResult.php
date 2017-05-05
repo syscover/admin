@@ -4,16 +4,16 @@ use Syscover\Core\Models\CoreModel;
 use Illuminate\Support\Facades\Validator;
 
 /**
- * Class FieldGroup
+ * Class FieldResult
  * @package Syscover\Pulsar\Models
  */
 
-class FieldGroup extends CoreModel
+class FieldResult extends CoreModel
 {
-	protected $table        = 'field_group';
-    protected $fillable     = ['id', 'name', 'resource_id'];
+	protected $table        = 'field_result';
+    protected $fillable     = ['object_id', 'lang_id', 'resource_id', 'field_id', 'data_type', 'value'];
     public $timestamps      = false;
-    public $with            = ['resource', 'fields'];
+    public $with            = ['lang'];
 
     private static $rules   = [
         'name'          => 'required|between:2,50',
@@ -30,13 +30,8 @@ class FieldGroup extends CoreModel
         return $query;
     }
 
-    public function resource()
+    public function lang()
     {
-        return $this->belongsTo(Resource::class, 'resource_id');
-    }
-
-    public function fields()
-    {
-        return $this->hasMany(Field::class, 'field_type_id');
+        return $this->belongsTo(Lang::class, 'lang_id');
     }
 }

@@ -22,15 +22,9 @@ class PulsarCreateTableFieldResult extends Migration {
                 $table->string('lang_id', 2);
                 $table->string('resource_id', 30);
                 $table->integer('field_id')->unsigned();
-                
-                // data type
-                // 1 - String
-                // 2 - Boolean
-                // 3 - Integer
-                // 4 - Float
-                // 5 - Array
-                // 6 - Object
-                $table->string('data_type_type')->default('string');
+
+                $table->string('data_type', 150)->default('string'); // data_types in config pulsar.admin.php
+
                 $table->longText('value');
                 
                 $table->foreign('lang_id', 'fk01_field_result')

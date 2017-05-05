@@ -18,13 +18,11 @@ class PulsarCreateTableField extends Migration {
                 $table->engine = 'InnoDB';
                 
                 $table->increments('id')->unsigned();
-                $table->integer('group_id')->unsigned();
+                $table->integer('field_group_id')->unsigned();
                 $table->string('name')->nullable();
-                
-                // lang set in json on data
-                // label set in json on data
+                $table->text('labels')->nullable(); // To save label values in different languages
 
-                $table->tinyInteger('field_type_id')->unsigned(); // see config/pulsar.php
+                $table->tinyInteger('field_type_id')->unsigned(); // see config/pulsar.admin.php
                 $table->string('field_type_name');
                 // 1 - Text
                 // 2 - Select
@@ -37,7 +35,7 @@ class PulsarCreateTableField extends Migration {
                 // 9 - Text area
                 // 10 - Wysiwyg
 
-                $table->tinyInteger('data_type_id')->unsigned();
+                $table->tinyInteger('data_type_id')->unsigned(); // see config/pulsar.admin.php
                 $table->string('data_type_name');
                 // 1 - String
                 // 2 - Boolean
@@ -47,12 +45,12 @@ class PulsarCreateTableField extends Migration {
                 // 6 - Object
 
                 $table->boolean('required');
-                $table->smallInteger('sorting')->unsigned()->nullable();
+                $table->smallInteger('sort')->unsigned()->nullable();
                 $table->integer('max_length')->unsigned()->nullable();
                 $table->string('pattern')->nullable()->nullable();
                 $table->tinyInteger('label_size')->unsigned()->nullable();  // column bootstrap size
                 $table->tinyInteger('field_size')->unsigned()->nullable();  // column bootstrap size
-                $table->text('data_lang')->nullable();
+                $table->text('data_lang')->nullable(); // Set different langs in json
                 $table->text('data')->nullable();
 
                 $table->foreign('group_id', 'fk01_field')

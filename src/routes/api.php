@@ -87,6 +87,18 @@ Route::get('api/v1/admin/cron-job/{id}',                                ['as' =>
 
 /*
 |----------------------------------
+| FIELD
+|----------------------------------
+*/
+Route::get('api/v1/admin/field/{lang?}',                                ['as' => 'adminField',                          'uses' => 'Syscover\Admin\Controllers\FieldController@index']);
+Route::get('api/v1/admin/field/{id}/{lang}',                            ['as' => 'showAdminField',                      'uses' => 'Syscover\Admin\Controllers\FieldController@show']);
+Route::post('api/v1/admin/field/search',                                ['as' => 'searchAdminField',                    'uses' => 'Syscover\Admin\Controllers\FieldController@search']);
+Route::post('api/v1/admin/field',                                       ['as' => 'storeAdminField',                     'uses' => 'Syscover\Admin\Controllers\FieldController@store']);
+Route::put('api/v1/admin/field/{id}/{lang}',                            ['as' => 'updateAdminField',                    'uses' => 'Syscover\Admin\Controllers\FieldController@update']);
+Route::delete('api/v1/admin/field/{id}/{lang?}',                        ['as' => 'destroyAdminField',                   'uses' => 'Syscover\Admin\Controllers\FieldController@destroy']);
+
+/*
+|----------------------------------
 | FIELD GROUPS
 |----------------------------------
 */
@@ -96,7 +108,6 @@ Route::post('api/v1/admin/field-group',                                 ['as' =>
 Route::post('api/v1/admin/field-group/search',                          ['as' => 'searchAdminFieldGroup',               'uses' => 'Syscover\Admin\Controllers\FieldGroupController@search']);
 Route::put('api/v1/admin/field-group/{id}',                             ['as' => 'updateAdminFieldGroup',               'uses' => 'Syscover\Admin\Controllers\FieldGroupController@update']);
 Route::delete('api/v1/admin/field-group/{id}',                          ['as' => 'destroyAdminFieldGroup',              'uses' => 'Syscover\Admin\Controllers\FieldGroupController@destroy']);
-
 
 /*
 |----------------------------------
