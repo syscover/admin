@@ -53,7 +53,7 @@ class PulsarCreateTableField extends Migration {
                 $table->text('data_lang')->nullable(); // Set different langs in json
                 $table->text('data')->nullable();
 
-                $table->foreign('group_id', 'fk01_field')
+                $table->foreign('field_group_id', 'fk01_field')
                     ->references('id')
                     ->on('field_group')
                     ->onDelete('cascade')
