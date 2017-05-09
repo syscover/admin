@@ -29,7 +29,7 @@ class FieldController extends CoreController
                 $labels     = json_decode($field->labels, true);
 
                 // set values
-                $dataLang['langs'][]                    = $request->input('lang');      // set data_lang
+                $dataLang['langs'][]                    = $request->input('lang_id');   // set data_lang
                 $labels[$request->input('lang')]   = $request->input('label');     // set labels
 
                 Field::where('id' ,$request->input('id'))->update([
@@ -49,7 +49,7 @@ class FieldController extends CoreController
                     'id'                => $id,
                     'field_group_id'    => $request->input('field_group_id'),
                     'name'              => $request->input('name'),
-                    'labels'            => json_encode([$request->input('lang') => $request->input('label')]),
+                    'labels'            => json_encode([$request->input('lang_id') => $request->input('label')]),
                     'field_type_id'     => $request->input('field_type_id'),
                     'field_type_name'   => $request->input('field_type_name', ''),
                     'data_type_id'      => $request->input('data_type_id'),
@@ -60,7 +60,7 @@ class FieldController extends CoreController
                     'pattern'           => $request->input('pattern'),
                     'label_size'        => $request->input('label_size'),
                     'field_size'        => $request->input('field_size'),
-                    'data_lang'         => Field::addLangDataRecord($request->input('lang'))
+                    'data_lang'         => Field::addLangDataRecord($request->input('lang_id'))
                 ]);
             }
         }
