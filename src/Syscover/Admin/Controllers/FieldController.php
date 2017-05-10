@@ -93,7 +93,7 @@ class FieldController extends CoreController
             Field::where('id', $id)->update([
                 'field_group_id'    => $request->input('field_group_id'),
                 'name'              => $request->input('name'),
-                //'labels'            => json_encode([$request->input('lang_id') => $request->input('label')]),
+                'labels'            => json_encode([$request->input('lang_id') => $request->input('label')]),
                 'field_type_id'     => $request->input('field_type_id'),
                 'field_type_name'   => $request->input('field_type_name', ''),
                 'data_type_id'      => $request->input('data_type_id'),

@@ -22,7 +22,7 @@ class PulsarCreateTableField extends Migration {
                 $table->string('name')->nullable();
                 $table->text('labels')->nullable(); // To save label values in different languages
 
-                $table->tinyInteger('field_type_id')->unsigned(); // see config/pulsar.admin.php
+                $table->string('field_type_id', 50); // see config/pulsar.admin.php
                 $table->string('field_type_name');
                 // 1 - Text
                 // 2 - Select
