@@ -41,6 +41,8 @@ class Field extends CoreModel
     }
 
     /**
+     * Over write deleteTranslationRecord from CoreModel to delete
+     * json language field, in labels column
      * @access	public
      * @param   array   $parameters [id, lang]
      * @param   boolean $deleteLangDataRecord
