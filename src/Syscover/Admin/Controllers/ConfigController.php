@@ -28,7 +28,8 @@ class ConfigController extends BaseController
     }
 
     /**
-     * Get values to bootstrap frontend application
+     * Get values to bootstrap frontend application,
+     * this values will be available throughout the application lifecycle
      *
      * @param   string $env
      * @return  \Illuminate\Http\JsonResponse
@@ -36,7 +37,8 @@ class ConfigController extends BaseController
     public function bootstrap($env)
     {
         $response['status']     = "success";
-        $response['base_lang']  = Lang::getBaseLang();
+        $response['base_lang']  = base_lang();
+        $response['langs']      = Lang::where('active', true)->get();
 
         return response()->json($response);
     }

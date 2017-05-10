@@ -25,19 +25,20 @@ class FieldController extends CoreController
                 $field      = Field::find($request->input('id'));
 
                 // get values
-                $dataLang   = json_decode($field->data_lang, true);
-                $labels     = json_decode($field->labels, true);
+                $dataLang   = $field->data_lang;
+                $labels     = $field->labels;
 
                 // set values
-                $dataLang['langs'][]                    = $request->input('lang_id');   // set data_lang
-                $labels[$request->input('lang')]   = $request->input('label');     // set labels
+                $dataLang[] = $request->input('lang_id');
+                $labels[$request->input('lang_id')] = $request->input('label');
 
-                Field::where('id' ,$request->input('id'))->update([
-                    'data_lang' => json_encode($dataLang),
-                    'labels'    => json_encode($labels)
-                ]);
+                // update values
+                $field->data_lang = $dataLang;
+                $field->labels = $labels;
 
-                $object = Field::find($request->input('id'));
+                $field->save();
+
+                $object = $field;
             }
             else
             {
@@ -49,7 +50,7 @@ class FieldController extends CoreController
                     'id'                => $id,
                     'field_group_id'    => $request->input('field_group_id'),
                     'name'              => $request->input('name'),
-                    'labels'            => json_encode([$request->input('lang_id') => $request->input('label')]),
+                    'labels'            => [$request->input('lang_id') => $request->input('label')],
                     'field_type_id'     => $request->input('field_type_id'),
                     'field_type_name'   => $request->input('field_type_name', ''),
                     'data_type_id'      => $request->input('data_type_id'),
@@ -90,8 +91,20 @@ class FieldController extends CoreController
         try
         {
             Field::where('id', $id)->update([
-                'name'          => $request->input('name'),
-                'resource_id'   => $request->input('resource_id')
+                'field_group_id'    => $request->input('field_group_id'),
+                'name'              => $request->input('name'),
+                //'labels'            => json_encode([$request->input('lang_id') => $request->input('label')]),
+                'field_type_id'     => $request->input('field_type_id'),
+                'field_type_name'   => $request->input('field_type_name', ''),
+                'data_type_id'      => $request->input('data_type_id'),
+                'data_type_name'    => $request->input('data_type_name', ''),
+                'required'          => $request->input('required'),
+                'sort'              => $request->input('sort'),
+                'max_length'        => $request->input('max_length'),
+                'pattern'           => $request->input('pattern'),
+                'label_size'        => $request->input('label_size'),
+                'field_size'        => $request->input('field_size'),
+                'data_lang'         => Field::addLangDataRecord($request->input('lang_id'))
             ]);
         }
         catch (\Exception $e)
@@ -102,7 +115,7 @@ class FieldController extends CoreController
             return response()->json($response, 500);
         }
 
-        $object = FieldGroup::find($request->input('id'));
+        $object = Field::find($request->input('id'));
 
         $response['status'] = "success";
         $response['data']   = $object;

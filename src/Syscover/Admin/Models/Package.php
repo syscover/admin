@@ -11,7 +11,11 @@ use Illuminate\Support\Facades\Validator;
 class Package extends CoreModel
 {
 	protected $table        = 'package';
+    protected $fillable     = ['id', 'name', 'root', 'active', 'sort'];
     public $timestamps      = false;
+    protected $casts        = [
+        'active'    => 'boolean'
+    ];
 
     private static $rules   = [
         'name'    =>  'required|between:2,50',

@@ -11,11 +11,10 @@ use Illuminate\Support\Facades\Validator;
 class Lang extends CoreModel
 {
     protected $table        = 'lang';
-    protected $fillable     = ['id', 'name', 'icon', 'sort', 'base', 'active'];
+    protected $fillable     = ['id', 'name', 'icon', 'sort', 'active'];
     public $incrementing    = false;
     public $timestamps      = false;
     protected $casts        = [
-        'base'      => 'boolean',
         'active'    => 'boolean'
     ];
 
@@ -37,10 +36,5 @@ class Lang extends CoreModel
     public function scopeBuilder($query)
     {
         return $query;
-    }
-
-    public static function getBaseLang()
-    {
-        return Lang::where('base', true)->first();
     }
 }

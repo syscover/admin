@@ -21,7 +21,6 @@ class AdminCreateTableLang extends Migration
 				$table->string('name');
 				$table->string('icon')->nullable();
 				$table->smallInteger('sort')->unsigned();
-				$table->boolean('base');
 				$table->boolean('active');
 
 				$table->primary('id', 'pk01_lang');

@@ -39,4 +39,24 @@ class Field extends CoreModel
     {
         return $this->belongsTo(Resource::class, 'group_id');
     }
+
+    /**
+     * @access	public
+     * @param   array   $parameters [id, lang]
+     * @param   boolean $deleteLangDataRecord
+     * @return	void
+     */
+    public static function deleteTranslationRecord($parameters, $deleteLangDataRecord = true)
+    {
+        $field = Field::find($parameters['id']);
+
+        $labels = collect($field->labels); // get labels
+        unset($labels[$parameters['lang']]); // delete lang
+
+        $field->labels = $labels; // set new labels values
+        $field->save(); // save values
+
+        // set values on data_lang
+        Field::deleteLangDataRecord($parameters);
+    }
 }

@@ -28,7 +28,6 @@ class LangController extends CoreController
                 'name'      => $request->input('name'),
                 'icon'      => $request->input('icon'),
                 'sort'      => $request->input('sort'),
-                'base'      => $request->input('base'),
                 'active'    => $request->input('active')
             ]);
         }
@@ -62,7 +61,6 @@ class LangController extends CoreController
                 'name'      => $request->input('name'),
                 'icon'      => $request->input('icon'),
                 'sort'      => $request->input('sort'),
-                'base'      => $request->input('base'),
                 'active'    => $request->input('active')
             ]);
         }

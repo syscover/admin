@@ -109,10 +109,12 @@ Inside passwords array
 ],
 ```
 
-**11 - Config .env file with your database parameters connections and this example parameters**
+**11 - Config .env file with your database parameters, and base lang parameter**
+Base lang is main language, where all multi language objects will have the first translation
 ```
-APP_LOG=daily
+BASE_LANG=ES
 ```
+
 
 **12 - When the installation is complete you can access these data**
 ```

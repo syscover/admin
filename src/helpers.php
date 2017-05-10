@@ -2,15 +2,12 @@
 
 if (! function_exists('base_lang')) {
     /**
-     * Get base lang object from session.
+     * Get base lang object from config file.
      *
-     * @return \Syscover\Admin\Models\Lang
+     * @return string
      */
     function base_lang()
     {
-        if(session('baseLang') === null)
-            session(['baseLang' => \Syscover\Admin\Models\Lang::getBaseLang()]);
-
-        return session('baseLang');
+        return config('pulsar.admin.base_lang');
     }
 }
