@@ -28,8 +28,6 @@ return [
         (object)['id' => 'number',              'name' => 'Number'],
         (object)['id' => 'email',               'name' => 'Email'],
         (object)['id' => 'checkbox',            'name' => 'Checkbox'],
-        (object)['id' => 'select-2',            'name' => 'Select 2'],
-        (object)['id' => 'select-multiple-2',   'name' => 'Select multiple 2'],
         (object)['id' => 'text-area',           'name' => 'Text Area'],
         (object)['id' => 'wysiwyg',             'name' => 'Wysiwyg'],
     ],

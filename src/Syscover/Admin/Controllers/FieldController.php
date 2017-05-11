@@ -104,7 +104,7 @@ class FieldController extends CoreController
                 'pattern'           => $request->input('pattern'),
                 'label_size'        => $request->input('label_size'),
                 'field_size'        => $request->input('field_size'),
-                'data_lang'         => Field::addLangDataRecord($request->input('lang_id'))
+                'data_lang'         => json_encode(Field::addLangDataRecord($request->input('lang_id')))
             ]);
         }
         catch (\Exception $e)
