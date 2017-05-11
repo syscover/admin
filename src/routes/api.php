@@ -1,5 +1,10 @@
 <?php
 
+
+Route::get('api/v1/admin/test/create',                                   ['as' => 'adminTestCreate',                         'uses' => 'Syscover\Admin\Controllers\TestController@testCreate']);
+Route::get('api/v1/admin/test/update',                                   ['as' => 'adminTestUpdate',                         'uses' => 'Syscover\Admin\Controllers\TestController@testUpdate']);
+Route::get('api/v1/admin/test',                                   ['as' => 'adminTest',                         'uses' => 'Syscover\Admin\Controllers\TestController@test']);
+
 /*
 |----------------------------------
 | CONFIG

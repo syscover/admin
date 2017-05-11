@@ -34,8 +34,8 @@ class PulsarCreateTableAttachment extends Migration {
                 $table->string('type_text');
                 $table->smallInteger('width')->unsigned()->nullable();
                 $table->smallInteger('height')->unsigned()->nullable();
-                $table->text('data_lang')->nullable();
-                $table->text('data')->nullable();
+                $table->json('data_lang')->nullable();
+                $table->json('data')->nullable();
                 
                 $table->foreign('lang_id', 'fk01_attachment')
                     ->references('id')

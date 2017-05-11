@@ -50,8 +50,8 @@ class PulsarCreateTableField extends Migration {
                 $table->string('pattern')->nullable()->nullable();
                 $table->tinyInteger('label_size')->unsigned()->nullable();  // column bootstrap size
                 $table->tinyInteger('field_size')->unsigned()->nullable();  // column bootstrap size
-                $table->text('data_lang')->nullable(); // Set different langs in json
-                $table->text('data')->nullable();
+                $table->json('data_lang')->nullable(); // Set different langs in json
+                $table->json('data')->nullable();
 
                 $table->foreign('field_group_id', 'fk01_field')
                     ->references('id')

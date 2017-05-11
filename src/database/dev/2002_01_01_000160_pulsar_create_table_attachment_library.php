@@ -28,7 +28,7 @@ class PulsarCreateTableAttachmentLibrary extends Migration {
 
                 $table->smallInteger('width')->unsigned()->nullable();
                 $table->smallInteger('height')->unsigned()->nullable();
-                $table->text('data')->nullable();
+                $table->json('data')->nullable();
 
                 $table->foreign('resource_id', 'fk01_attachment_library')
                     ->references('id')

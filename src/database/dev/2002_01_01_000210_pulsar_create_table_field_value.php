@@ -26,8 +26,8 @@ class PulsarCreateTableFieldValue extends Migration {
                 $table->string('name');
                 $table->smallInteger('sorting')->unsigned()->nullable();
                 $table->boolean('featured');
-                $table->string('data_lang')->nullable();
-                $table->text('data')->nullable();
+                $table->json('data_lang')->nullable();
+                $table->json('data')->nullable();
                 
                 $table->foreign('lang_id', 'fk01_field_value')
                     ->references('id')
