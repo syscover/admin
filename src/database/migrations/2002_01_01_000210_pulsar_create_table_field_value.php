@@ -18,11 +18,11 @@ class PulsarCreateTableFieldValue extends Migration {
                 $table->engine = 'InnoDB';
                 
                 $table->string('id', 30);
-                $table->string('lang_id', 2);
-                $table->integer('field_id')->unsigned();
-
                 // counter to assign number to id if has not ID
                 $table->integer('counter')->unsigned()->nullable();
+
+                $table->string('lang_id', 2);
+                $table->integer('field_id')->unsigned();
                 $table->string('name');
                 $table->smallInteger('sort')->unsigned()->nullable();
                 $table->boolean('featured');
