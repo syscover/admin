@@ -4,20 +4,25 @@ use Syscover\Core\Models\CoreModel;
 use Illuminate\Support\Facades\Validator;
 
 /**
- * Class Field
+ * Class FieldValue
  * @package Syscover\Pulsar\Models
  */
 
 class FieldValue extends CoreModel
 {
 	protected $table        = 'field_value';
-    protected $fillable     = ['id', 'group_id', 'name', 'field_type_id', 'field_type_name', 'data_type_id', 'data_type_name', 'required', 'sort', 'max_length', 'pattern', 'label_size', 'field_size', 'data_lang', 'data'];
+    protected $fillable     = ['id', 'lang_id', 'field_id', 'counter', 'sort', 'featured', 'name', 'data_lang', 'data'];
     public $timestamps      = false;
-    public $with            = ['resource'];
+    protected $casts        = [
+        'featured'  => 'boolean',
+        'data_lang' => 'array',
+        'data'      => 'array'
+    ];
+    public $with            = ['lang'];
 
     private static $rules   = [
         'name'          => 'required|between:2,50',
-        'resource_id'   => 'required'
+        'field_id'      => 'required'
     ];
 
     public static function validate($data, $specialRules = [])
@@ -30,8 +35,8 @@ class FieldValue extends CoreModel
         return $query;
     }
 
-    public function resource()
+    public function lang()
     {
-        return $this->belongsTo(Resource::class, 'resource_id');
+        return $this->belongsTo(Lang::class, 'lang_id_027');
     }
 }

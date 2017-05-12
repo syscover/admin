@@ -24,7 +24,7 @@ class PulsarCreateTableFieldValue extends Migration {
                 // counter to assign number to id if has not ID
                 $table->integer('counter')->unsigned()->nullable();
                 $table->string('name');
-                $table->smallInteger('sorting')->unsigned()->nullable();
+                $table->smallInteger('sort')->unsigned()->nullable();
                 $table->boolean('featured');
                 $table->json('data_lang')->nullable();
                 $table->json('data')->nullable();
