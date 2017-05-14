@@ -86,14 +86,12 @@ class FieldValueController extends CoreController
             }
             else
             {
-                $counter = FieldValue::where('field_id', $request->input('field_id'))->max('counter'); // get max id from this field
-                $counter++;
-                $idAux = $counter;
+                // when update value, if id is autoincrement, is not possible change id
+                $idAux = $id;
             }
 
             FieldValue::where('field_id', $fieldId)->where('id', $id)->where('lang_id', $lang)->update([
                 'id'            => $idAux,
-                'counter'       => $counter,
                 'name'          => $request->input('name'),
                 'sort'          => $request->input('sort'),
                 'featured'      => $request->input('featured')
