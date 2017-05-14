@@ -31,11 +31,15 @@ class FieldValueController extends CoreController
                 $id         = $counter;
             }
 
-
-//            if($request->input('action') === 'store')
-//                $idLang     = null;
-//            else
-//                $idLang     = $id;
+            // get id suitable for get data_lang
+            if(base_lang() === $request->input('lang_id'))
+            {
+                $idAux = null;
+            }
+            else
+            {
+                $idAux = $id;
+            }
 
             // create new object
             $object = FieldValue::create([
@@ -46,7 +50,7 @@ class FieldValueController extends CoreController
                 'name'          => $request->input('name'),
                 'sort'          => $request->input('sort'),
                 'featured'      => $request->input('featured'),
-                'data_lang'     => FieldValue::addLangDataRecord($request->input('lang_id'), $idLang),
+                'data_lang'     => FieldValue::addLangDataRecord($request->input('lang_id'), $idAux),
                 'data'          => null
             ]);
         }
@@ -75,7 +79,7 @@ class FieldValueController extends CoreController
     {
         try
         {
-            Field::where('id', $id)->update([
+            FieldValue::where('id', $id)->update([
                 'field_group_id'    => $request->input('field_group_id'),
                 'name'              => $request->input('name'),
                 'labels'            => json_encode([$request->input('lang_id') => $request->input('label')]),
