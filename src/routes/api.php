@@ -108,16 +108,11 @@ Route::delete('api/v1/admin/field/{id}/{lang?}',                        ['as' =>
 |--------------------------------------------------------------------------
 */
 Route::get('api/v1/admin/field-value/{field}/{lang?}',                  ['as' => 'adminFieldValue',                     'uses' => 'Syscover\Admin\Controllers\FieldValueController@index']);
-
+Route::get('api/v1/admin/field-value/{field}/{id}/{lang}',              ['as' => 'showAdminFieldValue',                 'uses' => 'Syscover\Admin\Controllers\FieldValueController@show']);
 Route::post('api/v1/admin/field-value/search',                          ['as' => 'searchAdminFieldValue',               'uses' => 'Syscover\Admin\Controllers\FieldValueController@search']);
 Route::post('api/v1/admin/field-value',                                 ['as' => 'storeAdminFieldValue',                'uses' => 'Syscover\Admin\Controllers\FieldValueController@store']);
-//Route::get('api/v1/admin/field-value/create/{field}/{lang}/{offset}/{id?}',              ['as' => 'createCustomFieldValue',              'uses' => 'Syscover\Pulsar\Controllers\CustomFieldValueController@createRecord',               'resource' => 'admin-field-value',        'action' => 'create']);
-//Route::post(config('pulsar.name') . '/pulsar/custom/fields/values/store/{field}/{lang}/{offset}/{id?}',              ['as' => 'storeCustomFieldValue',               'uses' => 'Syscover\Pulsar\Controllers\CustomFieldValueController@storeRecord',                'resource' => 'admin-field-value',        'action' => 'create']);
-//Route::get(config('pulsar.name') . '/pulsar/custom/fields/values/{field}/{id}/edit/{lang}/{offset}',                 ['as' => 'editCustomFieldValue',                'uses' => 'Syscover\Pulsar\Controllers\CustomFieldValueController@editRecord',                 'resource' => 'admin-field-value',        'action' => 'access']);
-//Route::put(config('pulsar.name') . '/pulsar/custom/fields/values/update/{field}/{lang}/{id}/{offset}',               ['as' => 'updateCustomFieldValue',              'uses' => 'Syscover\Pulsar\Controllers\CustomFieldValueController@updateRecord',               'resource' => 'admin-field-value',        'action' => 'edit']);
-//Route::get(config('pulsar.name') . '/pulsar/custom/fields/values/delete/{field}/{lang}/{id}/{offset}',               ['as' => 'deleteCustomFieldValue',              'uses' => 'Syscover\Pulsar\Controllers\CustomFieldValueController@deleteRecord',               'resource' => 'admin-field-value',        'action' => 'delete']);
-//Route::get(config('pulsar.name') . '/pulsar/custom/fields/values/delete/translation/{field}/{lang}/{id}/{offset}',   ['as' => 'deleteTranslationCustomFieldValue',   'uses' => 'Syscover\Pulsar\Controllers\CustomFieldValueController@deleteTranslationRecord',    'resource' => 'admin-field-value',        'action' => 'delete']);
-//Route::delete(config('pulsar.name') . '/pulsar/custom/fields/values/delete/select/records/{field}/{lang}',           ['as' => 'deleteSelectCustomFieldValue',        'uses' => 'Syscover\Pulsar\Controllers\CustomFieldValueController@deleteRecordsSelect',        'resource' => 'admin-field-value',        'action' => 'delete']);
+Route::put('api/v1/admin/field-value/{field}/{id}/{lang}',              ['as' => 'updateAdminFieldValue',               'uses' => 'Syscover\Admin\Controllers\FieldValueController@update']);
+Route::delete('api/v1/admin/field-value/{field}/{id}/{lang?}',          ['as' => 'destroyAdminFieldValue',              'uses' => 'Syscover\Admin\Controllers\FieldValueController@destroy']);
 
 /*
 |----------------------------------

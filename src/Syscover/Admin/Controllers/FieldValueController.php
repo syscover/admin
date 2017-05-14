@@ -75,25 +75,28 @@ class FieldValueController extends CoreController
      * @param   int $id
      * @return  \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $fieldId, $id, $lang)
     {
         try
         {
-            FieldValue::where('id', $id)->update([
-                'field_group_id'    => $request->input('field_group_id'),
-                'name'              => $request->input('name'),
-                'labels'            => json_encode([$request->input('lang_id') => $request->input('label')]),
-                'field_type_id'     => $request->input('field_type_id'),
-                'field_type_name'   => $request->input('field_type_name', ''),
-                'data_type_id'      => $request->input('data_type_id'),
-                'data_type_name'    => $request->input('data_type_name', ''),
-                'required'          => $request->input('required'),
-                'sort'              => $request->input('sort'),
-                'max_length'        => $request->input('max_length'),
-                'pattern'           => $request->input('pattern'),
-                'label_size'        => $request->input('label_size'),
-                'field_size'        => $request->input('field_size'),
-                'data_lang'         => json_encode(Field::addLangDataRecord($request->input('lang_id')))
+            if($request->has('id'))
+            {
+                $idAux      = $request->input('id');
+                $counter    = null; // the id is defined by user
+            }
+            else
+            {
+                $counter = FieldValue::where('field_id', $request->input('field_id'))->max('counter'); // get max id from this field
+                $counter++;
+                $idAux = $counter;
+            }
+
+            FieldValue::where('field_id', $fieldId)->where('id', $id)->where('lang_id', $lang)->update([
+                'id'            => $idAux,
+                'counter'       => $counter,
+                'name'          => $request->input('name'),
+                'sort'          => $request->input('sort'),
+                'featured'      => $request->input('featured')
             ]);
         }
         catch (\Exception $e)
@@ -104,7 +107,7 @@ class FieldValueController extends CoreController
             return response()->json($response, 500);
         }
 
-        $object = Field::find($request->input('id'));
+        $object = FieldValue::find($request->input('id'));
 
         $response['status'] = "success";
         $response['data']   = $object;
