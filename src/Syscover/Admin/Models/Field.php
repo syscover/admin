@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 class Field extends CoreModel
 {
 	protected $table        = 'field';
-    protected $fillable     = ['id', 'field_group_id', 'name', 'labels', 'field_type_id', 'field_type_name', 'data_type_id', 'data_type_name', 'required', 'sort', 'max_length', 'pattern', 'label_size', 'field_size', 'data_lang', 'data'];
+    protected $fillable     = ['id', 'field_group_id', 'name', 'labels', 'field_type_id', 'field_type_name', 'data_type_id', 'data_type_name', 'required', 'sort', 'max_length', 'pattern', 'label_class', 'component_class', 'data_lang', 'data'];
     public $timestamps      = false;
     protected $casts        = [
         'labels'    => 'array',

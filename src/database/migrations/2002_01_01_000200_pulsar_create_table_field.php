@@ -48,8 +48,8 @@ class PulsarCreateTableField extends Migration {
                 $table->smallInteger('sort')->unsigned()->nullable();
                 $table->integer('max_length')->unsigned()->nullable();
                 $table->string('pattern')->nullable()->nullable();
-                $table->tinyInteger('label_size')->unsigned()->nullable();  // column bootstrap size
-                $table->tinyInteger('field_size')->unsigned()->nullable();  // column bootstrap size
+                $table->string('label_class')->nullable();      // class style for label
+                $table->string('component_class')->nullable();  // class style for component
                 $table->json('data_lang')->nullable(); // Set different langs in json
                 $table->json('data')->nullable();
 

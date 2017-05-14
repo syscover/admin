@@ -59,8 +59,8 @@ class FieldController extends CoreController
                     'sort'              => $request->input('sort'),
                     'max_length'        => $request->input('max_length'),
                     'pattern'           => $request->input('pattern'),
-                    'label_size'        => $request->input('label_size'),
-                    'field_size'        => $request->input('field_size'),
+                    'label_class'       => $request->input('label_class'),
+                    'component_class'   => $request->input('component_class'),
                     'data_lang'         => Field::addLangDataRecord($request->input('lang_id'))
                 ]);
             }
@@ -84,28 +84,36 @@ class FieldController extends CoreController
      *
      * @param   \Illuminate\Http\Request $request
      * @param   int $id
+     * @param   string  $lang
      * @return  \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $lang)
     {
         try
         {
-            Field::where('id', $id)->update([
-                'field_group_id'    => $request->input('field_group_id'),
-                'name'              => $request->input('name'),
-                'labels'            => json_encode([$request->input('lang_id') => $request->input('label')]),
-                'field_type_id'     => $request->input('field_type_id'),
-                'field_type_name'   => $request->input('field_type_name', ''),
-                'data_type_id'      => $request->input('data_type_id'),
-                'data_type_name'    => $request->input('data_type_name', ''),
-                'required'          => $request->input('required'),
-                'sort'              => $request->input('sort'),
-                'max_length'        => $request->input('max_length'),
-                'pattern'           => $request->input('pattern'),
-                'label_size'        => $request->input('label_size'),
-                'field_size'        => $request->input('field_size'),
-                'data_lang'         => json_encode(Field::addLangDataRecord($request->input('lang_id')))
-            ]);
+            if(base_lang() == $lang)
+            {
+                Field::where('id', $id)->update([
+                    'field_group_id'    => $request->input('field_group_id'),
+                    'name'              => $request->input('name'),
+                    'labels->' . $lang  => $request->input('label'),
+                    'field_type_id'     => $request->input('field_type_id'),
+                    'field_type_name'   => $request->input('field_type_name', ''),
+                    'data_type_id'      => $request->input('data_type_id'),
+                    'data_type_name'    => $request->input('data_type_name', ''),
+                    'required'          => $request->input('required'),
+                    'sort'              => $request->input('sort'),
+                    'max_length'        => $request->input('max_length'),
+                    'pattern'           => $request->input('pattern'),
+                    'label_class'       => $request->input('label_class'),
+                    'component_class'   => $request->input('component_class')
+                ]);
+            }
+            else
+            {
+                Field::where('id', $id)->update(['labels->' . $lang => $request->input('label')]);
+            }
+
         }
         catch (\Exception $e)
         {
