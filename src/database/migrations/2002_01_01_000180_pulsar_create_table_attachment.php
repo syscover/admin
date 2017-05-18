@@ -24,7 +24,7 @@ class PulsarCreateTableAttachment extends Migration {
                 $table->integer('family_id')->unsigned()->nullable();
                 $table->integer('library_id')->unsigned()->nullable();              // original element library
                 $table->string('library_file_name', 1020)->nullable();
-                $table->integer('sorting')->unsigned()->nullable();
+                $table->integer('sort')->unsigned()->nullable();
                 $table->string('url', 1020)->nullable();
                 $table->string('name')->nullable();
                 $table->string('file_name', 1020)->nullable();
