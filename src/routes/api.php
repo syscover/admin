@@ -153,9 +153,21 @@ Route::delete('api/v1/admin/resource/{id}',                             ['as' =>
 | ACTIONS
 |----------------------------------
 */
-Route::get('api/v1/admin/action',                                       ['as' => 'adminAction',                          'uses' => 'Syscover\Admin\Controllers\ActionController@index']);
-Route::get('api/v1/admin/action/{id}',                                  ['as' => 'showAdminAction',                      'uses' => 'Syscover\Admin\Controllers\ActionController@show']);
-Route::post('api/v1/admin/action',                                      ['as' => 'storeAdminAction',                     'uses' => 'Syscover\Admin\Controllers\ActionController@store']);
-Route::post('api/v1/admin/action/search',                               ['as' => 'searchAdminAction',                    'uses' => 'Syscover\Admin\Controllers\ActionController@search']);
-Route::put('api/v1/admin/action/{id}',                                  ['as' => 'updateAdminAction',                    'uses' => 'Syscover\Admin\Controllers\ActionController@update']);
-Route::delete('api/v1/admin/action/{id}',                               ['as' => 'destroyAdminAction',                   'uses' => 'Syscover\Admin\Controllers\ActionController@destroy']);
+Route::get('api/v1/admin/action',                                       ['as' => 'adminAction',                         'uses' => 'Syscover\Admin\Controllers\ActionController@index']);
+Route::get('api/v1/admin/action/{id}',                                  ['as' => 'showAdminAction',                     'uses' => 'Syscover\Admin\Controllers\ActionController@show']);
+Route::post('api/v1/admin/action',                                      ['as' => 'storeAdminAction',                    'uses' => 'Syscover\Admin\Controllers\ActionController@store']);
+Route::post('api/v1/admin/action/search',                               ['as' => 'searchAdminAction',                   'uses' => 'Syscover\Admin\Controllers\ActionController@search']);
+Route::put('api/v1/admin/action/{id}',                                  ['as' => 'updateAdminAction',                   'uses' => 'Syscover\Admin\Controllers\ActionController@update']);
+Route::delete('api/v1/admin/action/{id}',                               ['as' => 'destroyAdminAction',                  'uses' => 'Syscover\Admin\Controllers\ActionController@destroy']);
+
+/*
+|----------------------------------
+| MIMES
+|----------------------------------
+*/
+Route::get('api/v1/admin/attachment-mime',                              ['as' => 'adminAttachmentMime',                 'uses' => 'Syscover\Admin\Controllers\AttachmentMimeController@index']);
+Route::get('api/v1/admin/attachment-mime/{id}',                         ['as' => 'showAdminAttachmentMime',             'uses' => 'Syscover\Admin\Controllers\AttachmentMimeController@show']);
+Route::post('api/v1/admin/attachment-mime',                             ['as' => 'storeAdminAttachmentMime',            'uses' => 'Syscover\Admin\Controllers\AttachmentMimeController@store']);
+Route::post('api/v1/admin/attachment-mime/search',                      ['as' => 'searchAdminAttachmentMime',           'uses' => 'Syscover\Admin\Controllers\AttachmentMimeController@search']);
+Route::put('api/v1/admin/attachment-mime/{id}',                         ['as' => 'updateAdminAttachmentMime',           'uses' => 'Syscover\Admin\Controllers\AttachmentMimeController@update']);
+Route::delete('api/v1/admin/attachment-mime/{id}',                      ['as' => 'destroyAdminAttachmentMime',          'uses' => 'Syscover\Admin\Controllers\AttachmentMimeController@destroy']);

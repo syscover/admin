@@ -8,17 +8,17 @@ use Illuminate\Support\Facades\Validator;
  * @package Syscover\Admin\Models
  */
 
-class AttachmentMime extends CoreModel
+class AttachmentFamily extends CoreModel
 {
 	protected $table        = 'attachment_mime';
-    protected $fillable     = ['id', 'resource_id', 'mime'];
+    protected $fillable     = ['id', 'resource_id', 'name', 'width', 'height', 'data'];
     public $incrementing    = false;
     public $timestamps      = false;
     public $with            = ['resource'];
 
     private static $rules   = [
         'resource_id'   =>  'required|between:2,30',
-        'mime'          =>  'required|between:2,255'
+        'name'          =>  'required|between:2,255'
     ];
 
     public static function validate($data)
