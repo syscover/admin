@@ -10,14 +10,14 @@ use Illuminate\Support\Facades\Validator;
 
 class AttachmentFamily extends CoreModel
 {
-	protected $table        = 'attachment_mime';
+	protected $table        = 'attachment_family';
     protected $fillable     = ['id', 'resource_id', 'name', 'width', 'height', 'data'];
     public $incrementing    = false;
     public $timestamps      = false;
     public $with            = ['resource'];
 
     private static $rules   = [
-        'resource_id'   =>  'required|between:2,30',
+        'resource_id'   =>  'required',
         'name'          =>  'required|between:2,255'
     ];
 

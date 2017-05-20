@@ -1,12 +1,12 @@
 <?php namespace Syscover\Admin\Controllers;
 
 use Illuminate\Http\Request;
-use Syscover\Admin\Models\AttachmentMime;
+use Syscover\Admin\Models\AttachmentFamily;
 use Syscover\Core\Controllers\CoreController;
 
 class AttachmentFamilyController extends CoreController
 {
-    protected $model = AttachmentMime::class;
+    protected $model = AttachmentFamily::class;
 
     /**
      * Store a newly created resource in storage.
@@ -18,9 +18,11 @@ class AttachmentFamilyController extends CoreController
     {
         try
         {
-            $object = AttachmentMime::create([
+            $object = AttachmentFamily::create([
                 'resource_id'   => $request->input('resource_id'),
-                'mime'          => $request->input('mime')
+                'name'          => $request->input('name'),
+                'width'         => $request->input('width'),
+                'height'        => $request->input('height')
             ]);
         }
         catch (\Exception $e)
@@ -48,9 +50,11 @@ class AttachmentFamilyController extends CoreController
     {
         try
         {
-            AttachmentMime::where('id', $id)->update([
+            AttachmentFamily::where('id', $id)->update([
                 'resource_id'   => $request->input('resource_id'),
-                'mime'          => $request->input('mime')
+                'name'          => $request->input('name'),
+                'width'         => $request->input('width'),
+                'height'        => $request->input('height')
             ]);
         }
         catch (\Exception $e)
@@ -61,7 +65,7 @@ class AttachmentFamilyController extends CoreController
             return response()->json($response, 500);
         }
 
-        $object = AttachmentMime::find($request->input('id'));
+        $object = AttachmentFamily::find($request->input('id'));
 
         $response['status'] = "success";
         $response['data']   = $object;
