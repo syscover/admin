@@ -183,3 +183,10 @@ Route::post('api/v1/admin/attachment-family',                           ['as' =>
 Route::post('api/v1/admin/attachment-family/search',                    ['as' => 'searchAdminAttachmentFamily',         'uses' => 'Syscover\Admin\Controllers\AttachmentFamilyController@search']);
 Route::put('api/v1/admin/attachment-family/{id}',                       ['as' => 'updateAdminAttachmentFamily',         'uses' => 'Syscover\Admin\Controllers\AttachmentFamilyController@update']);
 Route::delete('api/v1/admin/attachment-family/{id}',                    ['as' => 'destroyAdminAttachmentFamily',        'uses' => 'Syscover\Admin\Controllers\AttachmentFamilyController@destroy']);
+
+/*
+|----------------------------------
+| ATTACHMENTS
+|----------------------------------
+*/
+Route::post('api/v1/admin/attachment-upload',                           ['as' => 'adminAttachmentUpload',               'uses' => 'Syscover\Admin\Controllers\AttachmentUploadController@index']);
