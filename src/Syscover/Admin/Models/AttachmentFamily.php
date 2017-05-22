@@ -12,8 +12,10 @@ class AttachmentFamily extends CoreModel
 {
 	protected $table        = 'attachment_family';
     protected $fillable     = ['id', 'resource_id', 'name', 'width', 'height', 'data'];
-    public $incrementing    = false;
     public $timestamps      = false;
+    protected $casts        = [
+        'data' => 'array'
+    ];
     public $with            = ['resource'];
 
     private static $rules   = [

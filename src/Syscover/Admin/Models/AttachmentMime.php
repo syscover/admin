@@ -12,7 +12,6 @@ class AttachmentMime extends CoreModel
 {
 	protected $table        = 'attachment_mime';
     protected $fillable     = ['id', 'resource_id', 'mime'];
-    public $incrementing    = false;
     public $timestamps      = false;
     public $with            = ['resource'];
 

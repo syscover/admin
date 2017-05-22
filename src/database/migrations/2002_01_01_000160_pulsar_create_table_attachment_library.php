@@ -18,23 +18,14 @@ class PulsarCreateTableAttachmentLibrary extends Migration {
                 $table->engine = 'InnoDB';
                 
                 $table->increments('id')->unsigned();
-                $table->string('resource_id', 30);                              // resource which belong to this attachment
-                $table->string('url', 1020)->nullable();
-                $table->string('file_name', 1020)->nullable();
-                $table->string('mime');
-                $table->integer('size')->unsigned();
-                $table->tinyInteger('type_id')->unsigned();                             // 1 = image, 2 = file, 3 = video
-                $table->string('type_text');
-
+                $table->string('name');                         // original image name
+                $table->string('file_name');                    // file name in laravel storage
+                $table->string('url', 1024);             // url to access file
+                $table->string('mime');                         // mime type
+                $table->integer('size')->unsigned();            // size in bytes
                 $table->smallInteger('width')->unsigned()->nullable();
                 $table->smallInteger('height')->unsigned()->nullable();
                 $table->json('data')->nullable();
-
-                $table->foreign('resource_id', 'fk01_attachment_library')
-                    ->references('id')
-                    ->on('resource')
-                    ->onDelete('cascade')
-                    ->onUpdate('cascade');
             });
         }
     }

@@ -19,21 +19,19 @@ class PulsarCreateTableAttachment extends Migration {
                 
                 $table->integer('id')->unsigned();
                 $table->string('lang_id', 2);
-                $table->string('resource_id', 30);                                  // resource which belong to this attachment
+                $table->string('resource_id', 30);
                 $table->integer('object_id')->unsigned()->nullable();
                 $table->integer('family_id')->unsigned()->nullable();
-                $table->integer('library_id')->unsigned()->nullable();              // original element library
-                $table->string('library_file_name', 1020)->nullable();
                 $table->integer('sort')->unsigned()->nullable();
-                $table->string('url', 1020)->nullable();
-                $table->string('name')->nullable();
-                $table->string('file_name', 1020)->nullable();
-                $table->string('mime')->nullable();
-                $table->integer('size')->unsigned()->nullable();
-                $table->tinyInteger('type_id')->unsigned();                         // 1 = image, 2 = file, 3 = video
-                $table->string('type_text');
+                $table->string('name');
+                $table->string('file_name');
+                $table->string('url', 1024);                                // url to access file
+                $table->string('mime');
+                $table->integer('size')->unsigned();
                 $table->smallInteger('width')->unsigned()->nullable();
                 $table->smallInteger('height')->unsigned()->nullable();
+                $table->integer('library_id')->unsigned()->nullable();              // original element in library
+                $table->string('library_file_name')->nullable();
                 $table->json('data_lang')->nullable();
                 $table->json('data')->nullable();
                 
@@ -58,8 +56,9 @@ class PulsarCreateTableAttachment extends Migration {
                     ->onDelete('set null')
                     ->onUpdate('cascade');
 
-                $table->index(['object_id'], 'pk01_attachment');
-                $table->primary(['id', 'lang_id'], 'ix01_attachment');
+                $table->index(['object_id'], 'ix01_attachment');
+                $table->index(['resource_id'], 'ix02_attachment');
+                $table->primary(['id', 'lang_id'], 'pk01_attachment');
             });
         }
     }

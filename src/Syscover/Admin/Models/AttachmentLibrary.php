@@ -11,14 +11,18 @@ use Illuminate\Support\Facades\Validator;
 class AttachmentLibrary extends CoreModel
 {
 	protected $table        = 'attachment_library';
-    protected $fillable     = ['id', 'resource_id', 'url', 'file_name', 'mime', 'size', 'type_id', 'type_text', 'width', 'height', 'data'];
-    public $incrementing    = false;
+    protected $fillable     = ['id', 'name', 'file_name', 'url', 'mime', 'size', 'width', 'height', 'data'];
     public $timestamps      = false;
-    public $with            = ['resource'];
+    protected $casts        = [
+        'data' => 'array'
+    ];
 
     private static $rules   = [
-        'resource_id'   =>  'required',
-        'file_name'     =>  'required|between:2,1020'
+        'name'          =>  'required',
+        'file_name'     =>  'required',
+        'url'           =>  'required',
+        'mime'          =>  'required',
+        'size'          =>  'required'
     ];
 
     public static function validate($data)
@@ -29,10 +33,5 @@ class AttachmentLibrary extends CoreModel
     public function scopeBuilder($query)
     {
         return $query;
-    }
-
-    public function resource()
-    {
-        return $this->belongsTo(Resource::class, 'resource_id');
     }
 }

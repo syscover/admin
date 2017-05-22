@@ -11,14 +11,21 @@ use Illuminate\Support\Facades\Validator;
 class Attachment extends CoreModel
 {
 	protected $table        = 'attachment';
-    protected $fillable     = ['id', 'lang_id', 'resource_id', 'object_id', 'family_id', 'library_id', 'library_file_name', 'sort', 'url', 'name', 'file_name', 'mime', 'size', 'type_id', 'type_text', 'width', 'height', 'data_lang', 'data'];
+    protected $fillable     = ['id', 'lang_id', 'resource_id', 'object_id', 'family_id', 'sort', 'name', 'file_name', 'url', 'mime', 'size', 'width', 'height', 'library_id', 'library_file_name', 'data_lang', 'data'];
     public $incrementing    = false;
     public $timestamps      = false;
+    protected $casts        = [
+        'data' => 'array'
+    ];
     public $with            = ['resource'];
 
     private static $rules   = [
         'resource_id'   =>  'required',
-        'file_name'     =>  'required|between:2,1020'
+        'name'          =>  'required',
+        'file_name'     =>  'required',
+        'url'           =>  'required',
+        'mime'          =>  'required',
+        'size'          =>  'required'
     ];
 
     public static function validate($data)
