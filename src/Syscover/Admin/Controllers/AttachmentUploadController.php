@@ -43,6 +43,58 @@ class AttachmentUploadController extends BaseController
         }
     }
 
+    /**
+     * Store attachments in tmp folder
+     *
+     * @param   $files
+     * @return  array
+     */
+    private function storeTmp($files)
+    {
+        if(! is_array($files))
+            $files = [$files];
+
+        $attachmentTmp = [];
+        foreach ($files as $file)
+        {
+            $file->store('public/tmp'); // save file in library folder
+            $mime = $file->getMimeType();   // get mime type
+
+            $attachment = [
+                'name'      => $file->getClientOriginalName(),
+                'file_name' => $file->hashName(),
+                'url'       => asset('storage/tmp/' . $file->hashName()),
+                'mime'      => $mime,
+                'size'      => $file->getSize()
+            ];
+
+            // check if is image
+            if(is_image($mime))
+            {
+                /**
+                 * config http://image.intervention.io with imagemagick
+                 */
+                Image::configure(['driver' => 'imagick']);
+                $image = Image::make(storage_path('app/public/tmp/' . $file->hashName()));
+
+                // set image properties
+                $attachment['width']    = $image->width();
+                $attachment['height']   = $image->height();
+                $attachment['data']     = json_encode(['exif' => $image->exif()]);
+            }
+
+            $attachmentTmp[] = $attachment;
+        }
+
+        return $attachmentTmp;
+    }
+
+    /**
+     * Store attachments in library folder
+     *
+     * @param   $files
+     * @return  array
+     */
     private function storeAttachmentLibrary($files)
     {
         if(! is_array($files))
