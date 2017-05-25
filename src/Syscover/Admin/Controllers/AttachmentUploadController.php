@@ -1,7 +1,10 @@
 <?php namespace Syscover\Admin\Controllers;
 
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Intervention\Image\ImageManagerStatic as Image;
 use Syscover\Admin\Models\AttachmentLibrary;
 
@@ -11,36 +14,16 @@ class AttachmentUploadController extends BaseController
     {
         $files = $request->file('files');
 
-        $attachmentLibrary  = $this->storeAttachmentLibrary($files);
-       // $attachments        = $this->storeAttachment($files, $request->input('folder'));
+        $attachmentsLibraryTmp   = $this->storeAttachmentsLibraryTmp($files);
+        $attachmentsTmp          = $this->storeAttachmentsTmp($attachmentsLibraryTmp);
 
         $response['status'] = "success";
         $response['data'] = [
-            'library'       => $attachmentLibrary,
-            //'attachments'   => $attachments
+            'attachmentsLibraryTmp'  => $attachmentsLibraryTmp,
+            'attachmentsTmp'         => $attachmentsTmp
         ];
 
         return response()->json($response);
-    }
-
-    private function storeAttachment($files, $folder)
-    {
-        if(! is_array($files))
-            $files = [$files];
-
-        $attachments = [];
-        foreach ($files as $file)
-        {
-            $file->store('public/' . $folder); // save file in folder
-            $mime = $file->getMimeType();   // get mime type
-
-            $attachment = [
-                'name'      => $file->getClientOriginalName(),
-                'file_name' => $file->hashName(),
-                'mime'      => $mime,
-                'size'      => $file->getSize()
-            ];
-        }
     }
 
     /**
@@ -49,23 +32,26 @@ class AttachmentUploadController extends BaseController
      * @param   $files
      * @return  array
      */
-    private function storeTmp($files)
+    private function storeAttachmentsLibraryTmp($files)
     {
         if(! is_array($files))
             $files = [$files];
 
-        $attachmentTmp = [];
+        $attachmentsLibraryTmp = [];
         foreach ($files as $file)
         {
-            $file->store('public/tmp'); // save file in library folder
+            $file->store('public/tmp');   // save file in library folder
             $mime = $file->getMimeType();   // get mime type
 
             $attachment = [
                 'name'      => $file->getClientOriginalName(),
                 'file_name' => $file->hashName(),
+                'extension' => $file->extension(),
+                'base_path' => base_path('storage/app/public/tmp'),
                 'url'       => asset('storage/tmp/' . $file->hashName()),
                 'mime'      => $mime,
-                'size'      => $file->getSize()
+                'size'      => $file->getSize(),
+                'sort'      => null
             ];
 
             // check if is image
@@ -83,10 +69,28 @@ class AttachmentUploadController extends BaseController
                 $attachment['data']     = json_encode(['exif' => $image->exif()]);
             }
 
-            $attachmentTmp[] = $attachment;
+            $attachmentsLibraryTmp[] = $attachment;
         }
 
-        return $attachmentTmp;
+        return $attachmentsLibraryTmp;
+    }
+
+    private function storeAttachmentsTmp($attachmentsLibraryTmp)
+    {
+        $attachmentsTmp = [];
+        foreach ($attachmentsLibraryTmp as $attachmentLibraryTmp)
+        {
+            $copyFileName = $this->getRamdomFilename($attachmentLibraryTmp['extension']);
+
+            File::copy($attachmentLibraryTmp['base_path'] . '/' . $attachmentLibraryTmp['file_name'], $attachmentLibraryTmp['base_path'] . '/' . $copyFileName);
+
+            $attachmentLibraryTmp['library_file_name'] = $attachmentLibraryTmp['file_name'];
+            $attachmentLibraryTmp['file_name'] = $copyFileName;
+
+            $attachmentsTmp[] = $attachmentLibraryTmp;
+        }
+
+        return $attachmentsTmp;
     }
 
     /**
@@ -95,7 +99,7 @@ class AttachmentUploadController extends BaseController
      * @param   $files
      * @return  array
      */
-    private function storeAttachmentLibrary($files)
+    private function storeAttachmentsLibrary($files)
     {
         if(! is_array($files))
             $files = [$files];
@@ -136,6 +140,11 @@ class AttachmentUploadController extends BaseController
         AttachmentLibrary::insert($attachmentLibrary);
 
         return $attachmentLibrary;
+    }
+
+    private function getRamdomFilename($extension)
+    {
+        return Str::random(40) . '.' . $extension;
     }
 
 }
