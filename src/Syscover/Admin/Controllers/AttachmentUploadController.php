@@ -1,6 +1,5 @@
 <?php namespace Syscover\Admin\Controllers;
 
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -22,6 +21,21 @@ class AttachmentUploadController extends BaseController
             'attachmentsLibraryTmp'  => $attachmentsLibraryTmp,
             'attachmentsTmp'         => $attachmentsTmp
         ];
+
+        return response()->json($response);
+    }
+
+    public function crop(Request $request)
+    {
+        $parameters = $request->input('parameters');
+
+        // load image from attachment library object
+        $image = Image::make($parameters['attachment']['base_path'] . '/' . $parameters['attachment']['attachment_library']['file_name']);
+        $image->crop($parameters['crop']['width'], $parameters['crop']['height'], $parameters['crop']['x'], $parameters['crop']['y']);
+        $image->save($parameters['attachment']['base_path'] . '/' . $parameters['attachment']['file_name']);
+
+        $response['status'] = "success";
+        $response['data'] = $parameters;
 
         return response()->json($response);
     }
@@ -82,10 +96,12 @@ class AttachmentUploadController extends BaseController
         {
             $copyFileName = $this->getRamdomFilename($attachmentLibraryTmp['extension']);
 
+            // copy files to create attachments files from attachment library
             File::copy($attachmentLibraryTmp['base_path'] . '/' . $attachmentLibraryTmp['file_name'], $attachmentLibraryTmp['base_path'] . '/' . $copyFileName);
 
-            $attachmentLibraryTmp['library_file_name'] = $attachmentLibraryTmp['file_name'];
+            $attachmentLibraryTmp['attachment_library'] = $attachmentLibraryTmp;
             $attachmentLibraryTmp['file_name'] = $copyFileName;
+            $attachmentLibraryTmp['url'] = asset('storage/tmp/' . $copyFileName);
 
             $attachmentsTmp[] = $attachmentLibraryTmp;
         }
