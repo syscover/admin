@@ -30,9 +30,8 @@ class PulsarCreateTableAttachment extends Migration {
                 $table->integer('size')->unsigned();
                 $table->smallInteger('width')->unsigned()->nullable();
                 $table->smallInteger('height')->unsigned()->nullable();
-                $table->integer('library_id')->unsigned()->nullable();              // original element in library
+                $table->integer('library_id')->unsigned()->nullable();             // original element in library
                 $table->string('library_file_name')->nullable();
-                $table->json('data_lang')->nullable();
                 $table->json('data')->nullable();
                 
                 $table->foreign('lang_id', 'fk01_attachment')

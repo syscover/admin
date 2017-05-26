@@ -29,10 +29,16 @@ class AttachmentUploadController extends BaseController
     {
         $parameters = $request->input('parameters');
 
-        // load image from attachment library object
+        // TODO: Manejar error 500 por llegar al límite de memoria (php_value memory_limit 256M)
         $image = Image::make($parameters['attachment']['base_path'] . '/' . $parameters['attachment']['attachment_library']['file_name']);
         $image->crop($parameters['crop']['width'], $parameters['crop']['height'], $parameters['crop']['x'], $parameters['crop']['y']);
         $image->save($parameters['attachment']['base_path'] . '/' . $parameters['attachment']['file_name']);
+
+        // get new properties from image cropped
+        $parameters['attachment']['width'] = $image->width();
+        $parameters['attachment']['height'] = $image->height();
+        $parameters['attachment']['size'] = $image->filesize();
+        $parameters['attachment']['data'] = ['exif' => $image->exif()];
 
         $response['status'] = "success";
         $response['data'] = $parameters;
@@ -80,7 +86,7 @@ class AttachmentUploadController extends BaseController
                 // set image properties
                 $attachment['width']    = $image->width();
                 $attachment['height']   = $image->height();
-                $attachment['data']     = json_encode(['exif' => $image->exif()]);
+                $attachment['data']     = ['exif' => $image->exif()];
             }
 
             $attachmentsLibraryTmp[] = $attachment;
@@ -107,55 +113,6 @@ class AttachmentUploadController extends BaseController
         }
 
         return $attachmentsTmp;
-    }
-
-    /**
-     * Store attachments in library folder
-     *
-     * @param   $files
-     * @return  array
-     */
-    private function storeAttachmentsLibrary($files)
-    {
-        if(! is_array($files))
-            $files = [$files];
-
-        $attachmentLibrary = [];
-        foreach ($files as $file)
-        {
-            $file->store('public/library'); // save file in library folder
-            $mime = $file->getMimeType();   // get mime type
-
-            $attachment = [
-                'name'      => $file->getClientOriginalName(),
-                'file_name' => $file->hashName(),
-                'url'       => asset('storage/library/' . $file->hashName()),
-                'mime'      => $mime,
-                'size'      => $file->getSize()
-            ];
-
-            // check if is image
-            if(is_image($mime))
-            {
-                /**
-                 * config http://image.intervention.io with imagemagick
-                 */
-                Image::configure(['driver' => 'imagick']);
-                $image = Image::make(storage_path('app/public/library/' . $file->hashName()));
-
-                // set image properties
-                $attachment['width']    = $image->width();
-                $attachment['height']   = $image->height();
-                $attachment['data']     = json_encode(['exif' => $image->exif()]);
-            }
-
-            $attachmentLibrary[] = $attachment;
-        }
-
-        // save in database
-        AttachmentLibrary::insert($attachmentLibrary);
-
-        return $attachmentLibrary;
     }
 
     private function getRamdomFilename($extension)
