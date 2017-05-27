@@ -19,8 +19,8 @@ class PulsarCreateTableAttachment extends Migration {
                 
                 $table->integer('id')->unsigned();
                 $table->string('lang_id', 2);
-                $table->string('resource_id', 30);
                 $table->integer('object_id')->unsigned()->nullable();
+                $table->string('object_type');
                 $table->integer('family_id')->unsigned()->nullable();
                 $table->integer('sort')->unsigned()->nullable();
                 $table->string('name');
@@ -38,11 +38,6 @@ class PulsarCreateTableAttachment extends Migration {
                     ->references('id')
                     ->on('lang')
                     ->onDelete('restrict')
-                    ->onUpdate('cascade');
-                $table->foreign('resource_id', 'fk02_attachment')
-                    ->references('id')
-                    ->on('resource')
-                    ->onDelete('cascade')
                     ->onUpdate('cascade');
                 $table->foreign('family_id', 'fk03_attachment')
                     ->references('id')

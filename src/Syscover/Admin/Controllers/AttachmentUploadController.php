@@ -5,7 +5,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Intervention\Image\ImageManagerStatic as Image;
-use Syscover\Admin\Models\AttachmentLibrary;
 
 class AttachmentUploadController extends BaseController
 {

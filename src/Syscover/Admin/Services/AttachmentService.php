@@ -17,26 +17,30 @@ class AttachmentService
      */
     public static function storeAttachmentsLibrary($attachments)
     {
-        foreach($attachments as $attachment)
+        foreach($attachments as &$attachment)
         {
-            // get attachment library from attachment
-            $attachmentLibrary = $attachment->attachment_library;
+            if(! empty($attachment->uploaded)  && $attachment->uploaded === true)
+            {
+                // get attachment library from attachment
+                $attachmentLibrary = $attachment->attachment_library;
 
-            // move file from temp file to attachment folder
-            File::move(base_path('storage/app/public/tmp/' . $attachmentLibrary->file_name), base_path('storage/app/public/library/' . $attachmentLibrary->file_name));
+                // move file from temp file to attachment folder
+                File::move(base_path('storage/app/public/tmp/' . $attachmentLibrary->file_name), base_path('storage/app/public/library/' . $attachmentLibrary->file_name));
 
-            $object = AttachmentLibrary::create([
-                'name'                  => $attachmentLibrary->name,
-                'file_name'             => $attachmentLibrary->file_name,
-                'url'                   => $attachmentLibrary->url,
-                'mime'                  => $attachmentLibrary->mime,
-                'size'                  => $attachmentLibrary->size,
-                'width'                 => $attachmentLibrary->width,
-                'height'                => $attachmentLibrary->height,
-                'data'                  => $attachmentLibrary->data
-            ]);
+                $object = AttachmentLibrary::create([
+                    'name' => $attachmentLibrary->name,
+                    'file_name' => $attachmentLibrary->file_name,
+                    'url' => asset('storage/library/' . $attachmentLibrary->file_name),
+                    'mime' => $attachmentLibrary->mime,
+                    'size' => $attachmentLibrary->size,
+                    'width' => $attachmentLibrary->width,
+                    'height' => $attachmentLibrary->height,
+                    'data' => $attachmentLibrary->data
+                ]);
 
-            $attachment->attachment_library_id = $object->id;
+                // set attachment library by reference
+                $attachment->attachment_library->id = $object->id;
+            }
         }
 
         return $attachments;
@@ -48,10 +52,12 @@ class AttachmentService
      * @access	public
      * @param   \Illuminate\Support\Facades\Request     $attachments
      * @param   string                                  $directory
-     * @param   string                                  $resource
+     * @param   string                                  $urlBase
+     * @param   string                                  $objectType
      * @param   integer                                 $objectId
+     * @param   string                                  $langId
      */
-    public static function storeAttachments($attachments, $directory, $resource, $objectId, $lang)
+    public static function storeAttachments($attachments, $directory, $urlBase, $objectType, $objectId, $langId)
     {
         if(! File::exists(base_path($directory . '/' . $objectId)))
         {
@@ -60,30 +66,45 @@ class AttachmentService
 
         foreach($attachments as $attachment)
         {
-            $id = Attachment::max('id');
-            $id++;
+            if(! empty($attachment->uploaded)  && $attachment->uploaded === true)
+            {
+                $id = Attachment::max('id');
+                $id++;
 
-            // move file from temp file to attachment folder
-            File::move($attachment->base_path . '/' . $attachment->file_name, base_path($directory . '/' . $objectId . '/' . $attachment->file_name));
+                // move file from temp file to attachment folder
+                File::move($attachment->base_path . '/' . $attachment->file_name, base_path($directory . '/' . $objectId . '/' . $attachment->file_name));
 
-            Attachment::create([
-                'id'                    => $id,
-                'lang_id'               => $lang,
-                'resource_id'           => $resource,
-                'object_id'             => $objectId,
-                'family_id'             => $attachment->family_id,
-                'sort'                  => $attachment->sort,
-                'name'                  => $attachment->name,
-                'file_name'             => $attachment->file_name,
-                'url'                   => $attachment->url,
-                'mime'                  => $attachment->mime,
-                'size'                  => $attachment->size,
-                'width'                 => $attachment->width,
-                'height'                => $attachment->height,
-                'library_id'            => $attachment->attachment_library->id,
-                'library_file_name'     => $attachment->attachment_library->file_name,
-                'data'                  => $attachment->data
-            ]);
+                Attachment::create([
+                    'id'                    => $id,
+                    'lang_id'               => $langId,
+                    'object_id'             => $objectId,
+                    'object_type'           => $objectType,
+                    'family_id'             => empty($attachment->family_id)? null: $attachment->family_id,
+                    'sort'                  => $attachment->sort,
+                    'name'                  => $attachment->name,
+                    'file_name'             => $attachment->file_name,
+                    'url'                   => asset($urlBase . '/' . $objectId . '/' . $attachment->file_name),
+                    'mime'                  => $attachment->mime,
+                    'size'                  => $attachment->size,
+                    'width'                 => $attachment->width,
+                    'height'                => $attachment->height,
+                    'library_id'            => $attachment->attachment_library->id,
+                    'library_file_name'     => $attachment->attachment_library->file_name,
+                    'data'                  => $attachment->data
+                ]);
+            }
+            else
+            {
+                Attachment::where('id', $attachment->id)->where('lang_id', $attachment->lang_id)->update([
+                    'family_id'             => empty($attachment->family_id)? null: $attachment->family_id,
+                    'sort'                  => $attachment->sort,
+                    'name'                  => $attachment->name,
+                    'size'                  => $attachment->size,
+                    'width'                 => $attachment->width,
+                    'height'                => $attachment->height,
+                    'data'                  => json_encode($attachment->data)
+                ]);
+            }
         }
     }
 
