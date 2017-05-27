@@ -24,9 +24,11 @@ class PulsarCreateTableAttachment extends Migration {
                 $table->integer('family_id')->unsigned()->nullable();
                 $table->integer('sort')->unsigned()->nullable();
                 $table->string('name');
+                $table->string('base_path', 1024);
                 $table->string('file_name');
                 $table->string('url', 1024);                                // url to access file
                 $table->string('mime');
+                $table->string('extension');
                 $table->integer('size')->unsigned();
                 $table->smallInteger('width')->unsigned()->nullable();
                 $table->smallInteger('height')->unsigned()->nullable();
@@ -51,7 +53,7 @@ class PulsarCreateTableAttachment extends Migration {
                     ->onUpdate('cascade');
 
                 $table->index(['object_id'], 'ix01_attachment');
-                $table->index(['resource_id'], 'ix02_attachment');
+                $table->index(['object_type'], 'ix02_attachment');
                 $table->primary(['id', 'lang_id'], 'pk01_attachment');
             });
         }
