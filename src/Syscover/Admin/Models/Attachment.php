@@ -11,13 +11,13 @@ use Illuminate\Support\Facades\Validator;
 class Attachment extends CoreModel
 {
 	protected $table        = 'attachment';
-    protected $fillable     = ['id', 'lang_id', 'object_id', 'object_type', 'family_id', 'sort', 'name', 'file_name', 'url', 'mime', 'size', 'width', 'height', 'library_id', 'library_file_name', 'data_lang', 'data'];
+    protected $fillable     = ['id', 'lang_id', 'object_id', 'object_type', 'family_id', 'sort', 'name', 'base_path', 'file_name', 'url', 'mime', 'extension', 'size', 'width', 'height', 'library_id', 'library_file_name', 'data_lang', 'data'];
     public $incrementing    = false;
     public $timestamps      = false;
     protected $casts        = [
         'data' => 'array'
     ];
-    public $with            = ['resource'];
+    public $with            = ['resource', 'attachmentLibrary'];
 
     private static $rules   = [
         'resource_id'   =>  'required',
@@ -41,5 +41,10 @@ class Attachment extends CoreModel
     public function resource()
     {
         return $this->belongsTo(Resource::class, 'resource_id');
+    }
+
+    public function attachmentLibrary()
+    {
+        return $this->hasOne(AttachmentLibrary::class, 'id', 'library_id');
     }
 }
