@@ -1,6 +1,5 @@
 <?php namespace Syscover\Admin\Services;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Syscover\Admin\Models\Attachment;
@@ -165,6 +164,45 @@ class AttachmentService
         }
     }
 
+    /**
+     *  Function to delete attachments
+     *
+     * @access	public
+     * @param   integer     $objectId
+     * @param   string      $objectType
+     * @param   string      $lang
+     * @return  boolean     $response
+     */
+    public static function deleteAttachment($objectId, $objectType, $lang = null)
+    {
+        $query =  Attachment::builder()
+            ->where('object_id', $objectId)
+            ->where('object_type', $objectType);
+
+        if(! empty($lang) && base_lang() !== $lang)
+            $query->where('lang_id', $lang);
+
+        // get attachments to delete
+        $attachments = $query->get();
+
+        foreach ($attachments as $attachment)
+        {
+            if(! empty($lang) && base_lang() !== $lang)
+            {
+                File::delete($attachment->base_path . '/' .  $attachment->file_name);
+            }
+            else
+            {
+                File::deleteDirectory($attachment->base_path);
+                break;
+            }
+
+        }
+        
+        // delete attachments from database
+        $query->delete();
+    }
+
     public static function getRamdomFilename($extension)
     {
         return Str::random(40) . '.' . $extension;
@@ -237,53 +275,6 @@ class AttachmentService
         }
 
         $response['attachmentsInput'] = json_encode($attachmentsInput);
-
-        return $response;
-    }
-
-    /**
-     *  Function to delete attachment
-     *
-     * @access	public
-     * @param   string      $routesConfigFile
-     * @param   string      $resource
-     * @param   integer     $objectId
-     * @param   string      $lang
-     * @return  boolean     $response
-     */
-    public static function deleteAttachment($routesConfigFile, $resource, $objectId, $lang = null)
-    {
-        Attachment::deleteAttachment([
-            'lang_id_016'       => $lang,
-            'resource_id_016'   => $resource,
-            'object_id_016'     => $objectId
-        ]);
-
-        if(isset($lang))
-        {
-            if(!empty($objectId) &&  !empty($lang))
-            {
-                // delete all attachments from this object
-                $response = File::deleteDirectory(public_path() . config($routesConfigFile . '.attachmentFolder') . '/' . $objectId. '/' . $lang);
-            }
-            else
-            {
-                throw new InvalidArgumentException('Object Id, is not defined to delete attachment files');
-            }
-
-        }
-        else
-        {
-            if(!empty($objectId))
-            {
-                // delete all attachments from this object
-                $response = File::deleteDirectory(public_path() . config($routesConfigFile . '.attachmentFolder') . '/' . $objectId);
-            }
-            else
-            {
-                throw new InvalidArgumentException('Object Id, is not defined to delete attachment files');
-            }
-        }
 
         return $response;
     }
