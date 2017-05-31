@@ -189,6 +189,6 @@ Route::delete('api/v1/admin/attachment-family/{id}',                    ['as' =>
 | ATTACHMENTS
 |----------------------------------
 */
-Route::post('api/v1/admin/attachment-upload',                           ['as' => 'adminAttachmentUpload',               'uses' => 'Syscover\Admin\Controllers\AttachmentUploadController@index']);
-Route::post('api/v1/admin/attachment-upload/crop',                      ['as' => 'cropAdminAttachmentUpload',           'uses' => 'Syscover\Admin\Controllers\AttachmentUploadController@crop']);
-Route::post('api/v1/admin/attachment-upload/delete',                    ['as' => 'destroyAdminAttachmentUpload',        'uses' => 'Syscover\Admin\Controllers\AttachmentUploadController@destroy']);
+Route::post('api/v1/admin/attachment-upload',                           ['as' => 'adminAttachmentUpload',               'uses' => 'Syscover\Admin\Controllers\AttachmentController@index']);
+Route::post('api/v1/admin/attachment-upload/crop',                      ['as' => 'cropAdminAttachmentUpload',           'uses' => 'Syscover\Admin\Controllers\AttachmentController@crop']);
+Route::post('api/v1/admin/attachment-upload/delete',                    ['as' => 'destroyAdminAttachmentUpload',        'uses' => 'Syscover\Admin\Controllers\AttachmentController@destroy']);

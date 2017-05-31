@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use Intervention\Image\ImageManagerStatic as Image;
 use Syscover\Admin\Models\Attachment;
 use Syscover\Admin\Models\AttachmentLibrary;
 
@@ -96,7 +97,7 @@ class AttachmentService
                 // move file from temp file to attachment directory
                 File::move($attachment['base_path'] . '/' . $attachment['file_name'], base_path($directory . '/' . $objectId . '/' . $attachment['file_name']));
 
-                Attachment::create([
+                $attachmentObject = Attachment::create([
                     'id'                    => $id,
                     'lang_id'               => $langId,
                     'object_id'             => $objectId,
@@ -116,6 +117,9 @@ class AttachmentService
                     'library_file_name'     => $attachment['attachment_library']['file_name'],
                     'data'                  => $attachment['data']
                 ]);
+
+                // create sizes from image
+                AttachmentService::setAttachmentSizes($attachmentObject);
             }
             else
             {
@@ -130,6 +134,12 @@ class AttachmentService
                         'height'                => $attachment['height'],
                         'data'                  => json_encode($attachment['data'])
                     ]);
+
+                    // get attachment object to create sizes
+                    $attachmentObject = Attachment::where('id', $attachment['id'])->where('lang_id', $attachment['lang_id'])->first();
+
+                    // create sizes from image
+                    AttachmentService::setAttachmentSizes($attachmentObject);
                 }
                 elseif($action === 'store')
                 {
@@ -139,7 +149,7 @@ class AttachmentService
                     File::copy($attachment['base_path'] . '/' . $attachment['file_name'], $attachment['base_path'] . '/' . $newFileName);
 
                     // store new lang attachment that previous exist in database
-                    Attachment::create([
+                    $attachmentObject = Attachment::create([
                         'id'                    => $attachment['id'],
                         'lang_id'               => $langId,
                         'object_id'             => $objectId,
@@ -159,13 +169,64 @@ class AttachmentService
                         'library_file_name'     => $attachment['attachment_library']['file_name'],
                         'data'                  => $attachment['data']
                     ]);
+
+                    // create sizes from image
+                    AttachmentService::setAttachmentSizes($attachmentObject);
                 }
             }
         }
     }
 
+    private static function setAttachmentSizes($attachment)
+    {
+        // check that attachment has family id and is a image
+        if(! empty($attachment->family_id) && is_image($attachment->mime))
+        {
+            // get attachmentFamily
+            $attachmentFamily = $attachment->family;
+
+            if(is_array($attachmentFamily->sizes) && count($attachmentFamily->sizes) > 0)
+            {
+                $sizes = [];
+                foreach ($attachmentFamily->sizes as $size)
+                {
+                    // calculate percentage that we need from image
+                    $percentage = 100 - $size;
+
+                    $width = (int)($attachment->width * $percentage) / 100;
+                    $height = (int)($attachment->height * $percentage) / 100;
+
+                    /**
+                     * config http://image.intervention.io with imagemagick
+                     */
+                    Image::configure(['driver' => 'imagick']);
+                    $image = Image::make($attachment->base_path . '/' . $attachment->file_name);
+                    $image->resize($width, $height);
+                    $image->save($attachment->base_path . '/' . $size . '@_' . $attachment->file_name);
+
+                    $sizes[] = [
+                        "size"      => $size,
+                        "base_path" => $attachment->base_path,
+                        "file_name" => $size . '@_' . $attachment->file_name,
+                    ];
+                }
+
+                $dataAttachment = $attachment->data;
+                $dataAttachment['sizes'] = $sizes;
+
+                // overwrite sizes field
+                Attachment::where('id', $attachment->id)
+                    ->where('lang_id', $attachment->lang_id)
+                    ->update([
+                        'data' => json_encode($dataAttachment)
+                    ]);
+            }
+        }
+    }
+
     /**
-     *  Function to delete attachments
+     *  Function to delete all attachments from object.
+     *  This function is called when any object is destroy
      *
      * @access	public
      * @param   integer     $objectId
@@ -173,7 +234,7 @@ class AttachmentService
      * @param   string      $lang
      * @return  boolean     $response
      */
-    public static function deleteAttachment($objectId, $objectType, $lang = null)
+    public static function deleteAttachments($objectId, $objectType, $lang = null)
     {
         $query =  Attachment::builder()
             ->where('object_id', $objectId)
@@ -189,14 +250,23 @@ class AttachmentService
         {
             if(! empty($lang) && base_lang() !== $lang)
             {
+                // delete main file
                 File::delete($attachment->base_path . '/' .  $attachment->file_name);
+
+                // if has sizes, delete your files
+                if(isset($attachment->data['sizes']))
+                {
+                    foreach ($attachment->data['sizes'] as $size)
+                    {
+                        File::delete($size['base_path'] . '/' . $size['file_name']);
+                    }
+                }
             }
             else
             {
                 File::deleteDirectory($attachment->base_path);
                 break;
             }
-
         }
 
         // delete attachments from database

@@ -5,9 +5,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManagerStatic as Image;
 use Syscover\Admin\Models\Attachment;
+use Syscover\Admin\Models\AttachmentFamily;
 use Syscover\Admin\Services\AttachmentService;
 
-class AttachmentUploadController extends BaseController
+class AttachmentController extends BaseController
 {
     public function index(Request $request)
     {
@@ -29,16 +30,24 @@ class AttachmentUploadController extends BaseController
     {
         $parameters = $request->input('parameters');
 
+        // tale attachment family to get sizes
+        $attachmentFamily = AttachmentFamily::find($parameters['attachment']['family_id']);
+
         // TODO: Manejar error 500 por llegar al límite de memoria (php_value memory_limit 256M)
+        /**
+         * config http://image.intervention.io with imagemagick
+         */
+        Image::configure(['driver' => 'imagick']);
         $image = Image::make($parameters['attachment']['attachment_library']['base_path'] . '/' . $parameters['attachment']['attachment_library']['file_name']);
         $image->crop($parameters['crop']['width'], $parameters['crop']['height'], $parameters['crop']['x'], $parameters['crop']['y']);
+        $image->resize($attachmentFamily->width, $attachmentFamily->height);
         $image->save($parameters['attachment']['base_path'] . '/' . $parameters['attachment']['file_name']);
 
         // get new properties from image cropped
-        $parameters['attachment']['width'] = $image->width();
+        $parameters['attachment']['width']  = $image->width();
         $parameters['attachment']['height'] = $image->height();
-        $parameters['attachment']['size'] = $image->filesize();
-        $parameters['attachment']['data'] = ['exif' => $image->exif()];
+        $parameters['attachment']['size']   = $image->filesize();
+        $parameters['attachment']['data']   = ['exif' => $image->exif()];
 
         $response['status'] = "success";
         $response['data'] = $parameters;
@@ -46,31 +55,43 @@ class AttachmentUploadController extends BaseController
         return response()->json($response);
     }
 
+    /**
+     * this function is called when delete only one attachment from attachmentLibrary component
+     */
     public function destroy(Request $request)
     {
-        $attachment = $request->input('attachment');
+        $attachmentInput = $request->input('attachment');
 
         if(
-            ! empty($attachment['id']) &&
-            ! empty($attachment['lang_id'])
+            ! empty($attachmentInput['id']) &&
+            ! empty($attachmentInput['lang_id'])
         )
         {
-            $attachment = Attachment::where('id', $attachment['id'])
-                ->where('lang_id', $attachment['lang_id'])
+            $attachment = Attachment::where('id', $attachmentInput['id'])
+                ->where('lang_id', $attachmentInput['lang_id'])
                 ->first();
 
             // delete attachment file
-            if(File::delete($attachment['base_path'] . '/' . $attachment['file_name']))
+            if(File::delete($attachment->base_path . '/' . $attachment->file_name))
             {
-                if(count(File::files($attachment['base_path'])) === 0)
+                // if has sizes, delete your files
+                if(isset($attachment->data['sizes']))
+                {
+                    foreach ($attachment->data['sizes'] as $size)
+                    {
+                        File::delete($size['base_path'] . '/' . $size['file_name']);
+                    }
+                }
+
+                if(count(File::files($attachment->base_path)) === 0)
                 {
                     // delete directory if has not any file
-                    File::deleteDirectory($attachment['base_path']);
+                    File::deleteDirectory($attachment->base_path);
                 }
 
                 // delete attachment from database
-                Attachment::where('id', $attachment['id'])
-                    ->where('lang_id', $attachment['lang_id'])
+                Attachment::where('id', $attachment->id)
+                    ->where('lang_id', $attachment->lang_id)
                     ->delete();
 
                 $response['status']             = "success";
@@ -86,19 +107,20 @@ class AttachmentUploadController extends BaseController
         }
         else
         {
-            // delete attachment file
+            // delete attachment file, use properties from input,
+            // because it may not to be created in database
             if(
-                File::delete($attachment['base_path'] . '/' . $attachment['file_name']) &&
-                File::delete($attachment['attachment_library']['base_path'] . '/' . $attachment['attachment_library']['file_name'])
+                File::delete($attachmentInput['base_path'] . '/' . $attachmentInput['file_name']) &&
+                File::delete($attachmentInput['attachment_library']['base_path'] . '/' . $attachmentInput['attachment_library']['file_name'])
             )
             {
                 $response['status']             = "success";
-                $response['data']['attachment'] = $attachment;
+                $response['data']['attachment'] = $attachmentInput;
             }
             else
             {
                 $response['status']             = "error";
-                $response['data']['attachment'] = $attachment;
+                $response['data']['attachment'] = $attachmentInput;
             }
 
             return response()->json($response);

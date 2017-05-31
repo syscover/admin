@@ -17,7 +17,7 @@ class Attachment extends CoreModel
     protected $casts        = [
         'data' => 'array'
     ];
-    public $with            = ['resource', 'attachmentLibrary'];
+    public $with            = ['family', 'attachmentLibrary'];
 
     private static $rules   = [
         'resource_id'   =>  'required',
@@ -38,9 +38,9 @@ class Attachment extends CoreModel
         return $query;
     }
 
-    public function resource()
+    public function family()
     {
-        return $this->belongsTo(Resource::class, 'resource_id');
+        return $this->belongsTo(AttachmentFamily::class, 'family_id');
     }
 
     public function attachmentLibrary()

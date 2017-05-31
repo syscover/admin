@@ -16,7 +16,8 @@ if (! function_exists('is_image')) {
     /**
      * check if is image by mime.
      *
-     * @return string
+     * @param $mime mime type
+     * @return bool
      */
     function is_image($mime)
     {
