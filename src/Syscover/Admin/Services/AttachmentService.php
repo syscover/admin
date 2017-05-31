@@ -119,7 +119,7 @@ class AttachmentService
                 ]);
 
                 // create sizes from image
-                AttachmentService::setAttachmentSizes($attachmentObject);
+                AttachmentService::setAttachmentSizes($attachmentObject, $urlBase, $objectId);
             }
             else
             {
@@ -139,7 +139,7 @@ class AttachmentService
                     $attachmentObject = Attachment::where('id', $attachment['id'])->where('lang_id', $attachment['lang_id'])->first();
 
                     // create sizes from image
-                    AttachmentService::setAttachmentSizes($attachmentObject);
+                    AttachmentService::setAttachmentSizes($attachmentObject, $urlBase, $objectId);
                 }
                 elseif($action === 'store')
                 {
@@ -171,13 +171,13 @@ class AttachmentService
                     ]);
 
                     // create sizes from image
-                    AttachmentService::setAttachmentSizes($attachmentObject);
+                    AttachmentService::setAttachmentSizes($attachmentObject, $urlBase, $objectId);
                 }
             }
         }
     }
 
-    private static function setAttachmentSizes($attachment)
+    private static function setAttachmentSizes($attachment, $urlBase, $objectId)
     {
         // check that attachment has family id and is a image
         if(! empty($attachment->family_id) && is_image($attachment->mime))
@@ -206,8 +206,11 @@ class AttachmentService
 
                     $sizes[] = [
                         "size"      => $size,
+                        "width"     => $width,
+                        "height"    => $height,
                         "base_path" => $attachment->base_path,
                         "file_name" => $size . '@_' . $attachment->file_name,
+                        "url"       => asset($urlBase . '/' . $objectId . '/' . $size . '@_' . $attachment->file_name)
                     ];
                 }
 
