@@ -34,3 +34,27 @@ if (! function_exists('is_image')) {
         }
     }
 }
+
+if (! function_exists('srcset')) {
+
+    /**
+     * get srcset for responsive images
+     *
+     * @param $attachment
+     * @return string
+     */
+    function srcset($attachment)
+    {
+        $srcset = $attachment->url . ' ' . $attachment->width . 'w';
+
+        if(isset($attachment->data['sizes']) && is_array($attachment->data['sizes']))
+        {
+            foreach ($attachment->data['sizes'] as $size)
+            {
+                $srcset .= ' ,' . $size['url'] . ' ' .  $size['width'] . 'w';
+            }
+        }
+
+        return $srcset;
+    }
+}
