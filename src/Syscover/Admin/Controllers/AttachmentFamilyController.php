@@ -22,7 +22,8 @@ class AttachmentFamilyController extends CoreController
                 'resource_id'   => $request->input('resource_id'),
                 'name'          => $request->input('name'),
                 'width'         => $request->input('width'),
-                'height'        => $request->input('height')
+                'height'        => $request->input('height'),
+                'sizes'         => $request->input('sizes')
             ]);
         }
         catch (\Exception $e)
@@ -54,7 +55,8 @@ class AttachmentFamilyController extends CoreController
                 'resource_id'   => $request->input('resource_id'),
                 'name'          => $request->input('name'),
                 'width'         => $request->input('width'),
-                'height'        => $request->input('height')
+                'height'        => $request->input('height'),
+                'sizes'         => json_encode($request->input('sizes'))
             ]);
         }
         catch (\Exception $e)
@@ -65,7 +67,7 @@ class AttachmentFamilyController extends CoreController
             return response()->json($response, 500);
         }
 
-        $object = AttachmentFamily::find($request->input('id'));
+        $object = AttachmentFamily::find($id);
 
         $response['status'] = "success";
         $response['data']   = $object;

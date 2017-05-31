@@ -11,10 +11,10 @@ use Illuminate\Support\Facades\Validator;
 class AttachmentFamily extends CoreModel
 {
 	protected $table        = 'attachment_family';
-    protected $fillable     = ['id', 'resource_id', 'name', 'width', 'height', 'data'];
+    protected $fillable     = ['id', 'resource_id', 'name', 'width', 'height', 'sizes'];
     public $timestamps      = false;
     protected $casts        = [
-        'data' => 'array'
+        'sizes' => 'array'
     ];
     public $with            = ['resource'];
 

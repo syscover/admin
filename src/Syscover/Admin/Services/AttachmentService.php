@@ -198,7 +198,7 @@ class AttachmentService
             }
 
         }
-        
+
         // delete attachments from database
         $query->delete();
     }
@@ -206,76 +206,5 @@ class AttachmentService
     public static function getRamdomFilename($extension)
     {
         return Str::random(40) . '.' . $extension;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     *  Function to get attachment element with json string to new element
-     *
-     * @access	public
-     * @param   string      $routesConfigFile
-     * @param   string      $resource
-     * @param   integer     $objectId
-     * @param   string      $lang
-     * @param   boolean     $copyAttachment
-     * @return  array       $response
-     */
-    public static function getRecords($routesConfigFile, $resource, $objectId, $lang, $copyAttachment = false)
-    {
-        $response['attachments'] = Attachment::getRecords([
-            'lang_id_016'       => $lang,
-            'resource_id_016'   => $resource,
-            'object_id_016'     => $objectId,
-            'orderBy'           => ['column' => 'sorting_016', 'order' => 'asc']
-        ]);
-        $attachmentsInput = [];
-
-        foreach($response['attachments'] as &$attachment)
-        {
-            $tmpFileName = null;
-
-            if($copyAttachment)
-            {
-                // function to duplicate files if we create a new lang object
-                // copy attachments base lang article to temp directory
-                $tmpFileName = uniqid();
-                File::copy(public_path() . config($routesConfigFile . '.attachmentFolder') . '/' . $objectId . '/' . base_lang()->id_001 . '/' . $attachment->file_name_016, public_path() . config($routesConfigFile . '.tmpFolder') . '/' . $tmpFileName);
-                // store tmp file name in attachment to know temporal name
-                $attachment['tmp_file_name_016'] = $tmpFileName;
-            }
-
-            // get json data from attachment
-            $attachmentData = json_decode($attachment->data_016);
-
-            $attachmentsInput[] = [
-                'id'                => $attachment->id_016,
-                'family'            => $attachment->family_id_016,
-                'type'              => ['id' => $attachment->type_id_016, 'name' => $attachment->type_text_016, 'icon' => $attachmentData->icon],
-                'mime'              => $attachment->mime_016,
-                'name'              => $attachment->name_016,
-                'folder'            => $copyAttachment? config($routesConfigFile . '.tmpFolder') : config($routesConfigFile . '.attachmentFolder') . '/' . $attachment->object_id_016 . '/' . $attachment->lang_id_016,
-                'tmpFileName'       => $tmpFileName,
-                'fileName'          => $attachment->file_name_016,
-                'width'             => $attachment->width_016,
-                'height'            => $attachment->height_016,
-                'library'           => $attachment->library_id_016,
-                'libraryFileName'   => $attachment->library_file_name_016,
-                'sorting'           => $attachment->sorting_016,
-            ];
-        }
-
-        $response['attachmentsInput'] = json_encode($attachmentsInput);
-
-        return $response;
     }
 }
