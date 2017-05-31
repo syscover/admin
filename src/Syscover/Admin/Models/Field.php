@@ -35,6 +35,11 @@ class Field extends CoreModel
         return $query;
     }
 
+    public function values()
+    {
+        return $this->hasMany(FieldValue::class, 'field_id');
+    }
+
     public function group()
     {
         return $this->belongsTo(Resource::class, 'group_id');

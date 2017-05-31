@@ -37,6 +37,6 @@ class FieldGroup extends CoreModel
 
     public function fields()
     {
-        return $this->hasMany(Field::class, 'field_type_id');
+        return $this->hasMany(Field::class, 'field_group_id');
     }
 }
