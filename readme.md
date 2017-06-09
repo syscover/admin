@@ -44,45 +44,15 @@ php artisan db:seed --class="AdminTableSeeder"
 php artisan migrate --path=database/migrations/updates
 ```
 
-**7 - Register alias, on file config/app.php add to aliases array**
-```
-'Miscellaneous'	=> Syscover\Pulsar\Libraries\Miscellaneous::class,
+**7 - include this arrays in config/auth.php**
 
+Set this default values, for JWT can create pulsar user
 ```
-
-**8 - Register middlewares auth.pulsar, locale.pulsar and permission.pulsar on file app/Http/Kernel.php add to routeMiddleware array**
-```
-'pulsar.auth' 	        => \Syscover\Pulsar\Middleware\Authenticate::class,
-'pulsar.locale'         => \Syscover\Pulsar\Middleware\Locale::class,
-'pulsar.permission' 	=> \Syscover\Pulsar\Middleware\Permission::class,
-'pulsar.https'          => \Syscover\Pulsar\Middleware\HttpsProtocol::class,
-
-```
-
-also you must to add inside $middlewareGroups array this values:
-```
-'noCsrWeb' => [
-    \App\Http\Middleware\EncryptCookies::class,
-    \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-    \Illuminate\Session\Middleware\StartSession::class,
-    \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-],
-
-'pulsar' => [
-    \Syscover\Pulsar\Middleware\Authenticate::class,
-    \Syscover\Pulsar\Middleware\Locale::class,
-    \Syscover\Pulsar\Middleware\Permission::class,
+'defaults' => [
+    'guard'     => 'pulsar',
+    'passwords' => 'pulsarPasswordBroker',
 ],
 ```
-
-**9 - Register cron command on file app/Console/Kernel.php add to $commands array**
-
-```
-\Syscover\Pulsar\Commands\Cron::class,
-
-```
-
-**10 - include this arrays in config/auth.php**
 
 Inside guards array
 ```
@@ -96,7 +66,7 @@ Inside providers array
 ```
 'pulsarUser' => [
     'driver'    => 'eloquent',
-    'model'     => Syscover\Pulsar\Models\User::class,
+    'model'     => Syscover\Admin\Models\User::class,
 ],
 ```
 
@@ -104,7 +74,7 @@ Inside passwords array
 ```
 'pulsarPasswordBroker' => [
     'provider'  => 'pulsarUser',
-    'table'     => '001_021_password_resets',
+    'table'     => 'password_resets',
     'expire'    => 60,
 ],
 ```

@@ -1,5 +1,6 @@
 <?php namespace Syscover\Admin\Controllers;
 
+use function GuzzleHttp\Psr7\mimetype_from_extension;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -39,9 +40,28 @@ class AttachmentController extends BaseController
          */
         Image::configure(['driver' => 'imagick']);
         $image = Image::make($parameters['attachment']['attachment_library']['base_path'] . '/' . $parameters['attachment']['attachment_library']['file_name']);
+
+        if(! empty($parameters['attachment_family']['format']))
+        {
+            $image = $image->encode($parameters['attachment_family']['format'], 100); // set format image
+
+            $parameters['attachment']['file_name']  = basename($parameters['attachment']['file_name'], '.' . $parameters['attachment']['extension']) . '.' . $parameters['attachment_family']['format'];
+            $parameters['attachment']['extension']  = $parameters['attachment_family']['format']; // change extension file
+
+            // change extension file of url
+            $url = pathinfo($parameters['attachment']['url']);
+            $parameters['attachment']['url']    = $url['dirname'] . '/' . $url['filename'] . '.' . $parameters['attachment_family']['format'];
+            // get mime type
+            $parameters['attachment']['mime']   = mimetype_from_extension($parameters['attachment']['extension']);
+        }
+
+
         $image->crop($parameters['crop']['width'], $parameters['crop']['height'], $parameters['crop']['x'], $parameters['crop']['y']);
         $image->resize($attachmentFamily->width, $attachmentFamily->height);
-        $image->save($parameters['attachment']['base_path'] . '/' . $parameters['attachment']['file_name']);
+        $image->save(
+            $parameters['attachment']['base_path'] . '/' . $parameters['attachment']['file_name'],
+            ! empty($parameters['attachment_family']['quality'])? 90 : $parameters['attachment_family']['quality'] // set quality image
+        );
 
         // get new properties from image cropped
         $parameters['attachment']['width']  = $image->width();
@@ -56,7 +76,11 @@ class AttachmentController extends BaseController
     }
 
     /**
-     * this function is called when delete only one attachment from attachmentLibrary component
+     * this function is called when delete only one attachment
+     * from attachmentLibrary component
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Request $request)
     {

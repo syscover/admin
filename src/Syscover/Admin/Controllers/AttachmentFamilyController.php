@@ -23,7 +23,9 @@ class AttachmentFamilyController extends CoreController
                 'name'          => $request->input('name'),
                 'width'         => $request->input('width'),
                 'height'        => $request->input('height'),
-                'sizes'         => $request->input('sizes')
+                'sizes'         => $request->input('sizes'),
+                'quality'       => $request->input('quality'),
+                'format'        => $request->input('format')
             ]);
         }
         catch (\Exception $e)
@@ -56,7 +58,9 @@ class AttachmentFamilyController extends CoreController
                 'name'          => $request->input('name'),
                 'width'         => $request->input('width'),
                 'height'        => $request->input('height'),
-                'sizes'         => json_encode($request->input('sizes'))
+                'sizes'         => json_encode($request->input('sizes')),
+                'quality'       => $request->input('quality'),
+                'format'        => $request->input('format')
             ]);
         }
         catch (\Exception $e)

@@ -19,10 +19,10 @@ class PackageController extends CoreController
         try
         {
             $object = Package::create([
-                'name' => $request->input('name'),
-                'root' => $request->input('root'),
-                'active' => $request->input('active'),
-                'sort' => $request->input('sort')
+                'name'      => $request->input('name'),
+                'root'      => $request->input('root'),
+                'active'    => $request->input('active'),
+                'sort'      => $request->input('sort')
             ]);
         }
         catch (\Exception $e)
@@ -51,16 +51,16 @@ class PackageController extends CoreController
         try
         {
             Package::where('id', $id)->update([
-                'name' => $request->input('name'),
-                'root' => $request->input('root'),
-                'active' => $request->input('active'),
-                'sort' => $request->input('sort')
+                'name'      => $request->input('name'),
+                'root'      => $request->input('root'),
+                'active'    => $request->input('active'),
+                'sort'      => $request->input('sort')
             ]);
         }
         catch (\Exception $e)
         {
-            $response['status'] = "error";
-            $response['message'] = $e->getMessage();
+            $response['status']     = "error";
+            $response['message']    = $e->getMessage();
 
             return response()->json($response, 500);
         }

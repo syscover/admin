@@ -23,6 +23,8 @@ class PulsarCreateTableAttachmentFamily extends Migration {
                 $table->smallInteger('width')->unsigned()->nullable();
                 $table->smallInteger('height')->unsigned()->nullable();
                 $table->json('sizes')->nullable();
+                $table->tinyInteger('quality')->unsigned()->default(90);
+                $table->string('format', 10)->nullable();
 
                 $table->foreign('resource_id', 'fk01_attachment_family')
                     ->references('id')
