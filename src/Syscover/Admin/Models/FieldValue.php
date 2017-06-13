@@ -2,6 +2,7 @@
 
 use Syscover\Core\Models\CoreModel;
 use Illuminate\Support\Facades\Validator;
+use Syscover\Admin\Traits\Translatable;
 
 /**
  * Class FieldValue
@@ -10,6 +11,8 @@ use Illuminate\Support\Facades\Validator;
 
 class FieldValue extends CoreModel
 {
+    use Translatable;
+
 	protected $table        = 'field_value';
     protected $fillable     = ['id', 'lang_id', 'field_id', 'counter', 'sort', 'featured', 'name', 'data_lang', 'data'];
     public $incrementing    = false;
@@ -34,10 +37,5 @@ class FieldValue extends CoreModel
     public function scopeBuilder($query)
     {
         return $query;
-    }
-
-    public function lang()
-    {
-        return $this->belongsTo(Lang::class, 'lang_id_027');
     }
 }

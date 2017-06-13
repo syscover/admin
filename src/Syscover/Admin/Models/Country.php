@@ -2,6 +2,7 @@
 
 use Syscover\Core\Models\CoreModel;
 use Illuminate\Support\Facades\Validator;
+use Syscover\Admin\Traits\Translatable;
 
 /**
  * Class Country
@@ -10,6 +11,8 @@ use Illuminate\Support\Facades\Validator;
 
 class Country extends CoreModel
 {
+    use Translatable;
+
     protected $table        = 'country';
     protected $fillable     = ['id', 'lang_id', 'name', 'sort', 'prefix', 'territorial_area_1', 'territorial_area_2', 'territorial_area_3', 'data_lang'];
     public $incrementing    = false;
@@ -39,10 +42,5 @@ class Country extends CoreModel
     public function scopeBuilder($query)
     {
         return $query;
-    }
-
-    public function lang()
-    {
-        return $this->belongsTo(Lang::class, 'lang_id');
     }
 }

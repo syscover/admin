@@ -25,7 +25,7 @@ Syscover\Admin\AdminServiceProvider::class,
 
 **3 - Execute publish command**
 ```
-php artisan vendor:publish
+php artisan vendor:publish --provider="Syscover\Admin\AdminServiceProvider"
 ```
 
 **4 - Execute optimize command load new classes**
