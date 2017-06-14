@@ -8,33 +8,12 @@ use Syscover\Admin\Models\Lang;
 class ConfigController extends BaseController
 {
     /**
-     * Get environment application
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function env()
-    {
-        if(config('app.env') === 'production')
-        {
-            $env = 'production';
-        }
-        else
-        {
-            $env = 'development';
-        }
-
-        $response['env'] = $env;
-        return response()->json($response);
-    }
-
-    /**
      * Get values to bootstrap frontend application,
      * this values will be available throughout the application lifecycle
      *
-     * @param   string $env
      * @return  \Illuminate\Http\JsonResponse
      */
-    public function bootstrap($env)
+    public function bootstrap()
     {
         $response['status']     = "success";
         $response['base_lang']  = base_lang();
@@ -44,7 +23,7 @@ class ConfigController extends BaseController
     }
 
     /**
-     * Get values from config files
+     * Get values from anuy config files
      *
      * @param   Request $request
      * @return  \Illuminate\Http\JsonResponse
