@@ -79,14 +79,7 @@ Inside passwords array
 ],
 ```
 
-**11 - Config .env file with your database parameters, and base lang parameter**
-Base lang is main language, where all multi language objects will have the first translation
-```
-BASE_LANG=ES
-```
-
-
-**12 - When the installation is complete you can access these data**
+**11 - When the installation is complete you can access these data**
 ```
 url: http://www.your-domain.com/pulsar
 user: admin@pulsar.local
