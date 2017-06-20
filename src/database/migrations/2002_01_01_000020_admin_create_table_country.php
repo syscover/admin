@@ -26,6 +26,9 @@ class AdminCreateTableCountry extends Migration
                 $table->string('territorial_area_2', 50)->nullable();
                 $table->string('territorial_area_3', 50)->nullable();
                 $table->json('data_lang')->nullable();
+
+                $table->timestamps();
+                $table->softDeletes();
                 
                 $table->foreign('lang_id', 'fk01_country')
                     ->references('id')

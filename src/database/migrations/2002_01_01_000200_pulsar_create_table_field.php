@@ -53,6 +53,9 @@ class PulsarCreateTableField extends Migration {
                 $table->json('data_lang')->nullable(); // Set different langs in json
                 $table->json('data')->nullable();
 
+                $table->timestamps();
+                $table->softDeletes();
+
                 $table->foreign('field_group_id', 'fk01_field')
                     ->references('id')
                     ->on('field_group')

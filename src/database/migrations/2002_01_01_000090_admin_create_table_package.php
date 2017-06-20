@@ -22,6 +22,9 @@ class AdminCreateTablePackage extends Migration
 				$table->string('root');
 				$table->boolean('active');
 				$table->integer('sort')->unsigned();
+
+                $table->timestamps();
+                $table->softDeletes();
 			});
 		}
 	}

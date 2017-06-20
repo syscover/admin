@@ -20,6 +20,9 @@ class PulsarCreateTableAttachmentMime extends Migration {
 				$table->string('resource_id', 30);
 				$table->string('mime');
 
+                $table->timestamps();
+                $table->softDeletes();
+
 				$table->foreign('resource_id', 'fk01_attachment_mime')
 					->references('id')
 					->on('resource')

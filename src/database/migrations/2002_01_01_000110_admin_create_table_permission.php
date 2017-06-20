@@ -20,6 +20,9 @@ class AdminCreateTablePermission extends Migration
 				$table->integer('profile_id')->unsigned();
 				$table->string('resource_id', 30);
 				$table->string('action_id', 25);
+
+                $table->timestamps();
+                $table->softDeletes();
 				
 				$table->foreign('profile_id', 'fk01_permission')
 					->references('id')

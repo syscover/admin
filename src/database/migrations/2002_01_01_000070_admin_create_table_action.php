@@ -20,6 +20,9 @@ class AdminCreateTableAction extends Migration
 				$table->string('id', 25);
 				$table->string('name');
 
+                $table->timestamps();
+                $table->softDeletes();
+
 				$table->primary('id', 'pk01_action');
 			});
 		}

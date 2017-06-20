@@ -23,6 +23,9 @@ class AdminCreateTableLang extends Migration
 				$table->smallInteger('sort')->unsigned();
 				$table->boolean('active');
 
+                $table->timestamps();
+                $table->softDeletes();
+
 				$table->primary('id', 'pk01_lang');
 			});
 		}

@@ -28,6 +28,9 @@ class PulsarCreateTableAttachmentLibrary extends Migration {
                 $table->smallInteger('width')->unsigned()->nullable();
                 $table->smallInteger('height')->unsigned()->nullable();
                 $table->json('data')->nullable();
+
+                $table->timestamps();
+                $table->softDeletes();
             });
         }
     }

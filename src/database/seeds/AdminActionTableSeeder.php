@@ -1,13 +1,13 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Syscover\Admin\Models\Action;
+use Syscover\Admin\Models\ActionQuery;
 
 class AdminActionTableSeeder extends Seeder
 {
     public function run()
     {
-        Action::insert([
+        ActionQuery::insert([
             ['id' => 'access',  'name' => 'Access'],
             ['id' => 'create',  'name' => 'Create'],
             ['id' => 'delete',  'name' => 'Delete'],

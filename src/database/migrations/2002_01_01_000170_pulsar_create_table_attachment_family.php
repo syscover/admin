@@ -26,6 +26,9 @@ class PulsarCreateTableAttachmentFamily extends Migration {
                 $table->tinyInteger('quality')->unsigned()->default(90);
                 $table->string('format', 10)->nullable();
 
+                $table->timestamps();
+                $table->softDeletes();
+
                 $table->foreign('resource_id', 'fk01_attachment_family')
                     ->references('id')
                     ->on('resource')

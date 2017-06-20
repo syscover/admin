@@ -29,7 +29,7 @@ class AdminCreateTableUser extends Migration
                 $table->string('remember_token')->nullable();
 
                 $table->timestamps();
-
+                $table->softDeletes();
 
                 $table->unique('user', 'ui01_user');
 

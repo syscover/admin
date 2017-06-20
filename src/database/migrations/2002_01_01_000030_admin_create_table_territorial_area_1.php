@@ -20,6 +20,9 @@ class AdminCreateTableTerritorialArea1 extends Migration
 				$table->string('id', 6);
 				$table->string('country_id', 2);
 				$table->string('name');
+
+                $table->timestamps();
+                $table->softDeletes();
 				
 				$table->foreign('country_id', 'fk01_territorial_area_1')
 					->references('id')

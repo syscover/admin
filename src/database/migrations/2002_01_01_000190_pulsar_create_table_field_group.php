@@ -19,7 +19,10 @@ class PulsarCreateTableFieldGroup extends Migration {
                 
                 $table->increments('id')->unsigned();
                 $table->string('name')->nullable();
-                $table->string('resource_id', 30);                             // resource which belong to this family field
+                $table->string('resource_id', 30); // resource which belong to this family field
+
+                $table->timestamps();
+                $table->softDeletes();
 
                 $table->foreign('resource_id', 'fk01_field_group')
                     ->references('id')

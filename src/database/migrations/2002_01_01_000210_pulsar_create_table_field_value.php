@@ -28,6 +28,9 @@ class PulsarCreateTableFieldValue extends Migration {
                 $table->boolean('featured');
                 $table->json('data_lang')->nullable();
                 $table->json('data')->nullable();
+
+                $table->timestamps();
+                $table->softDeletes();
                 
                 $table->foreign('lang_id', 'fk01_field_value')
                     ->references('id')

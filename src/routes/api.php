@@ -16,7 +16,6 @@ Route::get('api/v1/admin/config/bootstrap',                             ['as' =>
 Route::post('api/v1/admin/config/values',                               ['as' => 'adminValuesConfig',                   'uses' => 'Syscover\Admin\Controllers\ConfigController@values']);
 
 
-
 Route::group(['middleware' => ['jwt.auth', 'jwt.refresh']], function () {
 
     /*
@@ -196,6 +195,8 @@ Route::group(['middleware' => ['jwt.auth', 'jwt.refresh']], function () {
     Route::put('api/v1/admin/attachment-family/{id}',                       ['as' => 'updateAdminAttachmentFamily',         'uses' => 'Syscover\Admin\Controllers\AttachmentFamilyController@update']);
     Route::delete('api/v1/admin/attachment-family/{id}',                    ['as' => 'destroyAdminAttachmentFamily',        'uses' => 'Syscover\Admin\Controllers\AttachmentFamilyController@destroy']);
 
+
+});
     /*
     |----------------------------------
     | ATTACHMENTS
@@ -204,5 +205,3 @@ Route::group(['middleware' => ['jwt.auth', 'jwt.refresh']], function () {
     Route::post('api/v1/admin/attachment-upload',                           ['as' => 'adminAttachmentUpload',               'uses' => 'Syscover\Admin\Controllers\AttachmentController@index']);
     Route::post('api/v1/admin/attachment-upload/crop',                      ['as' => 'cropAdminAttachmentUpload',           'uses' => 'Syscover\Admin\Controllers\AttachmentController@crop']);
     Route::post('api/v1/admin/attachment-upload/delete',                    ['as' => 'destroyAdminAttachmentUpload',        'uses' => 'Syscover\Admin\Controllers\AttachmentController@destroy']);
-
-});

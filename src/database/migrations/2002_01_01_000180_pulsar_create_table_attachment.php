@@ -35,6 +35,9 @@ class PulsarCreateTableAttachment extends Migration {
                 $table->integer('library_id')->unsigned()->nullable();             // original element in library
                 $table->string('library_file_name')->nullable();
                 $table->json('data')->nullable();
+
+                $table->timestamps();
+                $table->softDeletes();
                 
                 $table->foreign('lang_id', 'fk01_attachment')
                     ->references('id')

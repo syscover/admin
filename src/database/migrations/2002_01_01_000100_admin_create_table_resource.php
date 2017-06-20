@@ -20,6 +20,9 @@ class AdminCreateTableResource extends Migration
 				$table->string('id', 30);
 				$table->string('name');
 				$table->integer('package_id')->unsigned();
+
+                $table->timestamps();
+                $table->softDeletes();
 				
 				$table->foreign('package_id', 'fk01_resource')
 					->references('id')
