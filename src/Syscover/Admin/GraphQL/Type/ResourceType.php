@@ -10,12 +10,6 @@ class ResourceType extends GraphQLType {
         'description' => 'A action'
     ];
 
-    /*
-       * Uncomment following line to make the type input object.
-       * http://graphql.org/learn/schema/#input-types
-       */
-    // protected $inputObject = true;
-
     public function fields()
     {
         return [
@@ -26,20 +20,7 @@ class ResourceType extends GraphQLType {
             'name' => [
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'The name of action'
-            ],
-            'name' => [
-                'type' => Type::nonNull(Type::string()),
-                'description' => 'The name of action'
             ]
         ];
     }
-
-
-    // If you want to resolve the field yourself, you can declare a method
-    // with the following format resolve[FIELD_NAME]Field()
-    protected function resolveNameField($root, $args)
-    {
-        return strtolower($root->name);
-    }
-
 }

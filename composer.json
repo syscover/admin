@@ -15,6 +15,9 @@
         "psr-4": {
             "Syscover\\Admin\\": "src/Syscover/Admin"
         },
+        "classmap": [
+            "src/Syscover/Admin"
+        ],
         "files": [
             "src/helpers.php"
         ]

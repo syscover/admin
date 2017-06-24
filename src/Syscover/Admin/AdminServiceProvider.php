@@ -1,6 +1,8 @@
 <?php namespace Syscover\Admin;
 
 use Illuminate\Support\ServiceProvider;
+use Syscover\Admin\GraphQL\AdminGraphQLServiceProvider;
+
 
 class AdminServiceProvider extends ServiceProvider
 {
@@ -31,6 +33,10 @@ class AdminServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../config/pulsar.admin.php' => config_path('pulsar.admin.php'),
         ]);
+
+        // register GraphQL types and schema
+        AdminGraphQLServiceProvider::bootGraphQLTypes();
+        AdminGraphQLServiceProvider::bootGraphQLSchema();
 	}
 
 	/**
@@ -40,6 +46,6 @@ class AdminServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
-        //
+
 	}
 }

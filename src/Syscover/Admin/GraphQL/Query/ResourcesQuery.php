@@ -13,7 +13,7 @@ class ResourcesQuery extends Query {
 
     public function type()
     {
-        return Type::listOf(GraphQL::type('Action'));
+        return Type::listOf(GraphQL::type('AdminAction'));
     }
 
     public function args()

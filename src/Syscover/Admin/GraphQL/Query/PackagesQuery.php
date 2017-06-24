@@ -8,12 +8,13 @@ use Syscover\Admin\Models\Package;
 class PackagesQuery extends Query {
 
     protected $attributes = [
-        'name' => 'users'
+        'name' => 'users',
+        'description' => 'Query to get list elements.'
     ];
 
     public function type()
     {
-        return Type::listOf(GraphQL::type('Package'));
+        return Type::listOf(GraphQL::type('AdminPackage'));
     }
 
     public function args()
