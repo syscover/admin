@@ -45,9 +45,11 @@ class UpdateActionMutation extends ActionMutation
     public function resolve($root, $args)
     {
         Action::where('id', $args['idOld'])
-            ->update($args);
-
-
+            ->update([
+                'id' => $args['id'],
+                'name' => $args['name']
+            ]);
+        
         return Action::find($args['id']);
     }
 }

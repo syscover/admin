@@ -22,8 +22,8 @@ class AdminGraphQLServiceProvider
                 'adminResources'            => \Syscover\Admin\GraphQL\Query\ResourcesQuery::class
             ],
             'mutation' => [
-                'addAdminAction'            => \Syscover\Admin\GraphQL\Mutation\AddActionMutation::class,
-                'updateAdminAction'         => \Syscover\Admin\GraphQL\Mutation\UpdateActionMutation::class,
+                'adminAddAction'            => \Syscover\Admin\GraphQL\Mutation\AddActionMutation::class,
+                'adminUpdateAction'         => \Syscover\Admin\GraphQL\Mutation\UpdateActionMutation::class,
             ]
         ]);
     }
