@@ -49,7 +49,7 @@ class UpdateActionMutation extends ActionMutation
                 'id' => $args['id'],
                 'name' => $args['name']
             ]);
-        
+
         return Action::find($args['id']);
     }
 }
@@ -63,6 +63,9 @@ class DeleteActionMutation extends ActionMutation
 
     public function resolve($root, $args)
     {
-        //return Action::create($args);
+        $object = Action::builder()->find($args['id']);
+        $object->delete();
+
+        return $object;
     }
 }
