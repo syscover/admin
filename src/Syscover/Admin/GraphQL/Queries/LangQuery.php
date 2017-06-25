@@ -4,18 +4,18 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
 use Syscover\Core\Services\SQLService;
-use Syscover\Admin\Models\Action;
+use Syscover\Admin\Models\Lang;
 
-class ActionQuery extends Query
+class LangQuery extends Query
 {
     protected $attributes = [
-        'name'          => 'ActionQuery',
-        'description'   => 'Query to get action.'
+        'name'          => 'LangQuery',
+        'description'   => 'Query to get lang.'
     ];
 
     public function type()
     {
-        return GraphQL::type('AdminAction');
+        return GraphQL::type('AdminLang');
     }
 
     public function args()
@@ -31,7 +31,7 @@ class ActionQuery extends Query
 
     public function resolve($root, $args)
     {
-        $query = SQLService::getQueryFiltered(Action::builder(), $args);
+        $query = SQLService::getQueryFiltered(Lang::builder(), $args);
 
         return $query->first();
     }
