@@ -1,4 +1,4 @@
-<?php namespace Syscover\Admin\GraphQL\Mutation;
+<?php namespace Syscover\Admin\GraphQL\Mutations;
 
 use GraphQL;
 use GraphQL\Type\Definition\Type;
@@ -11,15 +11,6 @@ class ActionMutation extends Mutation
     {
         return GraphQL::type('AdminAction');
     }
-
-    public function args()
-    {
-        return [
-            'idOld'     => ['name' => 'idOld',  'type' => Type::string()],
-            'id'        => ['name' => 'id',     'type' => Type::nonNull(Type::string())],
-            'name'      => ['name' => 'name',   'type' => Type::string()]
-        ];
-    }
 }
 
 class AddActionMutation extends ActionMutation
@@ -29,9 +20,19 @@ class AddActionMutation extends ActionMutation
         'description'   => 'Add new action'
     ];
 
+    public function args()
+    {
+        return [
+            'action' => [
+                'name' => 'action',
+                'type' => Type::nonNull(GraphQL::type('AdminActionInput'))
+            ]
+        ];
+    }
+
     public function resolve($root, $args)
     {
-        return Action::create($args);
+        return Action::create($args['action']);
     }
 }
 
@@ -42,15 +43,26 @@ class UpdateActionMutation extends ActionMutation
         'description' => 'Update action'
     ];
 
+    public function args()
+    {
+        return [
+            'idOld' => [
+                'name' => 'idOld',
+                'type' => Type::nonNull(Type::string())
+            ],
+            'action' => [
+                'name' => 'action',
+                'type' => Type::nonNull(GraphQL::type('AdminActionInput'))
+            ]
+        ];
+    }
+
     public function resolve($root, $args)
     {
         Action::where('id', $args['idOld'])
-            ->update([
-                'id' => $args['id'],
-                'name' => $args['name']
-            ]);
+            ->update($args['action']);
 
-        return Action::find($args['id']);
+        return Action::find($args['action']['id']);
     }
 }
 
@@ -60,6 +72,16 @@ class DeleteActionMutation extends ActionMutation
         'name' => 'deleteAction',
         'description' => 'Delete action'
     ];
+
+    public function args()
+    {
+        return [
+            'id' => [
+                'name' => 'id',
+                'type' => Type::nonNull(Type::string())
+            ]
+        ];
+    }
 
     public function resolve($root, $args)
     {

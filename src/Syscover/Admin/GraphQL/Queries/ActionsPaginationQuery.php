@@ -1,4 +1,4 @@
-<?php namespace Syscover\Admin\GraphQL\Query;
+<?php namespace Syscover\Admin\GraphQL\Queries;
 
 use GraphQL;
 use GraphQL\Type\Definition\Type;
@@ -24,6 +24,7 @@ class ActionsPaginationQuery extends Query
     {
         return [
             'sql' => [
+                'name'          => 'sql',
                 'type'          => Type::listOf(GraphQL::type('CoreSQLQueryInput')),
                 'description'   => 'Field to add SQL operations'
             ]
@@ -33,8 +34,10 @@ class ActionsPaginationQuery extends Query
     public function resolve($root, $args)
     {
         $query = SQLService::getQueryFiltered(Action::builder(), $args);
+
         // count records filtered
         $filtered = $query->count();
+
         // N total records
         $total = SQLService::countPaginateTotalRecords(Action::builder(), $args);
 

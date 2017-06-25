@@ -1,13 +1,14 @@
-<?php namespace Syscover\Admin\GraphQL\Type;
+<?php namespace Syscover\Admin\GraphQL\Types;
 
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as GraphQLType;
 
-class ResourceType extends GraphQLType {
+class ActionType extends GraphQLType {
 
+    // to documentation
     protected $attributes = [
-        'name' => 'Action',
-        'description' => 'A action'
+        'name'          => 'Action',
+        'description'   => 'Action that user can to do in application.'
     ];
 
     public function fields()
