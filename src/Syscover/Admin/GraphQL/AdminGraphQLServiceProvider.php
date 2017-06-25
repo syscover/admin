@@ -21,7 +21,10 @@ class AdminGraphQLServiceProvider
         GraphQL::addType(\Syscover\Admin\GraphQL\Types\LangType::class, 'AdminLang');
         GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\LangInput::class, 'AdminLangInput');
 
-
+        // COUNTRY
+        GraphQL::addType(\Syscover\Admin\GraphQL\Types\CountryPaginationType::class, 'AdminCountryPagination');
+        GraphQL::addType(\Syscover\Admin\GraphQL\Types\CountryType::class, 'AdminCountry');
+        GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\CountryInput::class, 'AdminCountryInput');
 
     }
 
@@ -40,6 +43,10 @@ class AdminGraphQLServiceProvider
                 // LANG
                 'adminLangsPagination'      => \Syscover\Admin\GraphQL\Queries\LangsPaginationQuery::class,
                 'adminLang'                 => \Syscover\Admin\GraphQL\Queries\LangQuery::class,
+
+                // COUNTRY
+                'adminCountriesPagination'  => \Syscover\Admin\GraphQL\Queries\CountriesPaginationQuery::class,
+                'adminCountry'              => \Syscover\Admin\GraphQL\Queries\CountryQuery::class,
             ],
             'mutation' => [
                 // ACTION
@@ -52,10 +59,15 @@ class AdminGraphQLServiceProvider
                 'adminUpdatePackage'        => \Syscover\Admin\GraphQL\Mutations\UpdatePackageMutation::class,
                 'adminDeletePackage'        => \Syscover\Admin\GraphQL\Mutations\DeletePackageMutation::class,
 
-                // PACKAGE
+                // LANG
                 'adminAddLang'              => \Syscover\Admin\GraphQL\Mutations\AddLangMutation::class,
                 'adminUpdateLang'           => \Syscover\Admin\GraphQL\Mutations\UpdateLangMutation::class,
                 'adminDeleteLang'           => \Syscover\Admin\GraphQL\Mutations\DeleteLangMutation::class,
+
+                // COUNTRY
+                'adminAddCountry'           => \Syscover\Admin\GraphQL\Mutations\AddCountryMutation::class,
+                'adminUpdateCountry'        => \Syscover\Admin\GraphQL\Mutations\UpdateCountryMutation::class,
+                'adminDeleteCountry'        => \Syscover\Admin\GraphQL\Mutations\DeleteCountryMutation::class,
             ]
         ]);
     }

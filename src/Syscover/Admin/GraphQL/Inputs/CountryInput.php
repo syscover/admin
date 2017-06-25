@@ -1,8 +1,8 @@
 <?php namespace Syscover\Admin\GraphQL\Inputs;
 
-use Syscover\Admin\GraphQL\Types\ActionType;
+use Syscover\Admin\GraphQL\Types\CountryType;
 
-class ActionInput extends ActionType
+class CountryInput extends CountryType
 {
     protected $inputObject = true;
 }

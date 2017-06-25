@@ -6,7 +6,6 @@ use Folklore\GraphQL\Support\Query;
 use Syscover\Admin\Models\Lang;
 use Syscover\Core\Services\SQLService;
 
-
 class LangsPaginationQuery extends Query
 {
     // to documentation

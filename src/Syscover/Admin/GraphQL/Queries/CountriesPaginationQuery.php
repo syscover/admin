@@ -3,25 +3,30 @@
 use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
-use Syscover\Admin\Models\Action;
+use Syscover\Admin\Models\Country;
 use Syscover\Core\Services\SQLService;
 
-class ActionsPaginationQuery extends Query
+class CountriesPaginationQuery extends Query
 {
     // to documentation
     protected $attributes = [
-        'name'          => 'ActionsPaginationQuery',
-        'description'   => 'Query to get list actions.'
+        'name'          => 'CountriesPaginationQuery',
+        'description'   => 'Query to get list countries.'
     ];
 
     public function type()
     {
-        return GraphQL::type('AdminActionPagination');
+        return GraphQL::type('AdminCountryPagination');
     }
 
     public function args()
     {
         return [
+            'lang' => [
+                'name'          => 'lang',
+                'type'          => Type::string(),
+                'description'   => 'to filter by lang'
+            ],
             'sql' => [
                 'name'          => 'sql',
                 'type'          => Type::listOf(GraphQL::type('CoreSQLQueryInput')),
@@ -32,13 +37,13 @@ class ActionsPaginationQuery extends Query
 
     public function resolve($root, $args)
     {
-        $query = SQLService::getQueryFiltered(Action::builder(), $args);
+        $query = SQLService::getQueryFiltered(Country::builder(), $args);
 
         // count records filtered
         $filtered = $query->count();
 
         // N total records
-        $total = SQLService::countPaginateTotalRecords(Action::builder(), $args);
+        $total = SQLService::countPaginateTotalRecords(Country::builder(), $args);
 
         return (Object) [
             'total'     => $total,

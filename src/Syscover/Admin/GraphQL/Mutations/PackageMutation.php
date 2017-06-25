@@ -4,6 +4,7 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Mutation;
 use Syscover\Admin\Models\Package;
+use Syscover\Core\Services\SQLService;
 
 class PackageMutation extends Mutation
 {
@@ -71,8 +72,7 @@ class DeletePackageMutation extends PackageMutation
 
     public function resolve($root, $args)
     {
-        $object = Package::builder()->find($args['id']);
-        $object->delete();
+        $object = SQLService::destroyRecord($args, Package::class);
 
         return $object;
     }

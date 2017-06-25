@@ -4,6 +4,7 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Mutation;
 use Syscover\Admin\Models\Action;
+use Syscover\Core\Services\SQLService;
 
 class ActionMutation extends Mutation
 {
@@ -85,8 +86,7 @@ class DeleteActionMutation extends ActionMutation
 
     public function resolve($root, $args)
     {
-        $object = Action::builder()->find($args['id']);
-        $object->delete();
+        $object = SQLService::destroyRecord($args, Action::class);
 
         return $object;
     }

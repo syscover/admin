@@ -2,7 +2,7 @@
 
 use Syscover\Admin\GraphQL\Types\PackageType;
 
-class PackageInput extends PackageType {
-
+class PackageInput extends PackageType
+{
     protected $inputObject = true;
 }
