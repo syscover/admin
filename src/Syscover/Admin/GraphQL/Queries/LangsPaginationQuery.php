@@ -3,8 +3,8 @@
 use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
-use Syscover\Admin\Models\Lang;
 use Syscover\Core\Services\SQLService;
+use Syscover\Admin\Models\Lang;
 
 class LangsPaginationQuery extends Query
 {

@@ -3,12 +3,11 @@
 use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
-use Syscover\Admin\Models\Profile;
 use Syscover\Core\Services\SQLService;
+use Syscover\Admin\Models\Profile;
 
 class ProfilesPaginationQuery extends Query
 {
-    // to documentation
     protected $attributes = [
         'name'          => 'ProfilesPaginationQuery',
         'description'   => 'Query to get list profiles.'

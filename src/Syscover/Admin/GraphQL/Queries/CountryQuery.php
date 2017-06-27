@@ -8,7 +8,6 @@ use Syscover\Admin\Models\Country;
 
 class CountryQuery extends Query
 {
-    // to documentation
     protected $attributes = [
         'name'          => 'CountryQuery',
         'description'   => 'Query to get country.'

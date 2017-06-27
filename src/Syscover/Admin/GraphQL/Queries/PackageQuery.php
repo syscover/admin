@@ -10,7 +10,7 @@ class PackageQuery extends Query
 {
     protected $attributes = [
         'name'          => 'PackageQuery',
-        'description'   => 'Query to get package.'
+        'description'   => 'Query to get packages.'
     ];
 
     public function type()

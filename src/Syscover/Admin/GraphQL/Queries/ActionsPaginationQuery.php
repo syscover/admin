@@ -3,8 +3,8 @@
 use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
-use Syscover\Admin\Models\Action;
 use Syscover\Core\Services\SQLService;
+use Syscover\Admin\Models\Action;
 
 class ActionsPaginationQuery extends Query
 {

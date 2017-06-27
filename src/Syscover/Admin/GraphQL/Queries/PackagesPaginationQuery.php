@@ -3,12 +3,11 @@
 use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
-use Syscover\Admin\Models\Package;
 use Syscover\Core\Services\SQLService;
+use Syscover\Admin\Models\Package;
 
 class PackagesPaginationQuery extends Query
 {
-    // to documentation
     protected $attributes = [
         'name'          => 'PackagesPaginationQuery',
         'description'   => 'Query to get list packages.'

@@ -3,12 +3,11 @@
 use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
-use Syscover\Admin\Models\Resource;
 use Syscover\Core\Services\SQLService;
+use Syscover\Admin\Models\Resource;
 
 class ResourcesPaginationQuery extends Query
 {
-    // to documentation
     protected $attributes = [
         'name'          => 'ResourcesPaginationQuery',
         'description'   => 'Query to get list resources.'
