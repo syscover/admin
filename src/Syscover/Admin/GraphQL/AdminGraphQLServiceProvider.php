@@ -26,6 +26,11 @@ class AdminGraphQLServiceProvider
         GraphQL::addType(\Syscover\Admin\GraphQL\Types\CountryType::class, 'AdminCountry');
         GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\CountryInput::class, 'AdminCountryInput');
 
+        // RESOURCE
+        GraphQL::addType(\Syscover\Admin\GraphQL\Types\ResourcePaginationType::class, 'AdminResourcePagination');
+        GraphQL::addType(\Syscover\Admin\GraphQL\Types\ResourceType::class, 'AdminResource');
+        GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\ResourceInput::class, 'AdminResourceInput');
+
     }
 
     public static function bootGraphQLSchema()
@@ -38,6 +43,7 @@ class AdminGraphQLServiceProvider
 
                 // PACKAGE
                 'adminPackagesPagination'   => \Syscover\Admin\GraphQL\Queries\PackagesPaginationQuery::class,
+                'adminPackages'              => \Syscover\Admin\GraphQL\Queries\PackagesQuery::class,
                 'adminPackage'              => \Syscover\Admin\GraphQL\Queries\PackageQuery::class,
 
                 // LANG
@@ -47,6 +53,10 @@ class AdminGraphQLServiceProvider
                 // COUNTRY
                 'adminCountriesPagination'  => \Syscover\Admin\GraphQL\Queries\CountriesPaginationQuery::class,
                 'adminCountry'              => \Syscover\Admin\GraphQL\Queries\CountryQuery::class,
+
+                // RESOURCE
+                'adminResourcesPagination'   => \Syscover\Admin\GraphQL\Queries\ResourcesPaginationQuery::class,
+                'adminResource'              => \Syscover\Admin\GraphQL\Queries\ResourceQuery::class,
             ],
             'mutation' => [
                 // ACTION
@@ -68,6 +78,11 @@ class AdminGraphQLServiceProvider
                 'adminAddCountry'           => \Syscover\Admin\GraphQL\Mutations\AddCountryMutation::class,
                 'adminUpdateCountry'        => \Syscover\Admin\GraphQL\Mutations\UpdateCountryMutation::class,
                 'adminDeleteCountry'        => \Syscover\Admin\GraphQL\Mutations\DeleteCountryMutation::class,
+
+                // RESOURCE
+                'adminAddResource'          => \Syscover\Admin\GraphQL\Mutations\AddResourceMutation::class,
+                'adminUpdateResource'       => \Syscover\Admin\GraphQL\Mutations\UpdateResourceMutation::class,
+                'adminDeleteResource'       => \Syscover\Admin\GraphQL\Mutations\DeleteResourceMutation::class,
             ]
         ]);
     }

@@ -31,7 +31,7 @@ class ActionQuery extends Query
 
     public function resolve($root, $args)
     {
-        $query = SQLService::getQueryFiltered(Action::builder(), $args);
+        $query = SQLService::getQueryFiltered(Action::builder(), $args['sql']);
 
         return $query->first();
     }

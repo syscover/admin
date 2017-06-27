@@ -32,13 +32,13 @@ class PackagesPaginationQuery extends Query
 
     public function resolve($root, $args)
     {
-        $query = SQLService::getQueryFiltered(Package::builder(), $args);
+        $query = SQLService::getQueryFiltered(Package::builder(), $args['sql']);
 
         // count records filtered
         $filtered = $query->count();
 
         // N total records
-        $total = SQLService::countPaginateTotalRecords(Package::builder(), $args);
+        $total = SQLService::countPaginateTotalRecords(Package::builder());
 
         return (Object) [
             'total'     => $total,

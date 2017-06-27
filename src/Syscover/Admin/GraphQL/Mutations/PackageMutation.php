@@ -72,7 +72,7 @@ class DeletePackageMutation extends PackageMutation
 
     public function resolve($root, $args)
     {
-        $object = SQLService::destroyRecord($args, Package::class);
+        $object = SQLService::destroyRecord($args['id'], Package::class);
 
         return $object;
     }

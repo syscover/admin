@@ -5,12 +5,12 @@ use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as GraphQLType;
 use Syscover\Core\Services\SQLService;
 
-class ActionPaginationType extends GraphQLType
+class ResourcePaginationType extends GraphQLType
 {
     // to documentation
     protected $attributes = [
-        'name'          => 'ActionPaginationType',
-        'description'   => 'Pagination for action objects.'
+        'name'          => 'ResourcePaginationType',
+        'description'   => 'Pagination for resource objects.'
     ];
 
     public function fields()
@@ -24,21 +24,21 @@ class ActionPaginationType extends GraphQLType
                 'type' => Type::nonNull(Type::int()),
                 'description' => 'N records filtered'
             ],
-            'actions' => [
+            'resources' => [
+                'type' => Type::listOf(GraphQL::type('AdminResource')),
+                'description' => 'List of resources filtered',
                 'args' => [
                     'sql' => [
                         'type' => Type::listOf(GraphQL::type('CoreSQLQueryInput')),
                         'description' => 'Field to add SQL operations'
                     ]
-                ],
-                'type' => Type::listOf(GraphQL::type('AdminAction')),
-                'description' => 'List of actions filtered'
+                ]
             ]
         ];
     }
 
     // resolver actions
-    public function resolveActionsField($root, $args)
+    public function resolveResourcesField($root, $args)
     {
         // get query ordered and limited
         $query = SQLService::getQueryOrderedAndLimited($root->query, $args['sql']);

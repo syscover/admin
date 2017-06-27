@@ -15,23 +15,23 @@ class PackageType extends GraphQLType {
         return [
             'id' => [
                 'type' => Type::int(),
-                'description' => 'The id of action'
+                'description' => 'The id of package'
             ],
             'name' => [
                 'type' => Type::nonNull(Type::string()),
-                'description' => 'The name of action'
+                'description' => 'The name of package'
             ],
             'root' => [
                 'type' => Type::nonNull(Type::string()),
-                'description' => 'The name of action'
+                'description' => 'The root of package'
             ],
             'active' => [
                 'type' => Type::nonNull(Type::boolean()),
-                'description' => 'The name of action'
+                'description' => 'Set if package is active'
             ],
             'sort' => [
                 'type' => Type::nonNull(Type::int()),
-                'description' => 'The name of action'
+                'description' => 'Sort package'
             ]
         ];
     }

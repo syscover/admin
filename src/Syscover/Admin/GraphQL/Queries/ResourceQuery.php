@@ -4,18 +4,18 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
 use Syscover\Core\Services\SQLService;
-use Syscover\Admin\Models\Country;
+use Syscover\Admin\Models\Resource;
 
-class CountryQuery extends Query
+class ResourceQuery extends Query
 {
     protected $attributes = [
-        'name'          => 'CountryQuery',
-        'description'   => 'Query to get country.'
+        'name'          => 'ResourceQuery',
+        'description'   => 'Query to get resource.'
     ];
 
     public function type()
     {
-        return GraphQL::type('AdminCountry');
+        return GraphQL::type('AdminResource');
     }
 
     public function args()
@@ -31,7 +31,7 @@ class CountryQuery extends Query
 
     public function resolve($root, $args)
     {
-        $query = SQLService::getQueryFiltered(Country::builder(), $args['sql']);
+        $query = SQLService::getQueryFiltered(Resource::builder(), $args['sql']);
 
         return $query->first();
     }

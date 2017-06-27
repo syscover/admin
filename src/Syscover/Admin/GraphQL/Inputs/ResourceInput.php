@@ -1,16 +1,11 @@
-<?php namespace Syscover\Admin\GraphQL\Types;
+<?php namespace Syscover\Admin\GraphQL\Inputs;
 
-use GraphQL;
+use Syscover\Admin\GraphQL\Types\ResourceType;
 use GraphQL\Type\Definition\Type;
-use Folklore\GraphQL\Support\Type as GraphQLType;
 
-class ResourceType extends GraphQLType {
-
-    // to documentation
-    protected $attributes = [
-        'name' => 'Resource',
-        'description' => 'Resource that user can to do in application.'
-    ];
+class ResourceInput extends ResourceType
+{
+    protected $inputObject = true;
 
     public function fields()
     {
@@ -26,11 +21,6 @@ class ResourceType extends GraphQLType {
             'package_id' => [
                 'type' => Type::nonNull(Type::int()),
                 'description' => 'Package id from resource'
-            ]
-            ,
-            'package' => [
-                'type' => GraphQL::type('AdminPackage'),
-                'description' => 'Package of resource'
             ]
         ];
     }

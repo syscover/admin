@@ -27,12 +27,12 @@ class CountryPaginationType extends GraphQLType
             'countries' => [
                 'args' => [
                     'sql' => [
-                        'type'          => Type::listOf(GraphQL::type('CoreSQLQueryInput')),
-                        'description'   => 'Field to add SQL operations'
+                        'type' => Type::listOf(GraphQL::type('CoreSQLQueryInput')),
+                        'description' => 'Field to add SQL operations'
                     ]
                 ],
-                'type'          => Type::listOf(GraphQL::type('AdminCountry')),
-                'description'   => 'List of countries filtered'
+                'type' => Type::listOf(GraphQL::type('AdminCountry')),
+                'description' => 'List of countries filtered'
             ]
         ];
     }

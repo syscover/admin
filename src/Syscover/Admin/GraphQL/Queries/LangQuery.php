@@ -31,7 +31,7 @@ class LangQuery extends Query
 
     public function resolve($root, $args)
     {
-        $query = SQLService::getQueryFiltered(Lang::builder(), $args);
+        $query = SQLService::getQueryFiltered(Lang::builder(), $args['sql']);
 
         return $query->first();
     }

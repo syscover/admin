@@ -27,12 +27,12 @@ class LangPaginationType extends GraphQLType
             'langs' => [
                 'args' => [
                     'sql' => [
-                        'type'          => Type::listOf(GraphQL::type('CoreSQLQueryInput')),
-                        'description'   => 'Field to add SQL operations'
+                        'type' => Type::listOf(GraphQL::type('CoreSQLQueryInput')),
+                        'description' => 'Field to add SQL operations'
                     ]
                 ],
-                'type'          => Type::listOf(GraphQL::type('AdminLang')),
-                'description'   => 'List of langs filtered'
+                'type' => Type::listOf(GraphQL::type('AdminLang')),
+                'description' => 'List of langs filtered'
             ]
         ];
     }

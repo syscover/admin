@@ -86,7 +86,7 @@ class DeleteLangMutation extends LangMutation
 
     public function resolve($root, $args)
     {
-        $object = SQLService::destroyRecord($args, Lang::class);
+        $object = SQLService::destroyRecord($args['id'], Lang::class);
 
         return $object;
     }

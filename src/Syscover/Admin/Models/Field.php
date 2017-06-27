@@ -46,24 +46,23 @@ class Field extends CoreModel
     }
 
     /**
-     * Over write deleteTranslationRecord from CoreModel to delete
+     * Overwrite deleteTranslationRecord from CoreModel to delete
      * json language field, in labels column
-     * @access	public
-     * @param   array   $parameters [id, lang]
-     * @param   boolean $deleteLangDataRecord
-     * @return	void
+     * @param $id
+     * @param $lang
+     * @param bool $deleteLangDataRecord
      */
-    public static function deleteTranslationRecord($parameters, $deleteLangDataRecord = true)
+    public static function deleteTranslationRecord($id, $lang, $deleteLangDataRecord = true)
     {
-        $field = Field::find($parameters['id']);
+        $field = Field::find($id);
 
         $labels = collect($field->labels); // get labels
-        unset($labels[$parameters['lang']]); // delete lang
+        unset($labels[$lang]); // delete lang
 
         $field->labels = $labels; // set new labels values
         $field->save(); // save values
 
         // set values on data_lang
-        Field::deleteLangDataRecord($parameters);
+        Field::deleteLangDataRecord($id, $lang);
     }
 }

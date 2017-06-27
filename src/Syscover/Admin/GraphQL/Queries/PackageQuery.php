@@ -31,7 +31,7 @@ class PackageQuery extends Query
 
     public function resolve($root, $args)
     {
-        $query = SQLService::getQueryFiltered(Package::builder(), $args);
+        $query = SQLService::getQueryFiltered(Package::builder(), $args['sql']);
 
         return $query->first();
     }

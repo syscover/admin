@@ -103,7 +103,7 @@ class DeleteCountryMutation extends CountryMutation
 
     public function resolve($root, $args)
     {
-        $object = SQLService::destroyRecord($args, Country::class);
+        $object = SQLService::destroyRecord($args['id'], Country::class, $args['lang']);
 
         return $object;
     }

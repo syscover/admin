@@ -3,30 +3,25 @@
 use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
-use Syscover\Admin\Models\Country;
+use Syscover\Admin\Models\Resource;
 use Syscover\Core\Services\SQLService;
 
-class CountriesPaginationQuery extends Query
+class ResourcesPaginationQuery extends Query
 {
     // to documentation
     protected $attributes = [
-        'name'          => 'CountriesPaginationQuery',
-        'description'   => 'Query to get list countries.'
+        'name'          => 'ResourcesPaginationQuery',
+        'description'   => 'Query to get list resources.'
     ];
 
     public function type()
     {
-        return GraphQL::type('AdminCountryPagination');
+        return GraphQL::type('AdminResourcePagination');
     }
 
     public function args()
     {
         return [
-            'lang' => [
-                'name'          => 'lang',
-                'type'          => Type::string(),
-                'description'   => 'to filter by lang'
-            ],
             'sql' => [
                 'name'          => 'sql',
                 'type'          => Type::listOf(GraphQL::type('CoreSQLQueryInput')),
@@ -37,13 +32,13 @@ class CountriesPaginationQuery extends Query
 
     public function resolve($root, $args)
     {
-        $query = SQLService::getQueryFiltered(Country::builder(), $args['sql'], $args['lang']);
+        $query = SQLService::getQueryFiltered(Resource::builder(), $args['sql']);
 
         // count records filtered
         $filtered = $query->count();
 
         // N total records
-        $total = SQLService::countPaginateTotalRecords(Country::builder(), $args['lang']);
+        $total = SQLService::countPaginateTotalRecords(Resource::builder());
 
         return (Object) [
             'total'     => $total,

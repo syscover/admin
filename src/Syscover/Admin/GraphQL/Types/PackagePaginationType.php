@@ -27,12 +27,12 @@ class PackagePaginationType extends GraphQLType
             'packages' => [
                 'args' => [
                     'sql' => [
-                        'type'          => Type::listOf(GraphQL::type('CoreSQLQueryInput')),
-                        'description'   => 'Field to add SQL operations'
+                        'type' => Type::listOf(GraphQL::type('CoreSQLQueryInput')),
+                        'description' => 'Field to add SQL operations'
                     ]
                 ],
-                'type'          => Type::listOf(GraphQL::type('AdminPackage')),
-                'description'   => 'List of packages filtered'
+                'type' => Type::listOf(GraphQL::type('AdminPackage')),
+                'description' => 'List of packages filtered'
             ]
         ];
     }
@@ -40,8 +40,13 @@ class PackagePaginationType extends GraphQLType
     // resolver actions
     public function resolvePackagesField($root, $args)
     {
-        // get query ordered and limited
-        $query = SQLService::getQueryOrderedAndLimited($root->query, $args['sql']);
+        $query = $root->query;
+
+        if(isset($args['sql']))
+        {
+            // get query ordered and limited
+            $query = SQLService::getQueryOrderedAndLimited($root->query, $args['sql']);
+        }
 
         // get objects filtered
         $objects = $query->get();
