@@ -26,8 +26,7 @@ class ResourceType extends GraphQLType {
             'package_id' => [
                 'type' => Type::nonNull(Type::int()),
                 'description' => 'Package id from resource'
-            ]
-            ,
+            ],
             'package' => [
                 'type' => GraphQL::type('AdminPackage'),
                 'description' => 'Package of resource'

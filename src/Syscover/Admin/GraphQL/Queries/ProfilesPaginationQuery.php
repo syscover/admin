@@ -3,19 +3,20 @@
 use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
-use Syscover\Admin\Models\Action;
+use Syscover\Admin\Models\Profile;
 use Syscover\Core\Services\SQLService;
 
-class ActionsPaginationQuery extends Query
+class ProfilesPaginationQuery extends Query
 {
+    // to documentation
     protected $attributes = [
-        'name'          => 'ActionsPaginationQuery',
-        'description'   => 'Query to get list actions.'
+        'name'          => 'ProfilesPaginationQuery',
+        'description'   => 'Query to get list profiles.'
     ];
 
     public function type()
     {
-        return GraphQL::type('AdminActionPagination');
+        return GraphQL::type('AdminProfilePagination');
     }
 
     public function args()
@@ -31,13 +32,13 @@ class ActionsPaginationQuery extends Query
 
     public function resolve($root, $args)
     {
-        $query = SQLService::getQueryFiltered(Action::builder(), $args['sql']);
+        $query = SQLService::getQueryFiltered(Profile::builder(), $args['sql']);
 
         // count records filtered
         $filtered = $query->count();
 
         // N total records
-        $total = SQLService::countPaginateTotalRecords(Action::builder());
+        $total = SQLService::countPaginateTotalRecords(Profile::builder());
 
         return (Object) [
             'total'     => $total,

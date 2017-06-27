@@ -8,7 +8,6 @@ use Syscover\Core\Services\SQLService;
 
 class LangsPaginationQuery extends Query
 {
-    // to documentation
     protected $attributes = [
         'name'          => 'LangsPaginationQuery',
         'description'   => 'Query to get list langs.'

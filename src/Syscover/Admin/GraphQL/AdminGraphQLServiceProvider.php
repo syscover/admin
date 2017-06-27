@@ -31,6 +31,11 @@ class AdminGraphQLServiceProvider
         GraphQL::addType(\Syscover\Admin\GraphQL\Types\ResourceType::class, 'AdminResource');
         GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\ResourceInput::class, 'AdminResourceInput');
 
+        // PROFILE
+        GraphQL::addType(\Syscover\Admin\GraphQL\Types\ProfilePaginationType::class, 'AdminProfilePagination');
+        GraphQL::addType(\Syscover\Admin\GraphQL\Types\ProfileType::class, 'AdminProfile');
+        GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\ProfileInput::class, 'AdminProfileInput');
+
     }
 
     public static function bootGraphQLSchema()
@@ -57,6 +62,11 @@ class AdminGraphQLServiceProvider
                 // RESOURCE
                 'adminResourcesPagination'   => \Syscover\Admin\GraphQL\Queries\ResourcesPaginationQuery::class,
                 'adminResource'              => \Syscover\Admin\GraphQL\Queries\ResourceQuery::class,
+
+                // PROFILE
+                'adminProfilesPagination'   => \Syscover\Admin\GraphQL\Queries\ProfilesPaginationQuery::class,
+                'adminProfiles'              => \Syscover\Admin\GraphQL\Queries\ProfilesQuery::class,
+                'adminProfile'              => \Syscover\Admin\GraphQL\Queries\ProfileQuery::class,
             ],
             'mutation' => [
                 // ACTION
@@ -83,6 +93,11 @@ class AdminGraphQLServiceProvider
                 'adminAddResource'          => \Syscover\Admin\GraphQL\Mutations\AddResourceMutation::class,
                 'adminUpdateResource'       => \Syscover\Admin\GraphQL\Mutations\UpdateResourceMutation::class,
                 'adminDeleteResource'       => \Syscover\Admin\GraphQL\Mutations\DeleteResourceMutation::class,
+
+                // PROFILE
+                'adminAddProfile'           => \Syscover\Admin\GraphQL\Mutations\AddProfileMutation::class,
+                'adminUpdateProfile'        => \Syscover\Admin\GraphQL\Mutations\UpdateProfileMutation::class,
+                'adminDeleteProfile'        => \Syscover\Admin\GraphQL\Mutations\DeleteProfileMutation::class,
             ]
         ]);
     }
