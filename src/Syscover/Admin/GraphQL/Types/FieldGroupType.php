@@ -15,7 +15,7 @@ class FieldGroupType extends GraphQLType {
     {
         return [
             'id' => [
-                'type' => Type::int(),
+                'type' => Type::nonNull(Type::int()),
                 'description' => 'The id of field group'
             ],
             'name' => [

@@ -1,7 +1,7 @@
 <?php namespace Syscover\Admin\GraphQL\Inputs;
 
-use Syscover\Admin\GraphQL\Types\ResourceType;
 use GraphQL\Type\Definition\Type;
+use Syscover\Admin\GraphQL\Types\ResourceType;
 
 class ResourceInput extends ResourceType
 {
