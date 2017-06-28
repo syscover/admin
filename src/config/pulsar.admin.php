@@ -11,11 +11,11 @@ return [
     //***   Resources that could contain custom fields
     //******************************************************************************************************************
     'resources_custom_fields' => [
-        'cms-article-family',
-        'market-product',
-        'hotels-hotel',
-        'spas-spa',
-        'wineries-winery'
+        (object)['id' => 'cms-article-family',      'name' => 'Article families'],
+        (object)['id' => 'market-product',          'name' => 'Products'],
+        (object)['id' => 'hotels-hotel',            'name' => 'Hotels'],
+        (object)['id' => 'spas-spa',                'name' => 'Spas'],
+        (object)['id' => 'wineries-winery',         'name' => 'Wineries']
     ],
 
     //******************************************************************************************************************

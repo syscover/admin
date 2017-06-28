@@ -27,7 +27,8 @@ class FieldGroup extends CoreModel
 
     public function scopeBuilder($query)
     {
-        return $query;
+        return $query->join('resource', 'field_group.resource_id', '=', 'resource.id')
+            ->select('resource.*', 'field_group.*', 'resource.name as resource_name', 'field_group.name as field_group_name');
     }
 
     public function resource()

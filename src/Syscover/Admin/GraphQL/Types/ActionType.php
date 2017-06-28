@@ -3,8 +3,8 @@
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as GraphQLType;
 
-class ActionType extends GraphQLType {
-
+class ActionType extends GraphQLType
+{
     // to documentation
     protected $attributes = [
         'name'          => 'Action',

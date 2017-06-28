@@ -36,37 +36,48 @@ class AdminGraphQLServiceProvider
         GraphQL::addType(\Syscover\Admin\GraphQL\Types\ProfileType::class, 'AdminProfile');
         GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\ProfileInput::class, 'AdminProfileInput');
 
+        // FIELD GROUP
+        GraphQL::addType(\Syscover\Admin\GraphQL\Types\FieldGroupPaginationType::class, 'AdminFieldGroupPagination');
+        GraphQL::addType(\Syscover\Admin\GraphQL\Types\FieldGroupType::class, 'AdminFieldGroup');
+        GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\FieldGroupInput::class, 'AdminFieldGroupInput');
+
     }
 
     public static function bootGraphQLSchema()
     {
-        GraphQL::addSchema('default', [
+        GraphQL::addSchema('default', array_merge_recursive(GraphQL::getSchemas()['default'], [
             'query' => [
                 // ACTION
-                'adminActionsPagination'    => \Syscover\Admin\GraphQL\Queries\ActionsPaginationQuery::class,
-                'adminAction'               => \Syscover\Admin\GraphQL\Queries\ActionQuery::class,
+                'adminActionsPagination'        => \Syscover\Admin\GraphQL\Queries\ActionsPaginationQuery::class,
+                'adminAction'                   => \Syscover\Admin\GraphQL\Queries\ActionQuery::class,
 
                 // PACKAGE
-                'adminPackagesPagination'   => \Syscover\Admin\GraphQL\Queries\PackagesPaginationQuery::class,
-                'adminPackages'              => \Syscover\Admin\GraphQL\Queries\PackagesQuery::class,
-                'adminPackage'              => \Syscover\Admin\GraphQL\Queries\PackageQuery::class,
+                'adminPackagesPagination'       => \Syscover\Admin\GraphQL\Queries\PackagesPaginationQuery::class,
+                'adminPackages'                 => \Syscover\Admin\GraphQL\Queries\PackagesQuery::class,
+                'adminPackage'                  => \Syscover\Admin\GraphQL\Queries\PackageQuery::class,
 
                 // LANG
-                'adminLangsPagination'      => \Syscover\Admin\GraphQL\Queries\LangsPaginationQuery::class,
-                'adminLang'                 => \Syscover\Admin\GraphQL\Queries\LangQuery::class,
+                'adminLangsPagination'          => \Syscover\Admin\GraphQL\Queries\LangsPaginationQuery::class,
+                'adminLang'                     => \Syscover\Admin\GraphQL\Queries\LangQuery::class,
 
                 // COUNTRY
-                'adminCountriesPagination'  => \Syscover\Admin\GraphQL\Queries\CountriesPaginationQuery::class,
-                'adminCountry'              => \Syscover\Admin\GraphQL\Queries\CountryQuery::class,
+                'adminCountriesPagination'      => \Syscover\Admin\GraphQL\Queries\CountriesPaginationQuery::class,
+                'adminCountry'                  => \Syscover\Admin\GraphQL\Queries\CountryQuery::class,
 
                 // RESOURCE
-                'adminResourcesPagination'   => \Syscover\Admin\GraphQL\Queries\ResourcesPaginationQuery::class,
-                'adminResource'              => \Syscover\Admin\GraphQL\Queries\ResourceQuery::class,
+                'adminResourcesPagination'      => \Syscover\Admin\GraphQL\Queries\ResourcesPaginationQuery::class,
+                'adminResources'                => \Syscover\Admin\GraphQL\Queries\ResourcesQuery::class,
+                'adminResource'                 => \Syscover\Admin\GraphQL\Queries\ResourceQuery::class,
 
                 // PROFILE
-                'adminProfilesPagination'   => \Syscover\Admin\GraphQL\Queries\ProfilesPaginationQuery::class,
-                'adminProfiles'              => \Syscover\Admin\GraphQL\Queries\ProfilesQuery::class,
-                'adminProfile'              => \Syscover\Admin\GraphQL\Queries\ProfileQuery::class,
+                'adminProfilesPagination'       => \Syscover\Admin\GraphQL\Queries\ProfilesPaginationQuery::class,
+                'adminProfiles'                 => \Syscover\Admin\GraphQL\Queries\ProfilesQuery::class,
+                'adminProfile'                  => \Syscover\Admin\GraphQL\Queries\ProfileQuery::class,
+
+                // FIELD GROUP
+                'adminFieldGroupsPagination'    => \Syscover\Admin\GraphQL\Queries\FieldGroupsPaginationQuery::class,
+                'adminFieldGroups'              => \Syscover\Admin\GraphQL\Queries\FieldGroupsQuery::class,
+                'adminFieldGroup'               => \Syscover\Admin\GraphQL\Queries\FieldGroupQuery::class,
             ],
             'mutation' => [
                 // ACTION
@@ -98,7 +109,12 @@ class AdminGraphQLServiceProvider
                 'adminAddProfile'           => \Syscover\Admin\GraphQL\Mutations\AddProfileMutation::class,
                 'adminUpdateProfile'        => \Syscover\Admin\GraphQL\Mutations\UpdateProfileMutation::class,
                 'adminDeleteProfile'        => \Syscover\Admin\GraphQL\Mutations\DeleteProfileMutation::class,
+
+                // PROFILE
+                'adminAddFieldGroup'        => \Syscover\Admin\GraphQL\Mutations\AddFieldGroupMutation::class,
+                'adminUpdateFieldGroup'     => \Syscover\Admin\GraphQL\Mutations\UpdateFieldGroupMutation::class,
+                'adminDeleteFieldGroup'     => \Syscover\Admin\GraphQL\Mutations\DeleteFieldGroupMutation::class,
             ]
-        ]);
+        ]));
     }
 }
