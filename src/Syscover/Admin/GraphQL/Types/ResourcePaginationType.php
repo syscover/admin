@@ -37,7 +37,6 @@ class ResourcePaginationType extends GraphQLType
         ];
     }
 
-    // resolver actions
     public function resolveResourcesField($root, $args)
     {
         // get query ordered and limited

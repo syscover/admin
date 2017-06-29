@@ -6,16 +6,16 @@ use Folklore\GraphQL\Support\Query;
 use Syscover\Core\Services\SQLService;
 use Syscover\Admin\Models\Package;
 
-class PackagesQuery extends Query
+class ActionsQuery extends Query
 {
     protected $attributes = [
-        'name'          => 'PackageQuery',
-        'description'   => 'Query to get package list'
+        'name'          => 'ActionsQuery',
+        'description'   => 'Query to get actions list.'
     ];
 
     public function type()
     {
-        return Type::listOf(GraphQL::type('AdminPackage'));
+        return Type::listOf(GraphQL::type('AdminAction'));
     }
 
     public function args()
