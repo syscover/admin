@@ -7,7 +7,7 @@ class ProfileType extends GraphQLType {
 
     protected $attributes = [
         'name' => 'Profile',
-        'description' => 'A profile'
+        'description' => 'Profile to set permissions to a user'
     ];
 
     public function fields()

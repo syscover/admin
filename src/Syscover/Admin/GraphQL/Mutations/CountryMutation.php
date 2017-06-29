@@ -33,17 +33,9 @@ class AddCountryMutation extends CountryMutation
 
     public function resolve($root, $args)
     {
-        return Country::create([
-            'id'                    => $args['country']['id'],
-            'lang_id'               => $args['country']['lang_id'],
-            'name'                  => $args['country']['name'],
-            'sort'                  => $args['country']['sort'],
-            'prefix'                => $args['country']['prefix'],
-            'territorial_area_1'    => $args['country']['territorial_area_1'],
-            'territorial_area_2'    => $args['country']['territorial_area_2'],
-            'territorial_area_3'    => $args['country']['territorial_area_3'],
-            'data_lang'             => Country::addLangDataRecord($args['country']['lang_id'], $args['country']['id'])
-        ]);
+        $args['country']['data_lang'] = Country::addLangDataRecord($args['country']['lang_id'], $args['country']['id']);
+
+        return Country::create($args['country']);
     }
 }
 

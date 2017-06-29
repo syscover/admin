@@ -7,7 +7,7 @@ class PackageType extends GraphQLType {
 
     protected $attributes = [
         'name' => 'Package',
-        'description' => 'A package'
+        'description' => 'Package are set of sections, you can create your custom package'
     ];
 
     public function fields()
