@@ -5,10 +5,9 @@ use Folklore\GraphQL\Support\Type as GraphQLType;
 
 class ActionType extends GraphQLType
 {
-    // to documentation
     protected $attributes = [
         'name'          => 'Action',
-        'description'   => 'Action that user can to do in application.'
+        'description'   => 'Action that user can to do in application, this is for set permissions'
     ];
 
     public function fields()

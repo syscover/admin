@@ -4,9 +4,8 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as GraphQLType;
 
-class ResourceType extends GraphQLType {
-
-    // to documentation
+class ResourceType extends GraphQLType
+{
     protected $attributes = [
         'name' => 'Resource',
         'description' => 'Resource that user can to do in application.'

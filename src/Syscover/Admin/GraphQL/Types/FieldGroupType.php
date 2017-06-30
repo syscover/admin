@@ -4,8 +4,8 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as GraphQLType;
 
-class FieldGroupType extends GraphQLType {
-
+class FieldGroupType extends GraphQLType
+{
     protected $attributes = [
         'name' => 'FieldGroup',
         'description' => 'A field group'

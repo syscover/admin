@@ -4,18 +4,18 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
 use Syscover\Core\Services\SQLService;
-use Syscover\Admin\Models\Action;
+use Syscover\Admin\Models\AttachmentFamily;
 
-class ActionsPaginationQuery extends Query
+class AttachmentFamiliesPaginationQuery extends Query
 {
     protected $attributes = [
-        'name'          => 'ActionsPaginationQuery',
-        'description'   => 'Query to get list actions'
+        'name'          => 'AttachmentFamiliesPaginationQuery',
+        'description'   => 'Query to get list attachment families'
     ];
 
     public function type()
     {
-        return GraphQL::type('AdminActionPagination');
+        return GraphQL::type('AdminAttachmentFamilyPagination');
     }
 
     public function args()
@@ -31,13 +31,13 @@ class ActionsPaginationQuery extends Query
 
     public function resolve($root, $args)
     {
-        $query = SQLService::getQueryFiltered(Action::builder(), $args['sql']);
+        $query = SQLService::getQueryFiltered(AttachmentFamily::builder(), $args['sql']);
 
         // count records filtered
         $filtered = $query->count();
 
         // N total records
-        $total = SQLService::countPaginateTotalRecords(Action::builder());
+        $total = SQLService::countPaginateTotalRecords(AttachmentFamily::builder());
 
         return (Object) [
             'total'     => $total,

@@ -5,11 +5,11 @@ use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as GraphQLType;
 use Syscover\Core\Services\SQLService;
 
-class PackagePaginationType extends GraphQLType
+class AttachmentFamilyPaginationType extends GraphQLType
 {
     protected $attributes = [
-        'name'          => 'PackagePaginationType',
-        'description'   => 'Pagination for package objects.'
+        'name'          => 'AttachmentFamilyPaginationType',
+        'description'   => 'Pagination for attachment families objects.'
     ];
 
     public function fields()
@@ -23,29 +23,23 @@ class PackagePaginationType extends GraphQLType
                 'type' => Type::nonNull(Type::int()),
                 'description' => 'N records filtered'
             ],
-            'packages' => [
+            'attachmentFamilies' => [
+                'type' => Type::listOf(GraphQL::type('AdminAttachmentFamily')),
+                'description' => 'List of attachment families filtered',
                 'args' => [
                     'sql' => [
                         'type' => Type::listOf(GraphQL::type('CoreSQLQueryInput')),
                         'description' => 'Field to add SQL operations'
                     ]
-                ],
-                'type' => Type::listOf(GraphQL::type('AdminPackage')),
-                'description' => 'List of packages filtered'
+                ]
             ]
         ];
     }
 
-    // resolver actions
-    public function resolvePackagesField($root, $args)
+    public function resolveAttachmentFamiliesField($root, $args)
     {
-        $query = $root->query;
-
-        if(isset($args['sql']))
-        {
-            // get query ordered and limited
-            $query = SQLService::getQueryOrderedAndLimited($root->query, $args['sql']);
-        }
+        // get query ordered and limited
+        $query = SQLService::getQueryOrderedAndLimited($root->query, $args['sql']);
 
         // get objects filtered
         $objects = $query->get();

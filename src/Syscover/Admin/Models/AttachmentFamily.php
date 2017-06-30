@@ -30,7 +30,8 @@ class AttachmentFamily extends CoreModel
 
     public function scopeBuilder($query)
     {
-        return $query;
+        return $query->join('resource', 'attachment_family.resource_id', '=', 'resource.id')
+            ->select('resource.*', 'attachment_family.*', 'resource.name as resource_name', 'attachment_family.name as attachment_family_name');;
     }
 
     public function resource()

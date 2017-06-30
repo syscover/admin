@@ -7,7 +7,6 @@ use Syscover\Core\Services\SQLService;
 
 class CountryPaginationType extends GraphQLType
 {
-    // to documentation
     protected $attributes = [
         'name'          => 'CountryPaginationType',
         'description'   => 'Pagination for action objects.'

@@ -3,8 +3,8 @@
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as GraphQLType;
 
-class ProfileType extends GraphQLType {
-
+class ProfileType extends GraphQLType
+{
     protected $attributes = [
         'name' => 'Profile',
         'description' => 'Profile to set permissions to a user'

@@ -7,7 +7,6 @@ use Syscover\Core\Services\SQLService;
 
 class ResourcePaginationType extends GraphQLType
 {
-    // to documentation
     protected $attributes = [
         'name'          => 'ResourcePaginationType',
         'description'   => 'Pagination for resource objects.'

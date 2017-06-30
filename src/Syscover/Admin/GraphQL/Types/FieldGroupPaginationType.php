@@ -7,7 +7,6 @@ use Syscover\Core\Services\SQLService;
 
 class FieldGroupPaginationType extends GraphQLType
 {
-    // to documentation
     protected $attributes = [
         'name'          => 'FieldGroupPaginationType',
         'description'   => 'Pagination for field group objects.'

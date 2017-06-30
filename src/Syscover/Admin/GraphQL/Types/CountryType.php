@@ -3,9 +3,8 @@
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as GraphQLType;
 
-class CountryType extends GraphQLType {
-
-    // to documentation
+class CountryType extends GraphQLType
+{
     protected $attributes = [
         'name'          => 'Action',
         'description'   => 'Action that user can to do in application.'

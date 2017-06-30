@@ -7,7 +7,6 @@ use Syscover\Core\Services\SQLService;
 
 class ProfilePaginationType extends GraphQLType
 {
-    // to documentation
     protected $attributes = [
         'name'          => 'ProfilePaginationType',
         'description'   => 'Pagination for profile objects.'
