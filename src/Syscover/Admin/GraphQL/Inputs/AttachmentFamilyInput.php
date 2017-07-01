@@ -34,6 +34,10 @@ class AttachmentFamilyInput extends AttachmentFamilyType
                 'type' => Type::listOf(Type::string()),
                 'description' => 'The width of crop for this attachment'
             ],
+            'quality' => [
+                'type' => Type::int(),
+                'description' => 'Quality of images in jpg format'
+            ],
             'format' => [
                 'type' => Type::string(),
                 'description' => 'The name of action'

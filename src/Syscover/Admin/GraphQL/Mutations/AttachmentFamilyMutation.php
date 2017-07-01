@@ -47,10 +47,6 @@ class UpdateAttachmentFamilyMutation extends AttachmentFamilyMutation
     public function args()
     {
         return [
-            'idOld' => [
-                'name' => 'idOld',
-                'type' => Type::nonNull(Type::string())
-            ],
             'attachmentFamily' => [
                 'name' => 'attachmentFamily',
                 'type' => Type::nonNull(GraphQL::type('AdminAttachmentFamilyInput'))
@@ -60,7 +56,9 @@ class UpdateAttachmentFamilyMutation extends AttachmentFamilyMutation
 
     public function resolve($root, $args)
     {
-        AttachmentFamily::where('id', $args['idOld'])
+        $args['attachmentFamily']['sizes'] = json_encode($args['attachmentFamily']['sizes']);
+
+        AttachmentFamily::where('id', $args['attachmentFamily']['id'])
             ->update($args['attachmentFamily']);
 
         return AttachmentFamily::find($args['attachmentFamily']['id']);
