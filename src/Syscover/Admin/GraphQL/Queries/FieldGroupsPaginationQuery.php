@@ -15,7 +15,7 @@ class FieldGroupsPaginationQuery extends Query
 
     public function type()
     {
-        return GraphQL::type('AdminFieldGroupPagination');
+        return GraphQL::type('CoreObjectPagination');
     }
 
     public function args()

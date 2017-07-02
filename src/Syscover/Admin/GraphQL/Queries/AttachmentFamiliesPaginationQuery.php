@@ -15,7 +15,7 @@ class AttachmentFamiliesPaginationQuery extends Query
 
     public function type()
     {
-        return GraphQL::type('AdminAttachmentFamilyPagination');
+        return GraphQL::type('CoreObjectPagination');
     }
 
     public function args()

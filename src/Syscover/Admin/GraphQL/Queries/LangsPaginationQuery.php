@@ -15,7 +15,7 @@ class LangsPaginationQuery extends Query
 
     public function type()
     {
-        return GraphQL::type('AdminLangPagination');
+        return GraphQL::type('CoreObjectPagination');
     }
 
     public function args()

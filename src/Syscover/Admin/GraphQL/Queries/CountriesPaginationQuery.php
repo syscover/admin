@@ -16,7 +16,7 @@ class CountriesPaginationQuery extends Query
 
     public function type()
     {
-        return GraphQL::type('AdminCountryPagination');
+        return GraphQL::type('CoreObjectPagination');
     }
 
     public function args()

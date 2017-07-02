@@ -1,5 +1,6 @@
 <?php namespace Syscover\Admin\GraphQL\Types;
 
+use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as GraphQLType;
 
@@ -34,5 +35,9 @@ class PackageType extends GraphQLType
                 'description' => 'Sort package'
             ]
         ];
+    }
+
+    public function interfaces() {
+        return [GraphQL::type('CoreObjectInterface')];
     }
 }

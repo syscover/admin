@@ -15,7 +15,7 @@ class ResourcesPaginationQuery extends Query
 
     public function type()
     {
-        return GraphQL::type('AdminResourcePagination');
+        return GraphQL::type('CoreObjectPagination');
     }
 
     public function args()

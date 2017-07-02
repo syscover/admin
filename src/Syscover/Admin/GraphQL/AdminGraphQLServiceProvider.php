@@ -7,42 +7,34 @@ class AdminGraphQLServiceProvider
     public static function bootGraphQLTypes()
     {
         // ACTION
-        GraphQL::addType(\Syscover\Admin\GraphQL\Types\ActionPaginationType::class, 'AdminActionPagination');
         GraphQL::addType(\Syscover\Admin\GraphQL\Types\ActionType::class, 'AdminAction');
         GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\ActionInput::class, 'AdminActionInput');
 
         // PACKAGE
-        GraphQL::addType(\Syscover\Admin\GraphQL\Types\PackagePaginationType::class, 'AdminPackagePagination');
         GraphQL::addType(\Syscover\Admin\GraphQL\Types\PackageType::class, 'AdminPackage');
         GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\PackageInput::class, 'AdminPackageInput');
 
         // LANG
-        GraphQL::addType(\Syscover\Admin\GraphQL\Types\LangPaginationType::class, 'AdminLangPagination');
         GraphQL::addType(\Syscover\Admin\GraphQL\Types\LangType::class, 'AdminLang');
         GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\LangInput::class, 'AdminLangInput');
 
         // COUNTRY
-        GraphQL::addType(\Syscover\Admin\GraphQL\Types\CountryPaginationType::class, 'AdminCountryPagination');
         GraphQL::addType(\Syscover\Admin\GraphQL\Types\CountryType::class, 'AdminCountry');
         GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\CountryInput::class, 'AdminCountryInput');
 
         // RESOURCE
-        GraphQL::addType(\Syscover\Admin\GraphQL\Types\ResourcePaginationType::class, 'AdminResourcePagination');
         GraphQL::addType(\Syscover\Admin\GraphQL\Types\ResourceType::class, 'AdminResource');
         GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\ResourceInput::class, 'AdminResourceInput');
 
         // PROFILE
-        GraphQL::addType(\Syscover\Admin\GraphQL\Types\ProfilePaginationType::class, 'AdminProfilePagination');
         GraphQL::addType(\Syscover\Admin\GraphQL\Types\ProfileType::class, 'AdminProfile');
         GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\ProfileInput::class, 'AdminProfileInput');
 
         // FIELD GROUP
-        GraphQL::addType(\Syscover\Admin\GraphQL\Types\FieldGroupPaginationType::class, 'AdminFieldGroupPagination');
         GraphQL::addType(\Syscover\Admin\GraphQL\Types\FieldGroupType::class, 'AdminFieldGroup');
         GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\FieldGroupInput::class, 'AdminFieldGroupInput');
 
         // ATTACHMENT FAMILY
-        GraphQL::addType(\Syscover\Admin\GraphQL\Types\AttachmentFamilyPaginationType::class, 'AdminAttachmentFamilyPagination');
         GraphQL::addType(\Syscover\Admin\GraphQL\Types\AttachmentFamilyType::class, 'AdminAttachmentFamily');
         GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\AttachmentFamilyInput::class, 'AdminAttachmentFamilyInput');
 

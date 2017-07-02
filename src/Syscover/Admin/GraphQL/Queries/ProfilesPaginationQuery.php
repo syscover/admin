@@ -15,7 +15,7 @@ class ProfilesPaginationQuery extends Query
 
     public function type()
     {
-        return GraphQL::type('AdminProfilePagination');
+        return GraphQL::type('CoreObjectPagination');
     }
 
     public function args()

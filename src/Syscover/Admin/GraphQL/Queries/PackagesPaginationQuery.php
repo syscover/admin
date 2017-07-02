@@ -15,7 +15,7 @@ class PackagesPaginationQuery extends Query
 
     public function type()
     {
-        return GraphQL::type('AdminPackagePagination');
+        return GraphQL::type('CoreObjectPagination');
     }
 
     public function args()

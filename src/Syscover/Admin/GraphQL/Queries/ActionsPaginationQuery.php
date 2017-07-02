@@ -15,7 +15,7 @@ class ActionsPaginationQuery extends Query
 
     public function type()
     {
-        return GraphQL::type('AdminActionPagination');
+        return GraphQL::type('CoreObjectPagination');
     }
 
     public function args()
