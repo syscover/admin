@@ -24,8 +24,8 @@ class AddCountryMutation extends CountryMutation
     public function args()
     {
         return [
-            'country' => [
-                'name' => 'country',
+            'object' => [
+                'name' => 'object',
                 'type' => Type::nonNull(GraphQL::type('AdminCountryInput'))
             ]
         ];
@@ -33,9 +33,9 @@ class AddCountryMutation extends CountryMutation
 
     public function resolve($root, $args)
     {
-        $args['country']['data_lang'] = Country::addLangDataRecord($args['country']['lang_id'], $args['country']['id']);
+        $args['object']['data_lang'] = Country::addLangDataRecord($args['object']['lang_id'], $args['object']['id']);
 
-        return Country::create($args['country']);
+        return Country::create($args['object']);
     }
 }
 
@@ -53,8 +53,8 @@ class UpdateCountryMutation extends CountryMutation
                 'name' => 'idOld',
                 'type' => Type::nonNull(Type::string())
             ],
-            'country' => [
-                'name' => 'country',
+            'object' => [
+                'name' => 'object',
                 'type' => Type::nonNull(GraphQL::type('AdminCountryInput'))
             ]
         ];
@@ -63,11 +63,11 @@ class UpdateCountryMutation extends CountryMutation
     public function resolve($root, $args)
     {
         Country::where('id', $args['idOld'])
-            ->where('lang_id', $args['country']['lang_id'])
-            ->update($args['country']);
+            ->where('lang_id', $args['object']['lang_id'])
+            ->update($args['object']);
 
-        return Country::where('id', $args['country']['id'])
-            ->where('lang_id', $args['country']['lang_id'])
+        return Country::where('id', $args['object']['id'])
+            ->where('lang_id', $args['object']['lang_id'])
             ->first();
     }
 }

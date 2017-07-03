@@ -24,8 +24,8 @@ class AddResourceMutation extends ResourceMutation
     public function args()
     {
         return [
-            'resource' => [
-                'name' => 'resource',
+            'object' => [
+                'name' => 'object',
                 'type' => Type::nonNull(GraphQL::type('AdminResourceInput'))
             ],
         ];
@@ -33,7 +33,7 @@ class AddResourceMutation extends ResourceMutation
 
     public function resolve($root, $args)
     {
-        return Resource::create($args['resource']);
+        return Resource::create($args['object']);
     }
 }
 
@@ -51,8 +51,8 @@ class UpdateResourceMutation extends ResourceMutation
                 'name' => 'idOld',
                 'type' => Type::nonNull(Type::string())
             ],
-            'resource' => [
-                'name' => 'resource',
+            'object' => [
+                'name' => 'object',
                 'type' => Type::nonNull(GraphQL::type('AdminResourceInput'))
             ]
         ];
@@ -61,9 +61,9 @@ class UpdateResourceMutation extends ResourceMutation
     public function resolve($root, $args)
     {
         Resource::where('id', $args['idOld'])
-            ->update($args['resource']);
+            ->update($args['object']);
 
-        return Resource::find($args['resource']['id']);
+        return Resource::find($args['object']['id']);
     }
 }
 

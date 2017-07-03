@@ -16,8 +16,8 @@ class FieldGroupMutation extends Mutation
     public function args()
     {
         return [
-            'fieldGroup' => [
-                'name' => 'fieldGroup',
+            'object' => [
+                'name' => 'object',
                 'type' => Type::nonNull(GraphQL::type('AdminFieldGroupInput'))
             ],
         ];
@@ -33,7 +33,7 @@ class AddFieldGroupMutation extends FieldGroupMutation
 
     public function resolve($root, $args)
     {
-        return FieldGroup::create($args['fieldGroup']);
+        return FieldGroup::create($args['object']);
     }
 }
 
@@ -46,10 +46,10 @@ class UpdateFieldGroupMutation extends FieldGroupMutation
 
     public function resolve($root, $args)
     {
-        FieldGroup::where('id', $args['fieldGroup']['id'])
-            ->update($args['fieldGroup']);
+        FieldGroup::where('id', $args['object']['id'])
+            ->update($args['object']);
 
-        return FieldGroup::find($args['fieldGroup']['id']);
+        return FieldGroup::find($args['object']['id']);
     }
 }
 

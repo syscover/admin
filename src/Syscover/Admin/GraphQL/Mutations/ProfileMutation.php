@@ -16,8 +16,8 @@ class ProfileMutation extends Mutation
     public function args()
     {
         return [
-            'profile' => [
-                'name' => 'profile',
+            'object' => [
+                'name' => 'object',
                 'type' => Type::nonNull(GraphQL::type('AdminProfileInput'))
             ],
         ];
@@ -33,7 +33,7 @@ class AddProfileMutation extends ProfileMutation
 
     public function resolve($root, $args)
     {
-        return Profile::create($args['profile']);
+        return Profile::create($args['object']);
     }
 }
 
@@ -46,10 +46,10 @@ class UpdateProfileMutation extends ProfileMutation
 
     public function resolve($root, $args)
     {
-        Profile::where('id', $args['profile']['id'])
-            ->update($args['profile']);
+        Profile::where('id', $args['object']['id'])
+            ->update($args['object']);
 
-        return Profile::find($args['profile']['id']);
+        return Profile::find($args['object']['id']);
     }
 }
 

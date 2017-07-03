@@ -24,8 +24,8 @@ class AddLangMutation extends LangMutation
     public function args()
     {
         return [
-            'lang' => [
-                'name' => 'lang',
+            'object' => [
+                'name' => 'object',
                 'type' => Type::nonNull(GraphQL::type('AdminLangInput'))
             ]
         ];
@@ -33,7 +33,7 @@ class AddLangMutation extends LangMutation
 
     public function resolve($root, $args)
     {
-        return Lang::create($args['lang']);
+        return Lang::create($args['object']);
     }
 }
 
@@ -51,8 +51,8 @@ class UpdateLangMutation extends LangMutation
                 'name' => 'idOld',
                 'type' => Type::nonNull(Type::string())
             ],
-            'lang' => [
-                'name' => 'lang',
+            'object' => [
+                'name' => 'object',
                 'type' => Type::nonNull(GraphQL::type('AdminLangInput'))
             ]
         ];
@@ -61,9 +61,9 @@ class UpdateLangMutation extends LangMutation
     public function resolve($root, $args)
     {
         Lang::where('id', $args['idOld'])
-            ->update($args['lang']);
+            ->update($args['object']);
 
-        return Lang::find($args['lang']['id']);
+        return Lang::find($args['object']['id']);
     }
 }
 

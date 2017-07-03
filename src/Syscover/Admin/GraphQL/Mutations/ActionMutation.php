@@ -24,8 +24,8 @@ class AddActionMutation extends ActionMutation
     public function args()
     {
         return [
-            'action' => [
-                'name' => 'action',
+            'object' => [
+                'name' => 'object',
                 'type' => Type::nonNull(GraphQL::type('AdminActionInput'))
             ]
         ];
@@ -33,7 +33,7 @@ class AddActionMutation extends ActionMutation
 
     public function resolve($root, $args)
     {
-        return Action::create($args['action']);
+        return Action::create($args['object']);
     }
 }
 
@@ -51,8 +51,8 @@ class UpdateActionMutation extends ActionMutation
                 'name' => 'idOld',
                 'type' => Type::nonNull(Type::string())
             ],
-            'action' => [
-                'name' => 'action',
+            'object' => [
+                'name' => 'object',
                 'type' => Type::nonNull(GraphQL::type('AdminActionInput'))
             ]
         ];
@@ -61,9 +61,9 @@ class UpdateActionMutation extends ActionMutation
     public function resolve($root, $args)
     {
         Action::where('id', $args['idOld'])
-            ->update($args['action']);
+            ->update($args['object']);
 
-        return Action::find($args['action']['id']);
+        return Action::find($args['object']['id']);
     }
 }
 

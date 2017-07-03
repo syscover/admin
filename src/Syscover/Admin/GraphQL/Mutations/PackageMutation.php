@@ -16,8 +16,8 @@ class PackageMutation extends Mutation
     public function args()
     {
         return [
-            'package' => [
-                'name' => 'package',
+            'object' => [
+                'name' => 'object',
                 'type' => Type::nonNull(GraphQL::type('AdminPackageInput'))
             ],
         ];
@@ -33,7 +33,7 @@ class AddPackageMutation extends PackageMutation
 
     public function resolve($root, $args)
     {
-        return Package::create($args['package']);
+        return Package::create($args['object']);
     }
 }
 
@@ -46,10 +46,10 @@ class UpdatePackageMutation extends PackageMutation
 
     public function resolve($root, $args)
     {
-        Package::where('id', $args['package']['id'])
-            ->update($args['package']);
+        Package::where('id', $args['object']['id'])
+            ->update($args['object']);
 
-        return Package::find($args['package']['id']);
+        return Package::find($args['object']['id']);
     }
 }
 
