@@ -1,9 +1,9 @@
 <?php namespace Syscover\Admin\GraphQL\Inputs;
 
 use GraphQL\Type\Definition\Type;
-use Syscover\Admin\GraphQL\Types\ResourceType;
+use Folklore\GraphQL\Support\Type as GraphQLType;
 
-class ResourceInput extends ResourceType
+class ResourceInput extends GraphQLType
 {
     protected $inputObject = true;
 
@@ -11,7 +11,7 @@ class ResourceInput extends ResourceType
     {
         return [
             'id' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::nonNull(Type::id()),
                 'description' => 'The id of resource'
             ],
             'name' => [

@@ -1,17 +1,22 @@
 <?php namespace Syscover\Admin\GraphQL\Inputs;
 
 use GraphQL\Type\Definition\Type;
-use Syscover\Admin\GraphQL\Types\FieldGroupType;
+use Folklore\GraphQL\Support\Type as GraphQLType;
 
-class FieldGroupInput extends FieldGroupType
+class FieldGroupInput extends GraphQLType
 {
+    protected $attributes = [
+        'name'          => 'FieldGroupInput',
+        'description'   => 'A field group'
+    ];
+
     protected $inputObject = true;
 
     public function fields()
     {
         return [
             'id' => [
-                'type' => Type::int(),
+                'type' => Type::id(),
                 'description' => 'The id of field group'
             ],
             'name' => [

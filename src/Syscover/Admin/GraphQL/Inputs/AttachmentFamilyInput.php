@@ -1,17 +1,22 @@
 <?php namespace Syscover\Admin\GraphQL\Inputs;
 
 use GraphQL\Type\Definition\Type;
-use Syscover\Admin\GraphQL\Types\AttachmentFamilyType;
+use Folklore\GraphQL\Support\Type as GraphQLType;
 
-class AttachmentFamilyInput extends AttachmentFamilyType
+class AttachmentFamilyInput extends GraphQLType
 {
+    protected $attributes = [
+        'name'          => 'AttachmentFamilyInput',
+        'description'   => 'Attachment family to add to any image to set crop'
+    ];
+
     protected $inputObject = true;
 
     public function fields()
     {
         return [
             'id' => [
-                'type' => Type::int(),
+                'type' => Type::id(),
                 'description' => 'The id of action'
             ],
             'resource_id' => [

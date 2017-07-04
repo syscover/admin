@@ -31,16 +31,6 @@ class FieldValueController extends CoreController
                 $id         = $counter;
             }
 
-            // get id suitable for get data_lang
-            if(base_lang() === $request->input('lang_id'))
-            {
-                $idAux = null;
-            }
-            else
-            {
-                $idAux = $id;
-            }
-
             // create new object
             $object = FieldValue::create([
                 'id'            => $id,
@@ -50,7 +40,7 @@ class FieldValueController extends CoreController
                 'name'          => $request->input('name'),
                 'sort'          => $request->input('sort'),
                 'featured'      => $request->input('featured'),
-                'data_lang'     => FieldValue::addLangDataRecord($request->input('lang_id'), $idAux),
+                'data_lang'     => FieldValue::addLangDataRecord($request->input('lang_id'), $id),
                 'data'          => null
             ]);
         }
