@@ -20,7 +20,7 @@ class CountryInput extends GraphQLType
                 'description' => 'The id of country'
             ],
             'lang_id' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::nonNull(Type::id()),
                 'description' => 'lang of country'
             ],
             'name' => [

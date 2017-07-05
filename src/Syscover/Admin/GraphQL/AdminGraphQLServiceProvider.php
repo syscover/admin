@@ -34,6 +34,10 @@ class AdminGraphQLServiceProvider
         GraphQL::addType(\Syscover\Admin\GraphQL\Types\FieldGroupType::class, 'AdminFieldGroup');
         GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\FieldGroupInput::class, 'AdminFieldGroupInput');
 
+        // FIELD
+        GraphQL::addType(\Syscover\Admin\GraphQL\Types\FieldType::class, 'AdminField');
+        GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\FieldInput::class, 'AdminFieldInput');
+
         // ATTACHMENT FAMILY
         GraphQL::addType(\Syscover\Admin\GraphQL\Types\AttachmentFamilyType::class, 'AdminAttachmentFamily');
         GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\AttachmentFamilyInput::class, 'AdminAttachmentFamilyInput');
@@ -77,6 +81,11 @@ class AdminGraphQLServiceProvider
                 'adminFieldGroups'              => \Syscover\Admin\GraphQL\Queries\FieldGroupsQuery::class,
                 'adminFieldGroup'               => \Syscover\Admin\GraphQL\Queries\FieldGroupQuery::class,
 
+                // FIELD
+                'adminFieldsPagination'         => \Syscover\Admin\GraphQL\Queries\FieldsPaginationQuery::class,
+                'adminFields'                   => \Syscover\Admin\GraphQL\Queries\FieldsQuery::class,
+                'adminField'                    => \Syscover\Admin\GraphQL\Queries\FieldQuery::class,
+
                 // ATTACHMENT FAMILY
                 'adminAttachmentFamiliesPagination' => \Syscover\Admin\GraphQL\Queries\AttachmentFamiliesPaginationQuery::class,
                 'adminAttachmentFamilies'           => \Syscover\Admin\GraphQL\Queries\AttachmentFamiliesQuery::class,
@@ -117,6 +126,11 @@ class AdminGraphQLServiceProvider
                 'adminAddFieldGroup'            => \Syscover\Admin\GraphQL\Mutations\AddFieldGroupMutation::class,
                 'adminUpdateFieldGroup'         => \Syscover\Admin\GraphQL\Mutations\UpdateFieldGroupMutation::class,
                 'adminDeleteFieldGroup'         => \Syscover\Admin\GraphQL\Mutations\DeleteFieldGroupMutation::class,
+
+                // FIELD
+                'adminAddField'                 => \Syscover\Admin\GraphQL\Mutations\AddFieldMutation::class,
+                'adminUpdateField'              => \Syscover\Admin\GraphQL\Mutations\UpdateFieldMutation::class,
+                'adminDeleteField'              => \Syscover\Admin\GraphQL\Mutations\DeleteFieldMutation::class,
 
                 // ATTACHMENT FAMILY
                 'adminAddAttachmentFamily'      => \Syscover\Admin\GraphQL\Mutations\AddAttachmentFamilyMutation::class,

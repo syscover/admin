@@ -57,9 +57,11 @@ class Field extends CoreModel
         $field = Field::find($id);
 
         $labels = collect($field->labels); // get labels
-        unset($labels[$lang]); // delete lang
 
-        $field->labels = $labels; // set new labels values
+        $field->labels = $labels->filter(function($value, $key) use ($lang) {
+            return $value['id'] !== $lang;
+        });
+
         $field->save(); // save values
 
         // set values on data_lang

@@ -42,12 +42,8 @@ class FieldController extends CoreController
             }
             else
             {
-                $id = Field::max('id');
-                $id++;
-
                 // create new object
                 $object = Field::create([
-                    'id'                => $id,
                     'field_group_id'    => $request->input('field_group_id'),
                     'name'              => $request->input('name'),
                     'labels'            => [$request->input('lang_id') => $request->input('label')],

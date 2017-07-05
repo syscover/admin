@@ -24,7 +24,7 @@ class FieldGroupInput extends GraphQLType
                 'description' => 'The name of field group'
             ],
             'resource_id' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::nonNull(Type::id()),
                 'description' => 'The root of field group'
             ]
         ];

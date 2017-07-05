@@ -19,7 +19,7 @@ class ResourceInput extends GraphQLType
                 'description' => 'The name of resource'
             ],
             'package_id' => [
-                'type' => Type::nonNull(Type::int()),
+                'type' => Type::nonNull(Type::id()),
                 'description' => 'Package id from resource'
             ]
         ];

@@ -8,7 +8,7 @@ class FieldGroupType extends GraphQLType
 {
     protected $attributes = [
         'name' => 'FieldGroup',
-        'description' => 'A field group'
+        'description' => 'A field group, valid to group custom fields'
     ];
 
     public function fields()
@@ -23,7 +23,7 @@ class FieldGroupType extends GraphQLType
                 'description' => 'The name of field group'
             ],
             'resource_id' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::nonNull(Type::id()),
                 'description' => 'The root of field group'
             ],
             'resource' => [
