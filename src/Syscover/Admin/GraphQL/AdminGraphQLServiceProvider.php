@@ -42,6 +42,10 @@ class AdminGraphQLServiceProvider
         GraphQL::addType(\Syscover\Admin\GraphQL\Types\AttachmentFamilyType::class, 'AdminAttachmentFamily');
         GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\AttachmentFamilyInput::class, 'AdminAttachmentFamilyInput');
 
+        // ATTACHMENT MIME
+        GraphQL::addType(\Syscover\Admin\GraphQL\Types\AttachmentMimeType::class, 'AdminAttachmentMime');
+        GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\AttachmentMimeInput::class, 'AdminAttachmentMimeInput');
+
     }
 
     public static function bootGraphQLSchema()
@@ -90,6 +94,11 @@ class AdminGraphQLServiceProvider
                 'adminAttachmentFamiliesPagination' => \Syscover\Admin\GraphQL\Queries\AttachmentFamiliesPaginationQuery::class,
                 'adminAttachmentFamilies'           => \Syscover\Admin\GraphQL\Queries\AttachmentFamiliesQuery::class,
                 'adminAttachmentFamily'             => \Syscover\Admin\GraphQL\Queries\AttachmentFamilyQuery::class,
+
+                // ATTACHMENT MIME
+                'adminAttachmentMimesPagination'    => \Syscover\Admin\GraphQL\Queries\AttachmentMimesPaginationQuery::class,
+                'adminAttachmentMimes'              => \Syscover\Admin\GraphQL\Queries\AttachmentMimesQuery::class,
+                'adminAttachmentMime'               => \Syscover\Admin\GraphQL\Queries\AttachmentMimeQuery::class,
             ],
             'mutation' => [
                 // ACTION
@@ -136,6 +145,11 @@ class AdminGraphQLServiceProvider
                 'adminAddAttachmentFamily'      => \Syscover\Admin\GraphQL\Mutations\AddAttachmentFamilyMutation::class,
                 'adminUpdateAttachmentFamily'   => \Syscover\Admin\GraphQL\Mutations\UpdateAttachmentFamilyMutation::class,
                 'adminDeleteAttachmentFamily'   => \Syscover\Admin\GraphQL\Mutations\DeleteAttachmentFamilyMutation::class,
+
+                // ATTACHMENT MIME
+                'adminAddAttachmentMime'            => \Syscover\Admin\GraphQL\Mutations\AddAttachmentMimeMutation::class,
+                'adminUpdateAttachmentMime'         => \Syscover\Admin\GraphQL\Mutations\UpdateAttachmentMimeMutation::class,
+                'adminDeleteAttachmentMime'         => \Syscover\Admin\GraphQL\Mutations\DeleteAttachmentMimeMutation::class,
             ]
         ]));
     }

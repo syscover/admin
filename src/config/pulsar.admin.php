@@ -19,6 +19,18 @@ return [
     ],
 
     //******************************************************************************************************************
+    //***   Resources that could contain attachments
+    //******************************************************************************************************************
+    'resources_attachments' => [
+        (object)['id' => 'cms-article-family',      'name' => 'Article families'],
+        (object)['id' => 'market-product',          'name' => 'Products'],
+        (object)['id' => 'hotels-hotel',            'name' => 'Hotels'],
+        (object)['id' => 'crm-customer',            'name' => 'Customers'],
+        (object)['id' => 'spas-spa',                'name' => 'Spas'],
+        (object)['id' => 'wineries-winery',         'name' => 'Wineries']
+    ],
+
+    //******************************************************************************************************************
     //***   Type fields to select on fields section
     //******************************************************************************************************************
     'field_types' => [

@@ -4,18 +4,18 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
 use Syscover\Core\Services\SQLService;
-use Syscover\Admin\Models\FieldGroup;
+use Syscover\Admin\Models\AttachmentMime;
 
-class FieldGroupQuery extends Query
+class AttachmentMimeQuery extends Query
 {
     protected $attributes = [
-        'name'          => 'FieldGroupQuery',
-        'description'   => 'Query to get a field group.'
+        'name'          => 'AttachmentMimeQuery',
+        'description'   => 'Query to get attachment mime.'
     ];
 
     public function type()
     {
-        return GraphQL::type('AdminFieldGroup');
+        return GraphQL::type('AdminAttachmentMime');
     }
 
     public function args()
@@ -31,7 +31,7 @@ class FieldGroupQuery extends Query
 
     public function resolve($root, $args)
     {
-        $query = SQLService::getQueryFiltered(FieldGroup::builder(), $args['sql']);
+        $query = SQLService::getQueryFiltered(AttachmentMime::builder(), $args['sql']);
 
         return $query->first();
     }
