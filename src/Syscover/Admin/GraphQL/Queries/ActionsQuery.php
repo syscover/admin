@@ -10,7 +10,7 @@ class ActionsQuery extends Query
 {
     protected $attributes = [
         'name'          => 'ActionsQuery',
-        'description'   => 'Query to get actions list.'
+        'description'   => 'Query to get actions list'
     ];
 
     public function type()

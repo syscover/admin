@@ -10,7 +10,7 @@ class FieldQuery extends Query
 {
     protected $attributes = [
         'name'          => 'FieldQuery',
-        'description'   => 'Query to get custom files.'
+        'description'   => 'Query to get field'
     ];
 
     public function type()

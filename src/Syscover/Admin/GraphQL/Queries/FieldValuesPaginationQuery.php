@@ -4,14 +4,13 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
 use Syscover\Core\Services\SQLService;
-use Syscover\Admin\Models\Country;
+use Syscover\Admin\Models\FieldValue;
 
-class CountriesPaginationQuery extends Query
+class FieldValuesPaginationQuery extends Query
 {
-    // to documentation
     protected $attributes = [
-        'name'          => 'CountriesPaginationQuery',
-        'description'   => 'Query to get list countries'
+        'name'          => 'FieldValuesPaginationQuery',
+        'description'   => 'Query to get list of field values'
     ];
 
     public function type()
@@ -37,13 +36,16 @@ class CountriesPaginationQuery extends Query
 
     public function resolve($root, $args)
     {
-        $query = SQLService::getQueryFiltered(Country::builder(), $args['sql'], $args['lang']);
+        $query = SQLService::getQueryFiltered(FieldValue::builder(), $args['sql'], $args['lang']);
 
         // count records filtered
         $filtered = $query->count();
 
+        // get sql and convert to collect
+        $sql = collect($args['sql']);
+
         // N total records
-        $total = SQLService::countPaginateTotalRecords(Country::builder(), $args['lang']);
+        $total = SQLService::countPaginateTotalRecords(FieldValue::builder(), $args['lang'], $sql->where('column', 'field_id'));
 
         return (Object) [
             'total'     => $total,

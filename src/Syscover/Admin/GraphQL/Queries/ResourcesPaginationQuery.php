@@ -10,7 +10,7 @@ class ResourcesPaginationQuery extends Query
 {
     protected $attributes = [
         'name'          => 'ResourcesPaginationQuery',
-        'description'   => 'Query to get list resources.'
+        'description'   => 'Query to get list resources'
     ];
 
     public function type()

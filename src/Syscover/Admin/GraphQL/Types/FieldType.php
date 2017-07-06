@@ -80,9 +80,4 @@ class FieldType extends GraphQLType
     public function interfaces() {
         return [GraphQL::type('CoreObjectInterface')];
     }
-
-//    public function resolveLabelClassField($object, $args)
-//    {
-//        return $object->labels[1]['value'];
-//    }
 }

@@ -4,18 +4,18 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
 use Syscover\Core\Services\SQLService;
-use Syscover\Admin\Models\AttachmentFamily;
+use Syscover\Admin\Models\Country;
 
-class AttachmentFamilyQuery extends Query
+class CountriesQuery extends Query
 {
     protected $attributes = [
-        'name'          => 'AttachmentFamily',
-        'description'   => 'Query to get attachment family'
+        'name'          => 'CountriesQuery',
+        'description'   => 'Query to get countries'
     ];
 
     public function type()
     {
-        return GraphQL::type('AdminAttachmentFamily');
+        return Type::listOf(GraphQL::type('AdminCountry'));
     }
 
     public function args()
@@ -31,8 +31,14 @@ class AttachmentFamilyQuery extends Query
 
     public function resolve($root, $args)
     {
-        $query = SQLService::getQueryFiltered(AttachmentFamily::builder(), $args['sql']);
+        $query = Country::builder();
 
-        return $query->first();
+        if(isset($args['sql']))
+        {
+            $query = SQLService::getQueryFiltered($query, $args['sql']);
+            $query = SQLService::getQueryOrderedAndLimited($query, $args['sql']);
+        }
+
+        return $query->get();
     }
 }

@@ -10,7 +10,7 @@ class FieldsPaginationQuery extends Query
 {
     protected $attributes = [
         'name'          => 'FieldsPaginationQuery',
-        'description'   => 'Query to get list packages.'
+        'description'   => 'Query to get list of custom fields'
     ];
 
     public function type()

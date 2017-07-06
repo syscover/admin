@@ -10,7 +10,7 @@ class AttachmentMimeQuery extends Query
 {
     protected $attributes = [
         'name'          => 'AttachmentMimeQuery',
-        'description'   => 'Query to get attachment mime.'
+        'description'   => 'Query to get attachment mime'
     ];
 
     public function type()

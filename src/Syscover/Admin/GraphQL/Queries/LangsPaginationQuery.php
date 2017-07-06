@@ -10,7 +10,7 @@ class LangsPaginationQuery extends Query
 {
     protected $attributes = [
         'name'          => 'LangsPaginationQuery',
-        'description'   => 'Query to get list langs.'
+        'description'   => 'Query to get list langs'
     ];
 
     public function type()

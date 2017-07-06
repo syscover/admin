@@ -10,7 +10,7 @@ class FieldGroupsPaginationQuery extends Query
 {
     protected $attributes = [
         'name'          => 'FieldGroupsPaginationQuery',
-        'description'   => 'Query to get list field Groups.'
+        'description'   => 'Query to get list field Groups'
     ];
 
     public function type()

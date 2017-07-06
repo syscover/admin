@@ -10,7 +10,7 @@ class ProfileQuery extends Query
 {
     protected $attributes = [
         'name'          => 'ProfileQuery',
-        'description'   => 'Query to get profile.'
+        'description'   => 'Query to get profile'
     ];
 
     public function type()

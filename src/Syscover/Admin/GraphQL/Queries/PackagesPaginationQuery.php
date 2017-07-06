@@ -10,7 +10,7 @@ class PackagesPaginationQuery extends Query
 {
     protected $attributes = [
         'name'          => 'PackagesPaginationQuery',
-        'description'   => 'Query to get list packages.'
+        'description'   => 'Query to get list packages'
     ];
 
     public function type()

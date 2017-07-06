@@ -95,7 +95,10 @@ class FieldValueController extends CoreController
             return response()->json($response, 500);
         }
 
-        $object = FieldValue::find($request->input('id'));
+        $object = FieldValue::where('field_id', $fieldId)
+            ->where('id', $idAux)
+            ->where('lang_id', $lang)
+            ->first();
 
         $response['status'] = "success";
         $response['data']   = $object;

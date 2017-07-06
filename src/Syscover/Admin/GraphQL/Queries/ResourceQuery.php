@@ -10,7 +10,7 @@ class ResourceQuery extends Query
 {
     protected $attributes = [
         'name'          => 'ResourceQuery',
-        'description'   => 'Query to get resource.'
+        'description'   => 'Query to get resource'
     ];
 
     public function type()

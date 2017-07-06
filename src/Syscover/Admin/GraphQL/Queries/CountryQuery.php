@@ -10,7 +10,7 @@ class CountryQuery extends Query
 {
     protected $attributes = [
         'name'          => 'CountryQuery',
-        'description'   => 'Query to get country.'
+        'description'   => 'Query to get country'
     ];
 
     public function type()

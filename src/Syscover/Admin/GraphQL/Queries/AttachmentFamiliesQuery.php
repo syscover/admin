@@ -10,7 +10,7 @@ class AttachmentFamiliesQuery extends Query
 {
     protected $attributes = [
         'name'          => 'AttachmentFamiliesQuery',
-        'description'   => 'Query to get attachment families list.'
+        'description'   => 'Query to get attachment families list'
     ];
 
     public function type()

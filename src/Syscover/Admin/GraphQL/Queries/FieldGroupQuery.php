@@ -10,7 +10,7 @@ class FieldGroupQuery extends Query
 {
     protected $attributes = [
         'name'          => 'FieldGroupQuery',
-        'description'   => 'Query to get a field group.'
+        'description'   => 'Query to get a field group'
     ];
 
     public function type()

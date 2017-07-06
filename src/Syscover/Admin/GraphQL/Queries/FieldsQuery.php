@@ -10,7 +10,7 @@ class FieldsQuery extends Query
 {
     protected $attributes = [
         'name'          => 'FieldsQuery',
-        'description'   => 'Query to get custom fields.'
+        'description'   => 'Query to get custom fields'
     ];
 
     public function type()

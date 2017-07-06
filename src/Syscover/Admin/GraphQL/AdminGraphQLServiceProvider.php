@@ -38,6 +38,10 @@ class AdminGraphQLServiceProvider
         GraphQL::addType(\Syscover\Admin\GraphQL\Types\FieldType::class, 'AdminField');
         GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\FieldInput::class, 'AdminFieldInput');
 
+        // FIELD VALUE
+        GraphQL::addType(\Syscover\Admin\GraphQL\Types\FieldValueType::class, 'AdminFieldValue');
+        GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\FieldValueInput::class, 'AdminFieldValueInput');
+
         // ATTACHMENT FAMILY
         GraphQL::addType(\Syscover\Admin\GraphQL\Types\AttachmentFamilyType::class, 'AdminAttachmentFamily');
         GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\AttachmentFamilyInput::class, 'AdminAttachmentFamilyInput');
@@ -64,10 +68,12 @@ class AdminGraphQLServiceProvider
 
                 // LANG
                 'adminLangsPagination'          => \Syscover\Admin\GraphQL\Queries\LangsPaginationQuery::class,
+                'adminLangs'                    => \Syscover\Admin\GraphQL\Queries\LangsQuery::class,
                 'adminLang'                     => \Syscover\Admin\GraphQL\Queries\LangQuery::class,
 
                 // COUNTRY
                 'adminCountriesPagination'      => \Syscover\Admin\GraphQL\Queries\CountriesPaginationQuery::class,
+                'adminCountries'                => \Syscover\Admin\GraphQL\Queries\CountriesQuery::class,
                 'adminCountry'                  => \Syscover\Admin\GraphQL\Queries\CountryQuery::class,
 
                 // RESOURCE
@@ -89,6 +95,11 @@ class AdminGraphQLServiceProvider
                 'adminFieldsPagination'         => \Syscover\Admin\GraphQL\Queries\FieldsPaginationQuery::class,
                 'adminFields'                   => \Syscover\Admin\GraphQL\Queries\FieldsQuery::class,
                 'adminField'                    => \Syscover\Admin\GraphQL\Queries\FieldQuery::class,
+
+                // FIELD VALUE
+                'adminFieldValuesPagination'    => \Syscover\Admin\GraphQL\Queries\FieldValuesPaginationQuery::class,
+                'adminFieldValues'              => \Syscover\Admin\GraphQL\Queries\FieldvaluesQuery::class,
+                'adminFieldValue'               => \Syscover\Admin\GraphQL\Queries\FieldValueQuery::class,
 
                 // ATTACHMENT FAMILY
                 'adminAttachmentFamiliesPagination' => \Syscover\Admin\GraphQL\Queries\AttachmentFamiliesPaginationQuery::class,
@@ -140,6 +151,11 @@ class AdminGraphQLServiceProvider
                 'adminAddField'                 => \Syscover\Admin\GraphQL\Mutations\AddFieldMutation::class,
                 'adminUpdateField'              => \Syscover\Admin\GraphQL\Mutations\UpdateFieldMutation::class,
                 'adminDeleteField'              => \Syscover\Admin\GraphQL\Mutations\DeleteFieldMutation::class,
+
+                // FIELD VALUE
+                'adminAddFieldValue'            => \Syscover\Admin\GraphQL\Mutations\AddFieldValueMutation::class,
+                'adminUpdateFieldValue'         => \Syscover\Admin\GraphQL\Mutations\UpdateFieldValueMutation::class,
+                'adminDeleteFieldValue'         => \Syscover\Admin\GraphQL\Mutations\DeleteFieldValueMutation::class,
 
                 // ATTACHMENT FAMILY
                 'adminAddAttachmentFamily'      => \Syscover\Admin\GraphQL\Mutations\AddAttachmentFamilyMutation::class,

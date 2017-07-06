@@ -10,7 +10,7 @@ class ProfilesPaginationQuery extends Query
 {
     protected $attributes = [
         'name'          => 'ProfilesPaginationQuery',
-        'description'   => 'Query to get list profiles.'
+        'description'   => 'Query to get list profiles'
     ];
 
     public function type()

@@ -4,18 +4,18 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
 use Syscover\Core\Services\SQLService;
-use Syscover\Admin\Models\AttachmentFamily;
+use Syscover\Admin\Models\FieldValue;
 
-class AttachmentFamilyQuery extends Query
+class FieldValuesQuery extends Query
 {
     protected $attributes = [
-        'name'          => 'AttachmentFamily',
-        'description'   => 'Query to get attachment family'
+        'name'          => 'FieldValuesQuery',
+        'description'   => 'Query to get custom field values'
     ];
 
     public function type()
     {
-        return GraphQL::type('AdminAttachmentFamily');
+        return Type::listOf(GraphQL::type('AdminFieldValue'));
     }
 
     public function args()
@@ -31,8 +31,14 @@ class AttachmentFamilyQuery extends Query
 
     public function resolve($root, $args)
     {
-        $query = SQLService::getQueryFiltered(AttachmentFamily::builder(), $args['sql']);
+        $query = FieldValue::builder();
 
-        return $query->first();
+        if(isset($args['sql']))
+        {
+            $query = SQLService::getQueryFiltered($query, $args['sql']);
+            $query = SQLService::getQueryOrderedAndLimited($query, $args['sql']);
+        }
+
+        return $query->get();
     }
 }

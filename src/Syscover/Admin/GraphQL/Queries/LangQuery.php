@@ -10,7 +10,7 @@ class LangQuery extends Query
 {
     protected $attributes = [
         'name'          => 'LangQuery',
-        'description'   => 'Query to get lang.'
+        'description'   => 'Query to get lang'
     ];
 
     public function type()
