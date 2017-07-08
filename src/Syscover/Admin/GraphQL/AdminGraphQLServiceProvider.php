@@ -50,6 +50,10 @@ class AdminGraphQLServiceProvider
         GraphQL::addType(\Syscover\Admin\GraphQL\Types\AttachmentMimeType::class, 'AdminAttachmentMime');
         GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\AttachmentMimeInput::class, 'AdminAttachmentMimeInput');
 
+        // ATTACHMENT
+        GraphQL::addType(\Syscover\Admin\GraphQL\Types\AttachmentType::class, 'AdminAttachment');
+        GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\AttachmentInput::class, 'AdminAttachmentInput');
+
     }
 
     public static function bootGraphQLSchema()

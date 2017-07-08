@@ -18,7 +18,7 @@ class Field extends CoreModel
         'data_lang' => 'array',
         'data'      => 'array'
     ];
-    public $with            = ['group'];
+    public $with            = ['group', 'values'];
 
     private static $rules   = [
         'name'          => 'required|between:2,50',

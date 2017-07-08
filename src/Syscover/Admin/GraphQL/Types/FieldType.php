@@ -70,6 +70,10 @@ class FieldType extends GraphQLType
                 'type' => Type::string(),
                 'description' => 'The class that will be apply to component class'
             ],
+            'values' => [
+                'type' => Type::listOf(GraphQL::type('AdminFieldValue')),
+                'description' => 'The class that will be apply to component class'
+            ],
             'data_lang' => [
                 'type' => Type::listOf(Type::string()),
                 'description' => 'JSON string that contain information about object translations'

@@ -21,10 +21,10 @@ class FieldValuesPaginationQuery extends Query
     public function args()
     {
         return [
-            'lang' => [
-                'name'          => 'lang',
-                'type'          => Type::string(),
-                'description'   => 'to filter by lang'
+            'filters' => [
+                'name'          => 'filters',
+                'type'          => Type::listOf(GraphQL::type('CoreSQLQueryInput')),
+                'description'   => 'to filter queries'
             ],
             'sql' => [
                 'name'          => 'sql',
@@ -36,16 +36,13 @@ class FieldValuesPaginationQuery extends Query
 
     public function resolve($root, $args)
     {
-        $query = SQLService::getQueryFiltered(FieldValue::builder(), $args['sql'], $args['lang']);
+        $query = SQLService::getQueryFiltered(FieldValue::builder(), $args['sql'], $args['filters']);
 
         // count records filtered
         $filtered = $query->count();
 
-        // get sql and convert to collect
-        $sql = collect($args['sql']);
-
         // N total records
-        $total = SQLService::countPaginateTotalRecords(FieldValue::builder(), $args['lang'], $sql->where('column', 'field_id'));
+        $total = SQLService::countPaginateTotalRecords(FieldValue::builder(), $args['filters']);
 
         return (Object) [
             'total'     => $total,
