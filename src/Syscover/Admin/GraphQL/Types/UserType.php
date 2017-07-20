@@ -15,7 +15,7 @@ class UserType extends GraphQLType
     {
         return [
             'id' => [
-                'type' => Type::id(),
+                'type' => Type::int(),
                 'description' => 'The id of user'
             ],
             'lang_id' => [

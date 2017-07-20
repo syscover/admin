@@ -16,7 +16,7 @@ class PackageInput extends GraphQLType
     {
         return [
             'id' => [
-                'type' => Type::id(),
+                'type' => Type::int(),
                 'description' => 'The id of package'
             ],
             'name' => [

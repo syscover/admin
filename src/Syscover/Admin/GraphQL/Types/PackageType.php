@@ -15,7 +15,7 @@ class PackageType extends GraphQLType
     {
         return [
             'id' => [
-                'type' => Type::nonNull(Type::id()),
+                'type' => Type::nonNull(Type::int()),
                 'description' => 'The id of package'
             ],
             'name' => [

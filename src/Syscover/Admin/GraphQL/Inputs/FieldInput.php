@@ -16,15 +16,15 @@ class FieldInput extends GraphQLType
     {
         return [
             'id' => [
-                'type' => Type::id(),
+                'type' => Type::int(),
                 'description' => 'The id of field'
             ],
             'lang_id' => [
-                'type' => Type::id(),
+                'type' => Type::string(),
                 'description' => 'The lang of label of this field'
             ],
             'field_group_id' => [
-                'type' => Type::id(),
+                'type' => Type::int(),
                 'description' => 'The id of field group'
             ],
             'name' => [
@@ -36,11 +36,11 @@ class FieldInput extends GraphQLType
                 'description' => 'The labels for this '
             ],
             'field_type_id' => [
-                'type' => Type::id(),
+                'type' => Type::string(),
                 'description' => 'The field type id, can to be a select, input, date, etc.'
             ],
             'data_type_id' => [
-                'type' => Type::id(),
+                'type' => Type::int(),
                 'description' => 'The data type of custom field, can to be a int, string, float, etc.'
             ],
             'required' => [

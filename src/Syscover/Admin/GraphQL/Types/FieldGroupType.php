@@ -15,7 +15,7 @@ class FieldGroupType extends GraphQLType
     {
         return [
             'id' => [
-                'type' => Type::nonNull(Type::id()),
+                'type' => Type::nonNull(Type::int()),
                 'description' => 'The id of field group'
             ],
             'name' => [
@@ -23,7 +23,7 @@ class FieldGroupType extends GraphQLType
                 'description' => 'The name of field group'
             ],
             'resource_id' => [
-                'type' => Type::nonNull(Type::id()),
+                'type' => Type::nonNull(Type::string()),
                 'description' => 'The root of field group'
             ],
             'resource' => [

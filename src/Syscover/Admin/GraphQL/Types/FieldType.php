@@ -15,11 +15,11 @@ class FieldType extends GraphQLType
     {
         return [
             'id' => [
-                'type' => Type::nonNull(Type::id()),
+                'type' => Type::nonNull(Type::int()),
                 'description' => 'The id of field'
             ],
             'field_group_id' => [
-                'type' => Type::nonNull(Type::id()),
+                'type' => Type::nonNull(Type::int()),
                 'description' => 'The id of field group'
             ],
             'name' => [
@@ -31,7 +31,7 @@ class FieldType extends GraphQLType
                 'description' => 'The labels for this field'
             ],
             'field_type_id' => [
-                'type' => Type::nonNull(Type::id()),
+                'type' => Type::nonNull(Type::string()),
                 'description' => 'The field type id, can to be a select, input, date, etc.'
             ],
             'field_type_name' => [
@@ -39,7 +39,7 @@ class FieldType extends GraphQLType
                 'description' => 'The name of file type'
             ],
             'data_type_id' => [
-                'type' => Type::nonNull(Type::id()),
+                'type' => Type::nonNull(Type::int()),
                 'description' => 'The data type of custom field, can to be a int, string, float, etc.'
             ],
             'data_type_name' => [

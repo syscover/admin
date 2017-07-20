@@ -16,15 +16,15 @@ class AttachmentInput extends GraphQLType
     {
         return [
             'id' => [
-                'type' => Type::id(),
+                'type' => Type::int(),
                 'description' => 'The id of action'
             ],
             'lang_id' => [
-                'type' => Type::nonNull(Type::id()),
+                'type' => Type::nonNull(Type::string()),
                 'description' => 'The id lang of this attachment'
             ],
             'object_id' => [
-                'type' => Type::nonNull(Type::id()),
+                'type' => Type::nonNull(Type::int()),
                 'description' => 'The id object who belong this attachment'
             ],
             'object_type' => [
@@ -32,7 +32,7 @@ class AttachmentInput extends GraphQLType
                 'description' => 'Class name from who belong this attachment'
             ],
             'family_id' => [
-                'type' => Type::nonNull(Type::id()),
+                'type' => Type::nonNull(Type::int()),
                 'description' => 'The attachment family that has assigned'
             ],
             'sort' => [
@@ -76,7 +76,7 @@ class AttachmentInput extends GraphQLType
                 'description' => 'Height from attachment file'
             ],
             'library_id' => [
-                'type' => Type::id(),
+                'type' => Type::int(),
                 'description' => 'Library from who was it created this attachment'
             ],
             'library_file_name' => [

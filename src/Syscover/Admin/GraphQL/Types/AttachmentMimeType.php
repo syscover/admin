@@ -15,11 +15,11 @@ class AttachmentMimeType extends GraphQLType
     {
         return [
             'id' => [
-                'type' => Type::nonNull(Type::id()),
+                'type' => Type::nonNull(Type::int()),
                 'description' => 'The id of attachment mime'
             ],
             'resource_id' => [
-                'type' => Type::nonNull(Type::id()),
+                'type' => Type::nonNull(Type::string()),
                 'description' => 'The root of attachment mime'
             ],
             'resource' => [

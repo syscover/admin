@@ -15,7 +15,7 @@ class LangType extends GraphQLType
     {
         return [
             'id' => [
-                'type' => Type::nonNull(Type::id()),
+                'type' => Type::nonNull(Type::string()),
                 'description' => 'The id of lang'
             ],
             'name' => [

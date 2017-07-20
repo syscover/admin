@@ -16,7 +16,7 @@ class ProfileInput extends GraphQLType
     {
         return [
             'id' => [
-                'type' => Type::id(),
+                'type' => Type::int(),
                 'description' => 'The id of profile'
             ],
             'name' => [

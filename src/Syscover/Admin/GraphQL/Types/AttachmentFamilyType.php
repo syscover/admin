@@ -15,11 +15,11 @@ class AttachmentFamilyType extends GraphQLType
     {
         return [
             'id' => [
-                'type' => Type::nonNull(Type::id()),
+                'type' => Type::nonNull(Type::int()),
                 'description' => 'The id of action'
             ],
             'resource_id' => [
-                'type' => Type::nonNull(Type::id()),
+                'type' => Type::nonNull(Type::string()),
                 'description' => 'The resource who belong this attachment'
             ],
             'resource' => [
