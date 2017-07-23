@@ -5,7 +5,7 @@ use Folklore\GraphQL\Support\Type as GraphQLType;
 use Syscover\Core\GraphQL\Types\ObjectType;
 use Syscover\Core\GraphQL\Types\AnyType;
 
-class AttachmentLibrary extends GraphQLType
+class AttachmentLibraryType extends GraphQLType
 {
     protected $attributes = [
         'name'          => 'AttachmentLibrary',

@@ -4,18 +4,18 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
 use Syscover\Core\Services\SQLService;
-use Syscover\Admin\Models\Package;
+use Syscover\Admin\Models\User;
 
-class PackageQuery extends Query
+class UsersQuery extends Query
 {
     protected $attributes = [
-        'name'          => 'PackageQuery',
-        'description'   => 'Query to get package'
+        'name'          => 'UserQuery',
+        'description'   => 'Query to get users'
     ];
 
     public function type()
     {
-        return GraphQL::type('AdminPackage');
+        return Type::listOf(GraphQL::type('AdminUser'));
     }
 
     public function args()
@@ -31,8 +31,14 @@ class PackageQuery extends Query
 
     public function resolve($root, $args)
     {
-        $query = SQLService::getQueryFiltered(Package::builder(), $args['sql']);
+        $query = User::builder();
 
-        return $query->first();
+        if(isset($args['sql']))
+        {
+            $query = SQLService::getQueryFiltered($query, $args['sql']);
+            $query = SQLService::getQueryOrderedAndLimited($query, $args['sql']);
+        }
+
+        return $query->get();
     }
 }

@@ -9,7 +9,7 @@ class CountryType extends GraphQLType
 {
     protected $attributes = [
         'name'          => 'Action',
-        'description'   => 'Action that user can to do in application.'
+        'description'   => 'Action that user can to do in application'
     ];
 
     public function fields()

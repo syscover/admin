@@ -9,7 +9,7 @@ class ResourceType extends GraphQLType
 {
     protected $attributes = [
         'name' => 'Resource',
-        'description' => 'Resource that user can to do in application.'
+        'description' => 'Resource that user can to do in application'
     ];
 
     public function fields()

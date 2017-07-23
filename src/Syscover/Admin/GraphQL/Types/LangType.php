@@ -9,7 +9,7 @@ class LangType extends GraphQLType
 {
     protected $attributes = [
         'name'          => 'Lang',
-        'description'   => 'Lang for application.'
+        'description'   => 'Lang for application'
     ];
 
     public function fields()

@@ -5,6 +5,11 @@ use Folklore\GraphQL\Support\Type as GraphQLType;
 
 class ResourceInput extends GraphQLType
 {
+    protected $attributes = [
+        'name'          => 'Resource',
+        'description'   => 'Resource that user can to do in application'
+    ];
+
     protected $inputObject = true;
 
     public function fields()

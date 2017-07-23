@@ -55,9 +55,12 @@ class AdminGraphQLServiceProvider
         GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\AttachmentInput::class, 'AdminAttachmentInput');
 
         // ATTACHMENT LIBRARY
-        GraphQL::addType(\Syscover\Admin\GraphQL\Types\AttachmentLibrary::class, 'AdminAttachmentLibrary');
+        GraphQL::addType(\Syscover\Admin\GraphQL\Types\AttachmentLibraryType::class, 'AdminAttachmentLibrary');
         GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\AttachmentLibraryInput::class, 'AdminAttachmentLibraryInput');
 
+        // USER
+        GraphQL::addType(\Syscover\Admin\GraphQL\Types\UserType::class, 'AdminUser');
+        GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\UserInput::class, 'AdminUserInput');
     }
 
     public static function bootGraphQLSchema()
@@ -65,49 +68,49 @@ class AdminGraphQLServiceProvider
         GraphQL::addSchema('default', array_merge_recursive(GraphQL::getSchemas()['default'], [
             'query' => [
                 // ACTION
-                'adminActionsPagination'        => \Syscover\Admin\GraphQL\Queries\ActionsPaginationQuery::class,
-                'adminActions'                  => \Syscover\Admin\GraphQL\Queries\ActionsQuery::class,
-                'adminAction'                   => \Syscover\Admin\GraphQL\Queries\ActionQuery::class,
+                'adminActionsPagination'            => \Syscover\Admin\GraphQL\Queries\ActionsPaginationQuery::class,
+                'adminActions'                      => \Syscover\Admin\GraphQL\Queries\ActionsQuery::class,
+                'adminAction'                       => \Syscover\Admin\GraphQL\Queries\ActionQuery::class,
 
                 // PACKAGE
-                'adminPackagesPagination'       => \Syscover\Admin\GraphQL\Queries\PackagesPaginationQuery::class,
-                'adminPackages'                 => \Syscover\Admin\GraphQL\Queries\PackagesQuery::class,
-                'adminPackage'                  => \Syscover\Admin\GraphQL\Queries\PackageQuery::class,
+                'adminPackagesPagination'           => \Syscover\Admin\GraphQL\Queries\PackagesPaginationQuery::class,
+                'adminPackages'                     => \Syscover\Admin\GraphQL\Queries\PackagesQuery::class,
+                'adminPackage'                      => \Syscover\Admin\GraphQL\Queries\PackageQuery::class,
 
                 // LANG
-                'adminLangsPagination'          => \Syscover\Admin\GraphQL\Queries\LangsPaginationQuery::class,
-                'adminLangs'                    => \Syscover\Admin\GraphQL\Queries\LangsQuery::class,
-                'adminLang'                     => \Syscover\Admin\GraphQL\Queries\LangQuery::class,
+                'adminLangsPagination'              => \Syscover\Admin\GraphQL\Queries\LangsPaginationQuery::class,
+                'adminLangs'                        => \Syscover\Admin\GraphQL\Queries\LangsQuery::class,
+                'adminLang'                         => \Syscover\Admin\GraphQL\Queries\LangQuery::class,
 
                 // COUNTRY
-                'adminCountriesPagination'      => \Syscover\Admin\GraphQL\Queries\CountriesPaginationQuery::class,
-                'adminCountries'                => \Syscover\Admin\GraphQL\Queries\CountriesQuery::class,
-                'adminCountry'                  => \Syscover\Admin\GraphQL\Queries\CountryQuery::class,
+                'adminCountriesPagination'          => \Syscover\Admin\GraphQL\Queries\CountriesPaginationQuery::class,
+                'adminCountries'                    => \Syscover\Admin\GraphQL\Queries\CountriesQuery::class,
+                'adminCountry'                      => \Syscover\Admin\GraphQL\Queries\CountryQuery::class,
 
                 // RESOURCE
-                'adminResourcesPagination'      => \Syscover\Admin\GraphQL\Queries\ResourcesPaginationQuery::class,
-                'adminResources'                => \Syscover\Admin\GraphQL\Queries\ResourcesQuery::class,
-                'adminResource'                 => \Syscover\Admin\GraphQL\Queries\ResourceQuery::class,
+                'adminResourcesPagination'          => \Syscover\Admin\GraphQL\Queries\ResourcesPaginationQuery::class,
+                'adminResources'                    => \Syscover\Admin\GraphQL\Queries\ResourcesQuery::class,
+                'adminResource'                     => \Syscover\Admin\GraphQL\Queries\ResourceQuery::class,
 
                 // PROFILE
-                'adminProfilesPagination'       => \Syscover\Admin\GraphQL\Queries\ProfilesPaginationQuery::class,
-                'adminProfiles'                 => \Syscover\Admin\GraphQL\Queries\ProfilesQuery::class,
-                'adminProfile'                  => \Syscover\Admin\GraphQL\Queries\ProfileQuery::class,
+                'adminProfilesPagination'           => \Syscover\Admin\GraphQL\Queries\ProfilesPaginationQuery::class,
+                'adminProfiles'                     => \Syscover\Admin\GraphQL\Queries\ProfilesQuery::class,
+                'adminProfile'                      => \Syscover\Admin\GraphQL\Queries\ProfileQuery::class,
 
                 // FIELD GROUP
-                'adminFieldGroupsPagination'    => \Syscover\Admin\GraphQL\Queries\FieldGroupsPaginationQuery::class,
-                'adminFieldGroups'              => \Syscover\Admin\GraphQL\Queries\FieldGroupsQuery::class,
-                'adminFieldGroup'               => \Syscover\Admin\GraphQL\Queries\FieldGroupQuery::class,
+                'adminFieldGroupsPagination'        => \Syscover\Admin\GraphQL\Queries\FieldGroupsPaginationQuery::class,
+                'adminFieldGroups'                  => \Syscover\Admin\GraphQL\Queries\FieldGroupsQuery::class,
+                'adminFieldGroup'                   => \Syscover\Admin\GraphQL\Queries\FieldGroupQuery::class,
 
                 // FIELD
-                'adminFieldsPagination'         => \Syscover\Admin\GraphQL\Queries\FieldsPaginationQuery::class,
-                'adminFields'                   => \Syscover\Admin\GraphQL\Queries\FieldsQuery::class,
-                'adminField'                    => \Syscover\Admin\GraphQL\Queries\FieldQuery::class,
+                'adminFieldsPagination'             => \Syscover\Admin\GraphQL\Queries\FieldsPaginationQuery::class,
+                'adminFields'                       => \Syscover\Admin\GraphQL\Queries\FieldsQuery::class,
+                'adminField'                        => \Syscover\Admin\GraphQL\Queries\FieldQuery::class,
 
                 // FIELD VALUE
-                'adminFieldValuesPagination'    => \Syscover\Admin\GraphQL\Queries\FieldValuesPaginationQuery::class,
-                'adminFieldValues'              => \Syscover\Admin\GraphQL\Queries\FieldvaluesQuery::class,
-                'adminFieldValue'               => \Syscover\Admin\GraphQL\Queries\FieldValueQuery::class,
+                'adminFieldValuesPagination'        => \Syscover\Admin\GraphQL\Queries\FieldValuesPaginationQuery::class,
+                'adminFieldValues'                  => \Syscover\Admin\GraphQL\Queries\FieldvaluesQuery::class,
+                'adminFieldValue'                   => \Syscover\Admin\GraphQL\Queries\FieldValueQuery::class,
 
                 // ATTACHMENT FAMILY
                 'adminAttachmentFamiliesPagination' => \Syscover\Admin\GraphQL\Queries\AttachmentFamiliesPaginationQuery::class,
@@ -118,6 +121,11 @@ class AdminGraphQLServiceProvider
                 'adminAttachmentMimesPagination'    => \Syscover\Admin\GraphQL\Queries\AttachmentMimesPaginationQuery::class,
                 'adminAttachmentMimes'              => \Syscover\Admin\GraphQL\Queries\AttachmentMimesQuery::class,
                 'adminAttachmentMime'               => \Syscover\Admin\GraphQL\Queries\AttachmentMimeQuery::class,
+
+                // USER
+                'adminUsersPagination'              => \Syscover\Admin\GraphQL\Queries\UsersPaginationQuery::class,
+                'adminUsers'                        => \Syscover\Admin\GraphQL\Queries\UsersQuery::class,
+                'adminUser'                         => \Syscover\Admin\GraphQL\Queries\UserQuery::class,
             ],
             'mutation' => [
                 // ACTION
@@ -178,6 +186,11 @@ class AdminGraphQLServiceProvider
                 // ATTACHMENT
                 'adminCropAttachment'           => \Syscover\Admin\GraphQL\Mutations\CropAttachmentMutation::class,
                 'adminDeleteAttachment'         => \Syscover\Admin\GraphQL\Mutations\DeleteAttachmentMutation::class,
+
+                // USER
+//                'adminAddUser'                  => \Syscover\Admin\GraphQL\Mutations\AddUserMutation::class,
+//                'adminUpdateUser'               => \Syscover\Admin\GraphQL\Mutations\UpdateUserMutation::class,
+//                'adminDeleteUser'               => \Syscover\Admin\GraphQL\Mutations\DeleteUserMutation::class,
             ]
         ]));
     }
