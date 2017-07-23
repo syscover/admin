@@ -3,6 +3,8 @@
 use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as GraphQLType;
+use Syscover\Core\GraphQL\Types\AnyType;
+use Syscover\Core\GraphQL\Types\ObjectType;
 
 class AttachmentType extends GraphQLType
 {
@@ -15,7 +17,7 @@ class AttachmentType extends GraphQLType
     {
         return [
             'id' => [
-                'type' => Type::nonNull(Type::int()),
+                'type' => Type::nonNull(app(AnyType::class)),
                 'description' => 'The id of action'
             ],
             'lang_id' => [
@@ -31,8 +33,12 @@ class AttachmentType extends GraphQLType
                 'description' => 'Class name from who belong this attachment'
             ],
             'family_id' => [
-                'type' => Type::nonNull(Type::int()),
+                'type' => Type::int(),
                 'description' => 'The attachment family that has assigned'
+            ],
+            'family' => [
+                'type' => GraphQL::type('AdminAttachmentFamily'),
+                'description' => 'The attachment family object that has assigned'
             ],
             'sort' => [
                 'type' => Type::int(),
@@ -82,8 +88,12 @@ class AttachmentType extends GraphQLType
                 'type' => Type::string(),
                 'description' => 'Name of file in library'
             ],
-            'data_lang' => [
-                'type' => Type::listOf(Type::string()),
+            'attachment_library' => [
+                'type' => GraphQL::type('AdminAttachmentLibrary'),
+                'description' => 'Attachment library from where this attachment has been cropped'
+            ],
+            'data' => [
+                'type' => app(ObjectType::class),
                 'description' => 'JSON string that contain information about object translations'
             ]
         ];

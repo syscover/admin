@@ -3,6 +3,7 @@
 use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as GraphQLType;
+use Syscover\Core\GraphQL\Types\AnyType;
 
 class UserType extends GraphQLType
 {
@@ -15,7 +16,7 @@ class UserType extends GraphQLType
     {
         return [
             'id' => [
-                'type' => Type::int(),
+                'type' => app(AnyType::class),
                 'description' => 'The id of user'
             ],
             'lang_id' => [

@@ -17,8 +17,8 @@ class ActionMutation extends Mutation
 class AddActionMutation extends ActionMutation
 {
     protected $attributes = [
-        'name'          => 'addAction',
-        'description'   => 'Add new action'
+        'name' => 'addAction',
+        'description' => 'Add new action'
     ];
 
     public function args()

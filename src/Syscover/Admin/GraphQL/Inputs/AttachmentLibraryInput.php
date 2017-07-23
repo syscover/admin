@@ -5,11 +5,11 @@ use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as GraphQLType;
 use Syscover\Core\GraphQL\Types\ObjectType;
 
-class AttachmentInput extends GraphQLType
+class AttachmentLibraryInput extends GraphQLType
 {
     protected $attributes = [
-        'name'          => 'AttachmentInput',
-        'description'   => 'Attachment'
+        'name'          => 'AttachmentLibraryInput',
+        'description'   => 'Attachment library'
     ];
 
     protected $inputObject = true;
@@ -20,26 +20,6 @@ class AttachmentInput extends GraphQLType
             'id' => [
                 'type' => Type::int(),
                 'description' => 'The id of action'
-            ],
-            'lang_id' => [
-                'type' => Type::nonNull(Type::string()),
-                'description' => 'The id lang of this attachment'
-            ],
-            'object_id' => [
-                'type' => Type::nonNull(Type::int()),
-                'description' => 'The id object who belong this attachment'
-            ],
-            'object_type' => [
-                'type' => Type::nonNull(Type::string()),
-                'description' => 'Class name from who belong this attachment'
-            ],
-            'family_id' => [
-                'type' => Type::int(),
-                'description' => 'The attachment family that has assigned'
-            ],
-            'sort' => [
-                'type' => Type::int(),
-                'description' => 'Sort of this attachment'
             ],
             'name' => [
                 'type' => Type::string(),
@@ -77,24 +57,8 @@ class AttachmentInput extends GraphQLType
                 'type' => Type::string(),
                 'description' => 'Height from attachment file'
             ],
-            'library_id' => [
-                'type' => Type::int(),
-                'description' => 'Library from who was it created this attachment'
-            ],
-            'library_file_name' => [
-                'type' => Type::string(),
-                'description' => 'Name of file in library'
-            ],
-            'attachment_library' => [
-                'type' => GraphQL::type('AdminAttachmentLibraryInput'),
-                'description' => 'Attachment library from where this attachment has been cropped'
-            ],
             'data' => [
                 'type' => app(ObjectType::class),
-                'description' => 'JSON string that contain information about object translations'
-            ],
-            'uploaded' => [
-                'type' => Type::boolean(),
                 'description' => 'JSON string that contain information about object translations'
             ]
         ];

@@ -54,6 +54,10 @@ class AdminGraphQLServiceProvider
         GraphQL::addType(\Syscover\Admin\GraphQL\Types\AttachmentType::class, 'AdminAttachment');
         GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\AttachmentInput::class, 'AdminAttachmentInput');
 
+        // ATTACHMENT LIBRARY
+        GraphQL::addType(\Syscover\Admin\GraphQL\Types\AttachmentLibrary::class, 'AdminAttachmentLibrary');
+        GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\AttachmentLibraryInput::class, 'AdminAttachmentLibraryInput');
+
     }
 
     public static function bootGraphQLSchema()
@@ -167,9 +171,13 @@ class AdminGraphQLServiceProvider
                 'adminDeleteAttachmentFamily'   => \Syscover\Admin\GraphQL\Mutations\DeleteAttachmentFamilyMutation::class,
 
                 // ATTACHMENT MIME
-                'adminAddAttachmentMime'            => \Syscover\Admin\GraphQL\Mutations\AddAttachmentMimeMutation::class,
-                'adminUpdateAttachmentMime'         => \Syscover\Admin\GraphQL\Mutations\UpdateAttachmentMimeMutation::class,
-                'adminDeleteAttachmentMime'         => \Syscover\Admin\GraphQL\Mutations\DeleteAttachmentMimeMutation::class,
+                'adminAddAttachmentMime'        => \Syscover\Admin\GraphQL\Mutations\AddAttachmentMimeMutation::class,
+                'adminUpdateAttachmentMime'     => \Syscover\Admin\GraphQL\Mutations\UpdateAttachmentMimeMutation::class,
+                'adminDeleteAttachmentMime'     => \Syscover\Admin\GraphQL\Mutations\DeleteAttachmentMimeMutation::class,
+
+                // ATTACHMENT
+                'adminCropAttachment'           => \Syscover\Admin\GraphQL\Mutations\CropAttachmentMutation::class,
+                'adminDeleteAttachment'         => \Syscover\Admin\GraphQL\Mutations\DeleteAttachmentMutation::class,
             ]
         ]));
     }
