@@ -188,9 +188,9 @@ class AdminGraphQLServiceProvider
                 'adminDeleteAttachment'         => \Syscover\Admin\GraphQL\Mutations\DeleteAttachmentMutation::class,
 
                 // USER
-//                'adminAddUser'                  => \Syscover\Admin\GraphQL\Mutations\AddUserMutation::class,
-//                'adminUpdateUser'               => \Syscover\Admin\GraphQL\Mutations\UpdateUserMutation::class,
-//                'adminDeleteUser'               => \Syscover\Admin\GraphQL\Mutations\DeleteUserMutation::class,
+                'adminAddUser'                  => \Syscover\Admin\GraphQL\Mutations\AddUserMutation::class,
+                'adminUpdateUser'               => \Syscover\Admin\GraphQL\Mutations\UpdateUserMutation::class,
+                'adminDeleteUser'               => \Syscover\Admin\GraphQL\Mutations\DeleteUserMutation::class,
             ]
         ]));
     }
