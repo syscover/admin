@@ -16,7 +16,11 @@ class AuthenticationController extends BaseController
         try
         {
             // try to get user from database
-            $user = User::where(['user' => $credentials['user']])->first();
+            $user = User::where([
+                'user' => $credentials['user'],
+                'password' => $credentials['password']
+
+            ])->first();
 
             if($user)
             {
