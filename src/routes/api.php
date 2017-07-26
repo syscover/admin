@@ -1,8 +1,5 @@
 <?php
 
-
-//Route::any('graphql/{schema?}', ['uses' => 'Folklore\GraphQL\GraphQLController@query']);
-
 /*
 |----------------------------------
 | LOGIN
