@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Hash;
 use Syscover\Admin\Models\User;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -15,20 +16,23 @@ class AuthenticationController extends BaseController
 
         try
         {
-            // try to get user from database
-            $user = User::where([
-                'user' => $credentials['user'],
-                'password' => $credentials['password']
-
-            ])->first();
-
-            if($user)
+            if(auth('pulsar')->attempt($credentials))
             {
-                if(
-                    // instance token and encrypt user params
-                    ! $token = JWTAuth::fromUser($user, $user->toArray())
-                    // if token is created go to last return
-                )
+                // get user
+                $user = auth('pulsar')->user();
+
+                // check if user has access
+                if(! $user->access)
+                {
+                    $response['status'] = "error";
+                    $response['message'] = "No authorization";
+
+                    return response()->json($response, 401);
+                }
+
+                // instance token and encrypt user params
+                // if token is created go to last return
+                if(! $token = JWTAuth::fromUser($user, $user->toArray()))
                 {
                     $response['status'] = "error";
                     $response['message'] = "Invalid credentials";

@@ -3,6 +3,7 @@
 use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Mutation;
+use Illuminate\Support\Facades\Hash;
 use Syscover\Admin\Models\User;
 use Syscover\Core\Services\SQLService;
 
@@ -46,6 +47,9 @@ class UpdateUserMutation extends UserMutation
 
     public function resolve($root, $args)
     {
+        // create password
+        $args['object']['password'] = Hash::make($args['object']['password']);
+
         User::where('id', $args['object']['id'])
             ->update($args['object']);
 
