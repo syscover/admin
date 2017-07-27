@@ -35,26 +35,40 @@ if (! function_exists('is_image')) {
     }
 }
 
-if (! function_exists('srcset')) {
+if (! function_exists('set_srcset')) {
 
     /**
-     * get srcset for responsive images
+     * get set_srcset for responsive images
      *
      * @param $attachment
      * @return string
      */
-    function srcset($attachment)
+    function set_srcset($attachment)
     {
-        $srcset = $attachment->url . ' ' . $attachment->width . 'w';
+        if(! isset($attachment->data['sizes']) && is_array($attachment->data['sizes']))
+            return null;
 
-        if(isset($attachment->data['sizes']) && is_array($attachment->data['sizes']))
+        $sizes = collect($attachment->data['sizes'])->sortBy('width');
+
+        $srcset = '';
+        $src = '';
+        $indexSmallerImg = $sizes->count() -1;
+        foreach ($sizes as $key => $size)
         {
-            foreach ($attachment->data['sizes'] as $size)
+            // set src
+            if($key === $indexSmallerImg)
             {
-                $srcset .= ' ,' . $size['url'] . ' ' .  $size['width'] . 'w';
+                $src .= $size['url'];
+            }
+            else
+            {
+                $srcset .= $size['url'] . ' ' . $size['width'] . 'w, ';
             }
         }
 
-        return $srcset;
+        // set biggest image
+        $srcset .= $attachment->url . ' ' . $attachment->width . 'w';
+
+        return 'src="' . $src . '" srcset="' . $srcset . '"';
     }
 }
