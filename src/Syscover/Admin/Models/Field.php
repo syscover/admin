@@ -32,7 +32,8 @@ class Field extends CoreModel
 
     public function scopeBuilder($query)
     {
-        return $query;
+        return $query->leftJoin('field_group', 'field.field_group_id', '=', 'field_group.id')
+            ->select('field_group.*', 'field.*', 'field_group.name as field_group_name', 'field.name as field_name');
     }
 
     public function values()
