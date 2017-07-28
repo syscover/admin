@@ -23,8 +23,8 @@ class FieldType extends GraphQLType
                 'type' => Type::nonNull(Type::int()),
                 'description' => 'The id of field group'
             ],
-            'field_group' => [
-                'type' => GraphQL::type('AdminFieldGroup'),
+            'field_group_name' => [
+                'type' => Type::string(),
                 'description' => 'Field group object'
             ],
             'name' => [

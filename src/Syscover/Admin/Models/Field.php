@@ -18,7 +18,7 @@ class Field extends CoreModel
         'data_lang' => 'array',
         'data'      => 'array'
     ];
-    public $with = ['field_group'];
+    public $with            = ['values'];
 
     private static $rules   = [
         'name'          => 'required|between:2,50',
@@ -36,6 +36,13 @@ class Field extends CoreModel
             ->select('field_group.*', 'field.*', 'field_group.name as field_group_name', 'field.name as field_name');
     }
 
+    public function values()
+    {
+        return $this->hasMany(FieldValue::class, 'field_id');
+    }
+
+    // can't include field_group in with, because will be a loop, FieldGroup has Fields in with
+    // you must call this method with load property
     public function field_group()
     {
         return $this->belongsTo(FieldGroup::class, 'field_group_id');
