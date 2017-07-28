@@ -18,7 +18,7 @@ class Field extends CoreModel
         'data_lang' => 'array',
         'data'      => 'array'
     ];
-    public $with            = ['group', 'values'];
+    public $with = ['field_group'];
 
     private static $rules   = [
         'name'          => 'required|between:2,50',
@@ -36,14 +36,9 @@ class Field extends CoreModel
             ->select('field_group.*', 'field.*', 'field_group.name as field_group_name', 'field.name as field_name');
     }
 
-    public function values()
+    public function field_group()
     {
-        return $this->hasMany(FieldValue::class, 'field_id');
-    }
-
-    public function group()
-    {
-        return $this->belongsTo(Resource::class, 'group_id');
+        return $this->belongsTo(FieldGroup::class, 'field_group_id');
     }
 
     /**
