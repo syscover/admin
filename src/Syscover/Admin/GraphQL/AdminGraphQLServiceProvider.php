@@ -109,7 +109,7 @@ class AdminGraphQLServiceProvider
 
                 // FIELD VALUE
                 'adminFieldValuesPagination'        => \Syscover\Admin\GraphQL\Queries\FieldValuesPaginationQuery::class,
-                'adminFieldValues'                  => \Syscover\Admin\GraphQL\Queries\FieldvaluesQuery::class,
+                'adminFieldValues'                  => \Syscover\Admin\GraphQL\Queries\FieldValuesQuery::class,
                 'adminFieldValue'                   => \Syscover\Admin\GraphQL\Queries\FieldValueQuery::class,
 
                 // ATTACHMENT FAMILY
