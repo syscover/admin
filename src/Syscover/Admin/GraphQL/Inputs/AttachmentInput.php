@@ -22,15 +22,15 @@ class AttachmentInput extends GraphQLType
                 'description' => 'The id of action'
             ],
             'lang_id' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::string(),
                 'description' => 'The id lang of this attachment'
             ],
             'object_id' => [
-                'type' => Type::nonNull(Type::int()),
+                'type' => Type::int(),
                 'description' => 'The id object who belong this attachment'
             ],
             'object_type' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::string(),
                 'description' => 'Class name from who belong this attachment'
             ],
             'family_id' => [
