@@ -69,7 +69,7 @@ class DeleteUserMutation extends UserMutation
         return [
             'id' => [
                 'name' => 'id',
-                'type' => Type::nonNull(Type::string())
+                'type' => Type::nonNull(Type::int())
             ]
         ];
     }
