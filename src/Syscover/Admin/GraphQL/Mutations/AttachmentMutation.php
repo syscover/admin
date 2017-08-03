@@ -7,7 +7,7 @@ use Folklore\GraphQL\Support\Mutation;
 use Intervention\Image\ImageManagerStatic as Image;
 use Syscover\Admin\Models\Attachment;
 use Syscover\Admin\Models\AttachmentFamily;
-use Syscover\Core\GraphQL\Types\ObjectType;
+use Syscover\Core\GraphQL\ScalarTypes\ObjectType;
 use function GuzzleHttp\Psr7\mimetype_from_extension;
 
 class AttachmentMutation extends Mutation
