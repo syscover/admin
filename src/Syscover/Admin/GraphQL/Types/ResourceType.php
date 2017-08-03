@@ -3,7 +3,6 @@
 use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as GraphQLType;
-use Syscover\Core\GraphQL\ScalarTypes\AnyType;
 
 class ResourceType extends GraphQLType
 {
@@ -16,7 +15,7 @@ class ResourceType extends GraphQLType
     {
         return [
             'id' => [
-                'type' => Type::nonNull(app(AnyType::class)),
+                'type' => Type::nonNull(Type::string()),
                 'description' => 'The id of resource'
             ],
             'name' => [
@@ -32,9 +31,5 @@ class ResourceType extends GraphQLType
                 'description' => 'Package of resource'
             ]
         ];
-    }
-
-    public function interfaces() {
-        return [GraphQL::type('CoreObjectInterface')];
     }
 }

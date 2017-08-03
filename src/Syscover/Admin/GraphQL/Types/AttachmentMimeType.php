@@ -3,7 +3,6 @@
 use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as GraphQLType;
-use Syscover\Core\GraphQL\ScalarTypes\AnyType;
 
 class AttachmentMimeType extends GraphQLType
 {
@@ -16,7 +15,7 @@ class AttachmentMimeType extends GraphQLType
     {
         return [
             'id' => [
-                'type' => Type::nonNull(app(AnyType::class)),
+                'type' => Type::nonNull(Type::int()),
                 'description' => 'The id of attachment mime'
             ],
             'resource_id' => [
@@ -32,9 +31,5 @@ class AttachmentMimeType extends GraphQLType
                 'description' => 'The name of attachment mime'
             ],
         ];
-    }
-
-    public function interfaces() {
-        return [GraphQL::type('CoreObjectInterface')];
     }
 }

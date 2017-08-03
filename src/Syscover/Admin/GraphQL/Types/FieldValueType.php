@@ -1,9 +1,7 @@
 <?php namespace Syscover\Admin\GraphQL\Types;
 
-use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as GraphQLType;
-use Syscover\Core\GraphQL\ScalarTypes\AnyType;
 
 class FieldValueType extends GraphQLType
 {
@@ -16,7 +14,7 @@ class FieldValueType extends GraphQLType
     {
         return [
             'id' => [
-                'type' => Type::nonNull(app(AnyType::class)),
+                'type' => Type::nonNull(Type::string()),
                 'description' => 'The id of field value'
             ],
             'lang_id' => [
@@ -48,9 +46,5 @@ class FieldValueType extends GraphQLType
                 'description' => 'JSON string that contain information about object translations'
             ]
         ];
-    }
-
-    public function interfaces() {
-        return [GraphQL::type('CoreObjectInterface')];
     }
 }

@@ -1,9 +1,7 @@
 <?php namespace Syscover\Admin\GraphQL\Types;
 
-use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as GraphQLType;
-use Syscover\Core\GraphQL\ScalarTypes\AnyType;
 
 class CountryType extends GraphQLType
 {
@@ -16,7 +14,7 @@ class CountryType extends GraphQLType
     {
         return [
             'id' => [
-                'type' => Type::nonNull(app(AnyType::class)),
+                'type' => Type::nonNull(Type::string()),
                 'description' => 'The id of country'
             ],
             'lang_id' => [
@@ -52,9 +50,5 @@ class CountryType extends GraphQLType
                 'description' => 'JSON string that contain information about object translations'
             ]
         ];
-    }
-
-    public function interfaces() {
-        return [GraphQL::type('CoreObjectInterface')];
     }
 }

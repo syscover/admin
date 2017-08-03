@@ -1,9 +1,7 @@
 <?php namespace Syscover\Admin\GraphQL\Types;
 
-use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as GraphQLType;
-use Syscover\Core\GraphQL\ScalarTypes\AnyType;
 
 class PackageType extends GraphQLType
 {
@@ -16,7 +14,7 @@ class PackageType extends GraphQLType
     {
         return [
             'id' => [
-                'type' => Type::nonNull(app(AnyType::class)),
+                'type' => Type::nonNull(Type::int()),
                 'description' => 'The id of package'
             ],
             'name' => [
@@ -36,9 +34,5 @@ class PackageType extends GraphQLType
                 'description' => 'Sort package'
             ]
         ];
-    }
-
-    public function interfaces() {
-        return [GraphQL::type('CoreObjectInterface')];
     }
 }

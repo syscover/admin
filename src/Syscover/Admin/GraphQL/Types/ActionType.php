@@ -1,9 +1,7 @@
 <?php namespace Syscover\Admin\GraphQL\Types;
 
-use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as GraphQLType;
-use Syscover\Core\GraphQL\ScalarTypes\AnyType;
 
 class ActionType extends GraphQLType
 {
@@ -16,7 +14,7 @@ class ActionType extends GraphQLType
     {
         return [
             'id' => [
-                'type' => Type::nonNull(app(AnyType::class)),
+                'type' => Type::nonNull(Type::string()),
                 'description' => 'The id of action'
             ],
             'name' => [
@@ -24,9 +22,5 @@ class ActionType extends GraphQLType
                 'description' => 'The name of action'
             ]
         ];
-    }
-
-    public function interfaces() {
-        return [GraphQL::type('CoreObjectInterface')];
     }
 }

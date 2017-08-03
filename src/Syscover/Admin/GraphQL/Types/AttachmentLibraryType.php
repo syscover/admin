@@ -3,7 +3,6 @@
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as GraphQLType;
 use Syscover\Core\GraphQL\ScalarTypes\ObjectType;
-use Syscover\Core\GraphQL\ScalarTypes\AnyType;
 
 class AttachmentLibraryType extends GraphQLType
 {
@@ -16,7 +15,7 @@ class AttachmentLibraryType extends GraphQLType
     {
         return [
             'id' => [
-                'type' => app(AnyType::class),
+                'type' => Type::int(),
                 'description' => 'The id of action'
             ],
             'name' => [

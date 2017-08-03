@@ -1,9 +1,7 @@
 <?php namespace Syscover\Admin\GraphQL\Types;
 
-use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as GraphQLType;
-use Syscover\Core\GraphQL\ScalarTypes\AnyType;
 
 class LangType extends GraphQLType
 {
@@ -16,7 +14,7 @@ class LangType extends GraphQLType
     {
         return [
             'id' => [
-                'type' => Type::nonNull(app(AnyType::class)),
+                'type' => Type::nonNull(Type::string()),
                 'description' => 'The id of lang'
             ],
             'name' => [
@@ -36,9 +34,5 @@ class LangType extends GraphQLType
                 'description' => 'Register if lang is active'
             ]
         ];
-    }
-
-    public function interfaces() {
-        return [GraphQL::type('CoreObjectInterface')];
     }
 }

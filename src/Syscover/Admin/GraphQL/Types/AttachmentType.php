@@ -3,7 +3,6 @@
 use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as GraphQLType;
-use Syscover\Core\GraphQL\ScalarTypes\AnyType;
 use Syscover\Core\GraphQL\ScalarTypes\ObjectType;
 
 class AttachmentType extends GraphQLType
@@ -17,7 +16,7 @@ class AttachmentType extends GraphQLType
     {
         return [
             'id' => [
-                'type' => Type::nonNull(app(AnyType::class)),
+                'type' => Type::nonNull(Type::int()),
                 'description' => 'The id of action'
             ],
             'lang_id' => [
@@ -97,9 +96,5 @@ class AttachmentType extends GraphQLType
                 'description' => 'JSON string that contain information about object translations'
             ]
         ];
-    }
-
-    public function interfaces() {
-        return [GraphQL::type('CoreObjectInterface')];
     }
 }
