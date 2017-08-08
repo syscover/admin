@@ -10,7 +10,7 @@ return [
     //******************************************************************************************************************
     //***   Resources that could contain custom fields
     //******************************************************************************************************************
-    'resources_custom_fields' => [
+    'custom_field_resources' => [
         (object)['id' => 'cms-article-family',      'name' => 'Article families'],
         (object)['id' => 'market-product',          'name' => 'Products'],
         (object)['id' => 'hotels-hotel',            'name' => 'Hotels'],
@@ -21,7 +21,7 @@ return [
     //******************************************************************************************************************
     //***   Resources that could contain attachments
     //******************************************************************************************************************
-    'resources_attachments' => [
+    'attachment_resources' => [
         (object)['id' => 'cms-article-family',      'name' => 'Article families'],
         (object)['id' => 'market-product',          'name' => 'Products'],
         (object)['id' => 'hotels-hotel',            'name' => 'Hotels'],
