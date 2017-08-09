@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class TerritorialArea1 extends CoreModel
 {
-    protected $table        = 'territorial_area_1';
+    protected $table        = 'admin_territorial_area_1';
     public $incrementing    = false;
     public $timestamps      = false;
 
@@ -28,8 +28,8 @@ class TerritorialArea1 extends CoreModel
 
     public function scopeBuilder($query)
     {
-        return $query->join('country', 'territorial_area_1.country_id', '=', 'country.id')
-            ->select('country.*', 'territorial_area_1.*', 'country.name as country_name', 'territorial_area_1.name as territorial_area_1_name');
+        return $query->join('admin_country', 'admin_territorial_area_1.country_id', '=', 'admin_country.id')
+            ->select('admin_country.*', 'admin_territorial_area_1.*', 'admin_country.name as country_name', 'admin_territorial_area_1.name as territorial_area_1_name');
     }
 
     public function territorialAreas2()

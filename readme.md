@@ -74,7 +74,7 @@ Inside passwords array
 ```
 'pulsarPasswordBroker' => [
     'provider'  => 'pulsarUser',
-    'table'     => 'password_resets',
+    'table'     => 'admin_password_resets',
     'expire'    => 60,
 ],
 ```

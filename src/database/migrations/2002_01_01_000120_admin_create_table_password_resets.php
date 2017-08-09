@@ -12,9 +12,9 @@ class AdminCreateTablePasswordResets extends Migration
 	 */
 	public function up()
 	{
-		if(! Schema::hasTable('password_resets'))
+		if(! Schema::hasTable('admin_password_resets'))
 		{
-			Schema::create('password_resets', function (Blueprint $table) {
+			Schema::create('admin_password_resets', function (Blueprint $table) {
 				$table->engine = 'InnoDB';
 				
 				$table->string('email', 150)->index();
@@ -31,6 +31,6 @@ class AdminCreateTablePasswordResets extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('password_resets');
+		Schema::dropIfExists('admin_password_resets');
 	}
 }

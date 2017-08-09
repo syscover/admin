@@ -165,8 +165,10 @@ class AttachmentController extends BaseController
         $attachmentsLibraryTmp = [];
         foreach ($files as $file)
         {
-            $file->store('public/tmp');   // save file in library directory, if no exist laravel create directory
-            $mime = $file->getMimeType();   // get mime type
+            // save file in library directory, if no exist laravel create directory
+            $file->store('public/tmp');
+            // get mime type
+            $mime = $file->getMimeType();
 
             $attachment = [
                 'name'      => $file->getClientOriginalName(),
@@ -205,7 +207,7 @@ class AttachmentController extends BaseController
         $attachmentsTmp = [];
         foreach ($attachmentsLibraryTmp as $attachmentLibraryTmp)
         {
-            $newFileName = AttachmentService::getRamdomFilename($attachmentLibraryTmp['extension']);
+            $newFileName = AttachmentService::getRandomFilename($attachmentLibraryTmp['extension']);
 
             // copy files to create attachments files from attachment library
             File::copy($attachmentLibraryTmp['base_path'] . '/' . $attachmentLibraryTmp['file_name'], $attachmentLibraryTmp['base_path'] . '/' . $newFileName);

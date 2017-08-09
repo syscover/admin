@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class FieldGroup extends CoreModel
 {
-	protected $table        = 'field_group';
+	protected $table        = 'admin_field_group';
     protected $fillable     = ['id', 'name', 'resource_id'];
     public $timestamps      = false;
     public $with            = ['resource', 'fields'];
@@ -27,8 +27,8 @@ class FieldGroup extends CoreModel
 
     public function scopeBuilder($query)
     {
-        return $query->join('resource', 'field_group.resource_id', '=', 'resource.id')
-            ->select('resource.*', 'field_group.*', 'resource.name as resource_name', 'field_group.name as field_group_name');
+        return $query->join('admin_resource', 'admin_field_group.resource_id', '=', 'admin_resource.id')
+            ->select('admin_resource.*', 'admin_field_group.*', 'admin_resource.name as resource_name', 'admin_field_group.name as field_group_name');
     }
 
     public function resource()

@@ -11,9 +11,9 @@ class PulsarCreateTableAttachmentMime extends Migration {
 	 */
 	public function up()
 	{
-		if(! Schema::hasTable('attachment_mime'))
+		if(! Schema::hasTable('admin_attachment_mime'))
 		{
-			Schema::create('attachment_mime', function ($table) {
+			Schema::create('admin_attachment_mime', function ($table) {
 				$table->engine = 'InnoDB';
 
 				$table->increments('id')->unsigned();
@@ -23,9 +23,9 @@ class PulsarCreateTableAttachmentMime extends Migration {
                 $table->timestamps();
                 $table->softDeletes();
 
-				$table->foreign('resource_id', 'fk01_attachment_mime')
+				$table->foreign('resource_id', 'fk01_admin_attachment_mime')
 					->references('id')
-					->on('resource')
+					->on('admin_resource')
 					->onDelete('cascade')
 					->onUpdate('cascade');
 			});
@@ -39,6 +39,6 @@ class PulsarCreateTableAttachmentMime extends Migration {
 	 */
 	public function down()
 	{
-        Schema::dropIfExists('attachment_mime');
+        Schema::dropIfExists('admin_attachment_mime');
 	}
 }

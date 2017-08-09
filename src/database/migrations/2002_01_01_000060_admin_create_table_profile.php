@@ -12,9 +12,9 @@ class AdminCreateTableProfile extends Migration
 	 */
 	public function up()
 	{
-		if(! Schema::hasTable('profile'))
+		if(! Schema::hasTable('admin_profile'))
 		{
-			Schema::create('profile', function (Blueprint $table) {
+			Schema::create('admin_profile', function (Blueprint $table) {
 				$table->engine = 'InnoDB';
 				
 				$table->increments('id')->unsigned();
@@ -33,6 +33,6 @@ class AdminCreateTableProfile extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('profile');
+		Schema::dropIfExists('admin_profile');
 	}
 }

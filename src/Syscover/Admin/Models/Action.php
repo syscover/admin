@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class Action extends CoreModel
 {
-	protected $table        = 'action';
+	protected $table        = 'admin_action';
     protected $fillable     = ['id', 'name'];
     public $incrementing    = false;
     public $timestamps      = false;

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class Resource extends CoreModel
 {
-	protected $table        = 'resource';
+	protected $table        = 'admin_resource';
     protected $fillable     = ['id', 'name', 'package_id'];
     public $incrementing    = false;
     public $timestamps      = false;
@@ -31,8 +31,8 @@ class Resource extends CoreModel
 
     public function scopeBuilder($query)
     {
-        return $query->join('package', 'resource.package_id', '=', 'package.id')
-            ->select('package.*', 'resource.*', 'package.name as package_name', 'resource.name as resource_name');
+        return $query->join('admin_package', 'admin_resource.package_id', '=', 'admin_package.id')
+            ->select('admin_package.*', 'admin_resource.*', 'admin_package.name as package_name', 'admin_resource.name as resource_name');
     }
 
     public function package()

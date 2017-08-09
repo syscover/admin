@@ -12,9 +12,9 @@ class PulsarCreateTableAttachmentFamily extends Migration {
      */
     public function up()
     {
-        if(! Schema::hasTable('attachment_family'))
+        if(! Schema::hasTable('admin_attachment_family'))
         {
-            Schema::create('attachment_family', function (Blueprint $table) {
+            Schema::create('admin_attachment_family', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
                 
                 $table->increments('id')->unsigned();
@@ -29,9 +29,9 @@ class PulsarCreateTableAttachmentFamily extends Migration {
                 $table->timestamps();
                 $table->softDeletes();
 
-                $table->foreign('resource_id', 'fk01_attachment_family')
+                $table->foreign('resource_id', 'fk01_admin_attachment_family')
                     ->references('id')
-                    ->on('resource')
+                    ->on('admin_resource')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
             });
@@ -45,6 +45,6 @@ class PulsarCreateTableAttachmentFamily extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('attachment_family');
+        Schema::dropIfExists('admin_attachment_family');
     }
 }

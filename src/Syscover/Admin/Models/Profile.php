@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class Profile extends CoreModel
 {
-    protected $table        = 'profile';
+    protected $table        = 'admin_profile';
     protected $fillable     = ['name'];
     public $timestamps      = false;
 

@@ -12,9 +12,9 @@ class AdminCreateTableLang extends Migration
 	 */
 	public function up()
 	{
-		if(! Schema::hasTable('lang'))
+		if(! Schema::hasTable('admin_lang'))
 		{
-			Schema::create('lang', function (Blueprint $table) {
+			Schema::create('admin_lang', function (Blueprint $table) {
 				$table->engine = 'InnoDB';
 				
 				$table->string('id', 2);
@@ -26,7 +26,7 @@ class AdminCreateTableLang extends Migration
                 $table->timestamps();
                 $table->softDeletes();
 
-				$table->primary('id', 'pk01_lang');
+				$table->primary('id', 'pk01_admin_lang');
 			});
 		}
 	}
@@ -38,6 +38,6 @@ class AdminCreateTableLang extends Migration
 	 */
 	public function down()
 	{
-        Schema::dropIfExists('lang');
+        Schema::dropIfExists('admin_lang');
 	}
 }

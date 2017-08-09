@@ -123,21 +123,24 @@ class AttachmentService
             }
             else
             {
+                // action is update object
                 if($action === 'update')
                 {
-                    Attachment::where('id', $attachment['id'])->where('lang_id', $attachment['lang_id'])->update([
-                        'family_id'             => empty($attachment['family_id'])? null: $attachment['family_id'],
-                        'sort'                  => $attachment['sort'],
-                        'name'                  => $attachment['name'],
-                        'file_name'             => $attachment['file_name'],
-                        'url'                   => $attachment['url'],
-                        'mime'                  => $attachment['mime'],
-                        'extension'             => $attachment['extension'],
-                        'size'                  => $attachment['size'],
-                        'width'                 => $attachment['width'],
-                        'height'                => $attachment['height'],
-                        'data'                  => json_encode($attachment['data'])
-                    ]);
+                    Attachment::where('id', $attachment['id'])
+                        ->where('lang_id', $attachment['lang_id'])
+                        ->update([
+                            'family_id'             => empty($attachment['family_id'])? null: $attachment['family_id'],
+                            'sort'                  => $attachment['sort'],
+                            'name'                  => $attachment['name'],
+                            'file_name'             => $attachment['file_name'],
+                            'url'                   => $attachment['url'],
+                            'mime'                  => $attachment['mime'],
+                            'extension'             => $attachment['extension'],
+                            'size'                  => $attachment['size'],
+                            'width'                 => $attachment['width'],
+                            'height'                => $attachment['height'],
+                            'data'                  => json_encode($attachment['data'])
+                        ]);
 
                     // get attachment object to create sizes
                     $attachmentObject = Attachment::where('id', $attachment['id'])->where('lang_id', $attachment['lang_id'])->first();
@@ -147,7 +150,7 @@ class AttachmentService
                 }
                 elseif($action === 'store')
                 {
-                    $newFileName = AttachmentService::getRamdomFilename($attachment['extension']);
+                    $newFileName = AttachmentService::getRandomFilename($attachment['extension']);
 
                     // move file from temp file to attachment directory
                     File::copy($attachment['base_path'] . '/' . $attachment['file_name'], $attachment['base_path'] . '/' . $newFileName);
@@ -280,7 +283,7 @@ class AttachmentService
         $query->delete();
     }
 
-    public static function getRamdomFilename($extension)
+    public static function getRandomFilename($extension)
     {
         return Str::random(40) . '.' . $extension;
     }

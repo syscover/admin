@@ -12,9 +12,9 @@ class AdminCreateTablePackage extends Migration
 	 */
 	public function up()
 	{
-		if(! Schema::hasTable('package'))
+		if(! Schema::hasTable('admin_package'))
 		{
-			Schema::create('package', function (Blueprint $table) {
+			Schema::create('admin_package', function (Blueprint $table) {
 				$table->engine = 'InnoDB';
 				
 				$table->increments('id')->unsigned();
@@ -36,6 +36,6 @@ class AdminCreateTablePackage extends Migration
 	 */
 	public function down()
 	{
-	    Schema::dropIfExists('package');
+	    Schema::dropIfExists('admin_package');
 	}
 }

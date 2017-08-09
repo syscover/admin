@@ -12,9 +12,9 @@ class AdminCreateTableUser extends Migration
 	 */
 	public function up()
 	{
-        if(! Schema::hasTable('user'))
+        if(! Schema::hasTable('admin_user'))
         {
-            Schema::create('user', function (Blueprint $table) {
+            Schema::create('admin_user', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
                 
                 $table->increments('id')->unsigned();
@@ -31,16 +31,16 @@ class AdminCreateTableUser extends Migration
                 $table->timestamps();
                 $table->softDeletes();
 
-                $table->unique('user', 'ui01_user');
+                $table->unique('user', 'ui01_admin_user');
 
-                $table->foreign('lang_id', 'fk01_user')
+                $table->foreign('lang_id', 'fk01_admin_user')
                     ->references('id')
-                    ->on('lang')
+                    ->on('admin_lang')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
-                $table->foreign('profile_id', 'fk02_user')
+                $table->foreign('profile_id', 'fk02_admin_user')
                     ->references('id')
-                    ->on('profile')
+                    ->on('admin_profile')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
             });
@@ -54,6 +54,6 @@ class AdminCreateTableUser extends Migration
 	 */
 	public function down()
 	{
-        Schema::dropIfExists('user');
+        Schema::dropIfExists('admin_user');
 	}
 }

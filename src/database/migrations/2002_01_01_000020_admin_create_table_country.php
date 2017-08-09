@@ -12,9 +12,9 @@ class AdminCreateTableCountry extends Migration
 	 */
 	public function up()
 	{
-        if(! Schema::hasTable('country'))
+        if(! Schema::hasTable('admin_country'))
         {
-            Schema::create('country', function (Blueprint $table) {
+            Schema::create('admin_country', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
                 
                 $table->string('id', 2);
@@ -30,13 +30,13 @@ class AdminCreateTableCountry extends Migration
                 $table->timestamps();
                 $table->softDeletes();
                 
-                $table->foreign('lang_id', 'fk01_country')
+                $table->foreign('lang_id', 'fk01_admin_country')
                     ->references('id')
-                    ->on(config('pulsar.dbPrefix') . 'lang')
+                    ->on('admin_lang')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
                 
-                $table->primary(['id', 'lang_id'], 'pk01_country');
+                $table->primary(['id', 'lang_id'], 'pk01_admin_country');
             });
         }
 	}
@@ -48,6 +48,6 @@ class AdminCreateTableCountry extends Migration
 	 */
 	public function down()
 	{
-        Schema::dropIfExists('country');
+        Schema::dropIfExists('admin_country');
 	}
 }

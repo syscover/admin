@@ -12,9 +12,9 @@ class AdminCreateTablePermission extends Migration
 	 */
 	public function up()
 	{
-		if(! Schema::hasTable('permission'))
+		if(! Schema::hasTable('admin_permission'))
 		{
-			Schema::create('permission', function (Blueprint $table) {
+			Schema::create('admin_permission', function (Blueprint $table) {
 				$table->engine = 'InnoDB';
 				
 				$table->integer('profile_id')->unsigned();
@@ -24,23 +24,23 @@ class AdminCreateTablePermission extends Migration
                 $table->timestamps();
                 $table->softDeletes();
 				
-				$table->foreign('profile_id', 'fk01_permission')
+				$table->foreign('profile_id', 'fk01_admin_permission')
 					->references('id')
-					->on('profile')
+					->on('admin_profile')
 					->onDelete('cascade')
 					->onUpdate('cascade');
-				$table->foreign('resource_id', 'fk02_permission')
+				$table->foreign('resource_id', 'fk02_admin_permission')
 					->references('id')
-					->on('resource')
+					->on('admin_resource')
 					->onDelete('cascade')
 					->onUpdate('cascade');
-				$table->foreign('action_id', 'fk03_permission')
+				$table->foreign('action_id', 'fk03_admin_permission')
 					->references('id')
-					->on('action')
+					->on('admin_action')
 					->onDelete('cascade')
 					->onUpdate('cascade');
 				
-				$table->primary(['profile_id', 'resource_id', 'action_id'], 'pk01_permission');
+				$table->primary(['profile_id', 'resource_id', 'action_id'], 'pk01_admin_permission');
 			});
 		}
 	}
@@ -52,6 +52,6 @@ class AdminCreateTablePermission extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('permission');
+		Schema::dropIfExists('admin_permission');
 	}
 }

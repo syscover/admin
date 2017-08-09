@@ -12,9 +12,9 @@ class PulsarCreateTableFieldValue extends Migration {
      */
     public function up()
     {
-        if(! Schema::hasTable('field_value'))
+        if(! Schema::hasTable('admin_field_value'))
         {
-            Schema::create('field_value', function (Blueprint $table) {
+            Schema::create('admin_field_value', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
                 
                 $table->string('id', 30);
@@ -32,18 +32,18 @@ class PulsarCreateTableFieldValue extends Migration {
                 $table->timestamps();
                 $table->softDeletes();
                 
-                $table->foreign('lang_id', 'fk01_field_value')
+                $table->foreign('lang_id', 'fk01_admin_field_value')
                     ->references('id')
-                    ->on('lang')
+                    ->on('admin_lang')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
-                $table->foreign('field_id', 'fk02_field_value')
+                $table->foreign('field_id', 'fk02_admin_field_value')
                     ->references('id')
-                    ->on('field')
+                    ->on('admin_field')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
 
-                $table->primary(['id', 'lang_id', 'field_id'], 'pk01_field_value');
+                $table->primary(['id', 'lang_id', 'field_id'], 'pk01_admin_field_value');
             });
         }
     }
@@ -55,6 +55,6 @@ class PulsarCreateTableFieldValue extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('field_value');
+        Schema::dropIfExists('admin_field_value');
     }
 }

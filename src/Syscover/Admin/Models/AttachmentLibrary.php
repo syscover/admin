@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class AttachmentLibrary extends CoreModel
 {
-	protected $table        = 'attachment_library';
+	protected $table        = 'admin_attachment_library';
     protected $fillable     = ['id', 'name', 'base_path','file_name', 'url', 'mime', 'extension','size', 'width', 'height', 'data'];
     public $timestamps      = false;
     protected $casts        = [

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class Lang extends CoreModel
 {
-    protected $table        = 'lang';
+    protected $table        = 'admin_lang';
     protected $fillable     = ['id', 'name', 'icon', 'sort', 'active'];
     public $incrementing    = false;
     public $timestamps      = false;

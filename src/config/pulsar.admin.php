@@ -10,7 +10,7 @@ return [
     //******************************************************************************************************************
     //***   Resources that could contain custom fields
     //******************************************************************************************************************
-    'custom_field_resources' => [
+    'field_group_resources' => [
         (object)['id' => 'cms-article-family',      'name' => 'Article families'],
         (object)['id' => 'market-product',          'name' => 'Products'],
         (object)['id' => 'hotels-hotel',            'name' => 'Hotels'],

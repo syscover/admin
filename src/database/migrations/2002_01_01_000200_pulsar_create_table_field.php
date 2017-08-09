@@ -12,9 +12,9 @@ class PulsarCreateTableField extends Migration {
      */
     public function up()
     {
-        if(! Schema::hasTable('field'))
+        if(! Schema::hasTable('admin_field'))
         {
-            Schema::create('field', function (Blueprint $table) {
+            Schema::create('admin_field', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
                 
                 $table->increments('id')->unsigned();
@@ -56,9 +56,9 @@ class PulsarCreateTableField extends Migration {
                 $table->timestamps();
                 $table->softDeletes();
 
-                $table->foreign('field_group_id', 'fk01_field')
+                $table->foreign('field_group_id', 'fk01_admin_field')
                     ->references('id')
-                    ->on('field_group')
+                    ->on('admin_field_group')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
             });
@@ -72,6 +72,6 @@ class PulsarCreateTableField extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('field');
+        Schema::dropIfExists('admin_field');
     }
 }

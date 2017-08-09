@@ -12,9 +12,9 @@ class AdminCreateTableResource extends Migration
 	 */
 	public function up()
 	{
-		if(! Schema::hasTable('resource'))
+		if(! Schema::hasTable('admin_resource'))
 		{
-			Schema::create('resource', function (Blueprint $table) {
+			Schema::create('admin_resource', function (Blueprint $table) {
 				$table->engine = 'InnoDB';
 				
 				$table->string('id', 30);
@@ -24,13 +24,13 @@ class AdminCreateTableResource extends Migration
                 $table->timestamps();
                 $table->softDeletes();
 				
-				$table->foreign('package_id', 'fk01_resource')
+				$table->foreign('package_id', 'fk01_admin_resource')
 					->references('id')
-					->on('package')
+					->on('admin_package')
 					->onDelete('restrict')
 					->onUpdate('cascade');
 				
-				$table->primary('id', 'pk01_resource');
+				$table->primary('id', 'pk01_admin_resource');
 			});
 		}
 	}
@@ -42,6 +42,6 @@ class AdminCreateTableResource extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('resource');
+		Schema::dropIfExists('admin_resource');
 	}
 }

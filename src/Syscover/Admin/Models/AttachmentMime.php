@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class AttachmentMime extends CoreModel
 {
-	protected $table        = 'attachment_mime';
+	protected $table        = 'admin_attachment_mime';
     protected $fillable     = ['id', 'resource_id', 'mime'];
     public $timestamps      = false;
     public $with            = ['resource'];
@@ -27,8 +27,8 @@ class AttachmentMime extends CoreModel
 
     public function scopeBuilder($query)
     {
-        return $query->join('resource', 'attachment_mime.resource_id', '=', 'resource.id')
-            ->select('resource.*', 'attachment_mime.*', 'resource.name as resource_name');
+        return $query->join('admin_resource', 'admin_attachment_mime.resource_id', '=', 'admin_resource.id')
+            ->select('admin_resource.*', 'admin_attachment_mime.*', 'admin_resource.name as resource_name');
     }
 
     public function resource()

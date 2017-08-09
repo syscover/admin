@@ -35,6 +35,7 @@ class CropAttachmentMutation extends AttachmentMutation
         ];
     }
 
+    // execute crop function across GraphQL
     public function resolve($root, $args)
     {
         // tale attachment family to get sizes
@@ -47,7 +48,7 @@ class CropAttachmentMutation extends AttachmentMutation
         Image::configure(['driver' => 'imagick']);
         $image = Image::make($args['object']['attachment']['attachment_library']['base_path'] . '/' . $args['object']['attachment']['attachment_library']['file_name']);
 
-        if(! empty($args['object']['attachment_family']['format']))
+        if(! empty($args['object']['attachment_family']['format']) && mimetype_from_extension($args['object']['attachment_family']['format']) !== $args['object']['attachment']['mime'])
         {
             $image = $image->encode($args['object']['attachment_family']['format'], 100); // set format image
 
@@ -68,6 +69,8 @@ class CropAttachmentMutation extends AttachmentMutation
             $args['object']['attachment']['base_path'] . '/' . $args['object']['attachment']['file_name'],
             ! empty($args['object']['attachment_family']['quality'])? 90 : $args['object']['attachment_family']['quality'] // set quality image
         );
+
+        //File::delete($attachment->base_path . '/' . $attachment->file_name);
 
         // get new properties from image cropped
         $args['object']['attachment']['width']  = $image->width();

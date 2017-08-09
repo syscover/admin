@@ -13,7 +13,7 @@ class FieldValue extends CoreModel
 {
     use Translatable;
 
-	protected $table        = 'field_value';
+	protected $table        = 'admin_field_value';
     protected $fillable     = ['id', 'lang_id', 'field_id', 'counter', 'sort', 'featured', 'name', 'data_lang', 'data'];
     public $incrementing    = false;
     public $timestamps      = false;

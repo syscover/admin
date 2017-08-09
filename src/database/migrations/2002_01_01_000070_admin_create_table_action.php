@@ -12,9 +12,9 @@ class AdminCreateTableAction extends Migration
 	 */
 	public function up()
 	{
-		if(! Schema::hasTable('action'))
+		if(! Schema::hasTable('admin_action'))
 		{
-			Schema::create('action', function (Blueprint $table) {
+			Schema::create('admin_action', function (Blueprint $table) {
 				$table->engine = 'InnoDB';
 				
 				$table->string('id', 25);
@@ -23,7 +23,7 @@ class AdminCreateTableAction extends Migration
                 $table->timestamps();
                 $table->softDeletes();
 
-				$table->primary('id', 'pk01_action');
+				$table->primary('id', 'pk01_admin_action');
 			});
 		}
 	}
@@ -35,6 +35,6 @@ class AdminCreateTableAction extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('action');
+		Schema::dropIfExists('admin_action');
 	}
 }

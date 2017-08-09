@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class Field extends CoreModel
 {
-	protected $table        = 'field';
+	protected $table        = 'admin_field';
     protected $fillable     = ['id', 'field_group_id', 'name', 'labels', 'field_type_id', 'field_type_name', 'data_type_id', 'data_type_name', 'required', 'sort', 'max_length', 'pattern', 'label_class', 'component_class', 'data_lang', 'data'];
     public $timestamps      = false;
     protected $casts        = [
@@ -32,8 +32,8 @@ class Field extends CoreModel
 
     public function scopeBuilder($query)
     {
-        return $query->leftJoin('field_group', 'field.field_group_id', '=', 'field_group.id')
-            ->select('field_group.*', 'field.*', 'field_group.name as field_group_name', 'field.name as field_name');
+        return $query->leftJoin('admin_field_group', 'admin_field.field_group_id', '=', 'admin_field_group.id')
+            ->select('admin_field_group.*', 'admin_field.*', 'admin_field_group.name as field_group_name', 'admin_field.name as field_name');
     }
 
     public function values()

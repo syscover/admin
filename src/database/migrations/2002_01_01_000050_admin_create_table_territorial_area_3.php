@@ -12,9 +12,9 @@ class AdminCreateTableTerritorialArea3 extends Migration
 	 */
 	public function up()
 	{
-		if(! Schema::hasTable('territorial_area_3'))
+		if(! Schema::hasTable('admin_territorial_area_3'))
 		{
-			Schema::create('territorial_area_3', function (Blueprint $table) {
+			Schema::create('admin_territorial_area_3', function (Blueprint $table) {
 				$table->engine = 'InnoDB';
 				
 				$table->string('id', 10);
@@ -26,23 +26,23 @@ class AdminCreateTableTerritorialArea3 extends Migration
                 $table->timestamps();
                 $table->softDeletes();
 				
-				$table->foreign('country_id', 'fk01_territorial_area_3')
+				$table->foreign('country_id', 'fk01_admin_territorial_area_3')
 					->references('id')
-					->on('country')
+					->on('admin_country')
 					->onDelete('restrict')
 					->onUpdate('cascade');
-				$table->foreign('territorial_area_1_id', 'fk02_territorial_area_3')
+				$table->foreign('territorial_area_1_id', 'fk02_admin_territorial_area_3')
 					->references('id')
-					->on('territorial_area_1')
+					->on('admin_territorial_area_1')
 					->onDelete('restrict')
 					->onUpdate('cascade');
-				$table->foreign('territorial_area_2_id', 'fk03_territorial_area_3')
+				$table->foreign('territorial_area_2_id', 'fk03_admin_territorial_area_3')
 					->references('id')
-					->on('territorial_area_2')
+					->on('admin_territorial_area_2')
 					->onDelete('restrict')
 					->onUpdate('cascade');
 				
-				$table->primary('id', 'pk01_territorial_area_3');
+				$table->primary('id', 'pk01_admin_territorial_area_3');
 			});
 		}
 	}
@@ -54,6 +54,6 @@ class AdminCreateTableTerritorialArea3 extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('territorial_area_3');
+		Schema::dropIfExists('admin_territorial_area_3');
 	}
 }

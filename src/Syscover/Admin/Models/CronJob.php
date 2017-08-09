@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class CronJob extends CoreModel
 {
-	protected $table        = 'cron_job';
+	protected $table        = 'admin_cron_job';
     public $timestamps      = false;
 
     private static $rules   = [
@@ -28,8 +28,8 @@ class CronJob extends CoreModel
     public function scopeBuilder($query)
     {
         return $query
-            ->join('package', 'cron_job.package_id', '=', 'package.id')
-            ->select('package.*', 'cron_job.*', 'package.name as package_name', 'cron_job.name as cron_job_name');
+            ->join('admin_package', 'admin_cron_job.package_id', '=', 'admin_package.id')
+            ->select('admin_package.*', 'admin_cron_job.*', 'admin_package.name as package_name', 'admin_cron_job.name as cron_job_name');
     }
 
     public static function getCronJobsToRun($date)

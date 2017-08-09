@@ -24,7 +24,7 @@ class User extends CoreModel implements
     use Authenticatable, Authorizable, CanResetPassword;
     use Notifiable;
 
-    protected $table        = 'user';
+    protected $table        = 'admin_user';
     public $timestamps      = true;
     protected $fillable     = ['id', 'lang_id', 'profile_id', 'access', 'user', 'password', 'email', 'name', 'surname'];
     protected $casts        = [
@@ -54,8 +54,8 @@ class User extends CoreModel implements
 
     public function scopeBuilder($query)
     {
-        return $query->join('profile', 'user.profile_id', '=', 'profile.id')
-            ->select('profile.*', 'user.*', 'profile.name as profile_name', 'user.name as user_name');
+        return $query->join('admin_profile', 'admin_user.profile_id', '=', 'admin_profile.id')
+            ->select('admin_profile.*', 'admin_user.*', 'admin_profile.name as profile_name', 'admin_user.name as user_name');
     }
 
     /**

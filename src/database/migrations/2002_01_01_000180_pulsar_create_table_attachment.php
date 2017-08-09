@@ -12,9 +12,9 @@ class PulsarCreateTableAttachment extends Migration {
      */
     public function up()
     {
-        if(! Schema::hasTable('attachment'))
+        if(! Schema::hasTable('admin_attachment'))
         {
-            Schema::create('attachment', function (Blueprint $table) {
+            Schema::create('admin_attachment', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
                 
                 $table->integer('id')->unsigned();
@@ -39,25 +39,25 @@ class PulsarCreateTableAttachment extends Migration {
                 $table->timestamps();
                 $table->softDeletes();
                 
-                $table->foreign('lang_id', 'fk01_attachment')
+                $table->foreign('lang_id', 'fk01_admin_attachment')
                     ->references('id')
-                    ->on('lang')
+                    ->on('admin_lang')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
-                $table->foreign('family_id', 'fk03_attachment')
+                $table->foreign('family_id', 'fk02_admin_attachment')
                     ->references('id')
-                    ->on('attachment_family')
+                    ->on('admin_attachment_family')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
-                $table->foreign('library_id', 'fk04_attachment')
+                $table->foreign('library_id', 'fk03_admin_attachment')
                     ->references('id')
-                    ->on('attachment_library')
+                    ->on('admin_attachment_library')
                     ->onDelete('set null')
                     ->onUpdate('cascade');
 
-                $table->index(['object_id'], 'ix01_attachment');
-                $table->index(['object_type'], 'ix02_attachment');
-                $table->primary(['id', 'lang_id'], 'pk01_attachment');
+                $table->index(['object_id'], 'ix01_admin_attachment');
+                $table->index(['object_type'], 'ix02_admin_attachment');
+                $table->primary(['id', 'lang_id'], 'pk01_admin_attachment');
             });
         }
     }
@@ -69,6 +69,6 @@ class PulsarCreateTableAttachment extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('attachment');
+        Schema::dropIfExists('admin_attachment');
     }
 }

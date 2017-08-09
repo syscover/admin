@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class Permission extends CoreModel
 {
-	protected $table        = 'permission';
+	protected $table        = 'admin_permission';
     protected $primaryKey   = 'profile_id';
     public $timestamps      = false;
     private static $rules   = [
@@ -26,16 +26,16 @@ class Permission extends CoreModel
         
     public static function deleteRecord($profile, $resource, $action)
     {
-        Permission::where('profile_id_009', $profile)->where('resource_id_009', $resource)->where('action_id_009', $action)->delete();
+        Permission::where('profile_id', $profile)->where('resource_id', $resource)->where('action_id', $action)->delete();
     }
 
     public static function deleteRecordsProfile($profile)
     {
-        Permission::where('profile_id_009', $profile)->delete();
+        Permission::where('profile_id', $profile)->delete();
     }
 
     public static function getRecord($profile)
     {
-        return Permission::where('profile_id_009', $profile)->get();
+        return Permission::where('profile_id', $profile)->get();
     }
 }

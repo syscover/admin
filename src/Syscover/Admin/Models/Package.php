@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class Package extends CoreModel
 {
-	protected $table        = 'package';
+	protected $table        = 'admin_package';
     protected $fillable     = ['id', 'name', 'root', 'active', 'sort'];
     public $timestamps      = false;
     protected $casts        = [

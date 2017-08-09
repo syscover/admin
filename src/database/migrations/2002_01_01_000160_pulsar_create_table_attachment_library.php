@@ -12,9 +12,9 @@ class PulsarCreateTableAttachmentLibrary extends Migration {
      */
     public function up()
     {
-        if(! Schema::hasTable('attachment_library'))
+        if(! Schema::hasTable('admin_attachment_library'))
         {
-            Schema::create('attachment_library', function (Blueprint $table) {
+            Schema::create('admin_attachment_library', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
                 
                 $table->increments('id')->unsigned();
@@ -42,6 +42,6 @@ class PulsarCreateTableAttachmentLibrary extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('attachment_library');
+        Schema::dropIfExists('admin_attachment_library');
     }
 }

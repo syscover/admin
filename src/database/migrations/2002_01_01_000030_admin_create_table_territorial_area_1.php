@@ -12,9 +12,9 @@ class AdminCreateTableTerritorialArea1 extends Migration
 	 */
 	public function up()
 	{
-		if(! Schema::hasTable('territorial_area_1'))
+		if(! Schema::hasTable('admin_territorial_area_1'))
 		{
-			Schema::create('territorial_area_1', function (Blueprint $table) {
+			Schema::create('admin_territorial_area_1', function (Blueprint $table) {
 				$table->engine = 'InnoDB';
 				
 				$table->string('id', 6);
@@ -24,13 +24,13 @@ class AdminCreateTableTerritorialArea1 extends Migration
                 $table->timestamps();
                 $table->softDeletes();
 				
-				$table->foreign('country_id', 'fk01_territorial_area_1')
+				$table->foreign('country_id', 'fk01_admin_territorial_area_1')
 					->references('id')
-					->on('country')
+					->on('admin_country')
 					->onDelete('restrict')
 					->onUpdate('cascade');
 				
-				$table->primary('id', 'pk01_territorial_area_1');
+				$table->primary('id', 'pk01_admin_territorial_area_1');
 			});
 		}
 	}
@@ -42,6 +42,6 @@ class AdminCreateTableTerritorialArea1 extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('territorial_area_1');
+		Schema::dropIfExists('admin_territorial_area_1');
 	}
 }
