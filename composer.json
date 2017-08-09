@@ -1,6 +1,6 @@
 {
     "name": "syscover/pulsar-admin",
-    "description": "Administration package",
+    "description": "Admin package",
     "keywords": ["syscover","pulsar","laravel","syscover","intranet","admin"],
     "authors": [
         {
