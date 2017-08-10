@@ -27,6 +27,19 @@ class AttachmentController extends BaseController
         return response()->json($response);
     }
 
+    public function wysiwygUpload(Request $request) {
+        $files = $request->file('file');
+
+        // save file in tmp folder
+        $attachmentsLibraryTmp   = collect($this->storeAttachmentsLibraryTmp($files));
+
+        // create response
+        $response['link'] = $attachmentsLibraryTmp->first()['url'];
+        $response['image'] = $attachmentsLibraryTmp->first();
+
+        return response()->json($response);
+    }
+
     public function crop(Request $request)
     {
         $parameters = $request->input('parameters');

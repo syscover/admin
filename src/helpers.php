@@ -1,6 +1,7 @@
 <?php
 
-if (! function_exists('base_lang')) {
+if (! function_exists('base_lang'))
+{
     /**
      * Get base lang object from config file.
      *
@@ -12,7 +13,8 @@ if (! function_exists('base_lang')) {
     }
 }
 
-if (! function_exists('is_image')) {
+if (! function_exists('is_image'))
+{
     /**
      * check if is image by mime.
      *
@@ -35,40 +37,79 @@ if (! function_exists('is_image')) {
     }
 }
 
-if (! function_exists('set_srcset')) {
-
+if (! function_exists('get_src_srcset'))
+{
     /**
-     * get set_srcset for responsive images
+     * get get_src_srcset for responsive images
      *
      * @param $attachment
      * @return string
      */
-    function set_srcset($attachment)
+    function get_src_srcset($attachment)
     {
         if(! isset($attachment->data['sizes']) && is_array($attachment->data['sizes']))
             return null;
 
         $sizes = collect($attachment->data['sizes'])->sortBy('width');
 
+        $smallerWidth = $sizes->first()['width'];
+        $biggestWidth = $sizes->last()['width'];
         $srcset = '';
         $src = '';
-        $indexSmallerImg = $sizes->count() -1;
-        foreach ($sizes as $key => $size)
+        foreach ($sizes as $size)
         {
             // set src
-            if($key === $indexSmallerImg)
-            {
-                $src .= $size['url'];
-            }
+            if($size['width'] === $smallerWidth)
+                $src = $size['url'];
             else
-            {
-                $srcset .= $size['url'] . ' ' . $size['width'] . 'w, ';
-            }
-        }
+                $srcset .= $size['url'] . ' ' . $size['width'] . 'w' . ($biggestWidth === $size['width']? null : ', ');
 
-        // set biggest image
-        $srcset .= $attachment->url . ' ' . $attachment->width . 'w';
+        }
 
         return 'src="' . $src . '" srcset="' . $srcset . '"';
     }
+
+
+}
+
+if (! function_exists('get_src'))
+{
+    /**
+     * get get_src from sizes
+     *
+     * @param $sizes
+     * @return string
+     */
+    function get_src($sizes)
+    {
+        $sizes = collect($sizes)->sortBy('width');
+
+        return $sizes->first()['url'];
+    }
+}
+
+if (! function_exists('get_srcset'))
+{
+    /**
+     * get get_src from sizes
+     *
+     * @param $sizes
+     * @return string
+     */
+    function get_srcset($sizes)
+    {
+        $sizes = collect($sizes)->sortBy('width');
+
+        $smallerWidth = $sizes->first()['width'];
+        $biggestWidth = $sizes->last()['width'];
+        $srcset = '';
+        foreach ($sizes as $size)
+        {
+            // set src
+            if($size['width'] !== $smallerWidth)
+                $srcset .= $size['url'] . ' ' . $size['width'] . 'w' . ($biggestWidth === $size['width']? null : ', ');
+        }
+
+        return $srcset;
+   }
 }

@@ -184,6 +184,13 @@ class AttachmentService
         }
     }
 
+    /**
+     * Manage responsive sizes and save in database
+     *
+     * @param $attachment
+     * @param $urlBase
+     * @param $objectId
+     */
     private static function setAttachmentSizes($attachment, $urlBase, $objectId)
     {
         // check that attachment has family id and is a image
@@ -194,7 +201,16 @@ class AttachmentService
 
             if(is_array($attachmentFamily->sizes) && count($attachmentFamily->sizes) > 0)
             {
-                $sizes = [];
+                // original size and biggest size
+                $sizes[] = [
+                    "size"      => 0,
+                    "width"     => $attachment->width,
+                    "height"    => $attachment->height,
+                    "base_path" => $attachment->base_path,
+                    "file_name" => $attachment->file_name,
+                    "url"       => asset($urlBase . '/' . $objectId . '/' . $attachment->file_name)
+                ];
+
                 foreach ($attachmentFamily->sizes as $size)
                 {
                     // calculate percentage that we need from image
@@ -232,6 +248,108 @@ class AttachmentService
                     ]);
             }
         }
+    }
+
+    /**
+     * @param $article
+     * @param $directory
+     * @param $urlBase
+     * @param $id
+     * @return null|string
+     */
+    public static function manageWysiwygAttachment($article, $directory, $urlBase, $id) {
+        // load element and get img tags
+        $doc = new \DOMDocument();
+        $doc->loadHTML($article);
+        $tags = $doc->getElementsByTagName('img');
+        $hasSaved = false;
+
+        foreach ($tags as $tag)
+        {
+            // search class ps-uploaded
+            $classes = preg_split('/\s+/', $tag->getAttribute('class'));
+            $newClasses = [];
+            $uploaded = false;
+            foreach ($classes as $class)
+                if($class === 'ps-uploaded')
+                    $uploaded = true;
+                else
+                    $newClasses[] = $class;
+
+
+            if($uploaded)
+            {
+                // get data element insert in editor.component.ts line 112
+                $attachment = json_decode($tag->getAttribute('data-ps-image'));
+
+                $sizes = AttachmentService::setWysiwygAttachmentSizes($attachment, $directory, $urlBase, $id);
+
+                $tag->setAttribute('src', get_src($sizes));
+                $tag->setAttribute('srcset', get_srcset($sizes));
+                $tag->removeAttribute('data-ps-image');
+
+                if($newClasses != null) $tag->setAttribute('class', implode(' ', $newClasses));
+                $hasSaved = true;
+            }
+        }
+
+        if($hasSaved)
+            return $doc->saveHTML();
+
+        return null;
+    }
+
+
+    private static function setWysiwygAttachmentSizes($attachment, $directory, $urlBase, $objectId, $inputSizes = [25, 50, 75])
+    {
+        if(! File::exists(base_path($directory . '/' . $objectId . '/wysiwyg')))
+        {
+            File::makeDirectory(base_path($directory . '/' . $objectId . '/wysiwyg'), 0755, true);
+        }
+
+        // move file from temp file to attachment directory
+        File::move($attachment->base_path . '/' . $attachment->file_name, base_path($directory . '/' . $objectId . '/wysiwyg/' . $attachment->file_name));
+
+        // set new base_path in attachment
+        $attachment->base_path = base_path($directory . '/' . $objectId . '/wysiwyg');
+
+        // original size and biggest size
+        $sizes[] = [
+            "size"      => 0,
+            "width"     => $attachment->width,
+            "height"    => $attachment->height,
+            "base_path" => $attachment->base_path,
+            "file_name" => $attachment->file_name,
+            "url"       => asset($urlBase . '/' . $objectId . '/wysiwyg/' . $attachment->file_name)
+        ];
+
+        foreach ($inputSizes as $size)
+        {
+            // calculate percentage that we need from image
+            $percentage = 100 - $size;
+
+            $width = (int)($attachment->width * $percentage) / 100;
+            $height = (int)($attachment->height * $percentage) / 100;
+
+            /**
+             * config http://image.intervention.io with imagemagick
+             */
+            Image::configure(['driver' => 'imagick']);
+            $image = Image::make($attachment->base_path . '/' . $attachment->file_name);
+            $image->resize($width, $height);
+            $image->save($attachment->base_path . '/' . $size . '@_' . $attachment->file_name);
+
+            $sizes[] = [
+                "size"      => $size,
+                "width"     => $width,
+                "height"    => $height,
+                "base_path" => $attachment->base_path,
+                "file_name" => $size . '@_' . $attachment->file_name,
+                "url"       => asset($urlBase . '/' . $objectId . '/wysiwyg/' . $size . '@_' . $attachment->file_name)
+            ];
+        }
+
+        return $sizes;
     }
 
     /**
