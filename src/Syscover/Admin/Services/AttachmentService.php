@@ -323,7 +323,7 @@ class AttachmentService
 
     private static function setWysiwygAttachmentSizes($attachment, $directory, $urlBase, $objectId, $attachmentFamilyClass, $inputSizes = [25, 50, 75])
     {
-        // manage AttachmentFamily
+        // manage AttachmentFamily, format and resize image
         if($attachmentFamilyClass)
         {
             $attachmentFamily = AttachmentFamily::builder()
@@ -343,6 +343,7 @@ class AttachmentService
             $image = Image::make($attachment->base_path . '/' . $attachment->file_name);
 
             // set format from attachment family
+            // TODO este if se puede hacer una función, código usado en AttachmentMutation line 50
             if(! empty($attachmentFamily->format) && mimetype_from_extension($attachmentFamily->format) !== $attachment->mime)
             {
                 $image = $image->encode($attachmentFamily->format, 100); // set format image

@@ -45,6 +45,8 @@ class CropAttachmentMutation extends AttachmentMutation
         Image::configure(['driver' => 'imagick']);
         $image = Image::make($args['object']['attachment']['attachment_library']['base_path'] . '/' . $args['object']['attachment']['attachment_library']['file_name']);
 
+        // set format from attachment family
+        // TODO este if se puede hacer una función, código usado en AttachmentService line 345
         if(! empty($args['object']['attachment_family']['format']) && mimetype_from_extension($args['object']['attachment_family']['format']) !== $args['object']['attachment']['mime'])
         {
             $image = $image->encode($args['object']['attachment_family']['format'], 100); // set format image
