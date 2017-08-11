@@ -38,9 +38,6 @@ class CropAttachmentMutation extends AttachmentMutation
     // execute crop function across GraphQL
     public function resolve($root, $args)
     {
-        // tale attachment family to get sizes
-        $attachmentFamily = AttachmentFamily::find($args['object']['attachment']['family_id']);
-
         // TODO: Manejar error 500 por llegar al límite de memoria (php_value memory_limit 256M)
         /**
          * config http://image.intervention.io with imagemagick
@@ -64,13 +61,11 @@ class CropAttachmentMutation extends AttachmentMutation
 
 
         $image->crop($args['object']['crop']['width'], $args['object']['crop']['height'], $args['object']['crop']['x'], $args['object']['crop']['y']);
-        $image->resize($attachmentFamily->width, $attachmentFamily->height);
+        $image->resize($args['object']['attachment_family']['width'], $args['object']['attachment_family']['height']);
         $image->save(
             $args['object']['attachment']['base_path'] . '/' . $args['object']['attachment']['file_name'],
             ! empty($args['object']['attachment_family']['quality'])? 90 : $args['object']['attachment_family']['quality'] // set quality image
         );
-
-        //File::delete($attachment->base_path . '/' . $attachment->file_name);
 
         // get new properties from image cropped
         $args['object']['attachment']['width']  = $image->width();

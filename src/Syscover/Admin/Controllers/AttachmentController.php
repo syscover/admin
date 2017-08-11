@@ -40,6 +40,7 @@ class AttachmentController extends BaseController
         return response()->json($response);
     }
 
+    // function unused, replace by AttachmentMutation -> CropAttachmentMutation
     public function crop(Request $request)
     {
         $parameters = $request->input('parameters');

@@ -1,9 +1,11 @@
 <?php namespace Syscover\Admin\Services;
 
+use function GuzzleHttp\Psr7\mimetype_from_extension;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Intervention\Image\ImageManagerStatic as Image;
 use Syscover\Admin\Models\Attachment;
+use Syscover\Admin\Models\AttachmentFamily;
 use Syscover\Admin\Models\AttachmentLibrary;
 
 /**
@@ -216,8 +218,8 @@ class AttachmentService
                     // calculate percentage that we need from image
                     $percentage = 100 - $size;
 
-                    $width = (int)($attachment->width * $percentage) / 100;
-                    $height = (int)($attachment->height * $percentage) / 100;
+                    $width = intval(($attachment->width * $percentage) / 100);
+                    $height = intval(($attachment->height * $percentage) / 100);
 
                     /**
                      * config http://image.intervention.io with imagemagick
@@ -257,7 +259,11 @@ class AttachmentService
      * @param $id
      * @return null|string
      */
-    public static function manageWysiwygAttachment($article, $directory, $urlBase, $id) {
+    public static function manageWysiwygAttachment($article, $directory, $urlBase, $id)
+    {
+        if(empty($article))
+            return null;
+
         // load element and get img tags
         $doc = new \DOMDocument();
         $doc->loadHTML($article);
@@ -270,23 +276,38 @@ class AttachmentService
             $classes = preg_split('/\s+/', $tag->getAttribute('class'));
             $newClasses = [];
             $uploaded = false;
+            $attachmentFamilyClass = false;
             foreach ($classes as $class)
+            {
+                // know if has any image was uploaded
                 if($class === 'ps-uploaded')
                     $uploaded = true;
-                else
+                elseif(strrpos($class, 'ps-attachment-family') !== 0)
                     $newClasses[] = $class;
 
+                // get attachement family class if has anyone
+                if(strrpos($class, 'ps-attachment-family') === 0)
+                    $attachmentFamilyClass = $class;
+            }
 
             if($uploaded)
             {
                 // get data element insert in editor.component.ts line 112
                 $attachment = json_decode($tag->getAttribute('data-ps-image'));
 
-                $sizes = AttachmentService::setWysiwygAttachmentSizes($attachment, $directory, $urlBase, $id);
+                $sizes = AttachmentService::setWysiwygAttachmentSizes($attachment, $directory, $urlBase, $id, $attachmentFamilyClass);
 
                 $tag->setAttribute('src', get_src($sizes));
                 $tag->setAttribute('srcset', get_srcset($sizes));
                 $tag->removeAttribute('data-ps-image');
+
+                $tag->removeAttribute('style'); // delete all image styles
+
+                // set max-width
+                //$sizes = collect($sizes)->sortBy('width');
+                //$tag->setAttribute('style', 'max-width:' . $sizes->last()['width'] . 'px');
+
+                if($tag->hasAttribute('data-image')) $tag->removeAttribute('data-image'); // useless attribute added by Froala
 
                 if($newClasses != null) $tag->setAttribute('class', implode(' ', $newClasses));
                 $hasSaved = true;
@@ -300,8 +321,57 @@ class AttachmentService
     }
 
 
-    private static function setWysiwygAttachmentSizes($attachment, $directory, $urlBase, $objectId, $inputSizes = [25, 50, 75])
+    private static function setWysiwygAttachmentSizes($attachment, $directory, $urlBase, $objectId, $attachmentFamilyClass, $inputSizes = [25, 50, 75])
     {
+        // manage AttachmentFamily
+        if($attachmentFamilyClass)
+        {
+            $attachmentFamily = AttachmentFamily::builder()
+                ->where('admin_attachment_family.id', explode('-', $attachmentFamilyClass)[3])
+                ->first();
+
+            // set sizes from attachmentFamilies
+            if(is_array($attachmentFamily->sizes) && count($attachmentFamily->sizes) > 0)
+                $inputSizes = $attachmentFamily->sizes;
+            else
+                $inputSizes = []; // if has not sizes, reset sizes array
+
+            /**
+             * config http://image.intervention.io with imagemagick
+             */
+            Image::configure(['driver' => 'imagick']);
+            $image = Image::make($attachment->base_path . '/' . $attachment->file_name);
+
+            // set format from attachment family
+            if(! empty($attachmentFamily->format) && mimetype_from_extension($attachmentFamily->format) !== $attachment->mime)
+            {
+                $image = $image->encode($attachmentFamily->format, 100); // set format image
+
+                $attachment->file_name  = basename($attachment->file_name, '.' . $attachment->extension) . '.' . $attachmentFamily->format;
+                $attachment->extension  = $attachmentFamily->format; // change extension file
+
+                // change extension file of url
+                $url = pathinfo($attachment->url);
+                $attachment->url = $url['dirname'] . '/' . $url['filename'] . '.' . $attachmentFamily->format;
+                // get mime type
+                $attachment->mime   = mimetype_from_extension($attachment->extension);
+            }
+
+            // Resize image proportionally to given width
+            $image->widen($attachmentFamily->width);
+            $image->save(
+                $attachment->base_path . '/' . $attachment->file_name,
+                ! empty($attachmentFamily->quality)? 90 : $attachmentFamily->quality // set quality image
+            );
+
+            $attachment->width = $image->width();
+            $attachment->height = $image->height();
+            $attachment->size = $image->filesize();
+            $attachment->data = ['exif' => $image->exif()];
+        }
+
+
+        // make directory and sizes
         if(! File::exists(base_path($directory . '/' . $objectId . '/wysiwyg')))
         {
             File::makeDirectory(base_path($directory . '/' . $objectId . '/wysiwyg'), 0755, true);
@@ -328,8 +398,8 @@ class AttachmentService
             // calculate percentage that we need from image
             $percentage = 100 - $size;
 
-            $width = (int)($attachment->width * $percentage) / 100;
-            $height = (int)($attachment->height * $percentage) / 100;
+            $width = intval(($attachment->width * $percentage) / 100);
+            $height = intval(($attachment->height * $percentage) / 100);
 
             /**
              * config http://image.intervention.io with imagemagick
@@ -399,6 +469,11 @@ class AttachmentService
 
         // delete attachments from database
         $query->delete();
+    }
+
+    public static function changeFileExtension($attachment, $attachmentFamily)
+    {
+
     }
 
     public static function getRandomFilename($extension)
