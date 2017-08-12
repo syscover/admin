@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Syscover\Core\Controllers\CoreController;
+use Syscover\Admin\Services\ActionService;
 use Syscover\Admin\Models\Action;
 
 class ActionController extends CoreController
@@ -16,13 +17,8 @@ class ActionController extends CoreController
      */
     public function store(Request $request)
     {
-        $object = Action::create([
-            'id'    => $request->input('id'),
-            'name'  => $request->input('name')
-        ]);
-
         $response['status'] = "success";
-        $response['data']   = $object;
+        $response['data']   = ActionService::createService($request->all());
 
         return response()->json($response);
     }
@@ -36,15 +32,8 @@ class ActionController extends CoreController
      */
     public function update(Request $request, $id)
     {
-        Action::where('id', $id)->update([
-            'id'    => $request->input('id'),
-            'name'  => $request->input('name')
-        ]);
-
-        $object = Action::find($request->input('id'));
-
         $response['status'] = "success";
-        $response['data']   = $object;
+        $response['data']   = ActionService::updateService($request->all(), $id);
 
         return response()->json($response);
     }

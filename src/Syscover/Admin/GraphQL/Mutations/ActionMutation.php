@@ -4,6 +4,7 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Mutation;
 use Syscover\Admin\Models\Action;
+use Syscover\Admin\Services\ActionService;
 use Syscover\Core\Services\SQLService;
 
 class ActionMutation extends Mutation
@@ -33,7 +34,7 @@ class AddActionMutation extends ActionMutation
 
     public function resolve($root, $args)
     {
-        return Action::create($args['object']);
+        return ActionService::createService($args['object']);
     }
 }
 
@@ -60,10 +61,7 @@ class UpdateActionMutation extends ActionMutation
 
     public function resolve($root, $args)
     {
-        Action::where('id', $args['idOld'])
-            ->update($args['object']);
-
-        return Action::find($args['object']['id']);
+        return ActionService::updateService($args['object'], $args['idOld']);
     }
 }
 
