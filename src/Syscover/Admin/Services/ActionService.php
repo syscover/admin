@@ -8,7 +8,7 @@ class ActionService
      * @param  array    $object     contain properties of action
      * @return $this|\Illuminate\Database\Eloquent\Model
      */
-    public static function createService($object)
+    public static function create($object)
     {
         return Action::create($object);
     }
@@ -18,13 +18,15 @@ class ActionService
      * @param int       $id         old id of section
      * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null|static|static[]
      */
-    public static function updateService($object, $id)
+    public static function update($object, $id)
     {
+        $object = collect($object);
+
         Action::where('id', $id)->update([
-            'id'                => $object['id'],
-            'name'              => $object['name']
+            'id'    => $object->get('id'),
+            'name'  => $object->get('name')
         ]);
 
-        return Action::find($object['id']);
+        return Action::find($object->get('id'));
     }
 }

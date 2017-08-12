@@ -34,7 +34,7 @@ class AddActionMutation extends ActionMutation
 
     public function resolve($root, $args)
     {
-        return ActionService::createService($args['object']);
+        return ActionService::create($args['object']);
     }
 }
 
@@ -61,7 +61,7 @@ class UpdateActionMutation extends ActionMutation
 
     public function resolve($root, $args)
     {
-        return ActionService::updateService($args['object'], $args['idOld']);
+        return ActionService::update($args['object'], $args['idOld']);
     }
 }
 

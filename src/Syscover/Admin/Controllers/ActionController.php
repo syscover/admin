@@ -18,7 +18,7 @@ class ActionController extends CoreController
     public function store(Request $request)
     {
         $response['status'] = "success";
-        $response['data']   = ActionService::createService($request->all());
+        $response['data']   = ActionService::create($request->all());
 
         return response()->json($response);
     }
@@ -33,7 +33,7 @@ class ActionController extends CoreController
     public function update(Request $request, $id)
     {
         $response['status'] = "success";
-        $response['data']   = ActionService::updateService($request->all(), $id);
+        $response['data']   = ActionService::update($request->all(), $id);
 
         return response()->json($response);
     }
