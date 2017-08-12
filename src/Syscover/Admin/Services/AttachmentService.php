@@ -304,8 +304,8 @@ class AttachmentService
                 $tag->removeAttribute('style'); // delete all image styles
 
                 // set max-width
-                //$sizes = collect($sizes)->sortBy('width');
-                //$tag->setAttribute('style', 'max-width:' . $sizes->last()['width'] . 'px');
+                $sizes = collect($sizes)->sortBy('width');
+                $tag->setAttribute('style', 'max-width:' . $sizes->last()['width'] . 'px');
 
                 if($tag->hasAttribute('data-image')) $tag->removeAttribute('data-image'); // useless attribute added by Froala
 
