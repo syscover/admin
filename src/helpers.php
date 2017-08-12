@@ -13,6 +13,35 @@ if (! function_exists('base_lang'))
     }
 }
 
+if (! function_exists('cestn'))
+{
+    /**
+     * convert empty string to null
+     *
+     * @return string | null
+     */
+    function cestn($value)
+    {
+        return is_string($value) && $value === '' ? null : $value;
+    }
+}
+
+if (! function_exists('array_cestn'))
+{
+    /**
+     * convert empty string to null in all array
+     *
+     * @return array
+     */
+    function array_cestn($array)
+    {
+        foreach ($array as &$item)
+            $item = cestn($item);
+
+        return $array;
+    }
+}
+
 if (! function_exists('is_image'))
 {
     /**
@@ -68,8 +97,6 @@ if (! function_exists('get_src_srcset'))
 
         return 'src="' . $src . '" srcset="' . $srcset . '"';
     }
-
-
 }
 
 if (! function_exists('get_src'))
