@@ -4,6 +4,7 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Mutation;
 use Syscover\Admin\Models\Country;
+use Syscover\Admin\Services\CountryService;
 use Syscover\Core\Services\SQLService;
 
 class CountryMutation extends Mutation
@@ -33,9 +34,7 @@ class AddCountryMutation extends CountryMutation
 
     public function resolve($root, $args)
     {
-        $args['object']['data_lang'] = Country::addLangDataRecord($args['object']['lang_id'], $args['object']['id']);
-
-        return Country::create($args['object']);
+        return CountryService::create($args['object']);
     }
 }
 
@@ -62,13 +61,7 @@ class UpdateCountryMutation extends CountryMutation
 
     public function resolve($root, $args)
     {
-        Country::where('id', $args['idOld'])
-            ->where('lang_id', $args['object']['lang_id'])
-            ->update($args['object']);
-
-        return Country::where('id', $args['object']['id'])
-            ->where('lang_id', $args['object']['lang_id'])
-            ->first();
+        return CountryService::update($args['object'], $args['idOld'], $args['object']['lang_id']);
     }
 }
 
