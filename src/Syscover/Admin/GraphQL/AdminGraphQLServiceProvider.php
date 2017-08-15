@@ -25,6 +25,12 @@ class AdminGraphQLServiceProvider
         // TERRITORIAL AREA 1
         GraphQL::addType(\Syscover\Admin\GraphQL\Types\TerritorialArea1Type::class, 'AdminTerritorialArea1');
 
+        // TERRITORIAL AREA 2
+        GraphQL::addType(\Syscover\Admin\GraphQL\Types\TerritorialArea2Type::class, 'AdminTerritorialArea2');
+
+        // TERRITORIAL AREA 3
+        GraphQL::addType(\Syscover\Admin\GraphQL\Types\TerritorialArea3Type::class, 'AdminTerritorialArea3');
+
         // RESOURCE
         GraphQL::addType(\Syscover\Admin\GraphQL\Types\ResourceType::class, 'AdminResource');
         GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\ResourceInput::class, 'AdminResourceInput');
@@ -92,6 +98,12 @@ class AdminGraphQLServiceProvider
 
                 // TERRITORIAL AREA 1
                 'adminTerritorialAreas1'            => \Syscover\Admin\GraphQL\Queries\TerritorialAreas1Query::class,
+
+                // TERRITORIAL AREA 2
+                'adminTerritorialAreas2'            => \Syscover\Admin\GraphQL\Queries\TerritorialAreas2Query::class,
+
+                // TERRITORIAL AREA 3
+                'adminTerritorialAreas3'            => \Syscover\Admin\GraphQL\Queries\TerritorialAreas3Query::class,
 
                 // RESOURCE
                 'adminResourcesPagination'          => \Syscover\Admin\GraphQL\Queries\ResourcesPaginationQuery::class,
