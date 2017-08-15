@@ -1,20 +1,39 @@
 <?php
 
-/*
-|----------------------------------
-| LOGIN
-|----------------------------------
-*/
-Route::post('api/v1/login',                                             ['as' => 'login',                               'uses' => 'Syscover\Admin\Controllers\Auth\AuthenticationController@login']);
+// LOGIN
+Route::post('api/v1/login',                                             'Syscover\Admin\Controllers\Auth\AuthenticationController@login')->name('login');
 
-/*
-|----------------------------------
-| CONFIG
-|----------------------------------
-*/
-Route::get('api/v1/admin/config/bootstrap',                             ['as' => 'adminBootstrapConfig',                'uses' => 'Syscover\Admin\Controllers\ConfigController@bootstrap']);
-Route::post('api/v1/admin/config/values',                               ['as' => 'adminValuesConfig',                   'uses' => 'Syscover\Admin\Controllers\ConfigController@values']);
+// CONFIG
+Route::get('api/v1/admin/config/bootstrap',                             'Syscover\Admin\Controllers\ConfigController@bootstrap')->name('adminBootstrapConfig');
+Route::post('api/v1/admin/config/values',                               'Syscover\Admin\Controllers\ConfigController@values')->name('adminValuesConfig');
 
+// COUNTRIES
+Route::get('api/v1/admin/country/{lang?}',                              'Syscover\Admin\Controllers\CountryController@index')->name('adminCountry');
+Route::get('api/v1/admin/country/{id}/{lang}',                          'Syscover\Admin\Controllers\CountryController@show')->name('showAdminCountry');
+Route::post('api/v1/admin/country/search',                              'Syscover\Admin\Controllers\CountryController@search')->name('searchAdminCountry');
+Route::post('api/v1/admin/country',                                     'Syscover\Admin\Controllers\CountryController@store')->name('storeAdminCountry');
+Route::put('api/v1/admin/country/{id}/{lang}',                          'Syscover\Admin\Controllers\CountryController@update')->name('updateAdminCountry');
+Route::delete('api/v1/admin/country/{id}/{lang?}',                      'Syscover\Admin\Controllers\CountryController@destroy')->name('destroyAdminCountry');
+
+// TERRITORIAL AREAS 1
+Route::get('api/v1/admin/territorial-area-1',                           'Syscover\Admin\Controllers\TerritorialArea1Controller@index')->name('adminTerritorialArea1');
+Route::get('api/v1/admin/territorial-area-1/{id}/{lang}',               'Syscover\Admin\Controllers\TerritorialArea1Controller@show')->name('showAdminTerritorialArea1');
+
+// TERRITORIAL AREAS 2
+Route::get('api/v1/admin/territorial-area-2',                           'Syscover\Admin\Controllers\TerritorialArea2Controller@index')->name('adminTerritorialArea2');
+Route::get('api/v1/admin/territorial-area-2/{id}',                      'Syscover\Admin\Controllers\TerritorialArea2Controller@show')->name('showAdminTerritorialArea2');
+
+// TERRITORIAL AREAS 3
+Route::get('api/v1/admin/territorial-area-3',                           'Syscover\Admin\Controllers\TerritorialArea3Controller@index')->name('adminTerritorialArea3');
+Route::get('api/v1/admin/territorial-area-3/{id}',                      'Syscover\Admin\Controllers\TerritorialArea3Controller@show')->name('showAdminTerritorialArea3');
+
+// ATTACHMENTS
+Route::post('api/v1/admin/attachment-upload',                           'Syscover\Admin\Controllers\AttachmentController@index')->name('adminAttachmentUpload');
+Route::post('api/v1/admin/attachment-upload/crop',                      'Syscover\Admin\Controllers\AttachmentController@crop')->name('cropAdminAttachmentUpload');
+Route::post('api/v1/admin/attachment-upload/delete',                    'Syscover\Admin\Controllers\AttachmentController@destroy')->name('destroyAdminAttachmentUpload');
+
+// ATTACHMENTS WYSIWYG
+Route::post('api/v1/admin/wysiwyg/upload',                              'Syscover\Admin\Controllers\AttachmentController@wysiwygUpload')->name('adminWysiwygUpload');
 
 Route::group(['middleware' => ['jwt.auth', 'jwt.refresh']], function () {
 
@@ -41,43 +60,6 @@ Route::group(['middleware' => ['jwt.auth', 'jwt.refresh']], function () {
     Route::post('api/v1/admin/lang/search',                                 ['as' => 'searchAdminLang',                     'uses' => 'Syscover\Admin\Controllers\LangController@search']);
     Route::put('api/v1/admin/lang/{id}',                                    ['as' => 'updateAdminLang',                     'uses' => 'Syscover\Admin\Controllers\LangController@update']);
     Route::delete('api/v1/admin/lang/{id}',                                 ['as' => 'destroyAdminLang',                    'uses' => 'Syscover\Admin\Controllers\LangController@destroy']);
-
-    /*
-    |----------------------------------
-    | COUNTRIES
-    |----------------------------------
-    */
-    Route::get('api/v1/admin/country/{lang?}',                              ['as' => 'adminCountry',                         'uses' => 'Syscover\Admin\Controllers\CountryController@index']);
-    Route::get('api/v1/admin/country/{id}/{lang}',                          ['as' => 'showAdminCountry',                     'uses' => 'Syscover\Admin\Controllers\CountryController@show']);
-    Route::post('api/v1/admin/country/search',                              ['as' => 'searchAdminCountry',                   'uses' => 'Syscover\Admin\Controllers\CountryController@search']);
-    Route::post('api/v1/admin/country',                                     ['as' => 'storeAdminCountry',                    'uses' => 'Syscover\Admin\Controllers\CountryController@store']);
-    Route::put('api/v1/admin/country/{id}/{lang}',                          ['as' => 'updateAdminCountry',                   'uses' => 'Syscover\Admin\Controllers\CountryController@update']);
-    Route::delete('api/v1/admin/country/{id}/{lang?}',                      ['as' => 'destroyAdminCountry',                  'uses' => 'Syscover\Admin\Controllers\CountryController@destroy']);
-
-
-    /*
-    |----------------------------------
-    | TERRITORIAL AREAS 1
-    |----------------------------------
-    */
-    Route::get('api/v1/admin/territorial-area-1/{lang?}',                     ['as' => 'adminTerritorialArea1',             'uses' => 'Syscover\Admin\Controllers\TerritorialArea1Controller@index']);
-    Route::get('api/v1/admin/territorial-area-1/{id}/{lang}',                 ['as' => 'showAdminTerritorialArea1',         'uses' => 'Syscover\Admin\Controllers\TerritorialArea1Controller@show']);
-
-    /*
-    |----------------------------------
-    | TERRITORIAL AREAS 2
-    |----------------------------------
-    */
-    Route::get('api/v1/admin/territorial-area-2',                             ['as' => 'adminTerritorialArea2',                'uses' => 'Syscover\Admin\Controllers\TerritorialArea2Controller@index']);
-    Route::get('api/v1/admin/territorial-area-2/{id}',                        ['as' => 'showAdminTerritorialArea2',            'uses' => 'Syscover\Admin\Controllers\TerritorialArea2Controller@show']);
-
-    /*
-    |----------------------------------
-    | TERRITORIAL AREAS 3
-    |----------------------------------
-    */
-    Route::get('api/v1/admin/territorial-area-3',                             ['as' => 'adminTerritorialArea3',                'uses' => 'Syscover\Admin\Controllers\TerritorialArea3Controller@index']);
-    Route::get('api/v1/admin/territorial-area-3/{id}',                        ['as' => 'showAdminTerritorialArea3',            'uses' => 'Syscover\Admin\Controllers\TerritorialArea3Controller@show']);
 
     /*
     |----------------------------------
@@ -195,19 +177,3 @@ Route::group(['middleware' => ['jwt.auth', 'jwt.refresh']], function () {
     Route::put('api/v1/admin/attachment-family/{id}',                       ['as' => 'updateAdminAttachmentFamily',         'uses' => 'Syscover\Admin\Controllers\AttachmentFamilyController@update']);
     Route::delete('api/v1/admin/attachment-family/{id}',                    ['as' => 'destroyAdminAttachmentFamily',        'uses' => 'Syscover\Admin\Controllers\AttachmentFamilyController@destroy']);
 });
-
-    /*
-    |----------------------------------
-    | ATTACHMENTS
-    |----------------------------------
-    */
-    Route::post('api/v1/admin/attachment-upload',                           ['as' => 'adminAttachmentUpload',               'uses' => 'Syscover\Admin\Controllers\AttachmentController@index']);
-    Route::post('api/v1/admin/attachment-upload/crop',                      ['as' => 'cropAdminAttachmentUpload',           'uses' => 'Syscover\Admin\Controllers\AttachmentController@crop']);
-    Route::post('api/v1/admin/attachment-upload/delete',                    ['as' => 'destroyAdminAttachmentUpload',        'uses' => 'Syscover\Admin\Controllers\AttachmentController@destroy']);
-
-    /*
-    |----------------------------------
-    | ATTACHMENTS WYSIWYG
-    |----------------------------------
-    */
-    Route::post('api/v1/admin/wysiwyg/upload',                              ['as' => 'adminWysiwygUpload',                  'uses' => 'Syscover\Admin\Controllers\AttachmentController@wysiwygUpload']);
