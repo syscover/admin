@@ -22,6 +22,9 @@ class AdminGraphQLServiceProvider
         GraphQL::addType(\Syscover\Admin\GraphQL\Types\CountryType::class, 'AdminCountry');
         GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\CountryInput::class, 'AdminCountryInput');
 
+        // TERRITORIAL AREA 1
+        GraphQL::addType(\Syscover\Admin\GraphQL\Types\TerritorialArea1Type::class, 'AdminTerritorialArea1');
+
         // RESOURCE
         GraphQL::addType(\Syscover\Admin\GraphQL\Types\ResourceType::class, 'AdminResource');
         GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\ResourceInput::class, 'AdminResourceInput');
@@ -86,6 +89,9 @@ class AdminGraphQLServiceProvider
                 'adminCountriesPagination'          => \Syscover\Admin\GraphQL\Queries\CountriesPaginationQuery::class,
                 'adminCountries'                    => \Syscover\Admin\GraphQL\Queries\CountriesQuery::class,
                 'adminCountry'                      => \Syscover\Admin\GraphQL\Queries\CountryQuery::class,
+
+                // TERRITORIAL AREA 1
+                'adminTerritorialAreas1'            => \Syscover\Admin\GraphQL\Queries\TerritorialAreas1Query::class,
 
                 // RESOURCE
                 'adminResourcesPagination'          => \Syscover\Admin\GraphQL\Queries\ResourcesPaginationQuery::class,
