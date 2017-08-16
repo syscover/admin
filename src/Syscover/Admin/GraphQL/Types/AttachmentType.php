@@ -43,9 +43,13 @@ class AttachmentType extends GraphQLType
                 'type' => Type::int(),
                 'description' => 'Sort of this attachment'
             ],
-            'name' => [
+            'alt' => [
                 'type' => Type::string(),
-                'description' => 'The name of attachment'
+                'description' => 'Alt of attachment'
+            ],
+            'title' => [
+                'type' => Type::string(),
+                'description' => 'Title of attachment'
             ],
             'base_path' => [
                 'type' => Type::string(),

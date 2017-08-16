@@ -23,7 +23,8 @@ class PulsarCreateTableAttachment extends Migration {
                 $table->string('object_type');
                 $table->integer('family_id')->unsigned()->nullable();
                 $table->integer('sort')->unsigned()->nullable();
-                $table->string('name');
+                $table->string('alt')->nullable();
+                $table->string('title')->nullable();
                 $table->string('base_path', 1024);
                 $table->string('file_name');
                 $table->string('url', 1024);                                // url to access file
