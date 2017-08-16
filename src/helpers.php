@@ -99,6 +99,39 @@ if (! function_exists('get_src_srcset'))
     }
 }
 
+if (! function_exists('get_src_srcset_alt_title'))
+{
+    /**
+     * get get_src_srcset for responsive images
+     *
+     * @param $attachment
+     * @return string
+     */
+    function get_src_srcset_alt_title($attachment)
+    {
+        if(! isset($attachment->data['sizes']) && is_array($attachment->data['sizes']))
+            return null;
+
+        $sizes = collect($attachment->data['sizes'])->sortBy('width');
+
+        $smallerWidth = $sizes->first()['width'];
+        $biggestWidth = $sizes->last()['width'];
+        $srcset = '';
+        $src = '';
+        foreach ($sizes as $size)
+        {
+            // set src
+            if($size['width'] === $smallerWidth)
+                $src = $size['url'];
+            else
+                $srcset .= $size['url'] . ' ' . $size['width'] . 'w' . ($biggestWidth === $size['width']? null : ', ');
+
+        }
+
+        return 'src="' . $src . '" srcset="' . $srcset . '" alt="' . $attachment->alt . '" title="' . $attachment->title . '"';
+    }
+}
+
 if (! function_exists('get_src'))
 {
     /**

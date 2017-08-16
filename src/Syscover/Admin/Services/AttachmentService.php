@@ -106,7 +106,8 @@ class AttachmentService
                     'object_type'           => $objectType,
                     'family_id'             => empty($attachment['family_id'])? null: $attachment['family_id'],
                     'sort'                  => $attachment['sort'],
-                    'name'                  => $attachment['name'],
+                    'alt'                   => $attachment['alt'],
+                    'title'                 => $attachment['title'],
                     'base_path'             => base_path($directory . '/' . $objectId),
                     'file_name'             => $attachment['file_name'],
                     'url'                   => asset($urlBase . '/' . $objectId . '/' . $attachment['file_name']),
@@ -133,7 +134,8 @@ class AttachmentService
                         ->update([
                             'family_id'             => empty($attachment['family_id'])? null: $attachment['family_id'],
                             'sort'                  => $attachment['sort'],
-                            'name'                  => $attachment['name'],
+                            'alt'                   => $attachment['alt'],
+                            'title'                 => $attachment['title'],
                             'file_name'             => $attachment['file_name'],
                             'url'                   => $attachment['url'],
                             'mime'                  => $attachment['mime'],
@@ -165,7 +167,8 @@ class AttachmentService
                         'object_type'           => $objectType,
                         'family_id'             => empty($attachment['family_id'])? null: $attachment['family_id'],
                         'sort'                  => $attachment['sort'],
-                        'name'                  => $attachment['name'],
+                        'alt'                   => $attachment['alt'],
+                        'title'                 => $attachment['title'],
                         'base_path'             => $attachment['base_path'],
                         'file_name'             => $newFileName,
                         'url'                   => asset($urlBase . '/' . $objectId . '/' . $newFileName),
@@ -305,7 +308,7 @@ class AttachmentService
 
                 // set max-width
                 $sizes = collect($sizes)->sortBy('width');
-                $tag->setAttribute('style', 'max-width:' . $sizes->last()['width'] . 'px');
+                $tag->setAttribute('style', 'max-width:' . $sizes->last()['width'] . 'px; width:100%;');
 
                 if($tag->hasAttribute('data-image')) $tag->removeAttribute('data-image'); // useless attribute added by Froala
 
