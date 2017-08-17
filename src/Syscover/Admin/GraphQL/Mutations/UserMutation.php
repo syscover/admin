@@ -5,6 +5,7 @@ use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Mutation;
 use Illuminate\Support\Facades\Hash;
 use Syscover\Admin\Models\User;
+use Syscover\Admin\Services\UserService;
 use Syscover\Core\Services\SQLService;
 
 class UserMutation extends Mutation
@@ -34,7 +35,7 @@ class AddUserMutation extends UserMutation
 
     public function resolve($root, $args)
     {
-        return User::create($args['object']);
+        return UserService::create($args['object']);
     }
 }
 
@@ -47,13 +48,7 @@ class UpdateUserMutation extends UserMutation
 
     public function resolve($root, $args)
     {
-        // create password
-        $args['object']['password'] = Hash::make($args['object']['password']);
-
-        User::where('id', $args['object']['id'])
-            ->update($args['object']);
-
-        return User::find($args['object']['id']);
+        return UserService::update($args['object'], $args['object']['id']);
     }
 }
 

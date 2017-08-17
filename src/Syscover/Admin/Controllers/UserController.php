@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Syscover\Admin\Services\UserService;
 use Syscover\Core\Controllers\CoreController;
 use Syscover\Admin\Models\User;
 
@@ -19,16 +20,12 @@ class UserController extends CoreController
     {
         try
         {
-            $object = User::create([
-                'name'          => $request->input('name'),
-                'surname'       => $request->input('surname'),
-                'email'         => $request->input('email'),
-                'lang_id'       => $request->input('lang_id'),
-                'profile_id'    => $request->input('profile_id'),
-                'access'        => $request->input('access'),
-                'user'          => $request->input('user'),
-                'password'      => Hash::make($request->input('password'))
-            ]);
+            $object = UserService::create($request->all());
+
+            $response['status'] = "success";
+            $response['data']   = $object;
+
+            return response()->json($response);
         }
         catch (\Exception $e)
         {
@@ -37,11 +34,6 @@ class UserController extends CoreController
 
             return response()->json($response, 500);
         }
-
-        $response['status'] = "success";
-        $response['data']   = $object;
-
-        return response()->json($response);
     }
 
     /**
@@ -55,16 +47,12 @@ class UserController extends CoreController
     {
         try
         {
-            User::where('id', $id)->update([
-                'name'          => $request->input('name'),
-                'surname'       => $request->input('surname'),
-                'email'         => $request->input('email'),
-                'lang_id'       => $request->input('lang_id'),
-                'profile_id'    => $request->input('profile_id'),
-                'access'        => $request->input('access'),
-                'user'          => $request->input('user'),
-                'password'      => Hash::make($request->input('password'))
-            ]);
+            $object = UserService::update($request->all(), $id);
+
+            $response['status'] = "success";
+            $response['data']   = $object;
+
+            return response()->json($response);
         }
         catch (\Exception $e)
         {
@@ -73,12 +61,5 @@ class UserController extends CoreController
 
             return response()->json($response, 500);
         }
-
-        $object = User::find($request->input('id'));
-
-        $response['status'] = "success";
-        $response['data']   = $object;
-
-        return response()->json($response);
     }
 }
