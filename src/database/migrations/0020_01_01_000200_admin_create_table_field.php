@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class PulsarCreateTableField extends Migration {
+class AdminCreateTableField extends Migration {
 
     /**
      * Run the migrations.

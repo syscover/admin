@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class PulsarCreateTableAttachmentMime extends Migration {
+class AdminCreateTableAttachmentMime extends Migration {
 
 	/**
 	 * Run the migrations.
