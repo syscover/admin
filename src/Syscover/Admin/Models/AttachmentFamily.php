@@ -12,7 +12,6 @@ class AttachmentFamily extends CoreModel
 {
 	protected $table        = 'admin_attachment_family';
     protected $fillable     = ['id', 'resource_id', 'name', 'width', 'height', 'sizes', 'quality', 'format'];
-    public $timestamps      = false;
     protected $casts        = [
         'sizes' => 'array'
     ];

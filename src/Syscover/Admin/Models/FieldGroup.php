@@ -12,7 +12,6 @@ class FieldGroup extends CoreModel
 {
 	protected $table        = 'admin_field_group';
     protected $fillable     = ['id', 'name', 'resource_id'];
-    public $timestamps      = false;
     public $with            = ['resource', 'fields'];
 
     private static $rules   = [

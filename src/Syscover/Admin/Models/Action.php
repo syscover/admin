@@ -13,7 +13,6 @@ class Action extends CoreModel
 	protected $table        = 'admin_action';
     protected $fillable     = ['id', 'name'];
     public $incrementing    = false;
-    public $timestamps      = false;
 
     private static $rules   = [
         'id'    => 'required|between:2,25|unique:action,id',

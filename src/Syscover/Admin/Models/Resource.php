@@ -13,7 +13,6 @@ class Resource extends CoreModel
 	protected $table        = 'admin_resource';
     protected $fillable     = ['id', 'name', 'package_id'];
     public $incrementing    = false;
-    public $timestamps      = false;
     public $with            = ['package'];
 
     private static $rules   = [

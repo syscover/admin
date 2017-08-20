@@ -12,7 +12,6 @@ class TerritorialArea2 extends CoreModel
 {
     protected $table        = 'admin_territorial_area_2';
     public $incrementing    = false;
-    public $timestamps      = false;
 
     private static $rules   = [
         'id'                => 'required|between:1,10|unique:territorial_area_2,id',

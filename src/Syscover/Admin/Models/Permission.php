@@ -12,7 +12,6 @@ class Permission extends CoreModel
 {
 	protected $table        = 'admin_permission';
     protected $primaryKey   = 'profile_id';
-    public $timestamps      = false;
     private static $rules   = [
         'profile_id'    =>  'required',
         'resource_id'   =>  'required',

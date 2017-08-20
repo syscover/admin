@@ -25,7 +25,6 @@ class User extends CoreModel implements
     use Notifiable;
 
     protected $table        = 'admin_user';
-    public $timestamps      = true;
     protected $fillable     = ['id', 'lang_id', 'profile_id', 'access', 'user', 'password', 'email', 'name', 'surname'];
     protected $casts        = [
         'access' => 'boolean'
