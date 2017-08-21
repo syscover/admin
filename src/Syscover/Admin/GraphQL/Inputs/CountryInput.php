@@ -47,6 +47,10 @@ class CountryInput extends GraphQLType
                 'type' => Type::string(),
                 'description' => 'Territorial area 3 name of country'
             ],
+            'zones' => [
+                'type' => Type::listOf(Type::string()),
+                'description' => 'JSON string that contain enabled zones'
+            ],
             'data_lang' => [
                 'type' => Type::listOf(Type::string()),
                 'description' => 'JSON string that contain information about object translations'

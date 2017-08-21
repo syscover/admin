@@ -14,9 +14,10 @@ class Country extends CoreModel
     use Translatable;
 
     protected $table        = 'admin_country';
-    protected $fillable     = ['id', 'lang_id', 'name', 'sort', 'prefix', 'territorial_area_1', 'territorial_area_2', 'territorial_area_3', 'data_lang'];
+    protected $fillable     = ['id', 'lang_id', 'name', 'sort', 'prefix', 'territorial_area_1', 'territorial_area_2', 'territorial_area_3', 'zones', 'data_lang'];
     public $incrementing    = false;
     protected $casts        = [
+        'zones'     => 'array',
         'data_lang' => 'array'
     ];
     public $with            = ['lang'];

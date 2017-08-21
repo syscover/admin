@@ -32,7 +32,8 @@ class CountryService
                 'sort' => $object->get('sort'),
                 'territorial_area_1' => $object->get('territorial_area_1'),
                 'territorial_area_2' => $object->get('territorial_area_2'),
-                'territorial_area_3' => $object->get('territorial_area_3')
+                'territorial_area_3' => $object->get('territorial_area_3'),
+                'zones' => $object->isNotEmpty('zones') ? json_encode($object->get('zones')) : null
             ]);
 
         // common data
