@@ -129,6 +129,8 @@ class AttachmentService
                 // action is update object
                 if($action === 'update')
                 {
+                    $attachmentOld = Attachment::where('id', $attachment['id'])->where('lang_id', $attachment['lang_id'])->first();
+
                     Attachment::where('id', $attachment['id'])
                         ->where('lang_id', $attachment['lang_id'])
                         ->update([
@@ -149,10 +151,13 @@ class AttachmentService
                     // get attachment object to create sizes
                     $attachmentObject = Attachment::where('id', $attachment['id'])->where('lang_id', $attachment['lang_id'])->first();
 
-                    // create sizes from image
-                    AttachmentService::setAttachmentSizes($attachmentObject, $urlBase, $objectId);
+                    if($attachmentOld->family_id !== $attachmentObject->family_id)
+                    {
+                        // create sizes from image
+                        AttachmentService::setAttachmentSizes($attachmentObject, $urlBase, $objectId);
+                    }
                 }
-                elseif($action === 'store')
+                elseif($action === 'store') // can to be data from new lang object
                 {
                     $newFileName = AttachmentService::getRandomFilename($attachment['extension']);
 
