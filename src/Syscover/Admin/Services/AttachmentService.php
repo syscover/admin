@@ -129,7 +129,9 @@ class AttachmentService
                 // action is update object
                 if($action === 'update')
                 {
-                    $attachmentOld = Attachment::where('id', $attachment['id'])->where('lang_id', $attachment['lang_id'])->first();
+                    $attachmentOld = Attachment::where('id', $attachment['id'])
+                        ->where('lang_id', $attachment['lang_id'])
+                        ->first();
 
                     Attachment::where('id', $attachment['id'])
                         ->where('lang_id', $attachment['lang_id'])
@@ -145,11 +147,13 @@ class AttachmentService
                             'size'                  => $attachment['size'],
                             'width'                 => $attachment['width'],
                             'height'                => $attachment['height'],
-                            'data'                  => json_encode($attachment['data'])
+                            'data'                  => is_array($attachment['data']) ?  json_encode(array_merge($attachment['data'], $attachmentOld->data)) : json_encode($attachmentOld->data)
                         ]);
 
                     // get attachment object to create sizes
-                    $attachmentObject = Attachment::where('id', $attachment['id'])->where('lang_id', $attachment['lang_id'])->first();
+                    $attachmentObject = Attachment::where('id', $attachment['id'])
+                        ->where('lang_id', $attachment['lang_id'])
+                        ->first();
 
                     if($attachmentOld->family_id !== $attachmentObject->family_id)
                     {
