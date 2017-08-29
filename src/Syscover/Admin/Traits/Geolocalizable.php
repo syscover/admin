@@ -18,6 +18,8 @@ trait Geolocalizable
                 return $this->{'territorial_area_2_id'};
             case 'territorial_areas_3':
                 return $this->{'territorial_area_3_id'};
+            default;
+                return null;
         }
     }
 }
