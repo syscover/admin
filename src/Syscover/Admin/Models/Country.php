@@ -20,7 +20,12 @@ class Country extends CoreModel
         'zones'     => 'array',
         'data_lang' => 'array'
     ];
-    public $with            = ['lang'];
+    public $with            = [
+        'lang',
+        'territorial_areas_1',
+        'territorial_areas_2',
+        'territorial_areas_3'
+    ];
 
     private static $rules   = [
         'id'                => 'required|alpha|size:2|unique:001_country,id',
@@ -42,5 +47,20 @@ class Country extends CoreModel
     public function scopeBuilder($query)
     {
         return $query;
+    }
+
+    public function territorial_areas_1()
+    {
+        return $this->hasMany(TerritorialArea1::class, 'country_id');
+    }
+
+    public function territorial_areas_2()
+    {
+        return $this->hasMany(TerritorialArea2::class, 'country_id');
+    }
+
+    public function territorial_areas_3()
+    {
+        return $this->hasMany(TerritorialArea3::class, 'country_id');
     }
 }
