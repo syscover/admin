@@ -63,4 +63,18 @@ class Country extends CoreModel
     {
         return $this->hasMany(TerritorialArea3::class, 'country_id');
     }
+
+    public function getTerritorialAreaName($zone)
+    {
+        switch ($zone) {
+            case 'territorial_areas_1':
+                return $this->{'territorial_area_1'};
+            case 'territorial_areas_2':
+                return $this->{'territorial_area_2'};
+            case 'territorial_areas_3':
+                return $this->{'territorial_area_3'};
+            default;
+                return null;
+        }
+    }
 }
