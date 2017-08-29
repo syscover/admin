@@ -173,3 +173,26 @@ if (! function_exists('get_srcset'))
         return $srcset;
    }
 }
+
+if (! function_exists('get_territorial_area_id'))
+{
+    /**
+     * get territorial area id from country zone
+     *
+     * @return string
+     */
+    function get_territorial_area_id($zone)
+    {
+        switch ($zone) {
+            case 'territorial_areas_1':
+                return 'territorial_area_1_id';
+                break;
+            case 'territorial_areas_2':
+                return 'territorial_area_2_id';
+                break;
+            case 'territorial_areas_3':
+                return 'territorial_area_3_id';
+                break;
+        }
+    }
+}
