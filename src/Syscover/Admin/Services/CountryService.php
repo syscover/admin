@@ -36,9 +36,10 @@ class CountryService
             ]);
 
         // common data
+        // common data
         Country::where('id', $object->get('id'))->update([
             'prefix' => $object->get('prefix'),
-            'zones' => $object->isNotEmpty('zones') ? json_encode($object->get('zones')) : null
+            'zones' => $object->get('zones') === null || (is_array($object->get('zones')) && count($object->get('zones')) == 0) ? null : json_encode($object->get('zones'))
         ]);
 
         return Country::where('id', $object->get('id'))
