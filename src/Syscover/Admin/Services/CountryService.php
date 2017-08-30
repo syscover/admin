@@ -34,8 +34,7 @@ class CountryService
                 'territorial_area_2' => $object->get('territorial_area_2'),
                 'territorial_area_3' => $object->get('territorial_area_3')
             ]);
-
-        // common data
+        
         // common data
         Country::where('id', $object->get('id'))->update([
             'prefix' => $object->get('prefix'),
