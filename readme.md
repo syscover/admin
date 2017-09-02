@@ -14,37 +14,28 @@ Pulsar is an application that generates a control panel where you start creating
 composer require syscover/pulsar-admin
 ```
 
-**2 - Register service provider, on file config/app.php add to providers array**
-```
-/*
- * Pulsar Application Service Providers...
- */
-Syscover\Core\CoreServiceProvider::class,  // <-- You may have already registered
-Syscover\Admin\AdminServiceProvider::class,
-```
-
-**3 - Execute publish command**
+**2 - Execute publish command**
 ```
 php artisan vendor:publish --provider="Syscover\Admin\AdminServiceProvider"
 ```
 
-**4 - Execute optimize command load new classes**
+**3 - Execute optimize command load new classes**
 ```
 php artisan optimize
 ```
 
-**5 - And execute migrations and seed database**
+**4 - And execute migrations and seed database**
 ```
 php artisan migrate
 php artisan db:seed --class="AdminTableSeeder"
 ```
 
-**6 - Execute command to load all updates**
+**5 - Execute command to load all updates**
 ```
 php artisan migrate --path=database/migrations/updates
 ```
 
-**7 - include this arrays in config/auth.php**
+**6 - include this arrays in config/auth.php**
 
 Set this default values, for JWT can create pulsar user
 ```
@@ -79,7 +70,7 @@ Inside passwords array
 ],
 ```
 
-**11 - When the installation is complete you can access these data**
+**7 - When the installation is complete you can access these data**
 ```
 url: http://www.your-domain.com/pulsar
 user: admin@pulsar.local
