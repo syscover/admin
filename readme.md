@@ -75,7 +75,12 @@ Inside passwords array
 ],
 ```
 
-**7 - When the installation is complete you can access these data**
+**7 - Set base lang application in .env file**
+```
+ADMIN_BASE_LANG=en
+```
+
+**8 - When the installation is complete you can access these data**
 ```
 url: http://www.your-domain.com/pulsar
 user: admin@pulsar.local
