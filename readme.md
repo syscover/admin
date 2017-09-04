@@ -26,7 +26,7 @@ php artisan vendor:publish --provider="Syscover\Admin\AdminServiceProvider"
 
 **3 - Execute optimize command load new classes**
 ```
-php artisan optimize
+composer dump-autoload
 ```
 
 **4 - And execute migrations and seed database**
