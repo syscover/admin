@@ -35,19 +35,19 @@ Route::post('api/v1/admin/attachment-upload/delete',                    'Syscove
 // ATTACHMENTS WYSIWYG
 Route::post('api/v1/admin/wysiwyg/upload',                              'Syscover\Admin\Controllers\AttachmentController@wysiwygUpload')->name('adminWysiwygUpload');
 
-Route::group(['middleware' => ['jwt.auth', 'jwt.refresh']], function () {
 
+Route::group(['middleware' => ['jwt.auth', 'jwt.refresh']], function () {
     /*
     |----------------------------------
     | USERS
     |----------------------------------
     */
-    Route::get('api/v1/admin/user',                                         ['as' => 'adminUser',                           'uses' => 'Syscover\Admin\Controllers\UserController@index']);
-    Route::get('api/v1/admin/user/{id}',                                    ['as' => 'showAdminUser',                       'uses' => 'Syscover\Admin\Controllers\UserController@show']);
-    Route::post('api/v1/admin/user',                                        ['as' => 'storeAdminUser',                      'uses' => 'Syscover\Admin\Controllers\UserController@store']);
-    Route::post('api/v1/admin/user/search',                                 ['as' => 'searchAdminUser',                     'uses' => 'Syscover\Admin\Controllers\UserController@search']);
-    Route::put('api/v1/admin/user/{id}',                                    ['as' => 'updateAdminUser',                     'uses' => 'Syscover\Admin\Controllers\UserController@update']);
-    Route::delete('api/v1/admin/user/{id}',                                 ['as' => 'destroyAdminUser',                    'uses' => 'Syscover\Admin\Controllers\UserController@destroy']);
+    Route::get('api/v1/admin/user',                                         'Syscover\Admin\Controllers\UserController@index')->name('adminUser');
+    Route::get('api/v1/admin/user/{id}',                                    'Syscover\Admin\Controllers\UserController@show')->name('showAdminUser');
+    Route::post('api/v1/admin/user',                                        'Syscover\Admin\Controllers\UserController@store')->name('storeAdminUser');
+    Route::post('api/v1/admin/user/search',                                 'Syscover\Admin\Controllers\UserController@search')->name('searchAdminUser');
+    Route::put('api/v1/admin/user/{id}',                                    'Syscover\Admin\Controllers\UserController@update')->name('updateAdminUser');
+    Route::delete('api/v1/admin/user/{id}',                                 'Syscover\Admin\Controllers\UserController@destroy')->name('destroyAdminUser');
 
     /*
     |----------------------------------
