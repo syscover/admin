@@ -76,7 +76,7 @@ if (! function_exists('get_src_srcset'))
      */
     function get_src_srcset($attachment)
     {
-        if(! isset($attachment->data['sizes']) && is_array($attachment->data['sizes']))
+        if(! isset($attachment->data['sizes']) || (isset($attachment->data['sizes']) && ! is_array($attachment->data['sizes'])))
             return null;
 
         $sizes = collect($attachment->data['sizes'])->sortBy('width');
