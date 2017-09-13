@@ -45,16 +45,16 @@ php artisan migrate --path=database/migrations/updates
 Set this default values, for JWT can create pulsar user
 ```
 'defaults' => [
-    'guard'     => 'pulsar',
-    'passwords' => 'pulsarPasswordBroker',
+    'guard'     => 'admin',
+    'passwords' => 'adminPasswordBroker',
 ],
 ```
 
 Inside guards array
 ```
-'pulsar' => [
+'admin' => [
     'driver'    => 'session',
-    'provider'  => 'pulsarUser',
+    'provider'  => 'adminUser',
 ],
 ```
 
@@ -68,8 +68,8 @@ Inside providers array
 
 Inside passwords array
 ```
-'pulsarPasswordBroker' => [
-    'provider'  => 'pulsarUser',
+'adminPasswordBroker' => [
+    'provider'  => 'adminUser',
     'table'     => 'admin_password_resets',
     'expire'    => 60,
 ],
