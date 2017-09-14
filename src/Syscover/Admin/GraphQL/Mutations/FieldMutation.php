@@ -61,13 +61,13 @@ class AddFieldMutation extends FieldMutation
 
         // create new object
         // get file type name
-        $args['object']['field_type_name'] = collect(config('pulsar.admin.field_types'))
+        $args['object']['field_type_name'] = collect(config('pulsar-admin.field_types'))
             ->where('id', $args['object']['field_type_id'])
             ->first()
             ->name;
 
         // get data type name
-        $args['object']['data_type_name'] = collect(config('pulsar.admin.data_types'))
+        $args['object']['data_type_name'] = collect(config('pulsar-admin.data_types'))
             ->where('id', $args['object']['data_type_id'])
             ->first()
             ->name;
@@ -98,13 +98,13 @@ class UpdateFieldMutation extends FieldMutation
         if(base_lang() == $args['object']['lang_id'])
         {
             // get file type name
-            $args['object']['field_type_name'] = collect(config('pulsar.admin.field_types'))
+            $args['object']['field_type_name'] = collect(config('pulsar-admin.field_types'))
                 ->where('id', $args['object']['field_type_id'])
                 ->first()
                 ->name;
 
             // get data type name
-            $args['object']['data_type_name'] = collect(config('pulsar.admin.data_types'))
+            $args['object']['data_type_name'] = collect(config('pulsar-admin.data_types'))
                 ->where('id', $args['object']['data_type_id'])
                 ->first()
                 ->name;

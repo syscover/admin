@@ -9,7 +9,7 @@ if (! function_exists('base_lang'))
      */
     function base_lang()
     {
-        return config('pulsar.admin.base_lang');
+        return config('pulsar-admin.base_lang');
     }
 }
 
