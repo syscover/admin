@@ -16,10 +16,10 @@ class AuthenticationController extends BaseController
 
         try
         {
-            if(auth('pulsar')->attempt($credentials))
+            if(auth('admin')->attempt($credentials))
             {
                 // get user
-                $user = auth('pulsar')->user();
+                $user = auth('admin')->user();
 
                 // check if user has access
                 if(! $user->access)
