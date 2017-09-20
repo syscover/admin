@@ -14,7 +14,7 @@ Pulsar is an application that generates a control panel where you start creating
 composer require syscover/pulsar-admin
 ```
 
-Register service provider, on file config/app.php add to providers array**
+Register service provider, on file config/app.php add to providers array
 ```
 Syscover\Admin\AdminServiceProvider::class,
 ```
@@ -60,7 +60,7 @@ Inside guards array
 
 Inside providers array
 ```
-'pulsarUser' => [
+'adminUser' => [
     'driver'    => 'eloquent',
     'model'     => Syscover\Admin\Models\User::class,
 ],
