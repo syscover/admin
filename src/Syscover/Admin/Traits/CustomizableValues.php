@@ -12,7 +12,7 @@ trait CustomizableValues
         {
             return $this->data['customFields'][$name];
         }
-        
+
         return parent::__get($name);
     }
 }
