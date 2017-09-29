@@ -4,25 +4,15 @@ trait CustomizableValues
 {
     public function __get($name)
     {
-        // return attribute
-        if(array_key_exists($name, $this->getAttributes()))
+        if(
+            isset($this->data['customFields']) &&
+            is_array($this->data['customFields']) &&
+            array_key_exists($name, $this->data['customFields'])
+        )
         {
-            return $this->getAttribute($name);
+            return $this->data['customFields'][$name];
         }
-        // return relation
-        elseif(array_key_exists($name, $this->getRelations()))
-        {
-            return $this->getRelation($name);
-        }
-        else
-        {
-            if(isset($this->data) && array_key_exists($name, $this->data['customFields']))
-            {
-                $data = json_decode($this->data, true);
-                return $data['customFields'][$name];
-            }
-
-            return null;
-        }
+        
+        return parent::__get($name);
     }
 }
