@@ -15,4 +15,18 @@ trait CustomizableValues
 
         return parent::__get($name);
     }
+
+    public function __isset($name)
+    {
+        if(
+            isset($this->data['customFields']) &&
+            is_array($this->data['customFields']) &&
+            array_key_exists($name, $this->data['customFields'])
+        )
+        {
+            return true;
+        }
+
+        return parent::__isset($name);
+    }
 }
