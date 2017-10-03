@@ -41,7 +41,7 @@ return [
         (object)['id' => 'email',               'name' => 'Email'],
         (object)['id' => 'checkbox',            'name' => 'Checkbox'],
         (object)['id' => 'text-area',           'name' => 'Text Area'],
-        (object)['id' => 'wysiwyg',             'name' => 'Wysiwyg'],
+        (object)['id' => 'wysiwyg',             'name' => 'Wysiwyg']
     ],
 
     //******************************************************************************************************************
@@ -64,5 +64,4 @@ return [
         (object)['id' => '50',      'name' => '-50%'],
         (object)['id' => '75',      'name' => '-75%'],
     ]
-
 ];
