@@ -24,7 +24,7 @@ class FieldValueService
 
         $object['id']       = $id;
         $object['counter']  = $counter;
-        $object['data_lang'] = FieldValue::addLangDataRecord($object['lang_id'], $id);
+        $object['data_lang'] = FieldValue::addLangDataRecord($object['lang_id'], $object['field_id'], $id);
 
         return FieldValue::create($object);
     }

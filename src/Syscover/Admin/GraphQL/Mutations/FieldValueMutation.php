@@ -75,7 +75,7 @@ class DeleteFieldValueMutation extends FieldValueMutation
     public function args()
     {
         return [
-            'field' => [ // sustituir por filtros
+            'field' => [
                 'name' => 'field',
                 'type' => Type::nonNull(Type::int())
             ],
