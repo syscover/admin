@@ -4,6 +4,7 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Mutation;
 use Syscover\Admin\Models\FieldValue;
+use Syscover\Admin\Services\FieldValueService;
 use Syscover\Core\Services\SQLService;
 
 class FieldValueMutation extends Mutation
@@ -33,23 +34,7 @@ class AddFieldValueMutation extends FieldValueMutation
 
     public function resolve($root, $args)
     {
-        if(isset($args['object']['id']))
-        {
-            $id         = $args['object']['id'];
-            $counter    = null; // the id is defined by user
-        }
-        else
-        {
-            $counter    = FieldValue::where('field_id', $args['object']['field_id'])->max('counter'); // get max id from this field
-            $counter++;
-            $id         = $counter;
-        }
-
-        $args['object']['id'] = $id;
-        $args['object']['counter'] = $counter;
-        $args['object']['data_lang'] = FieldValue::addLangDataRecord($args['object']['lang_id'], $id);
-
-        return FieldValue::create($args['object']);
+        return FieldValueService::create($args['object']);
     }
 }
 
@@ -76,36 +61,7 @@ class UpdateFieldValueMutation extends FieldValueMutation
 
     public function resolve($root, $args)
     {
-        if($args['object']['id'])
-        {
-            $id         = $args['object']['id'];
-            $counter    = null; // the id is defined by user
-
-            // if change id, change id for object of all languages
-            FieldValue::where('field_id', $args['object']['field_id'])
-                ->where('id', $args['idOld'])
-                ->update(['id' => $id]);
-        }
-        else
-        {
-            // when update value, if id is autoincrement, is not possible change id
-            $id = $args['idOld'];
-        }
-
-        FieldValue::where('field_id', $args['object']['field_id'])
-            ->where('id', $id)
-            ->where('lang_id', $args['object']['lang_id'])
-            ->update([
-                'id'            => $id,
-                'name'          => $args['object']['name'],
-                'sort'          => $args['object']['sort'],
-                'featured'      => $args['object']['featured']
-            ]);
-
-        return FieldValue::where('id', $id)
-            ->where('lang_id', $args['object']['lang_id'])
-            ->where('field_id', $args['object']['field_id'])
-            ->first();
+        return FieldValueService::update($args['object'], $args['idOld']);
     }
 }
 

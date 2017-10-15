@@ -25,8 +25,8 @@ class TerritorialArea1Service
 
         TerritorialArea1::where('id', $id)
             ->update([
-                'id' => $object->get('id')
-                'name' => $object->get('name')
+                'id'    => $object->get('id'),
+                'name'  => $object->get('name')
             ]);
 
         return TerritorialArea1::where('id', $object->get('id'))

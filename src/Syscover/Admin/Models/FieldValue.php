@@ -38,4 +38,48 @@ class FieldValue extends CoreModel
         return $query->join('admin_field', 'admin_field_value.field_id', '=', 'admin_field.id')
             ->select('admin_field.*', 'admin_field_value.*', 'admin_field.name as field_name', 'admin_field_value.name as field_value_name');
     }
+
+    /**
+     * Function to add lang record from json field
+     *
+     * @access	public
+     * @param   int $id
+     * @param   string $lang
+     * @param   string $fieldId
+     * @return	string
+     */
+    public static function addLangDataRecord($lang, $fieldId, $id = null)
+    {
+        // if id is equal to null, is a new object
+        if($id === null)
+        {
+            $json[] = $lang;
+        }
+        else
+        {
+            $instance   = new static;
+            $object     = $instance::where('id', $id)
+                ->where('field_id', $fieldId)
+                ->first();
+
+            if($object !== null)
+            {
+                $json = $object->data_lang; // get data_lang from object
+                $json[] = $lang; // add new language
+
+                // updates all objects with new language variables
+                $instance::where($object->table . '.' . $instance->getKeyName(), $id)
+                    ->where('field_id', $fieldId)
+                    ->update([
+                        'data_lang' => json_encode($json)
+                    ]);
+            }
+            else
+            {
+                $json[] = $lang;
+            }
+        }
+
+        return $json;
+    }
 }

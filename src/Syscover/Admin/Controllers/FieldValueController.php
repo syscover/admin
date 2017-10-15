@@ -1,6 +1,7 @@
 <?php namespace Syscover\Admin\Controllers;
 
 use Illuminate\Http\Request;
+use Syscover\Admin\Services\FieldValueService;
 use Syscover\Core\Controllers\CoreController;
 use Syscover\Admin\Models\FieldValue;
 
@@ -17,43 +18,8 @@ class FieldValueController extends CoreController
      */
     public function store(Request $request)
     {
-        try
-        {
-            if($request->has('id'))
-            {
-                $id         = $request->input('id');
-                $counter    = null; // the id is defined by user
-            }
-            else
-            {
-                $counter    = FieldValue::where('field_id', $request->input('field_id'))->max('counter'); // get max id from this field
-                $counter++;
-                $id         = $counter;
-            }
-
-            // create new object
-            $object = FieldValue::create([
-                'id'            => $id,
-                'lang_id'       => $request->input('lang_id'),
-                'field_id'      => $request->input('field_id'),
-                'counter'       => $counter,
-                'name'          => $request->input('name'),
-                'sort'          => $request->input('sort'),
-                'featured'      => $request->input('featured'),
-                'data_lang'     => FieldValue::addLangDataRecord($request->input('lang_id'), $id),
-                'data'          => null
-            ]);
-        }
-        catch (\Exception $e)
-        {
-            $response['status'] = "error";
-            $response['message'] = $e->getMessage();
-
-            return response()->json($response, 500);
-        }
-
         $response['status'] = "success";
-        $response['data']   = $object;
+        $response['data']   = FieldValueService::create($request->all());
 
         return response()->json($response);
     }
