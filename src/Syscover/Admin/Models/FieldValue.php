@@ -48,7 +48,7 @@ class FieldValue extends CoreModel
      * @param   string $fieldId
      * @return	string
      */
-    public static function addLangDataRecord($lang, $fieldId, $id = null)
+    public static function addLangFieldValue($lang, $fieldId, $id = null)
     {
         // if id is equal to null, is a new object
         if($id === null)
