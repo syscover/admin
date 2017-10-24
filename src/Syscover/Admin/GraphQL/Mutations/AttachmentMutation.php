@@ -62,11 +62,25 @@ class CropAttachmentMutation extends AttachmentMutation
         }
 
 
+        // crop
         $image->crop($args['object']['crop']['width'], $args['object']['crop']['height'], $args['object']['crop']['x'], $args['object']['crop']['y']);
-        $image->resize($args['object']['attachment_family']['width'], $args['object']['attachment_family']['height']);
+
+        // resize
+        if($args['object']['attachment_family']['width'] === null || $args['object']['attachment_family']['height'] === null)
+        {
+            $image->resize($args['object']['attachment_family']['width'], $args['object']['attachment_family']['height'], function($constraint) {
+                $constraint->aspectRatio();
+            });
+        }
+        else
+        {
+            $image->resize($args['object']['attachment_family']['width'], $args['object']['attachment_family']['height']);
+        }
+
+        // save
         $image->save(
             $args['object']['attachment']['base_path'] . '/' . $args['object']['attachment']['file_name'],
-            ! empty($args['object']['attachment_family']['quality'])? 90 : $args['object']['attachment_family']['quality'] // set quality image
+            ! empty($args['object']['attachment_family']['quality']) ? 90 : $args['object']['attachment_family']['quality'] // set quality image
         );
 
         // get new properties from image cropped
