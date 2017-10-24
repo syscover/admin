@@ -70,6 +70,7 @@ class CropAttachmentMutation extends AttachmentMutation
         {
             $image->resize($args['object']['attachment_family']['width'], $args['object']['attachment_family']['height'], function($constraint) {
                 $constraint->aspectRatio();
+                $constraint->upsize();
             });
         }
         else
