@@ -69,8 +69,8 @@ class CropAttachmentMutation extends AttachmentMutation
         if($args['object']['attachment_family']['width'] === null || $args['object']['attachment_family']['height'] === null)
         {
             $image->resize($args['object']['attachment_family']['width'], $args['object']['attachment_family']['height'], function($constraint) {
-                $constraint->aspectRatio();
-                $constraint->upsize();
+                $constraint->aspectRatio(); // Constraint the current aspect-ratio of the image.
+                $constraint->upsize(); // Keep image from being upsized.
             });
         }
         else
