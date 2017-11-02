@@ -273,8 +273,7 @@ class AttachmentService
      */
     public static function manageWysiwygAttachment($article, $directory, $urlBase, $id)
     {
-        if(empty($article))
-            return null;
+        if(empty($article)) return null;
 
         // load element and get img tags
         $doc = new \DOMDocument();
