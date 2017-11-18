@@ -67,6 +67,6 @@ class Field extends CoreModel
         $field->save(); // save values
 
         // set values on data_lang
-        Field::deleteLangDataRecord($id, $lang);
+        Field::deleteDataLang($lang, $id);
     }
 }

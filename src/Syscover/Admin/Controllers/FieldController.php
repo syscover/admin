@@ -57,7 +57,7 @@ class FieldController extends CoreController
                     'pattern'           => $request->input('pattern'),
                     'label_class'       => $request->input('label_class'),
                     'component_class'   => $request->input('component_class'),
-                    'data_lang'         => Field::addLangDataRecord($request->input('lang_id'))
+                    'data_lang'         => Field::addDataLang($request->input('lang_id'))
                 ]);
             }
         }

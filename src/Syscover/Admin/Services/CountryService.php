@@ -10,7 +10,7 @@ class CountryService
      */
     public static function create($object)
     {
-        $object['data_lang'] = Country::addLangDataRecord($object['lang_id'], $object['id']);
+        $object['data_lang'] = Country::addDataLang($object['lang_id'], $object['id']);
 
         return Country::create($object);
     }

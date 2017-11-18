@@ -78,7 +78,7 @@ class AddFieldMutation extends FieldMutation
             'value' => $args['object']['label']
         ]];
 
-        $args['object']['data_lang'] = Field::addLangDataRecord($args['object']['lang_id']);
+        $args['object']['data_lang'] = Field::addDataLang($args['object']['lang_id']);
 
         return Field::create($args['object']);
     }

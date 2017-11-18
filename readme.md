@@ -37,7 +37,7 @@ php artisan db:seed --class="AdminTableSeeder"
 
 **5 - Execute command to load all updates**
 ```
-php artisan migrate --path=database/migrations/updates
+php artisan migrate --path=vendor/syscover/pulsar-admin/src/database/migrations/updates
 ```
 
 **6 - include this arrays in config/auth.php**

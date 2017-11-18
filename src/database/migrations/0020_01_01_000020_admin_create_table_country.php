@@ -16,7 +16,7 @@ class AdminCreateTableCountry extends Migration
         {
             Schema::create('admin_country', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
-                
+
                 $table->string('id', 2);
                 $table->string('lang_id', 2);
                 $table->string('name');
