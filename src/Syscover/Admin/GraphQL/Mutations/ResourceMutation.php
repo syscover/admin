@@ -4,6 +4,7 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Mutation;
 use Syscover\Admin\Models\Resource;
+use Syscover\Admin\Services\ResourceService;
 use Syscover\Core\Services\SQLService;
 
 class ResourceMutation extends Mutation
@@ -33,7 +34,7 @@ class AddResourceMutation extends ResourceMutation
 
     public function resolve($root, $args)
     {
-        return Resource::create($args['object']);
+        return ResourceService::create($args['object']);
     }
 }
 
@@ -47,10 +48,6 @@ class UpdateResourceMutation extends ResourceMutation
     public function args()
     {
         return [
-            'idOld' => [
-                'name' => 'idOld',
-                'type' => Type::nonNull(Type::string())
-            ],
             'object' => [
                 'name' => 'object',
                 'type' => Type::nonNull(GraphQL::type('AdminResourceInput'))
@@ -60,10 +57,7 @@ class UpdateResourceMutation extends ResourceMutation
 
     public function resolve($root, $args)
     {
-        Resource::where('id', $args['idOld'])
-            ->update($args['object']);
-
-        return Resource::find($args['object']['id']);
+        return ResourceService::update($args['object']);
     }
 }
 
@@ -78,7 +72,7 @@ class DeleteResourceMutation extends ResourceMutation
     {
         return [
             'id' => [
-                'name' => 'id',
+                'name' => 'object_id',
                 'type' => Type::nonNull(Type::string())
             ]
         ];
@@ -86,7 +80,7 @@ class DeleteResourceMutation extends ResourceMutation
 
     public function resolve($root, $args)
     {
-        $object = SQLService::destroyRecord($args['id'], Resource::class);
+        $object = SQLService::destroyRecord($args['object_id'], Resource::class);
 
         return $object;
     }

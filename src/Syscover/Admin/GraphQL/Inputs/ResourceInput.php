@@ -16,8 +16,12 @@ class ResourceInput extends GraphQLType
     {
         return [
             'id' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::int(),
                 'description' => 'The id of resource'
+            ],
+            'object_id' => [
+                'type' => Type::nonNull(Type::string()),
+                'description' => 'The string id of resource'
             ],
             'name' => [
                 'type' => Type::nonNull(Type::string()),

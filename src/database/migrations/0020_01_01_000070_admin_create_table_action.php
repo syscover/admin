@@ -24,7 +24,7 @@ class AdminCreateTableAction extends Migration
                 $table->timestamps();
                 $table->softDeletes();
 
-				$table->primary('id', 'pk01_admin_action');
+                $table->index('object_id', 'ix01_admin_action');
 			});
 		}
 	}

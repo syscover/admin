@@ -26,7 +26,7 @@ class FieldGroup extends CoreModel
 
     public function scopeBuilder($query)
     {
-        return $query->join('admin_resource', 'admin_field_group.resource_id', '=', 'admin_resource.id')
+        return $query->join('admin_resource', 'admin_field_group.resource_id', '=', 'admin_resource.object_id')
             ->select('admin_resource.*', 'admin_field_group.*', 'admin_resource.name as resource_name', 'admin_field_group.name as field_group_name');
     }
 

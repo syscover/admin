@@ -11,12 +11,11 @@ use Illuminate\Support\Facades\Validator;
 class Resource extends CoreModel
 {
 	protected $table        = 'admin_resource';
-    protected $fillable     = ['id', 'name', 'package_id'];
-    public $incrementing    = false;
+    protected $fillable     = ['id', 'object_id', 'name', 'package_id'];
     public $with            = ['package'];
 
     private static $rules   = [
-        'id'        =>  'required|between:2,30|unique:001_007_resource,id_007',
+        'object_id' =>  'required|between:2,30|unique:001_007_resource,id_007',
         'package'   =>  'not_in:null',
         'name'      =>  'required|between:2,50'
     ];

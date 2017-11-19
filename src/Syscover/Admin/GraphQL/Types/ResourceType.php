@@ -15,8 +15,12 @@ class ResourceType extends GraphQLType
     {
         return [
             'id' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::nonNull(Type::int()),
                 'description' => 'The id of resource'
+            ],
+            'object_id' => [
+                'type' => Type::nonNull(Type::string()),
+                'description' => 'The string id of resource'
             ],
             'name' => [
                 'type' => Type::nonNull(Type::string()),
