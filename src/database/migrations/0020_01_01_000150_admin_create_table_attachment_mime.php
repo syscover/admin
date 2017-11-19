@@ -16,7 +16,7 @@ class AdminCreateTableAttachmentMime extends Migration {
 			Schema::create('admin_attachment_mime', function ($table) {
 				$table->engine = 'InnoDB';
 
-				$table->increments('id')->unsigned();
+				$table->increments('id');
 				$table->string('resource_id', 30);
 				$table->string('mime');
 

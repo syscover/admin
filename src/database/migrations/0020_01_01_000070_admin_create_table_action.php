@@ -16,8 +16,9 @@ class AdminCreateTableAction extends Migration
 		{
 			Schema::create('admin_action', function (Blueprint $table) {
 				$table->engine = 'InnoDB';
-				
-				$table->string('id', 25);
+
+                $table->increments('id');
+				$table->string('object_id', 25);
 				$table->string('name');
 
                 $table->timestamps();

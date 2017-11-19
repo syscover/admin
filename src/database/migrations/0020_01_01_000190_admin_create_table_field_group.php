@@ -17,7 +17,7 @@ class AdminCreateTableFieldGroup extends Migration {
             Schema::create('admin_field_group', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
                 
-                $table->increments('id')->unsigned();
+                $table->increments('id');
                 $table->string('name')->nullable();
                 $table->string('resource_id', 30); // resource which belong to this family field
 

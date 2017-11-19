@@ -12,16 +12,29 @@ class AdminUpdateV1 extends Migration
 	 */
 	public function up()
 	{
-        if(! Schema::hasColumn('admin_country', 'obj_id'))
+        if(! Schema::hasColumn('admin_action', 'object_id'))
         {
-            Schema::table('admin_country', function (Blueprint $table) {
-                //$table->dropPrimary('pk01_admin_country');
-                //$table->renameColumn('id', 'obj_id');
+            Schema::table('admin_permission', function (Blueprint $table) {
+                $table->dropForeign('fk03_admin_permission');
+            });
 
-//                $table->integer('id')->unsigned();
-//                $table->primary('id', 'pk01_admin_country');
-//
-//                $table->index(['obj_id', 'lang_id'], 'ix01_admin_country');
+            Schema::table('admin_action', function (Blueprint $table) {
+                $table->dropPrimary('PRIMARY');
+                $table->renameColumn('id', 'object_id');
+            });
+
+            Schema::table('admin_action', function (Blueprint $table) {
+                $table->increments('id')->first();
+                $table->index('object_id', 'ix01_admin_action');
+
+            });
+
+            Schema::table('admin_permission', function (Blueprint $table) {
+                $table->foreign('action_id', 'fk03_admin_permission')
+                    ->references('object_id')
+                    ->on('admin_action')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
             });
         }
 	}

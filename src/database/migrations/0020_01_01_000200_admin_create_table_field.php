@@ -17,7 +17,7 @@ class AdminCreateTableField extends Migration {
             Schema::create('admin_field', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
                 
-                $table->increments('id')->unsigned();
+                $table->increments('id');
                 $table->integer('field_group_id')->unsigned();
                 $table->string('name')->nullable();
                 $table->text('labels')->nullable(); // To save label values in different languages

@@ -48,10 +48,6 @@ class UpdateActionMutation extends ActionMutation
     public function args()
     {
         return [
-            'idOld' => [
-                'name' => 'idOld',
-                'type' => Type::nonNull(Type::string())
-            ],
             'object' => [
                 'name' => 'object',
                 'type' => Type::nonNull(GraphQL::type('AdminActionInput'))
@@ -61,7 +57,7 @@ class UpdateActionMutation extends ActionMutation
 
     public function resolve($root, $args)
     {
-        return ActionService::update($args['object'], $args['idOld']);
+        return ActionService::update($args['object']);
     }
 }
 
@@ -75,8 +71,8 @@ class DeleteActionMutation extends ActionMutation
     public function args()
     {
         return [
-            'id' => [
-                'name' => 'id',
+            'object_id' => [
+                'name' => 'object_id',
                 'type' => Type::nonNull(Type::string())
             ]
         ];
@@ -84,7 +80,7 @@ class DeleteActionMutation extends ActionMutation
 
     public function resolve($root, $args)
     {
-        $object = SQLService::destroyRecord($args['id'], Action::class);
+        $object = SQLService::destroyRecord($args['object_id'], Action::class);
 
         return $object;
     }

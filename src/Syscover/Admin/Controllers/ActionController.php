@@ -27,13 +27,12 @@ class ActionController extends CoreController
      * Update the specified resource in storage.
      *
      * @param   \Illuminate\Http\Request  $request
-     * @param   int     $id
      * @return  \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $response['status'] = "success";
-        $response['data']   = ActionService::update($request->all(), $id);
+        $response['data']   = ActionService::update($request->all());
 
         return response()->json($response);
     }

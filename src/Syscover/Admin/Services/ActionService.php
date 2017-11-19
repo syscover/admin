@@ -15,16 +15,15 @@ class ActionService
 
     /**
      * @param array     $object     contain properties of action
-     * @param int       $id         old id of section
      * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null|static|static[]
      */
-    public static function update($object, $id)
+    public static function update($object)
     {
         $object = collect($object);
 
-        Action::where('id', $id)->update([
-            'id'    => $object->get('id'),
-            'name'  => $object->get('name')
+        Action::where('id', $object->get('id'))->update([
+            'object_id' => $object->get('object_id'),
+            'name'      => $object->get('name')
         ]);
 
         return Action::find($object->get('id'));

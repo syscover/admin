@@ -17,7 +17,7 @@ class AdminCreateTableAttachmentFamily extends Migration {
             Schema::create('admin_attachment_family', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
                 
-                $table->increments('id')->unsigned();
+                $table->increments('id');
                 $table->string('resource_id', 30); // resource which belong to this attachment
                 $table->string('name');
                 $table->smallInteger('width')->unsigned()->nullable();

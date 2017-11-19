@@ -17,7 +17,7 @@ class AdminCreateTableProfile extends Migration
 			Schema::create('admin_profile', function (Blueprint $table) {
 				$table->engine = 'InnoDB';
 				
-				$table->increments('id')->unsigned();
+				$table->increments('id');
 				$table->string('name');
 
                 $table->timestamps();

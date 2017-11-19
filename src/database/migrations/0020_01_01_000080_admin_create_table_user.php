@@ -17,7 +17,7 @@ class AdminCreateTableUser extends Migration
             Schema::create('admin_user', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
                 
-                $table->increments('id')->unsigned();
+                $table->increments('id');
                 $table->string('name');
                 $table->string('surname')->nullable();
                 $table->string('lang_id', 2);

@@ -16,8 +16,12 @@ class ActionInput extends GraphQLType
     {
         return [
             'id' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::int(),
                 'description' => 'The id of action'
+            ],
+            'object_id' => [
+                'type' => Type::nonNull(Type::string()),
+                'description' => 'The sting id of action'
             ],
             'name' => [
                 'type' => Type::nonNull(Type::string()),

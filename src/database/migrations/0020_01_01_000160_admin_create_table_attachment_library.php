@@ -17,7 +17,7 @@ class AdminCreateTableAttachmentLibrary extends Migration {
             Schema::create('admin_attachment_library', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
                 
-                $table->increments('id')->unsigned();
+                $table->increments('id');
                 $table->string('name');                         // original image name
                 $table->string('base_path', 1024);
                 $table->string('file_name');                    // file name in laravel storage

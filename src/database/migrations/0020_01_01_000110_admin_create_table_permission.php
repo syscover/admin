@@ -35,7 +35,7 @@ class AdminCreateTablePermission extends Migration
 					->onDelete('cascade')
 					->onUpdate('cascade');
 				$table->foreign('action_id', 'fk03_admin_permission')
-					->references('id')
+					->references('object_id')
 					->on('admin_action')
 					->onDelete('cascade')
 					->onUpdate('cascade');

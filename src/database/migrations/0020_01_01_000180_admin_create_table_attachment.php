@@ -17,7 +17,7 @@ class AdminCreateTableAttachment extends Migration {
             Schema::create('admin_attachment', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
                 
-                $table->integer('id')->unsigned();
+                $table->integer('id');
                 $table->string('lang_id', 2);
                 $table->integer('object_id')->unsigned()->nullable();
                 $table->string('object_type');
