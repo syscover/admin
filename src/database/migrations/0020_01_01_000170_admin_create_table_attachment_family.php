@@ -30,7 +30,7 @@ class AdminCreateTableAttachmentFamily extends Migration {
                 $table->softDeletes();
 
                 $table->foreign('resource_id', 'fk01_admin_attachment_family')
-                    ->references('id')
+                    ->references('object_id')
                     ->on('admin_resource')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');

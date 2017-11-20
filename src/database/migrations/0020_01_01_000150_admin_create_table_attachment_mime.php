@@ -24,7 +24,7 @@ class AdminCreateTableAttachmentMime extends Migration {
                 $table->softDeletes();
 
 				$table->foreign('resource_id', 'fk01_admin_attachment_mime')
-					->references('id')
+					->references('object_id')
 					->on('admin_resource')
 					->onDelete('cascade')
 					->onUpdate('cascade');

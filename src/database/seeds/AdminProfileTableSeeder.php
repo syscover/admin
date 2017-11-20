@@ -8,10 +8,10 @@ class AdminProfileTableSeeder extends Seeder
     public function run()
     {
         Profile::insert([
-            ['id' => '1','name' => 'Administrador'],
-            ['id' => '2','name' => 'Supervisor'],
-            ['id' => '3','name' => 'Usuario'],
-            ['id' => '4','name' => 'Visor'],
+            ['id' => '1', 'name' => 'Administrador'],
+            ['id' => '2', 'name' => 'Supervisor'],
+            ['id' => '3', 'name' => 'Usuario'],
+            ['id' => '4', 'name' => 'Visor'],
         ]);
     }
 }

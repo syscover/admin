@@ -8,11 +8,11 @@ class AdminActionTableSeeder extends Seeder
     public function run()
     {
         Action::insert([
-            ['id' => 'access',  'name' => 'Access'],
-            ['id' => 'create',  'name' => 'Create'],
-            ['id' => 'delete',  'name' => 'Delete'],
-            ['id' => 'edit',    'name' => 'Edit'],
-            ['id' => 'show',    'name' => 'Show']
+            ['object_id' => 'access',  'name' => 'Access'],
+            ['object_id' => 'create',  'name' => 'Create'],
+            ['object_id' => 'delete',  'name' => 'Delete'],
+            ['object_id' => 'edit',    'name' => 'Edit'],
+            ['object_id' => 'show',    'name' => 'Show']
         ]);
     }
 }

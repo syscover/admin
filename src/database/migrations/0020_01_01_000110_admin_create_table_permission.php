@@ -18,8 +18,8 @@ class AdminCreateTablePermission extends Migration
 				$table->engine = 'InnoDB';
 				
 				$table->integer('profile_id')->unsigned();
-				$table->string('resource_id', 30);
-				$table->string('action_id', 25);
+				$table->string('resource_object_id', 30);
+				$table->string('action_object_id', 25);
 
                 $table->timestamps();
                 $table->softDeletes();
@@ -29,12 +29,12 @@ class AdminCreateTablePermission extends Migration
 					->on('admin_profile')
 					->onDelete('cascade')
 					->onUpdate('cascade');
-				$table->foreign('resource_id', 'fk02_admin_permission')
-					->references('id')
+				$table->foreign('resource_object_id', 'fk02_admin_permission')
+					->references('object_id')
 					->on('admin_resource')
 					->onDelete('cascade')
 					->onUpdate('cascade');
-				$table->foreign('action_id', 'fk03_admin_permission')
+				$table->foreign('action_object_id', 'fk03_admin_permission')
 					->references('object_id')
 					->on('admin_action')
 					->onDelete('cascade')
