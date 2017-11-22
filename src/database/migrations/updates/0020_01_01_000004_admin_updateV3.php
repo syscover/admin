@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AdminUpdateV4 extends Migration
+class AdminUpdateV3 extends Migration
 {
     public function __construct()
     {
@@ -17,17 +17,16 @@ class AdminUpdateV4 extends Migration
 	 */
 	public function up()
 	{
-        if(! Schema::hasColumn('admin_field_value', 'object_id'))
+        if(! Schema::hasColumn('admin_field_value', 'ix'))
         {
             Schema::table('admin_field_value', function (Blueprint $table) {
                 $table->dropPrimary('PRIMARY');
-                $table->renameColumn('id', 'object_id');
             });
 
             Schema::table('admin_field_value', function (Blueprint $table) {
-                $table->increments('id')->first();
-                $table->unique(['object_id', 'lang_id', 'field_id'], 'ui01_admin_field_value');
-                $table->index('object_id', 'ix01_admin_field_value');
+                $table->increments('ix')->first();
+                $table->unique(['id', 'lang_id', 'field_id'], 'ui01_admin_field_value');
+                $table->index('id', 'ix01_admin_field_value');
             });
         }
 	}

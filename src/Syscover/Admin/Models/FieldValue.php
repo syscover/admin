@@ -14,7 +14,8 @@ class FieldValue extends CoreModel
     use Translatable;
 
 	protected $table        = 'admin_field_value';
-    protected $fillable     = ['id', 'object_id', 'lang_id', 'field_id', 'counter', 'sort', 'featured', 'name', 'data_lang', 'data'];
+    protected $primaryKey   = 'ix';
+    protected $fillable     = ['ix', 'id', 'lang_id', 'field_id', 'counter', 'sort', 'featured', 'name', 'data_lang', 'data'];
     protected $casts        = [
         'featured'  => 'boolean',
         'data_lang' => 'array',

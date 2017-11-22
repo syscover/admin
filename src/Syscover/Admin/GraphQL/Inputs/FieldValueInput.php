@@ -15,13 +15,13 @@ class FieldValueInput extends GraphQLType
     public function fields()
     {
         return [
-            'id' => [
+            'ix' => [
                 'type' => Type::int(),
-                'description' => 'The id of field value'
+                'description' => 'The index of field value'
             ],
-            'object_id' => [
+            'id' => [
                 'type' => Type::string(),
-                'description' => 'The sting id of field value'
+                'description' => 'The id of field value'
             ],
             'lang_id' => [
                 'type' => Type::string(),

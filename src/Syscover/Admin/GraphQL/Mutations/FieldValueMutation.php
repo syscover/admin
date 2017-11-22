@@ -79,8 +79,8 @@ class DeleteFieldValueMutation extends FieldValueMutation
                 'name' => 'lang_id',
                 'type' => Type::string()
             ],
-            'object_id' => [
-                'name' => 'object_id',
+            'id' => [
+                'name' => 'id',
                 'type' => Type::nonNull(Type::string())
             ]
         ];
@@ -88,7 +88,7 @@ class DeleteFieldValueMutation extends FieldValueMutation
 
     public function resolve($root, $args)
     {
-        $object = SQLService::destroyRecord($args['object_id'], FieldValue::class, $args['lang_id'], null, ['field_id' => $args['field_id']]);
+        $object = SQLService::destroyRecord($args['id'], FieldValue::class, $args['lang_id'], null, ['field_id' => $args['field_id']]);
 
         return $object;
     }

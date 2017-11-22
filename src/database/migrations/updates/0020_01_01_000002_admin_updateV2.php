@@ -12,7 +12,7 @@ class AdminUpdateV2 extends Migration
 	 */
 	public function up()
 	{
-        if(! Schema::hasColumn('admin_resource', 'object_id'))
+        if(! Schema::hasColumn('admin_resource', 'ix'))
         {
             Schema::table('admin_permission', function (Blueprint $table) {
                 $table->dropForeign('fk02_admin_permission');

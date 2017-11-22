@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AdminUpdateV5 extends Migration
+class AdminUpdateV4 extends Migration
 {
     public function __construct()
     {
