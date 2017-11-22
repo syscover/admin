@@ -14,8 +14,12 @@ class FieldValueType extends GraphQLType
     {
         return [
             'id' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::nonNull(Type::int()),
                 'description' => 'The id of field value'
+            ],
+            'object_id' => [
+                'type' => Type::nonNull(Type::string()),
+                'description' => 'The sting id of field value'
             ],
             'lang_id' => [
                 'type' => Type::nonNull(Type::string()),

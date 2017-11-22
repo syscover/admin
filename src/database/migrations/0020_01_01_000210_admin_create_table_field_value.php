@@ -16,8 +16,9 @@ class AdminCreateTableFieldValue extends Migration {
         {
             Schema::create('admin_field_value', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
-                
-                $table->string('id', 30);
+
+                $table->increments('id');
+                $table->string('object_id', 30);
                 // counter to assign number to id if has not ID
                 $table->integer('counter')->unsigned()->nullable();
 
@@ -43,7 +44,8 @@ class AdminCreateTableFieldValue extends Migration {
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
 
-                $table->primary(['id', 'lang_id', 'field_id'], 'pk01_admin_field_value');
+                $table->unique(['object_id', 'lang_id', 'field_id'], 'ui01_admin_field_value');
+                $table->index('object_id', 'ix01_admin_field_value');
             });
         }
     }

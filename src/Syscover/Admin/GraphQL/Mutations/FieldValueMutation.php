@@ -48,10 +48,6 @@ class UpdateFieldValueMutation extends FieldValueMutation
     public function args()
     {
         return [
-            'idOld' => [
-                'name' => 'idOld',
-                'type' => Type::nonNull(Type::string())
-            ],
             'object' => [
                 'name' => 'object',
                 'type' => Type::nonNull(GraphQL::type('AdminFieldValueInput'))
@@ -61,7 +57,7 @@ class UpdateFieldValueMutation extends FieldValueMutation
 
     public function resolve($root, $args)
     {
-        return FieldValueService::update($args['object'], $args['idOld']);
+        return FieldValueService::update($args['object']);
     }
 }
 
@@ -75,16 +71,16 @@ class DeleteFieldValueMutation extends FieldValueMutation
     public function args()
     {
         return [
-            'field' => [
-                'name' => 'field',
+            'field_id' => [
+                'name' => 'field_id',
                 'type' => Type::nonNull(Type::int())
             ],
-            'id' => [
-                'name' => 'id',
+            'object_id' => [
+                'name' => 'object_id',
                 'type' => Type::nonNull(Type::string())
             ],
-            'lang' => [
-                'name' => 'lang',
+            'lang_id' => [
+                'name' => 'lang_id',
                 'type' => Type::string()
             ]
         ];
@@ -92,7 +88,7 @@ class DeleteFieldValueMutation extends FieldValueMutation
 
     public function resolve($root, $args)
     {
-        $object = SQLService::destroyRecord($args['id'], FieldValue::class, $args['lang']);
+        $object = SQLService::destroyRecord($args['object_id'], FieldValue::class, $args['lang_id'], null, ['field_id' => $args['field_id']]);
 
         return $object;
     }
