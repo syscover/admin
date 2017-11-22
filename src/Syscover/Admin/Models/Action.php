@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Validator;
 class Action extends CoreModel
 {
 	protected $table        = 'admin_action';
-    protected $fillable     = ['id', 'object_id', 'name'];
+    protected $primaryKey   = 'ix';
+    protected $fillable     = ['ix', 'id', 'name'];
 
     private static $rules   = [
         'id'    => 'required|between:2,25|unique:action,id',
@@ -20,7 +21,7 @@ class Action extends CoreModel
 
     public static function validate($data, $specialRules = [])
     {
-        if(isset($specialRules['objectIdRule']) && $specialRules['objectIdRule']) static::$rules['object_id'] = 'required|between:2,25';
+        if(isset($specialRules['idRule']) && $specialRules['idRule']) static::$rules['id'] = 'required|between:2,25';
 
         return Validator::make($data, static::$rules);
 	}

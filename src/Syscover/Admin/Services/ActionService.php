@@ -21,11 +21,11 @@ class ActionService
     {
         $object = collect($object);
 
-        Action::where('id', $object->get('id'))->update([
-            'object_id' => $object->get('object_id'),
+        Action::where('ix', $object->get('ix'))->update([
+            'id'        => $object->get('id'),
             'name'      => $object->get('name')
         ]);
 
-        return Action::find($object->get('id'));
+        return Action::find($object->get('ix'));
     }
 }

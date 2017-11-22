@@ -15,13 +15,13 @@ class ActionInput extends GraphQLType
     public function fields()
     {
         return [
-            'id' => [
+            'ix' => [
                 'type' => Type::int(),
-                'description' => 'The id of action'
+                'description' => 'The index of action'
             ],
-            'object_id' => [
+            'id' => [
                 'type' => Type::nonNull(Type::string()),
-                'description' => 'The sting id of action'
+                'description' => 'The id of action'
             ],
             'name' => [
                 'type' => Type::nonNull(Type::string()),

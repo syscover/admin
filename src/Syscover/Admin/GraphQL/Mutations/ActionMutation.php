@@ -71,8 +71,8 @@ class DeleteActionMutation extends ActionMutation
     public function args()
     {
         return [
-            'object_id' => [
-                'name' => 'object_id',
+            'id' => [
+                'name' => 'id',
                 'type' => Type::nonNull(Type::string())
             ]
         ];
@@ -80,7 +80,7 @@ class DeleteActionMutation extends ActionMutation
 
     public function resolve($root, $args)
     {
-        $object = SQLService::destroyRecord($args['object_id'], Action::class);
+        $object = SQLService::destroyRecord($args['id'], Action::class);
 
         return $object;
     }
