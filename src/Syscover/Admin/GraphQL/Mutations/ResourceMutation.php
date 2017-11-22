@@ -72,7 +72,7 @@ class DeleteResourceMutation extends ResourceMutation
     {
         return [
             'id' => [
-                'name' => 'object_id',
+                'name' => 'id',
                 'type' => Type::nonNull(Type::string())
             ]
         ];
@@ -80,7 +80,7 @@ class DeleteResourceMutation extends ResourceMutation
 
     public function resolve($root, $args)
     {
-        $object = SQLService::destroyRecord($args['object_id'], Resource::class);
+        $object = SQLService::destroyRecord($args['id'], Resource::class);
 
         return $object;
     }

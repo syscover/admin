@@ -15,13 +15,13 @@ class ResourceInput extends GraphQLType
     public function fields()
     {
         return [
-            'id' => [
+            'ix' => [
                 'type' => Type::int(),
-                'description' => 'The id of resource'
+                'description' => 'The index of resource'
             ],
-            'object_id' => [
+            'id' => [
                 'type' => Type::nonNull(Type::string()),
-                'description' => 'The string id of resource'
+                'description' => 'The id of resource'
             ],
             'name' => [
                 'type' => Type::nonNull(Type::string()),

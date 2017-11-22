@@ -33,19 +33,17 @@ class AdminUpdateV2 extends Migration
 
             Schema::table('admin_resource', function (Blueprint $table) {
                 $table->dropPrimary('PRIMARY');
-                $table->renameColumn('id', 'object_id');
             });
 
             Schema::table('admin_resource', function (Blueprint $table) {
-                $table->increments('id')->first();
-                $table->index('object_id', 'ix01_admin_resource');
-
+                $table->increments('ix')->first();
+                $table->index('id', 'ix01_admin_resource');
             });
 
 
             Schema::table('admin_permission', function (Blueprint $table) {
                 $table->foreign('resource_id', 'fk02_admin_permission')
-                    ->references('object_id')
+                    ->references('id')
                     ->on('admin_resource')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
@@ -53,7 +51,7 @@ class AdminUpdateV2 extends Migration
 
             Schema::table('admin_attachment_family', function (Blueprint $table) {
                 $table->foreign('resource_id', 'fk01_admin_attachment_family')
-                    ->references('object_id')
+                    ->references('id')
                     ->on('admin_resource')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
@@ -61,7 +59,7 @@ class AdminUpdateV2 extends Migration
 
             Schema::table('admin_attachment_mime', function (Blueprint $table) {
                 $table->foreign('resource_id', 'fk01_admin_attachment_mime')
-                    ->references('object_id')
+                    ->references('id')
                     ->on('admin_resource')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
@@ -69,7 +67,7 @@ class AdminUpdateV2 extends Migration
 
             Schema::table('admin_field_group', function (Blueprint $table) {
                 $table->foreign('resource_id', 'fk01_admin_field_group')
-                    ->references('object_id')
+                    ->references('id')
                     ->on('admin_resource')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');

@@ -17,8 +17,8 @@ class AdminCreateTableResource extends Migration
 			Schema::create('admin_resource', function (Blueprint $table) {
 				$table->engine = 'InnoDB';
 
-                $table->increments('id');
-                $table->string('object_id', 30);
+                $table->increments('ix');
+                $table->string('id', 30);
 				$table->string('name');
 				$table->integer('package_id')->unsigned();
 
@@ -31,7 +31,7 @@ class AdminCreateTableResource extends Migration
 					->onDelete('restrict')
 					->onUpdate('cascade');
 
-                $table->index('object_id', 'ix01_admin_resource');
+                $table->index('id', 'ix01_admin_resource');
 			});
 		}
 	}

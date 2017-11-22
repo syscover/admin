@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Validator;
 class Resource extends CoreModel
 {
 	protected $table        = 'admin_resource';
-    protected $fillable     = ['id', 'object_id', 'name', 'package_id'];
+    protected $primaryKey   = 'ix';
+    protected $fillable     = ['ix', 'id', 'name', 'package_id'];
     public $with            = ['package'];
 
     private static $rules   = [

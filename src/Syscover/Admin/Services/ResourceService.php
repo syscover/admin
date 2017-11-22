@@ -21,12 +21,12 @@ class ResourceService
     {
         $object = collect($object);
 
-        Resource::where('id', $object->get('id'))
+        Resource::where('ix', $object->get('ix'))
             ->update([
-                'object_id' => $object->get('object_id'),
-                'name'      => $object->get('name')
+                'id'    => $object->get('id'),
+                'name'  => $object->get('name')
             ]);
 
-        return Resource::find($object->get('id'));
+        return Resource::find($object->get('ix'));
     }
 }
