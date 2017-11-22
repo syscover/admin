@@ -75,13 +75,13 @@ class DeleteFieldValueMutation extends FieldValueMutation
                 'name' => 'field_id',
                 'type' => Type::nonNull(Type::int())
             ],
-            'object_id' => [
-                'name' => 'object_id',
-                'type' => Type::nonNull(Type::string())
-            ],
             'lang_id' => [
                 'name' => 'lang_id',
                 'type' => Type::string()
+            ],
+            'object_id' => [
+                'name' => 'object_id',
+                'type' => Type::nonNull(Type::string())
             ]
         ];
     }

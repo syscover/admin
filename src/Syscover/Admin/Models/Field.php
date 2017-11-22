@@ -53,8 +53,9 @@ class Field extends CoreModel
      * @param $id
      * @param $langId
      * @param bool $deleteLangDataRecord
+     * @param   array $filters  filters to select and delete records
      */
-    public static function deleteTranslationRecord($id, $langId, $deleteLangDataRecord = true)
+    public static function deleteTranslationRecord($id, $langId, $deleteLangDataRecord = true, $filters = [])
     {
         $field = Field::find($id);
 
