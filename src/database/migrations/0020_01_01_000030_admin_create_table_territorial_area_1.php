@@ -16,7 +16,8 @@ class AdminCreateTableTerritorialArea1 extends Migration
 		{
 			Schema::create('admin_territorial_area_1', function (Blueprint $table) {
 				$table->engine = 'InnoDB';
-				
+
+                $table->increments('ix');
 				$table->string('id', 6);
 				$table->string('country_id', 2);
 				$table->string('name');
@@ -29,8 +30,8 @@ class AdminCreateTableTerritorialArea1 extends Migration
 					->on('admin_country')
 					->onDelete('restrict')
 					->onUpdate('cascade');
-				
-				$table->primary('id', 'pk01_admin_territorial_area_1');
+
+                $table->index('id', 'ix01_admin_territorial_area_1');
 			});
 		}
 	}

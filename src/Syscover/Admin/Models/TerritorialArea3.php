@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 class TerritorialArea3 extends CoreModel
 {
     protected $table        = 'admin_territorial_area_3';
-    public $incrementing    = false;
+    protected $primaryKey   = 'ix';
 
     private static $rules   = [
         'id'                => 'required|between:1,10|unique:territorial_area_3,id',

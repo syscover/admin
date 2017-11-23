@@ -13,6 +13,10 @@ class TerritorialArea2Type extends GraphQLType
     public function fields()
     {
         return [
+            'ix' => [
+                'type' => Type::nonNull(Type::int()),
+                'description' => 'The index of territorial area 2'
+            ],
             'id' => [
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'The id of territorial area 2'
