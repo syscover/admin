@@ -33,38 +33,47 @@ class AdminUpdateV4 extends Migration
                 $table->dropForeign('fk01_admin_user');
             });
 
-            // cms
-            Schema::table('cms_category', function (Blueprint $table) {
-                $table->dropForeign('fk01_cms_category');
-            });
-            Schema::table('cms_article', function (Blueprint $table) {
-                $table->dropForeign('fk01_cms_article');
-            });
-            Schema::table('cms_tag', function (Blueprint $table) {
-                $table->dropForeign('fk01_cms_tag');
-            });
+            if(Schema::hasTable('cms_category'))
+            {
+                // cms
+                Schema::table('cms_category', function (Blueprint $table) {
+                    $table->dropForeign('fk01_cms_category');
+                });
+                Schema::table('cms_article', function (Blueprint $table) {
+                    $table->dropForeign('fk01_cms_article');
+                });
+                Schema::table('cms_tag', function (Blueprint $table) {
+                    $table->dropForeign('fk01_cms_tag');
+                });
+            }
 
-            // crm
-            Schema::table('crm_customer', function (Blueprint $table) {
-                $table->dropForeign('fk06_crm_customer');
-            });
+            if(Schema::hasTable('crm_customer'))
+            {
+                // crm
+                Schema::table('crm_customer', function (Blueprint $table) {
+                    $table->dropForeign('fk06_crm_customer');
+                });
+            }
 
-            // market
-            Schema::table('market_order_row', function (Blueprint $table) {
-                $table->dropForeign('fk01_market_order_row');
-            });
-            Schema::table('market_payment_method', function (Blueprint $table) {
-                $table->dropForeign('fk01_market_payment_method');
-            });
-            Schema::table('market_order_status', function (Blueprint $table) {
-                $table->dropForeign('fk01_market_order_status');
-            });
-            Schema::table('market_category', function (Blueprint $table) {
-                $table->dropForeign('fk01_market_category');
-            });
-            Schema::table('market_product_lang', function (Blueprint $table) {
-                $table->dropForeign('fk02_market_product_lang');
-            });
+            if(Schema::hasTable('market_order_row'))
+            {
+                // market
+                Schema::table('market_order_row', function (Blueprint $table) {
+                    $table->dropForeign('fk01_market_order_row');
+                });
+                Schema::table('market_payment_method', function (Blueprint $table) {
+                    $table->dropForeign('fk01_market_payment_method');
+                });
+                Schema::table('market_order_status', function (Blueprint $table) {
+                    $table->dropForeign('fk01_market_order_status');
+                });
+                Schema::table('market_category', function (Blueprint $table) {
+                    $table->dropForeign('fk01_market_category');
+                });
+                Schema::table('market_product_lang', function (Blueprint $table) {
+                    $table->dropForeign('fk02_market_product_lang');
+                });
+            }
 
 
 
@@ -73,7 +82,7 @@ class AdminUpdateV4 extends Migration
             });
 
             Schema::table('admin_lang', function (Blueprint $table) {
-                $table->increments('index')->first();
+                $table->increments('ix')->first();
                 $table->index('id', 'ix01_admin_lang');
             });
 
@@ -109,74 +118,83 @@ class AdminUpdateV4 extends Migration
                     ->onUpdate('cascade');
             });
 
-            // cms
-            Schema::table('cms_category', function (Blueprint $table) {
-                $table->foreign('lang_id', 'fk01_cms_category')
-                    ->references('id')
-                    ->on('admin_lang')
-                    ->onDelete('restrict')
-                    ->onUpdate('cascade');
-            });
-            Schema::table('cms_article', function (Blueprint $table) {
-                $table->foreign('lang_id', 'fk01_cms_article')
-                    ->references('id')
-                    ->on('admin_lang')
-                    ->onDelete('restrict')
-                    ->onUpdate('cascade');
-            });
-            Schema::table('cms_tag', function (Blueprint $table) {
-                $table->foreign('lang_id', 'fk01_cms_tag')
-                    ->references('id')
-                    ->on('admin_lang')
-                    ->onDelete('restrict')
-                    ->onUpdate('cascade');
-            });
+            if(Schema::hasTable('cms_category'))
+            {
+                // cms
+                Schema::table('cms_category', function (Blueprint $table) {
+                    $table->foreign('lang_id', 'fk01_cms_category')
+                        ->references('id')
+                        ->on('admin_lang')
+                        ->onDelete('restrict')
+                        ->onUpdate('cascade');
+                });
+                Schema::table('cms_article', function (Blueprint $table) {
+                    $table->foreign('lang_id', 'fk01_cms_article')
+                        ->references('id')
+                        ->on('admin_lang')
+                        ->onDelete('restrict')
+                        ->onUpdate('cascade');
+                });
+                Schema::table('cms_tag', function (Blueprint $table) {
+                    $table->foreign('lang_id', 'fk01_cms_tag')
+                        ->references('id')
+                        ->on('admin_lang')
+                        ->onDelete('restrict')
+                        ->onUpdate('cascade');
+                });
+            }
 
-            // crm
-            Schema::table('crm_customer', function (Blueprint $table) {
-                $table->foreign('lang_id', 'fk06_crm_customer')
-                    ->references('id')
-                    ->on('admin_lang')
-                    ->onDelete('restrict')
-                    ->onUpdate('cascade');
-            });
+            if(Schema::hasTable('crm_customer'))
+            {
+                // crm
+                Schema::table('crm_customer', function (Blueprint $table) {
+                    $table->foreign('lang_id', 'fk06_crm_customer')
+                        ->references('id')
+                        ->on('admin_lang')
+                        ->onDelete('restrict')
+                        ->onUpdate('cascade');
+                });
+            }
 
-            // market
-            Schema::table('market_order_row', function (Blueprint $table) {
-                $table->foreign('lang_id', 'fk01_market_order_row')
-                    ->references('id')
-                    ->on('admin_lang')
-                    ->onDelete('restrict')
-                    ->onUpdate('cascade');
-            });
-            Schema::table('market_payment_method', function (Blueprint $table) {
-                $table->foreign('lang_id', 'fk01_market_payment_method')
-                    ->references('id')
-                    ->on('admin_lang')
-                    ->onDelete('restrict')
-                    ->onUpdate('cascade');
-            });
-            Schema::table('market_order_status', function (Blueprint $table) {
-                $table->foreign('lang_id', 'fk01_market_order_status')
-                    ->references('id')
-                    ->on('admin_lang')
-                    ->onDelete('restrict')
-                    ->onUpdate('cascade');
-            });
-            Schema::table('market_category', function (Blueprint $table) {
-                $table->foreign('lang_id', 'fk01_market_category')
-                    ->references('id')
-                    ->on('admin_lang')
-                    ->onDelete('restrict')
-                    ->onUpdate('cascade');
-            });
-            Schema::table('market_product_lang', function (Blueprint $table) {
-                $table->foreign('lang_id', 'fk02_market_product_lang')
-                    ->references('id')
-                    ->on('admin_lang')
-                    ->onDelete('restrict')
-                    ->onUpdate('cascade');
-            });
+            if(Schema::hasTable('market_order_row'))
+            {
+                // market
+                Schema::table('market_order_row', function (Blueprint $table) {
+                    $table->foreign('lang_id', 'fk01_market_order_row')
+                        ->references('id')
+                        ->on('admin_lang')
+                        ->onDelete('restrict')
+                        ->onUpdate('cascade');
+                });
+                Schema::table('market_payment_method', function (Blueprint $table) {
+                    $table->foreign('lang_id', 'fk01_market_payment_method')
+                        ->references('id')
+                        ->on('admin_lang')
+                        ->onDelete('restrict')
+                        ->onUpdate('cascade');
+                });
+                Schema::table('market_order_status', function (Blueprint $table) {
+                    $table->foreign('lang_id', 'fk01_market_order_status')
+                        ->references('id')
+                        ->on('admin_lang')
+                        ->onDelete('restrict')
+                        ->onUpdate('cascade');
+                });
+                Schema::table('market_category', function (Blueprint $table) {
+                    $table->foreign('lang_id', 'fk01_market_category')
+                        ->references('id')
+                        ->on('admin_lang')
+                        ->onDelete('restrict')
+                        ->onUpdate('cascade');
+                });
+                Schema::table('market_product_lang', function (Blueprint $table) {
+                    $table->foreign('lang_id', 'fk02_market_product_lang')
+                        ->references('id')
+                        ->on('admin_lang')
+                        ->onDelete('restrict')
+                        ->onUpdate('cascade');
+                });
+            }
         }
 	}
 

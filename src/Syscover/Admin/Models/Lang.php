@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\Validator;
 class Lang extends CoreModel
 {
     protected $table        = 'admin_lang';
-    protected $fillable     = ['id', 'name', 'icon', 'sort', 'active'];
-    public $incrementing    = false;
+    protected $primaryKey   = 'ix';
+    protected $fillable     = ['ix' ,'id', 'name', 'icon', 'sort', 'active'];
     protected $casts        = [
         'active'    => 'boolean'
     ];

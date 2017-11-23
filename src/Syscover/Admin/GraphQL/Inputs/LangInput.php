@@ -15,6 +15,10 @@ class LangInput extends GraphQLType
     public function fields()
     {
         return [
+            'ix' => [
+                'type' => Type::int(),
+                'description' => 'The index of lang'
+            ],
             'id' => [
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'The id of lang'

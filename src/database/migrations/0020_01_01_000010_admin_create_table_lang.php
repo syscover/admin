@@ -16,7 +16,8 @@ class AdminCreateTableLang extends Migration
 		{
 			Schema::create('admin_lang', function (Blueprint $table) {
 				$table->engine = 'InnoDB';
-				
+
+                $table->increments('ix');
 				$table->string('id', 2);
 				$table->string('name');
 				$table->string('icon')->nullable();
@@ -26,7 +27,7 @@ class AdminCreateTableLang extends Migration
                 $table->timestamps();
                 $table->softDeletes();
 
-				$table->primary('id', 'pk01_admin_lang');
+                $table->index('id', 'ix01_admin_lang');
 			});
 		}
 	}

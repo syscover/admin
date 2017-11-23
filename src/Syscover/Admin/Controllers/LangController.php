@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Syscover\Core\Controllers\CoreController;
+use Syscover\Admin\Services\LangService;
 use Syscover\Admin\Models\Lang;
 
 /**
@@ -21,26 +22,8 @@ class LangController extends CoreController
      */
     public function store(Request $request)
     {
-        try
-        {
-            $object = Lang::create([
-                'id'        => $request->input('id'),
-                'name'      => $request->input('name'),
-                'icon'      => $request->input('icon'),
-                'sort'      => $request->input('sort'),
-                'active'    => $request->input('active')
-            ]);
-        }
-        catch (\Exception $e)
-        {
-            $response['status'] = "error";
-            $response['message'] = $e->getMessage();
-
-            return response()->json($response, 500);
-        }
-
         $response['status'] = "success";
-        $response['data']   = $object;
+        $response['data']   = LangService::create($request->all());
 
         return response()->json($response);
     }
@@ -49,33 +32,12 @@ class LangController extends CoreController
      * Update the specified resource in storage.
      *
      * @param   \Illuminate\Http\Request  $request
-     * @param   int     $id
      * @return  \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        try
-        {
-            Lang::where('id', $id)->update([
-                'id'        => $request->input('id'),
-                'name'      => $request->input('name'),
-                'icon'      => $request->input('icon'),
-                'sort'      => $request->input('sort'),
-                'active'    => $request->input('active')
-            ]);
-        }
-        catch (\Exception $e)
-        {
-            $response['status'] = "error";
-            $response['message'] = $e->getMessage();
-
-            return response()->json($response, 500);
-        }
-
-        $object = Lang::find($request->input('id'));
-
         $response['status'] = "success";
-        $response['data']   = $object;
+        $response['data']   = LangService::update($request->all());
 
         return response()->json($response);
     }

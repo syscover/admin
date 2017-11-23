@@ -4,6 +4,7 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Mutation;
 use Syscover\Admin\Models\Lang;
+use Syscover\Admin\Services\LangService;
 use Syscover\Core\Services\SQLService;
 
 class LangMutation extends Mutation
@@ -33,7 +34,7 @@ class AddLangMutation extends LangMutation
 
     public function resolve($root, $args)
     {
-        return Lang::create($args['object']);
+        return LangService::create($args['object']);
     }
 }
 
@@ -60,10 +61,7 @@ class UpdateLangMutation extends LangMutation
 
     public function resolve($root, $args)
     {
-        Lang::where('id', $args['idOld'])
-            ->update($args['object']);
-
-        return Lang::find($args['object']['id']);
+        return LangService::update($args['object']);
     }
 }
 
