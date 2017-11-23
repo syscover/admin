@@ -26,7 +26,7 @@ class AttachmentMime extends CoreModel
 
     public function scopeBuilder($query)
     {
-        return $query->join('admin_resource', 'admin_attachment_mime.resource_id', '=', 'admin_resource.object_id')
+        return $query->join('admin_resource', 'admin_attachment_mime.resource_id', '=', 'admin_resource.id')
             ->select('admin_resource.*', 'admin_attachment_mime.*', 'admin_resource.name as resource_name');
     }
 

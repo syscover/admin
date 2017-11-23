@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\Validator;
 class Attachment extends CoreModel
 {
 	protected $table        = 'admin_attachment';
-    protected $fillable     = ['id', 'lang_id', 'object_id', 'object_type', 'family_id', 'sort', 'alt', 'title', 'base_path', 'file_name', 'url', 'mime', 'extension', 'size', 'width', 'height', 'library_id', 'library_file_name', 'data_lang', 'data'];
-    public $incrementing    = false;
+    protected $primaryKey   = 'ix';
+    protected $fillable     = ['ix' ,'id', 'lang_id', 'object_id', 'object_type', 'family_id', 'sort', 'alt', 'title', 'base_path', 'file_name', 'url', 'mime', 'extension', 'size', 'width', 'height', 'library_id', 'library_file_name', 'data_lang', 'data'];
     protected $casts        = [
         'data' => 'array'
     ];

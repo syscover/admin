@@ -16,7 +16,8 @@ class AdminCreateTableAttachment extends Migration {
         {
             Schema::create('admin_attachment', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
-                
+
+                $table->increments('ix');
                 $table->integer('id');
                 $table->string('lang_id', 2);
                 $table->integer('object_id')->unsigned()->nullable();
@@ -56,9 +57,9 @@ class AdminCreateTableAttachment extends Migration {
                     ->onDelete('set null')
                     ->onUpdate('cascade');
 
-                $table->index(['object_id'], 'ix01_admin_attachment');
-                $table->index(['object_type'], 'ix02_admin_attachment');
-                $table->primary(['id', 'lang_id'], 'pk01_admin_attachment');
+                $table->index('object_id', 'ix01_admin_attachment');
+                $table->index('object_type', 'ix02_admin_attachment');
+                $table->index(['id', 'lang_id'], 'ix03_admin_attachment');
             });
         }
     }

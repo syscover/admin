@@ -16,7 +16,7 @@ class Resource extends CoreModel
     public $with            = ['package'];
 
     private static $rules   = [
-        'object_id' =>  'required|between:2,30|unique:001_007_resource,id_007',
+        'id'        =>  'required|between:2,30|unique:001_007_resource,id_007',
         'package'   =>  'not_in:null',
         'name'      =>  'required|between:2,50'
     ];

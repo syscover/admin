@@ -15,9 +15,13 @@ class AttachmentType extends GraphQLType
     public function fields()
     {
         return [
+            'ix' => [
+                'type' => Type::nonNull(Type::int()),
+                'description' => 'The index of attachment'
+            ],
             'id' => [
                 'type' => Type::nonNull(Type::int()),
-                'description' => 'The id of action'
+                'description' => 'The id of attachment'
             ],
             'lang_id' => [
                 'type' => Type::nonNull(Type::string()),

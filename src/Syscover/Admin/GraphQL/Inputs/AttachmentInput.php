@@ -17,9 +17,13 @@ class AttachmentInput extends GraphQLType
     public function fields()
     {
         return [
+            'ix' => [
+                'type' => Type::int(),
+                'description' => 'The index of attachment'
+            ],
             'id' => [
                 'type' => Type::int(),
-                'description' => 'The id of action'
+                'description' => 'The id of attachment'
             ],
             'lang_id' => [
                 'type' => Type::string(),
