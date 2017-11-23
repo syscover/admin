@@ -48,10 +48,6 @@ class UpdateLangMutation extends LangMutation
     public function args()
     {
         return [
-            'idOld' => [
-                'name' => 'idOld',
-                'type' => Type::nonNull(Type::string())
-            ],
             'object' => [
                 'name' => 'object',
                 'type' => Type::nonNull(GraphQL::type('AdminLangInput'))
