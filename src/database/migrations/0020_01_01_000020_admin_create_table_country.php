@@ -17,6 +17,7 @@ class AdminCreateTableCountry extends Migration
             Schema::create('admin_country', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
 
+                $table->increments('ix');
                 $table->string('id', 2);
                 $table->string('lang_id', 2);
                 $table->string('name');
@@ -36,8 +37,8 @@ class AdminCreateTableCountry extends Migration
                     ->on('admin_lang')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
-                
-                $table->primary(['id', 'lang_id'], 'pk01_admin_country');
+
+                $table->index(['id', 'lang_id'], 'ix01_admin_country');
             });
         }
 	}

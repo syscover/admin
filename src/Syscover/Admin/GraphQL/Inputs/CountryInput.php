@@ -15,6 +15,10 @@ class CountryInput extends GraphQLType
     public function fields()
     {
         return [
+            'ix' => [
+                'type' => Type::int(),
+                'description' => 'The index of country'
+            ],
             'id' => [
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'The id of country'

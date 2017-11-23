@@ -27,14 +27,12 @@ class CountryController extends CoreController
      * Update the specified resource in storage.
      *
      * @param   \Illuminate\Http\Request  $request
-     * @param   int     $id
-     * @param   string  $lang
      * @return  \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id, $lang)
+    public function update(Request $request)
     {
         $response['status'] = "success";
-        $response['data']   = CountryService::update($request->all(), $id, $lang);
+        $response['data']   = CountryService::update($request->all());
 
         return response()->json($response);
     }

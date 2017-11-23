@@ -17,7 +17,7 @@ class AdminUpdateV4 extends Migration
 	 */
 	public function up()
 	{
-        if(! Schema::hasColumn('admin_lang', 'object_id'))
+        if(! Schema::hasColumn('admin_lang', 'ix'))
         {
             // admin
             Schema::table('admin_country', function (Blueprint $table) {

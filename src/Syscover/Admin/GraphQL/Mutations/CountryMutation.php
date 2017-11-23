@@ -48,10 +48,6 @@ class UpdateCountryMutation extends CountryMutation
     public function args()
     {
         return [
-            'idOld' => [
-                'name' => 'idOld',
-                'type' => Type::nonNull(Type::string())
-            ],
             'object' => [
                 'name' => 'object',
                 'type' => Type::nonNull(GraphQL::type('AdminCountryInput'))
@@ -61,7 +57,7 @@ class UpdateCountryMutation extends CountryMutation
 
     public function resolve($root, $args)
     {
-        return CountryService::update($args['object'], $args['idOld'], $args['object']['lang_id']);
+        return CountryService::update($args['object']);
     }
 }
 
@@ -79,8 +75,8 @@ class DeleteCountryMutation extends CountryMutation
                 'name' => 'id',
                 'type' => Type::nonNull(Type::string())
             ],
-            'lang' => [
-                'name' => 'lang',
+            'lang_id' => [
+                'name' => 'lang_id',
                 'type' => Type::nonNull(Type::string())
             ]
         ];
@@ -88,7 +84,7 @@ class DeleteCountryMutation extends CountryMutation
 
     public function resolve($root, $args)
     {
-        $object = SQLService::destroyRecord($args['id'], Country::class, $args['lang']);
+        $object = SQLService::destroyRecord($args['id'], Country::class, $args['lang_id']);
 
         return $object;
     }
