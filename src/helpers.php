@@ -129,9 +129,8 @@ if (! function_exists('get_src_srcset_alt_title'))
             // set src
             if($size['width'] === $smallerWidth)
                 $src = $size['url'];
-            else
-                $srcset .= $size['url'] . ' ' . $size['width'] . 'w' . ($biggestWidth === $size['width']? null : ', ');
 
+            $srcset .= $size['url'] . ' ' . $size['width'] . 'w' . ($biggestWidth === $size['width']? null : ', ');
         }
 
         return 'src="' . $src . '" srcset="' . $srcset . '" alt="' . $attachment->alt . '" title="' . $attachment->title . '"';
@@ -141,7 +140,7 @@ if (! function_exists('get_src_srcset_alt_title'))
 if (! function_exists('get_src'))
 {
     /**
-     * get get_src from sizes
+     * get smaller image
      *
      * @param $sizes
      * @return string
@@ -166,18 +165,13 @@ if (! function_exists('get_srcset'))
     {
         $sizes = collect($sizes)->sortBy('width');
 
-        $smallerWidth = $sizes->first()['width'];
         $biggestWidth = $sizes->last()['width'];
         $srcset = '';
         foreach ($sizes as $size)
-        {
-            // set src
-            if($size['width'] !== $smallerWidth)
-                $srcset .= $size['url'] . ' ' . $size['width'] . 'w' . ($biggestWidth === $size['width']? null : ', ');
-        }
+            $srcset .= $size['url'] . ' ' . $size['width'] . 'w' . ($biggestWidth === $size['width']? null : ', ');
 
         return $srcset;
-   }
+    }
 }
 
 if (! function_exists('get_territorial_area_id'))

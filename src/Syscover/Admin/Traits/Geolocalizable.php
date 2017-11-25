@@ -6,7 +6,7 @@ trait Geolocalizable
 {
     public function country()
     {
-        return $this->belongsTo(Country::class, 'country_id');
+        return $this->belongsTo(Country::class, 'country_id', 'id');
     }
 
     public function getTerritorialArea($zone)
