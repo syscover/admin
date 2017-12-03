@@ -2,11 +2,15 @@
 
 use Syscover\Admin\Models\Country;
 
+/**
+ * Class CountryService
+ * @package Syscover\Admin\Service
+ */
 class CountryService
 {
     /**
      * @param  array    $object     contain properties of country
-     * @return $this|\Illuminate\Database\Eloquent\Model
+     * @return \Syscover\Admin\Models\Country
      */
     public static function create($object)
     {
@@ -17,7 +21,7 @@ class CountryService
 
     /**
      * @param array     $object     contain properties of country
-     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null|static|static[]
+     * @return \Syscover\Admin\Models\Country
      */
     public static function update($object)
     {

@@ -9,8 +9,8 @@ use Syscover\Admin\Models\AttachmentFamily;
 use Syscover\Admin\Models\AttachmentLibrary;
 
 /**
- * Class TaxRuleLibrary
- * @package Syscover\Market\Service
+ * Class AttachmentService
+ * @package Syscover\Admin\Service
  */
 class AttachmentService
 {

@@ -6,7 +6,7 @@ class ActionService
 {
     /**
      * @param  array    $object     contain properties of action
-     * @return $this|\Illuminate\Database\Eloquent\Model
+     * @return \Syscover\Admin\Models\Action
      */
     public static function create($object)
     {
@@ -15,7 +15,7 @@ class ActionService
 
     /**
      * @param array     $object     contain properties of action
-     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null|static|static[]
+     * @return \Syscover\Admin\Models\Action
      */
     public static function update($object)
     {
