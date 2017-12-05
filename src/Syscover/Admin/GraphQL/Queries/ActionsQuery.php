@@ -4,7 +4,7 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
 use Syscover\Core\Services\SQLService;
-use Syscover\Admin\Models\Package;
+use Syscover\Admin\Models\Action;
 
 class ActionsQuery extends Query
 {
@@ -31,7 +31,7 @@ class ActionsQuery extends Query
 
     public function resolve($root, $args)
     {
-        $query = Package::builder();
+        $query = Action::builder();
 
         if(isset($args['sql']))
         {

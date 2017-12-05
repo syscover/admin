@@ -66,114 +66,6 @@ if (! function_exists('is_image'))
     }
 }
 
-if (! function_exists('get_src_srcset'))
-{
-    /**
-     * get get_src_srcset for responsive images
-     *
-     * @param $attachment
-     * @return string
-     */
-    function get_src_srcset($attachment)
-    {
-        if(! is_object($attachment))
-            $attachment = (object)$attachment;
-
-        if(! isset($attachment->data['sizes']) || (isset($attachment->data['sizes']) && ! is_array($attachment->data['sizes'])))
-            return null;
-
-        $sizes = collect($attachment->data['sizes'])->sortBy('width');
-
-        $smallerWidth = $sizes->first()['width'];
-        $biggestWidth = $sizes->last()['width'];
-        $srcset = '';
-        $src = '';
-        foreach ($sizes as $size)
-        {
-            // set src
-            if($size['width'] === $smallerWidth)
-                $src = $size['url'];
-            else
-                $srcset .= $size['url'] . ' ' . $size['width'] . 'w' . ($biggestWidth === $size['width']? null : ', ');
-
-        }
-
-        return 'src="' . $src . '" srcset="' . $srcset . '"';
-    }
-}
-
-if (! function_exists('get_src_srcset_alt_title'))
-{
-    /**
-     * get get_src_srcset for responsive images
-     *
-     * @param $attachment
-     * @return string
-     */
-    function get_src_srcset_alt_title($attachment)
-    {
-        if(! is_object($attachment))
-            $attachment = (object)$attachment;
-
-        if(! isset($attachment->data['sizes']) || (isset($attachment->data['sizes']) && ! is_array($attachment->data['sizes'])))
-            return null;
-
-        $sizes = collect($attachment->data['sizes'])->sortBy('width');
-
-        $smallerWidth = $sizes->first()['width'];
-        $biggestWidth = $sizes->last()['width'];
-        $srcset = '';
-        $src = '';
-        foreach ($sizes as $size)
-        {
-            // set src
-            if($size['width'] === $smallerWidth)
-                $src = $size['url'];
-
-            $srcset .= $size['url'] . ' ' . $size['width'] . 'w' . ($biggestWidth === $size['width']? null : ', ');
-        }
-
-        return 'src="' . $src . '" srcset="' . $srcset . '" alt="' . $attachment->alt . '" title="' . $attachment->title . '"';
-    }
-}
-
-if (! function_exists('get_src'))
-{
-    /**
-     * get smaller image
-     *
-     * @param $sizes
-     * @return string
-     */
-    function get_src($sizes)
-    {
-        $sizes = collect($sizes)->sortBy('width');
-
-        return $sizes->first()['url'];
-    }
-}
-
-if (! function_exists('get_srcset'))
-{
-    /**
-     * get get_src from sizes
-     *
-     * @param $sizes
-     * @return string
-     */
-    function get_srcset($sizes)
-    {
-        $sizes = collect($sizes)->sortBy('width');
-
-        $biggestWidth = $sizes->last()['width'];
-        $srcset = '';
-        foreach ($sizes as $size)
-            $srcset .= $size['url'] . ' ' . $size['width'] . 'w' . ($biggestWidth === $size['width']? null : ', ');
-
-        return $srcset;
-    }
-}
-
 if (! function_exists('get_territorial_area_id'))
 {
     /**
@@ -194,5 +86,83 @@ if (! function_exists('get_territorial_area_id'))
                 return 'territorial_area_3_id';
                 break;
         }
+    }
+}
+
+if (! function_exists('get_srcset'))
+{
+    /**
+     * get get_src from sizes
+     *
+     * @param $sizes
+     * @return string
+     */
+    function get_srcset($sizes)
+    {
+        $sizes = collect($sizes)->sortBy('width');
+
+        $biggestWidth = $sizes->last()['width'];
+        $srcset = '';
+        foreach ($sizes as $size)
+        {
+            $srcset .= $size['url'] . ' ' . $size['width'] . 'w' . ($biggestWidth === $size['width']? null : ', ');
+        }
+
+        return $srcset;
+    }
+}
+
+if (! function_exists('get_src_srcset'))
+{
+    /**
+     * get get_src_srcset for responsive images
+     *
+     * @param $attachment
+     * @return string
+     */
+    function get_src_srcset($attachment)
+    {
+        if(! is_object($attachment))
+            $attachment = (object)$attachment;
+
+        if(! isset($attachment->data['sizes']) || (isset($attachment->data['sizes']) && ! is_array($attachment->data['sizes'])))
+            return null;
+
+        $src    = get_src($attachment->data['sizes']);    // set original image, for older browsers
+        $srcset = get_srcset($attachment->data['sizes']);
+
+        return 'src="' . $src . '" srcset="' . $srcset . '"';
+    }
+}
+
+if (! function_exists('get_src_srcset_alt_title'))
+{
+    /**
+     * get get_src_srcset for responsive images
+     *
+     * @param $attachment
+     * @return string
+     */
+    function get_src_srcset_alt_title($attachment)
+    {
+        $value = get_src_srcset($attachment);
+
+        return $value . ' alt="' . $attachment->alt . '" title="' . $attachment->title . '"';
+    }
+}
+
+if (! function_exists('get_src'))
+{
+    /**
+     * get smaller image
+     *
+     * @param $sizes
+     * @return string
+     */
+    function get_src($sizes)
+    {
+        $sizes = collect($sizes)->sortBy('width');
+
+        return $sizes->last()['url']; // set original image, for older browsers
     }
 }
