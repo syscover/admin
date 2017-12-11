@@ -4,6 +4,7 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Mutation;
 use Syscover\Admin\Models\Package;
+use Syscover\Admin\Services\PackageService;
 use Syscover\Core\Services\SQLService;
 
 class PackageMutation extends Mutation
@@ -33,7 +34,7 @@ class AddPackageMutation extends PackageMutation
 
     public function resolve($root, $args)
     {
-        return Package::create($args['object']);
+        return PackageService::create($args['object']);
     }
 }
 
@@ -50,6 +51,8 @@ class UpdatePackageMutation extends PackageMutation
             ->update($args['object']);
 
         return Package::find($args['object']['id']);
+
+        PackageService::update($args['object']);
     }
 }
 

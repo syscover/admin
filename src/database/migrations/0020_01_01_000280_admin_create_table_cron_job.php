@@ -12,23 +12,26 @@ class AdminCreateTableCronJob extends Migration
 	 */
 	public function up()
 	{
-		if(! Schema::hasTable('cron_job'))
+		if(! Schema::hasTable('admin_cron_job'))
 		{
-			Schema::create('cron_job', function (Blueprint $table) {
+			Schema::create('admin_cron_job', function (Blueprint $table) {
 				$table->engine = 'InnoDB';
 				
 				$table->increments('id')->unsigned();
 				$table->string('name');
 				$table->integer('package_id')->unsigned();
 				$table->string('cron_expression');
-				$table->string('key');
-				$table->integer('last_run')->unsigned();
-				$table->integer('next_run')->unsigned();
+				$table->string('command');
+				$table->timestamp('last_run')->default(DB::raw('CURRENT_TIMESTAMP'));
+				$table->timestamp('next_run')->default(DB::raw('CURRENT_TIMESTAMP'));
 				$table->boolean('active');
+
+				$table->timestamps();
+                $table->softDeletes();
 
 				$table->foreign('package_id', 'fk01_cron_job')
 					->references('id')
-					->on('package')
+					->on('admin_package')
 					->onDelete('cascade')
 					->onUpdate('cascade');
 			});
@@ -42,6 +45,6 @@ class AdminCreateTableCronJob extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('cron_job');
+		Schema::dropIfExists('admin_cron_job');
 	}
 }

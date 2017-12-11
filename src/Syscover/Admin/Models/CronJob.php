@@ -11,13 +11,16 @@ use Illuminate\Support\Facades\Validator;
 class CronJob extends CoreModel
 {
 	protected $table        = 'admin_cron_job';
-    public $timestamps      = false;
+    protected $fillable     = ['id', 'name', 'package_id', 'cron_expression', 'command', 'last_run', 'next_run', 'active'];
+    protected $casts        = [
+        'active'    => 'boolean'
+    ];
 
     private static $rules   = [
         'name'              =>  'required|between:2,100',
         'package'           =>  'not_in:null',
         'cronExpression'    =>  'required|between:9,255|CronExpression',
-        'key'               =>  'required|between:2,50'
+        'command'           =>  'required|between:2,255'
     ];
 
     public static function validate($data)

@@ -14,6 +14,10 @@ class AdminGraphQLServiceProvider
         GraphQL::addType(\Syscover\Admin\GraphQL\Types\PackageType::class, 'AdminPackage');
         GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\PackageInput::class, 'AdminPackageInput');
 
+        // CRON JOB
+        GraphQL::addType(\Syscover\Admin\GraphQL\Types\CronJobType::class, 'AdminCronJob');
+        GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\CronJobInput::class, 'AdminCronJobInput');
+
         // LANG
         GraphQL::addType(\Syscover\Admin\GraphQL\Types\LangType::class, 'AdminLang');
         GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\LangInput::class, 'AdminLangInput');
@@ -85,6 +89,11 @@ class AdminGraphQLServiceProvider
                 'adminPackagesPagination'           => \Syscover\Admin\GraphQL\Queries\PackagesPaginationQuery::class,
                 'adminPackages'                     => \Syscover\Admin\GraphQL\Queries\PackagesQuery::class,
                 'adminPackage'                      => \Syscover\Admin\GraphQL\Queries\PackageQuery::class,
+
+                // CRON JOB
+                'adminCronJobsPagination'           => \Syscover\Admin\GraphQL\Queries\CronJobsPaginationQuery::class,
+                'adminCronJobs'                     => \Syscover\Admin\GraphQL\Queries\CronJobsQuery::class,
+                'adminCronJob'                      => \Syscover\Admin\GraphQL\Queries\CronJobQuery::class,
 
                 // LANG
                 'adminLangsPagination'              => \Syscover\Admin\GraphQL\Queries\LangsPaginationQuery::class,
@@ -158,6 +167,11 @@ class AdminGraphQLServiceProvider
                 'adminAddPackage'               => \Syscover\Admin\GraphQL\Mutations\AddPackageMutation::class,
                 'adminUpdatePackage'            => \Syscover\Admin\GraphQL\Mutations\UpdatePackageMutation::class,
                 'adminDeletePackage'            => \Syscover\Admin\GraphQL\Mutations\DeletePackageMutation::class,
+
+                // CRON JOB
+                'adminAddCronJob'               => \Syscover\Admin\GraphQL\Mutations\AddCronJobMutation::class,
+                'adminUpdateCronJob'            => \Syscover\Admin\GraphQL\Mutations\UpdateCronJobMutation::class,
+                'adminDeleteCronJob'            => \Syscover\Admin\GraphQL\Mutations\DeleteCronJobMutation::class,
 
                 // LANG
                 'adminAddLang'                  => \Syscover\Admin\GraphQL\Mutations\AddLangMutation::class,

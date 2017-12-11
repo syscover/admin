@@ -40,14 +40,13 @@ class UserController extends CoreController
      * Update the specified user in storage.
      *
      * @param   \Illuminate\Http\Request  $request
-     * @param   int     $id
      * @return  \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         try
         {
-            $object = UserService::update($request->all(), $id);
+            $object = UserService::update($request->all());
 
             $response['status'] = "success";
             $response['data']   = $object;

@@ -48,7 +48,7 @@ class UpdateUserMutation extends UserMutation
 
     public function resolve($root, $args)
     {
-        return UserService::update($args['object'], $args['object']['id']);
+        return UserService::update($args['object']);
     }
 }
 

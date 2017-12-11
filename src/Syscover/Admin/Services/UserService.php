@@ -7,7 +7,7 @@ class UserService
 {
     /**
      * @param  array    $object     contain properties of user
-     * @return $this|\Illuminate\Database\Eloquent\Model
+     * @return \Syscover\Admin\Models\User
      */
     public static function create($object)
     {
@@ -18,14 +18,13 @@ class UserService
 
     /**
      * @param array     $object     contain properties of user
-     * @param int       $id         old id of section
-     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null|static|static[]
+     * @return \Syscover\Admin\Models\User
      */
-    public static function update($object, $id)
+    public static function update($object)
     {
         $object = collect($object);
 
-        User::where('id', $id)->update([
+        User::where('id', $object->get('id'))->update([
             'name'          => $object->get('name'),
             'surname'       => $object->get('surname'),
             'email'         => $object->get('email'),
@@ -36,6 +35,6 @@ class UserService
             'password'      => Hash::make($object->get('password'))
         ]);
 
-        return User::find($id);
+        return User::find($object->get('id'));
     }
 }
