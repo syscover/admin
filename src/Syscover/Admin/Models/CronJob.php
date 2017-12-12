@@ -35,8 +35,8 @@ class CronJob extends CoreModel
             ->select('admin_package.*', 'admin_cron_job.*', 'admin_package.name as package_name', 'admin_cron_job.name as cron_job_name');
     }
 
-    public static function getCronJobsToRun($date)
+    public static function getCronJobsToRun($timestamp)
     {
-        return CronJob::builder()->where('next_run', '<=', $date)->where('active', true)->get();
+        return CronJob::where('next_run', '<=', $timestamp)->where('active', true)->get();
     }
 }

@@ -80,12 +80,28 @@ Inside passwords array
 ADMIN_BASE_LANG=en
 ```
 
-**8 - When the installation is complete you can access these data**
+**8 - Register cron command on file app/Console/Kernel.php add to $commands array**
+
+```
+\Syscover\Admin\Commands\Cron::class,
+
+```
+
+**9 - When the installation is complete you can access these data**
 ```
 url: http://www.your-domain.com/pulsar
 user: admin@pulsar.local
 pasword: 123456
 ```
+
+
+
+
+
+
+
+
+
 
 ## Cron task
 To implement the cron system must follow the following steps:
