@@ -140,14 +140,19 @@ if (! function_exists('get_src_srcset_alt_title'))
     /**
      * get get_src_srcset for responsive images
      *
-     * @param $attachment
-     * @return string
+     * @param   $attachment
+     * @return  string
+     * @throws  Exception
      */
     function get_src_srcset_alt_title($attachment)
     {
-        $value = get_src_srcset($attachment);
+        if(is_object($attachment) && get_class($attachment) === 'Syscover\Admin\Models\Attachment')
+        {
+            $value = get_src_srcset($attachment);
+            return $value . ' alt="' . $attachment->alt . '" title="' . $attachment->title . '"';
+        }
 
-        return $value . ' alt="' . $attachment->alt . '" title="' . $attachment->title . '"';
+        throw new Exception('attachment has to be a object from Syscover\Admin\Models\Attachment class');
     }
 }
 
