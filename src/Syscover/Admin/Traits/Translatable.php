@@ -6,6 +6,6 @@ trait Translatable
 {
     public function lang()
     {
-        return $this->belongsTo(Lang::class, 'lang_id');
+        return $this->belongsTo(Lang::class, 'lang_id', 'id');
     }
 }
