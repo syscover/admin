@@ -146,14 +146,16 @@ if (! function_exists('get_src_srcset_alt_title'))
      */
     function get_src_srcset_alt_title($attachment)
     {
-        if(! is_object($attachment)) $attachment = (object)$attachment;
-        if(! property_exists($attachment, 'alt')) throw new Exception('attachment has to be a object with alt property');
-        if(! property_exists($attachment, 'title')) throw new Exception('attachment has to be a object with title property');
-        if(! property_exists($attachment, 'data')) throw new Exception('attachment has to be a object with data property');
+        if(! is_object($attachment) || (is_object($attachment) && get_class($attachment) !== 'Syscover\Admin\Models\Attachment'))
+        {
+            if(! is_object($attachment)) $attachment = (object)$attachment;
+            if(! property_exists($attachment, 'alt')) throw new Exception('attachment has to be a object with alt property');
+            if(! property_exists($attachment, 'title')) throw new Exception('attachment has to be a object with title property');
+            if(! property_exists($attachment, 'data')) throw new Exception('attachment has to be a object with data property');
+        }
 
         $value = get_src_srcset($attachment);
         return $value . ' alt="' . $attachment->alt . '" title="' . $attachment->title . '"';
-
     }
 }
 
