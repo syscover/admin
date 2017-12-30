@@ -20,7 +20,7 @@ class AdminCreateTableField extends Migration {
                 $table->increments('id');
                 $table->integer('field_group_id')->unsigned();
                 $table->string('name')->nullable();
-                $table->text('labels')->nullable(); // To save label values in different languages
+                $table->json('labels')->nullable(); // label value in different languages
 
                 $table->string('field_type_id', 50); // see config/pulsar-admin.php
                 $table->string('field_type_name');
