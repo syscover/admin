@@ -52,6 +52,11 @@ Set this default values, for JWT can create pulsar user
 
 Inside guards array
 ```
+'api' => [
+    'driver' => 'jwt',
+    'provider' => 'adminUser',
+],
+
 'admin' => [
     'driver'    => 'session',
     'provider'  => 'adminUser',

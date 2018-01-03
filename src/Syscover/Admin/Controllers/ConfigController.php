@@ -4,6 +4,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Syscover\Admin\Models\Lang;
+use Syscover\Admin\Models\Package;
 
 class ConfigController extends BaseController
 {
@@ -17,7 +18,8 @@ class ConfigController extends BaseController
     {
         $response['status']     = "success";
         $response['base_lang']  = base_lang();
-        $response['langs']      = Lang::where('active', true)->get();
+        $response['langs']      = Lang::all();
+        $response['packages']   = Package::all();
 
         return response()->json($response);
     }

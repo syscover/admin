@@ -1,7 +1,7 @@
 <?php
 
 // LOGIN
-Route::post('api/v1/login',                                             'Syscover\Admin\Controllers\Auth\AuthenticationController@login')->name('login');
+Route::post('api/v1/login',                                             'Syscover\Admin\Controllers\Auth\AuthController@login')->name('login');
 
 // CONFIG
 Route::get('api/v1/admin/config/bootstrap',                             'Syscover\Admin\Controllers\ConfigController@bootstrap')->name('adminBootstrapConfig');
@@ -36,7 +36,7 @@ Route::post('api/v1/admin/attachment-upload/delete',                    'Syscove
 Route::post('api/v1/admin/wysiwyg/upload',                              'Syscover\Admin\Controllers\AttachmentController@wysiwygUpload')->name('adminWysiwygUpload');
 
 
-Route::group(['middleware' => ['jwt.auth', 'jwt.refresh']], function () {
+Route::group(['middleware' => ['auth:api', 'jwt.refresh']], function () {
     /*
     |----------------------------------
     | USERS
