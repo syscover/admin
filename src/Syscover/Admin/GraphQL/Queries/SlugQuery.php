@@ -1,6 +1,5 @@
 <?php namespace Syscover\Admin\GraphQL\Queries;
 
-use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
 
@@ -33,8 +32,7 @@ class SlugQuery extends Query
                 'name'          => 'id',
                 'type'          => Type::int(),
                 'description'   => 'Objects id that will be exclude on query'
-            ],
-
+            ]
         ];
     }
 
