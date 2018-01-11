@@ -80,9 +80,10 @@ Inside passwords array
 ],
 ```
 
-**7 - Set base lang application in .env file**
+**7 - Set base lang application and panel url in .env file**
 ```
 ADMIN_BASE_LANG=en
+ADMIN_PANEL_URL=http://panel.mydomain.com
 ```
 
 **8 - Register cron command on file app/Console/Kernel.php add to $commands array**
