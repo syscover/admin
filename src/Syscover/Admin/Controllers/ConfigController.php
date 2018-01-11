@@ -18,7 +18,7 @@ class ConfigController extends BaseController
     {
         $response['status']     = "success";
         $response['base_lang']  = base_lang();
-        $response['langs']      = Lang::all();
+        $response['langs']      = Lang::where('active', true)->get();
         $response['packages']   = Package::all();
 
         return response()->json($response);
