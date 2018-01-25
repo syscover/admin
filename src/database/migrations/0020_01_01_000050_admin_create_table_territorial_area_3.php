@@ -23,6 +23,7 @@ class AdminCreateTableTerritorialArea3 extends Migration
 				$table->string('territorial_area_1_id', 6);
 				$table->string('territorial_area_2_id', 10);
 				$table->string('name');
+                $table->string('slug')->nullable();
 
                 $table->timestamps();
                 $table->softDeletes();
