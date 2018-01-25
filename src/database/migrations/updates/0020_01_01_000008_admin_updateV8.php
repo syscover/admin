@@ -21,15 +21,19 @@ class AdminUpdateV8 extends Migration
         {
             Schema::table('admin_country', function (Blueprint $table) {
                 $table->string('slug')->nullable()->after('name');
+                $table->index('slug', 'ix02_admin_country');
             });
             Schema::table('admin_territorial_area_1', function (Blueprint $table) {
                 $table->string('slug')->nullable()->after('name');
+                $table->index('slug', 'ix02_admin_territorial_area_1');
             });
             Schema::table('admin_territorial_area_2', function (Blueprint $table) {
                 $table->string('slug')->nullable()->after('name');
+                $table->index('slug', 'ix02_admin_territorial_area_2');
             });
             Schema::table('admin_territorial_area_3', function (Blueprint $table) {
                 $table->string('slug')->nullable()->after('name');
+                $table->index('slug', 'ix02_admin_territorial_area_3');
             });
 
             $countries = \Syscover\Admin\Models\Country::all();

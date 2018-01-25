@@ -33,6 +33,7 @@ class AdminCreateTableTerritorialArea1 extends Migration
 					->onUpdate('cascade');
 
                 $table->index('id', 'ix01_admin_territorial_area_1');
+                $table->index('slug', 'ix02_admin_territorial_area_1');
 			});
 		}
 	}

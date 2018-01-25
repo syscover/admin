@@ -40,6 +40,7 @@ class AdminCreateTableCountry extends Migration
                     ->onUpdate('cascade');
 
                 $table->index(['id', 'lang_id'], 'ix01_admin_country');
+                $table->index('slug', 'ix02_admin_country');
             });
         }
 	}
