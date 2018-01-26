@@ -29,6 +29,10 @@ class CountryType extends GraphQLType
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'The name of country'
             ],
+            'slug' => [
+                'type' => Type::string(),
+                'description' => 'Slug name of country'
+            ],
             'sort' => [
                 'type' => Type::int(),
                 'description' => 'Sort of country'
