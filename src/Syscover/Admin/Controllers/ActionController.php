@@ -14,11 +14,24 @@ class ActionController extends CoreController
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function store(Request $request)
     {
+        try
+        {
+            $object = ActionService::create($request->all());
+        }
+        catch (\Exception $e)
+        {
+            $response['status']     = "error";
+            $response['message']    = $e->getMessage();
+
+            return response()->json($response, 500);
+        }
+
         $response['status'] = "success";
-        $response['data']   = ActionService::create($request->all());
+        $response['data']   = $object;
 
         return response()->json($response);
     }
@@ -26,13 +39,25 @@ class ActionController extends CoreController
     /**
      * Update the specified resource in storage.
      *
-     * @param   \Illuminate\Http\Request  $request
+     * @param   \Illuminate\Http\Request    $request
      * @return  \Illuminate\Http\JsonResponse
      */
     public function update(Request $request)
     {
+        try
+        {
+            $object = ActionService::update($request->all());
+        }
+        catch (\Exception $e)
+        {
+            $response['status'] = "error";
+            $response['message'] = $e->getMessage();
+
+            return response()->json($response, 500);
+        }
+
         $response['status'] = "success";
-        $response['data']   = ActionService::update($request->all());
+        $response['data']   = $object;
 
         return response()->json($response);
     }

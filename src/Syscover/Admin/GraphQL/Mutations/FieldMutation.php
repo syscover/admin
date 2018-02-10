@@ -4,6 +4,7 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Mutation;
 use Syscover\Admin\Models\Field;
+use Syscover\Admin\Services\FieldService;
 use Syscover\Core\Services\SQLService;
 
 class FieldMutation extends Mutation
@@ -33,54 +34,7 @@ class AddFieldMutation extends FieldMutation
 
     public function resolve($root, $args)
     {
-        // create new lang
-        if(! empty($args['object']['id']))
-        {
-            // get object to update data and data_lang field
-            $field = Field::find($args['object']['id']);
-
-            // get values
-            $dataLang   = $field->data_lang;
-            $labels     = $field->labels;
-
-            // set values
-            $dataLang[] = $args['object']['lang_id'];
-            $labels[] = [
-                'id'  => $args['object']['lang_id'],
-                'value' => $args['object']['label']
-            ];
-
-            // update values
-            $field->data_lang = $dataLang;
-            $field->labels = $labels;
-
-            $field->save();
-
-            return $field;
-        }
-
-        // create new object
-        // get file type name
-        $args['object']['field_type_name'] = collect(config('pulsar-admin.field_types'))
-            ->where('id', $args['object']['field_type_id'])
-            ->first()
-            ->name;
-
-        // get data type name
-        $args['object']['data_type_name'] = collect(config('pulsar-admin.data_types'))
-            ->where('id', $args['object']['data_type_id'])
-            ->first()
-            ->name;
-
-        // set label
-        $args['object']['labels'] = [[
-            'id' => $args['object']['lang_id'],
-            'value' => $args['object']['label']
-        ]];
-
-        $args['object']['data_lang'] = Field::addDataLang($args['object']['lang_id']);
-
-        return Field::create($args['object']);
+        return FieldService::create($args['object']);
     }
 }
 
@@ -93,67 +47,7 @@ class UpdateFieldMutation extends FieldMutation
 
     public function resolve($root, $args)
     {
-        $field = Field::find($args['object']['id']);
-
-        if(base_lang() == $args['object']['lang_id'])
-        {
-            // get file type name
-            $args['object']['field_type_name'] = collect(config('pulsar-admin.field_types'))
-                ->where('id', $args['object']['field_type_id'])
-                ->first()
-                ->name;
-
-            // get data type name
-            $args['object']['data_type_name'] = collect(config('pulsar-admin.data_types'))
-                ->where('id', $args['object']['data_type_id'])
-                ->first()
-                ->name;
-
-            // set label
-            $labels = collect($field->labels);
-            $labels->transform(function($obj) use ($args) {
-                if($obj['id'] === $args['object']['lang_id'])
-                {
-                    $obj['value'] = $args['object']['label'];
-                }
-                return $obj;
-            });
-
-            // save field object
-            Field::where('id', $args['object']['id'])
-                ->update([
-                    'field_group_id'    => $args['object']['field_group_id'],
-                    'name'              => $args['object']['name'],
-                    'labels'            => json_encode($labels),
-                    'field_type_id'     => $args['object']['field_type_id'],
-                    'field_type_name'   => $args['object']['field_type_name'],
-                    'data_type_id'      => $args['object']['data_type_id'],
-                    'data_type_name'    => $args['object']['data_type_name'],
-                    'required'          => $args['object']['required'],
-                    'sort'              => $args['object']['sort'],
-                    'max_length'        => $args['object']['max_length'],
-                    'pattern'           => $args['object']['pattern'],
-                    'label_class'       => $args['object']['label_class'],
-                    'component_class'   => $args['object']['component_class']
-                ]);
-
-            return Field::find($args['object']['id']);
-        }
-        else
-        {
-            // set label
-            $labels = collect($field->labels);
-            $labels->transform(function($obj) use ($args) {
-                if($obj['id'] === $args['object']['lang_id'])
-                {
-                    $obj['value'] = $args['object']['label'];
-                }
-                return $obj;
-            });
-
-            Field::where('id', $args['object']['id'])
-                ->update(['labels' => $labels]);
-        }
+        return FieldService::update($args['object']);
     }
 }
 
@@ -173,14 +67,14 @@ class DeleteFieldMutation extends FieldMutation
             ],
             'lang_id' => [
                 'name' => 'lang_id',
-                'type' => Type::string()
+                'type' => Type::nonNull(Type::string())
             ]
         ];
     }
 
     public function resolve($root, $args)
     {
-        $object = SQLService::destroyRecord($args['id'], Field::class, isset($args['lang_id']) ? $args['lang_id'] : null);
+        $object = SQLService::destroyRecord($args['id'], Field::class, $args['lang_id']);
 
         return $object;
     }

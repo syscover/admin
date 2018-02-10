@@ -32,12 +32,13 @@ class LangController extends CoreController
      * Update the specified resource in storage.
      *
      * @param   \Illuminate\Http\Request  $request
+     * @param   $ix
      * @return  \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request)
+    public function update(Request $request, $ix)
     {
         $response['status'] = "success";
-        $response['data']   = LangService::update($request->all());
+        $response['data']   = LangService::update($request->all(), $ix);
 
         return response()->json($response);
     }

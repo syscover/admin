@@ -7,25 +7,35 @@ class ActionService
     /**
      * @param  array    $object     contain properties of action
      * @return \Syscover\Admin\Models\Action
+     * @throws \Exception
      */
     public static function create($object)
     {
-        return Action::create($object);
+        if(empty($object['id']))     throw new \Exception('You have to define a id field to create a action');
+        if(empty($object['name']))   throw new \Exception('You have to define a name field to create a action');
+
+        return Action::create(ActionService::builder($object));
     }
 
     /**
-     * @param array     $object     contain properties of action
-     * @return \Syscover\Admin\Models\Action
+     * @param   array   $object     contain properties of action
+     * @return  \Syscover\Admin\Models\Action
      */
     public static function update($object)
     {
+        Action::where('ix', $object['ix'])->update(ActionService::builder($object));
+
+        return Action::find($object['ix']);
+    }
+
+    private static function builder($object)
+    {
         $object = collect($object);
+        $data = [];
 
-        Action::where('ix', $object->get('ix'))->update([
-            'id'        => $object->get('id'),
-            'name'      => $object->get('name')
-        ]);
+        if($object->has('id'))      $data['id'] = $object->get('id');
+        if($object->has('name'))    $data['name'] = $object->get('name');
 
-        return Action::find($object->get('ix'));
+        return $data;
     }
 }

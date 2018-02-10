@@ -57,7 +57,7 @@ class UpdateLangMutation extends LangMutation
 
     public function resolve($root, $args)
     {
-        return LangService::update($args['object']);
+        return LangService::update($args['object'], $args['object']['ix']);
     }
 }
 
