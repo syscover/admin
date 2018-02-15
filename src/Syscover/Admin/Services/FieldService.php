@@ -29,19 +29,19 @@ class FieldService
             $field      = Field::find($object->get('id'));
 
             // get values
-            $dataLang   = $field->data_lang;
             $labels     = $field->labels;
+            $dataLang   = $field->data_lang;
 
             // set values
-            $dataLang[] = $object->get('lang_id');
             $labels[]   = [
                 'id'    => $object->get('lang_id'),
                 'value' => $object->get('label')
             ];
+            $dataLang[] = $object->get('lang_id');
 
             // update values
-            $field->data_lang   = $dataLang;
             $field->labels      = $labels;
+            $field->data_lang   = $dataLang;
 
             $field->save();
 
@@ -56,6 +56,7 @@ class FieldService
      */
     public static function update($object)
     {
+        // set label field
         if(! empty($object['label']))
         {
             if(empty($object['lang_id']))   throw new \Exception('You have to define a lang_id field to update a label field');
