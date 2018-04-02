@@ -11,18 +11,18 @@ class ActionService
      */
     public static function create($object)
     {
-        if(empty($object['id']))     throw new \Exception('You have to define a id field to create a action');
-        if(empty($object['name']))   throw new \Exception('You have to define a name field to create a action');
-
+        ActionService::check($object);
         return Action::create(ActionService::builder($object));
     }
 
     /**
      * @param   array   $object     contain properties of action
      * @return  \Syscover\Admin\Models\Action
+     * @throws  \Exception
      */
     public static function update($object)
     {
+        ActionService::check($object);
         Action::where('ix', $object['ix'])->update(ActionService::builder($object));
 
         return Action::find($object['ix']);
@@ -37,5 +37,11 @@ class ActionService
         if($object->has('name'))    $data['name'] = $object->get('name');
 
         return $data;
+    }
+
+    private static function check($object)
+    {
+        if(empty($object['id']))     throw new \Exception('You have to define a id field to create a action');
+        if(empty($object['name']))   throw new \Exception('You have to define a name field to create a action');
     }
 }

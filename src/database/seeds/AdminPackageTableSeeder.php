@@ -8,8 +8,8 @@ class AdminPackageTableSeeder extends Seeder
     public function run()
     {
         Package::insert([
-            ['id' => 1,   'name' => 'Pulsar',         'root' => '',             'sort' => 1,        'active' => true],
-            ['id' => 20,  'name' => 'Admin Package',  'root' => 'admin',        'sort' => 20,       'active' => true],
+            ['id' => 1,   'name' => 'Digital H2',       'root' => '@',            'sort' => 1,        'active' => true],
+            ['id' => 20,  'name' => 'Admin Package',    'root' => 'admin',        'sort' => 20,       'active' => true],
         ]);
     }
 }

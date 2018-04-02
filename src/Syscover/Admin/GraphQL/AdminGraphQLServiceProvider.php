@@ -153,9 +153,6 @@ class AdminGraphQLServiceProvider
                 'adminUsersPagination'              => \Syscover\Admin\GraphQL\Queries\UsersPaginationQuery::class,
                 'adminUsers'                        => \Syscover\Admin\GraphQL\Queries\UsersQuery::class,
                 'adminUser'                         => \Syscover\Admin\GraphQL\Queries\UserQuery::class,
-
-                // SLUG
-                'adminCheckSlug'                    => \Syscover\Admin\GraphQL\Queries\SlugQuery::class
             ],
             'mutation' => [
                 // ACTION

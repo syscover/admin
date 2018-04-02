@@ -21,8 +21,8 @@ class AdminCreateTableCountry extends Migration
                 $table->string('id', 2);
                 $table->string('lang_id', 2);
                 $table->string('name');
-                $table->string('slug')->nullable();
-                $table->smallInteger('sort')->unsigned();
+                $table->string('slug');
+                $table->smallInteger('sort')->unsigned()->nullable();
                 $table->string('prefix', 5)->nullable();
                 $table->string('territorial_area_1', 50)->nullable();
                 $table->string('territorial_area_2', 50)->nullable();

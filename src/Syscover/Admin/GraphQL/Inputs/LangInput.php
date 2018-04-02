@@ -28,7 +28,7 @@ class LangInput extends GraphQLType
                 'description' => 'The name of lang'
             ],
             'icon' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::string(),
                 'description' => 'The icon of lang'
             ],
             'sort' => [

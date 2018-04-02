@@ -33,7 +33,7 @@ class AdminResourceTableSeeder extends Seeder {
             ['id' => 'admin-field-value',           'name' => 'Custom fields - Values',                 'package_id' => 20],
             ['id' => 'admin-field-group',           'name' => 'Custom fields - Groups',                 'package_id' => 20],
             ['id' => 'admin-report',                'name' => 'Reports',                                'package_id' => 20],
-            ['id' => 'pulsar',                      'name' => 'Pulsar',                                 'package_id' => 1]
+            ['id' => 'dh2',                         'name' => 'Digital H2',                              'package_id' => 1]
         ]);
     }
 }
