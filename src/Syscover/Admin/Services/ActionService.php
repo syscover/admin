@@ -4,22 +4,12 @@ use Syscover\Admin\Models\Action;
 
 class ActionService
 {
-    /**
-     * @param  array    $object     contain properties of action
-     * @return \Syscover\Admin\Models\Action
-     * @throws \Exception
-     */
     public static function create($object)
     {
         ActionService::check($object);
         return Action::create(ActionService::builder($object));
     }
 
-    /**
-     * @param   array   $object     contain properties of action
-     * @return  \Syscover\Admin\Models\Action
-     * @throws  \Exception
-     */
     public static function update($object)
     {
         ActionService::check($object);

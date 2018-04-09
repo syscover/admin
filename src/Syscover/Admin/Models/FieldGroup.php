@@ -27,12 +27,12 @@ class FieldGroup extends CoreModel
     public function scopeBuilder($query)
     {
         return $query->join('admin_resource', 'admin_field_group.resource_id', '=', 'admin_resource.id')
-            ->select('admin_resource.*', 'admin_field_group.*', 'admin_resource.name as resource_name', 'admin_field_group.name as field_group_name');
+            ->select('admin_field_group.*', 'admin_resource.name as resource_name', 'admin_field_group.name as field_group_name');
     }
 
     public function resource()
     {
-        return $this->belongsTo(Resource::class, 'resource_id');
+        return $this->belongsTo(Resource::class, 'resource_id', 'id');
     }
 
     public function fields()
