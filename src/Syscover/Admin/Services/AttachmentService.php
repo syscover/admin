@@ -283,7 +283,7 @@ class AttachmentService
 
         foreach ($tags as $tag)
         {
-            // search class ps-uploaded
+            // search class dh2-uploaded
             $classes = preg_split('/\s+/', $tag->getAttribute('class'));
             $newClasses = [];
             $uploaded = false;
@@ -291,26 +291,26 @@ class AttachmentService
             foreach ($classes as $class)
             {
                 // know if has any image was uploaded
-                if($class === 'ps-uploaded')
+                if($class === 'dh2-uploaded')
                     $uploaded = true;
-                elseif(strrpos($class, 'ps-attachment-family') !== 0)
+                elseif(strrpos($class, 'dh2-attachment-family') !== 0)
                     $newClasses[] = $class;
 
                 // get attachement family class if has anyone
-                if(strrpos($class, 'ps-attachment-family') === 0)
+                if(strrpos($class, 'dh2-attachment-family') === 0)
                     $attachmentFamilyClass = $class;
             }
 
             if($uploaded)
             {
                 // get data element insert in editor.component.ts line 112
-                $attachment = json_decode($tag->getAttribute('data-ps-image'));
+                $attachment = json_decode($tag->getAttribute('data-dh2-image'));
 
                 $sizes = AttachmentService::setWysiwygAttachmentSizes($attachment, $directory, $urlBase, $id, $attachmentFamilyClass);
 
                 $tag->setAttribute('src', get_src($sizes));
                 $tag->setAttribute('srcset', get_srcset($sizes));
-                $tag->removeAttribute('data-ps-image');
+                $tag->removeAttribute('data-dh2-image');
 
                 $tag->removeAttribute('style'); // delete all image styles
 
