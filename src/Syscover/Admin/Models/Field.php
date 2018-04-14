@@ -48,12 +48,12 @@ class Field extends CoreModel
     }
 
     /**
-     * Overwrite deleteTranslationRecord from CoreModel to delete
-     * json language field, in labels column
-     * @param $id
-     * @param $langId
-     * @param bool $deleteLangDataRecord
-     * @param   array $filters  filters to select and delete records
+     * Overwrite deleteTranslationRecord from CoreModel to delete json language field, in labels column
+     *
+     * @param           $id
+     * @param           $langId
+     * @param   bool    $deleteLangDataRecord
+     * @param   array   $filters                filters to select and delete records
      */
     public static function deleteTranslationRecord($id, $langId, $deleteLangDataRecord = true, $filters = [])
     {
@@ -65,7 +65,7 @@ class Field extends CoreModel
             return $value['id'] !== $langId;
         });
 
-        $field->save(); // save values
+        $field->save();
 
         // set values on data_lang
         Field::deleteDataLang($langId, $id, 'id');
