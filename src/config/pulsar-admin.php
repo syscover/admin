@@ -39,14 +39,15 @@ return [
     //***   Type fields to select on fields section
     //******************************************************************************************************************
     'field_types' => [
-        (object)['id' => 'text',                'name' => 'Text'],
-        (object)['id' => 'select',              'name' => 'Select'],
-        (object)['id' => 'select-multiple',     'name' => 'Select multiple'],
-        (object)['id' => 'number',              'name' => 'Number'],
-        (object)['id' => 'email',               'name' => 'Email'],
-        (object)['id' => 'checkbox',            'name' => 'Checkbox'],
-        (object)['id' => 'text-area',           'name' => 'Text Area'],
-        (object)['id' => 'wysiwyg',             'name' => 'Wysiwyg']
+        (object)['id' => 'checkbox',            'name' => 'Checkbox',               'values' => false],
+        (object)['id' => 'email',               'name' => 'Email',                  'values' => false],
+        (object)['id' => 'model',               'name' => 'Model',                  'values' => false],
+        (object)['id' => 'number',              'name' => 'Number',                 'values' => false],
+        (object)['id' => 'select',              'name' => 'Select',                 'values' => true],
+        (object)['id' => 'select-multiple',     'name' => 'Select multiple',        'values' => true],
+        (object)['id' => 'text',                'name' => 'Text',                   'values' => false],
+        (object)['id' => 'text-area',           'name' => 'Text Area',              'values' => false],
+        (object)['id' => 'wysiwyg',             'name' => 'Wysiwyg',                'values' => false],
     ],
 
     //******************************************************************************************************************
