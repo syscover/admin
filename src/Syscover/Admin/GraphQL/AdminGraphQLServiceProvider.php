@@ -74,6 +74,9 @@ class AdminGraphQLServiceProvider
         // USER
         GraphQL::addType(\Syscover\Admin\GraphQL\Types\UserType::class, 'AdminUser');
         GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\UserInput::class, 'AdminUserInput');
+
+        // CONFIGS
+        GraphQL::addType(\Syscover\Admin\GraphQL\Types\ConfigFieldTypeOptionType::class, 'AdminConfigFieldTypeOption');
     }
 
     public static function bootGraphQLSchema()
