@@ -37,14 +37,16 @@ class FieldValueService
     {
         $object = collect($object);
 
-        // if change id, change id for object of all languages
+        $fieldValue = FieldValue::find($object['ix']);
+
+        // change id for object of all languages
         FieldValue::where('field_id', $object->get('field_id'))
-            ->where('id', $object->get('id'))
+            ->where('id', $fieldValue->id)
             ->update(['id' => $object->get('id')]);
 
 
         FieldValue::where('field_id', $object->get('field_id'))
-            ->where('id', $object->get('id'))
+            ->where('id', $fieldValue->id)
             ->where('lang_id', $object->get('lang_id'))
             ->update([
                 'name'          => $object->get('name'),
