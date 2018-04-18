@@ -12,6 +12,8 @@ class TerritorialArea1 extends CoreModel
 {
     protected $table        = 'admin_territorial_area_1';
     protected $primaryKey   = 'ix';
+    protected $fillable     = ['ix', 'id', 'country_id', 'name', 'slug'];
+    public $with            = ['country', 'territorialAreas2'];
 
     private static $rules   = [
         'id'      => 'required|between:1,6|unique:001_003_territorial_area_1,id_003',
@@ -29,6 +31,11 @@ class TerritorialArea1 extends CoreModel
     {
         return $query->join('admin_country', 'admin_territorial_area_1.country_id', '=', 'admin_country.id')
             ->select('admin_country.*', 'admin_territorial_area_1.*', 'admin_country.name as country_name', 'admin_territorial_area_1.name as territorial_area_1_name');
+    }
+
+    public function country()
+    {
+        return $this->hasMany(Country::class, 'country_id');
     }
 
     public function territorialAreas2()

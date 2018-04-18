@@ -4,22 +4,15 @@ use Syscover\Admin\Models\Lang;
 
 class LangService
 {
-    /**
-     * @param   array   $object     contain properties of action
-     * @return  \Syscover\Admin\Models\Lang
-     */
     public static function create($object)
     {
+        LangService::check($object);
         return Lang::create(LangService::builder($object));
     }
 
-    /**
-     * @param   array   $object     contain properties of action
-     * @param   $ix
-     * @return  \Syscover\Admin\Models\Lang
-     */
     public static function update($object, $ix)
     {
+        LangService::check($object);
         Lang::where('ix', $ix)->update(LangService::builder($object));
 
         return Lang::find($ix);
@@ -37,5 +30,12 @@ class LangService
         if($object->has('active'))  $data['active'] = $object->get('active');
 
         return $data;
+    }
+
+    private static function check($object)
+    {
+        if(empty($object['id']))     throw new \Exception('You have to define a id field to create a lang');
+        if(empty($object['name']))   throw new \Exception('You have to define a name field to create a lang');
+        if(empty($object['sort']))   throw new \Exception('You have to define a sort field to create a lang');
     }
 }

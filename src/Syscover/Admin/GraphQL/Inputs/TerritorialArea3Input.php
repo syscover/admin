@@ -1,20 +1,22 @@
-<?php namespace Syscover\Admin\GraphQL\Types;
+<?php namespace Syscover\Admin\GraphQL\Inputs;
 
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as GraphQLType;
 
-class TerritorialArea3Type extends GraphQLType
+class TerritorialArea3Input extends GraphQLType
 {
     protected $attributes = [
         'name'          => 'TerritorialArea3',
         'description'   => 'Territorial area 3'
     ];
 
+    protected $inputObject = true;
+
     public function fields()
     {
         return [
             'ix' => [
-                'type' => Type::nonNull(Type::int()),
+                'type' => Type::int(),
                 'description' => 'The index of territorial area 3'
             ],
             'id' => [
@@ -41,7 +43,6 @@ class TerritorialArea3Type extends GraphQLType
                 'type' => Type::string(),
                 'description' => 'The slug of territorial area 3'
             ]
-
         ];
     }
 }

@@ -28,12 +28,15 @@ class AdminGraphQLServiceProvider
 
         // TERRITORIAL AREA 1
         GraphQL::addType(\Syscover\Admin\GraphQL\Types\TerritorialArea1Type::class, 'AdminTerritorialArea1');
+        GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\TerritorialArea1Input::class, 'AdminTerritorialArea1Input');
 
         // TERRITORIAL AREA 2
         GraphQL::addType(\Syscover\Admin\GraphQL\Types\TerritorialArea2Type::class, 'AdminTerritorialArea2');
+        GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\TerritorialArea2Input::class, 'AdminTerritorialArea2Input');
 
         // TERRITORIAL AREA 3
         GraphQL::addType(\Syscover\Admin\GraphQL\Types\TerritorialArea3Type::class, 'AdminTerritorialArea3');
+        GraphQL::addType(\Syscover\Admin\GraphQL\Inputs\TerritorialArea3Input::class, 'AdminTerritorialArea3Input');
 
         // RESOURCE
         GraphQL::addType(\Syscover\Admin\GraphQL\Types\ResourceType::class, 'AdminResource');
@@ -109,13 +112,19 @@ class AdminGraphQLServiceProvider
                 'adminCountry'                      => \Syscover\Admin\GraphQL\Queries\CountryQuery::class,
 
                 // TERRITORIAL AREA 1
+                'adminTerritorialAreas1Pagination'  => \Syscover\Admin\GraphQL\Queries\TerritorialAreas1PaginationQuery::class,
                 'adminTerritorialAreas1'            => \Syscover\Admin\GraphQL\Queries\TerritorialAreas1Query::class,
+                'adminTerritorialArea1'             => \Syscover\Admin\GraphQL\Queries\TerritorialArea1Query::class,
 
                 // TERRITORIAL AREA 2
+                'adminTerritorialAreas2Pagination'  => \Syscover\Admin\GraphQL\Queries\TerritorialAreas2PaginationQuery::class,
                 'adminTerritorialAreas2'            => \Syscover\Admin\GraphQL\Queries\TerritorialAreas2Query::class,
+                'adminTerritorialArea2'             => \Syscover\Admin\GraphQL\Queries\TerritorialArea2Query::class,
 
                 // TERRITORIAL AREA 3
+                'adminTerritorialAreas3Pagination'  => \Syscover\Admin\GraphQL\Queries\TerritorialAreas3PaginationQuery::class,
                 'adminTerritorialAreas3'            => \Syscover\Admin\GraphQL\Queries\TerritorialAreas3Query::class,
+                'adminTerritorialArea3'             => \Syscover\Admin\GraphQL\Queries\TerritorialArea3Query::class,
 
                 // RESOURCE
                 'adminResourcesPagination'          => \Syscover\Admin\GraphQL\Queries\ResourcesPaginationQuery::class,
