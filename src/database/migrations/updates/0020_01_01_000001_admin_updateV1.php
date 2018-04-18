@@ -23,7 +23,7 @@ class AdminUpdateV1 extends Migration
             });
 
             Schema::table('admin_action', function (Blueprint $table) {
-                $table->increments('ic')->first();
+                $table->increments('id')->first();
                 $table->index('id', 'ix01_admin_action');
 
             });
