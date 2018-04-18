@@ -36,7 +36,7 @@ class PackageService
     {
         if(empty($object['name']))      throw new \Exception('You have to define a name field to create a package');
         if(empty($object['root']))      throw new \Exception('You have to define a root field to create a package');
-        if(empty($object['active']))    throw new \Exception('You have to define a active field to create a package');
+        if(! isset($object['active']))  throw new \Exception('You have to define a active field to create a package');
         if(empty($object['sort']))      throw new \Exception('You have to define a sort field to create a package');
     }
 }
