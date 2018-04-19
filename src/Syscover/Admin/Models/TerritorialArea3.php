@@ -12,6 +12,8 @@ class TerritorialArea3 extends CoreModel
 {
     protected $table        = 'admin_territorial_area_3';
     protected $primaryKey   = 'ix';
+    protected $fillable     = ['ix', 'id', 'country_id', 'territorial_area_1_id', 'territorial_area_2_id', 'name', 'slug'];
+    public $with            = ['country'];
 
     private static $rules   = [
         'id'                => 'required|between:1,10|unique:territorial_area_3,id',
@@ -33,5 +35,10 @@ class TerritorialArea3 extends CoreModel
             ->join('admin_territorial_area_1', 'admin_territorial_area_3.territorial_area_1_id', '=', 'admin_territorial_area_1.id')
             ->join('admin_territorial_area_2', 'admin_territorial_area_3.territorial_area_2_id', '=', 'admin_territorial_area_2.id')
             ->select('admin_country.*', 'admin_territorial_area_1.*', 'admin_territorial_area_2.*', 'admin_territorial_area_3.*', 'admin_country.name as country_name', 'admin_territorial_area_1.name as territorial_area_1_name', 'admin_territorial_area_2.name as territorial_area_2_name', 'admin_territorial_area_3.name as territorial_area_3_name');
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id', 'id');
     }
 }
