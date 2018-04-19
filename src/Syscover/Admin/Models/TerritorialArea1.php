@@ -29,13 +29,12 @@ class TerritorialArea1 extends CoreModel
 
     public function scopeBuilder($query)
     {
-        return $query->join('admin_country', 'admin_territorial_area_1.country_id', '=', 'admin_country.id')
-            ->select('admin_country.*', 'admin_territorial_area_1.*', 'admin_country.name as country_name', 'admin_territorial_area_1.name as territorial_area_1_name');
+        return $query;
     }
 
     public function country()
     {
-        return $this->hasMany(Country::class, 'country_id');
+        return $this->belongsTo(Country::class, 'country_id', 'id');
     }
 
     public function territorialAreas2()

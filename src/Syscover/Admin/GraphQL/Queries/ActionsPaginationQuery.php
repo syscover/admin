@@ -31,7 +31,7 @@ class ActionsPaginationQuery extends Query
 
     public function resolve($root, $args)
     {
-        $query = SQLService::getQueryFiltered(Action::builder(), empty($args['sql']) ? [] : $args['sql']);
+        $query = SQLService::getQueryFiltered(Action::builder(), $args['sql']);
 
         // count records filtered
         $filtered = $query->count();

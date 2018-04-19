@@ -168,73 +168,88 @@ class AdminGraphQLServiceProvider
             ],
             'mutation' => [
                 // ACTION
-                'adminAddAction'                => \Syscover\Admin\GraphQL\Mutations\AddActionMutation::class,
-                'adminUpdateAction'             => \Syscover\Admin\GraphQL\Mutations\UpdateActionMutation::class,
-                'adminDeleteAction'             => \Syscover\Admin\GraphQL\Mutations\DeleteActionMutation::class,
+                'adminAddAction'                    => \Syscover\Admin\GraphQL\Mutations\AddActionMutation::class,
+                'adminUpdateAction'                 => \Syscover\Admin\GraphQL\Mutations\UpdateActionMutation::class,
+                'adminDeleteAction'                 => \Syscover\Admin\GraphQL\Mutations\DeleteActionMutation::class,
 
                 // PACKAGE
-                'adminAddPackage'               => \Syscover\Admin\GraphQL\Mutations\AddPackageMutation::class,
-                'adminUpdatePackage'            => \Syscover\Admin\GraphQL\Mutations\UpdatePackageMutation::class,
-                'adminDeletePackage'            => \Syscover\Admin\GraphQL\Mutations\DeletePackageMutation::class,
+                'adminAddPackage'                   => \Syscover\Admin\GraphQL\Mutations\AddPackageMutation::class,
+                'adminUpdatePackage'                => \Syscover\Admin\GraphQL\Mutations\UpdatePackageMutation::class,
+                'adminDeletePackage'                => \Syscover\Admin\GraphQL\Mutations\DeletePackageMutation::class,
 
                 // CRON JOB
-                'adminAddCronJob'               => \Syscover\Admin\GraphQL\Mutations\AddCronJobMutation::class,
-                'adminUpdateCronJob'            => \Syscover\Admin\GraphQL\Mutations\UpdateCronJobMutation::class,
-                'adminDeleteCronJob'            => \Syscover\Admin\GraphQL\Mutations\DeleteCronJobMutation::class,
+                'adminAddCronJob'                   => \Syscover\Admin\GraphQL\Mutations\AddCronJobMutation::class,
+                'adminUpdateCronJob'                => \Syscover\Admin\GraphQL\Mutations\UpdateCronJobMutation::class,
+                'adminDeleteCronJob'                => \Syscover\Admin\GraphQL\Mutations\DeleteCronJobMutation::class,
 
                 // LANG
-                'adminAddLang'                  => \Syscover\Admin\GraphQL\Mutations\AddLangMutation::class,
-                'adminUpdateLang'               => \Syscover\Admin\GraphQL\Mutations\UpdateLangMutation::class,
-                'adminDeleteLang'               => \Syscover\Admin\GraphQL\Mutations\DeleteLangMutation::class,
+                'adminAddLang'                      => \Syscover\Admin\GraphQL\Mutations\AddLangMutation::class,
+                'adminUpdateLang'                   => \Syscover\Admin\GraphQL\Mutations\UpdateLangMutation::class,
+                'adminDeleteLang'                   => \Syscover\Admin\GraphQL\Mutations\DeleteLangMutation::class,
 
                 // COUNTRY
-                'adminAddCountry'               => \Syscover\Admin\GraphQL\Mutations\AddCountryMutation::class,
-                'adminUpdateCountry'            => \Syscover\Admin\GraphQL\Mutations\UpdateCountryMutation::class,
-                'adminDeleteCountry'            => \Syscover\Admin\GraphQL\Mutations\DeleteCountryMutation::class,
+                'adminAddCountry'                   => \Syscover\Admin\GraphQL\Mutations\AddCountryMutation::class,
+                'adminUpdateCountry'                => \Syscover\Admin\GraphQL\Mutations\UpdateCountryMutation::class,
+                'adminDeleteCountry'                => \Syscover\Admin\GraphQL\Mutations\DeleteCountryMutation::class,
+
+                // TERRITORIAL AREA 1
+                'adminAddTerritorialArea1'          => \Syscover\Admin\GraphQL\Mutations\AddTerritorialArea1Mutation::class,
+                'adminUpdateTerritorialArea1'       => \Syscover\Admin\GraphQL\Mutations\UpdateTerritorialArea1Mutation::class,
+                'adminDeleteTerritorialArea1'       => \Syscover\Admin\GraphQL\Mutations\DeleteTerritorialArea1Mutation::class,
+
+                // TERRITORIAL AREA 2
+                'adminAddTerritorialArea2'          => \Syscover\Admin\GraphQL\Mutations\AddTerritorialArea2Mutation::class,
+                'adminUpdateTerritorialArea2'       => \Syscover\Admin\GraphQL\Mutations\UpdateTerritorialArea2Mutation::class,
+                'adminDeleteTerritorialArea2'       => \Syscover\Admin\GraphQL\Mutations\DeleteTerritorialArea2Mutation::class,
+
+                // TERRITORIAL AREA 3
+                'adminAddTerritorialArea3'          => \Syscover\Admin\GraphQL\Mutations\AddTerritorialArea3Mutation::class,
+                'adminUpdateTerritorialArea3'       => \Syscover\Admin\GraphQL\Mutations\UpdateTerritorialArea3Mutation::class,
+                'adminDeleteTerritorialArea3'       => \Syscover\Admin\GraphQL\Mutations\DeleteTerritorialArea3Mutation::class,
 
                 // RESOURCE
-                'adminAddResource'              => \Syscover\Admin\GraphQL\Mutations\AddResourceMutation::class,
-                'adminUpdateResource'           => \Syscover\Admin\GraphQL\Mutations\UpdateResourceMutation::class,
-                'adminDeleteResource'           => \Syscover\Admin\GraphQL\Mutations\DeleteResourceMutation::class,
+                'adminAddResource'                  => \Syscover\Admin\GraphQL\Mutations\AddResourceMutation::class,
+                'adminUpdateResource'               => \Syscover\Admin\GraphQL\Mutations\UpdateResourceMutation::class,
+                'adminDeleteResource'               => \Syscover\Admin\GraphQL\Mutations\DeleteResourceMutation::class,
 
                 // PROFILE
-                'adminAddProfile'               => \Syscover\Admin\GraphQL\Mutations\AddProfileMutation::class,
-                'adminUpdateProfile'            => \Syscover\Admin\GraphQL\Mutations\UpdateProfileMutation::class,
-                'adminDeleteProfile'            => \Syscover\Admin\GraphQL\Mutations\DeleteProfileMutation::class,
+                'adminAddProfile'                   => \Syscover\Admin\GraphQL\Mutations\AddProfileMutation::class,
+                'adminUpdateProfile'                => \Syscover\Admin\GraphQL\Mutations\UpdateProfileMutation::class,
+                'adminDeleteProfile'                => \Syscover\Admin\GraphQL\Mutations\DeleteProfileMutation::class,
 
                 // FIELD GROUP
-                'adminAddFieldGroup'            => \Syscover\Admin\GraphQL\Mutations\AddFieldGroupMutation::class,
-                'adminUpdateFieldGroup'         => \Syscover\Admin\GraphQL\Mutations\UpdateFieldGroupMutation::class,
-                'adminDeleteFieldGroup'         => \Syscover\Admin\GraphQL\Mutations\DeleteFieldGroupMutation::class,
+                'adminAddFieldGroup'                => \Syscover\Admin\GraphQL\Mutations\AddFieldGroupMutation::class,
+                'adminUpdateFieldGroup'             => \Syscover\Admin\GraphQL\Mutations\UpdateFieldGroupMutation::class,
+                'adminDeleteFieldGroup'             => \Syscover\Admin\GraphQL\Mutations\DeleteFieldGroupMutation::class,
 
                 // FIELD
-                'adminAddField'                 => \Syscover\Admin\GraphQL\Mutations\AddFieldMutation::class,
-                'adminUpdateField'              => \Syscover\Admin\GraphQL\Mutations\UpdateFieldMutation::class,
-                'adminDeleteField'              => \Syscover\Admin\GraphQL\Mutations\DeleteFieldMutation::class,
+                'adminAddField'                     => \Syscover\Admin\GraphQL\Mutations\AddFieldMutation::class,
+                'adminUpdateField'                  => \Syscover\Admin\GraphQL\Mutations\UpdateFieldMutation::class,
+                'adminDeleteField'                  => \Syscover\Admin\GraphQL\Mutations\DeleteFieldMutation::class,
 
                 // FIELD VALUE
-                'adminAddFieldValue'            => \Syscover\Admin\GraphQL\Mutations\AddFieldValueMutation::class,
-                'adminUpdateFieldValue'         => \Syscover\Admin\GraphQL\Mutations\UpdateFieldValueMutation::class,
-                'adminDeleteFieldValue'         => \Syscover\Admin\GraphQL\Mutations\DeleteFieldValueMutation::class,
+                'adminAddFieldValue'                => \Syscover\Admin\GraphQL\Mutations\AddFieldValueMutation::class,
+                'adminUpdateFieldValue'             => \Syscover\Admin\GraphQL\Mutations\UpdateFieldValueMutation::class,
+                'adminDeleteFieldValue'             => \Syscover\Admin\GraphQL\Mutations\DeleteFieldValueMutation::class,
 
                 // ATTACHMENT FAMILY
-                'adminAddAttachmentFamily'      => \Syscover\Admin\GraphQL\Mutations\AddAttachmentFamilyMutation::class,
-                'adminUpdateAttachmentFamily'   => \Syscover\Admin\GraphQL\Mutations\UpdateAttachmentFamilyMutation::class,
-                'adminDeleteAttachmentFamily'   => \Syscover\Admin\GraphQL\Mutations\DeleteAttachmentFamilyMutation::class,
+                'adminAddAttachmentFamily'          => \Syscover\Admin\GraphQL\Mutations\AddAttachmentFamilyMutation::class,
+                'adminUpdateAttachmentFamily'       => \Syscover\Admin\GraphQL\Mutations\UpdateAttachmentFamilyMutation::class,
+                'adminDeleteAttachmentFamily'       => \Syscover\Admin\GraphQL\Mutations\DeleteAttachmentFamilyMutation::class,
 
                 // ATTACHMENT MIME
-                'adminAddAttachmentMime'        => \Syscover\Admin\GraphQL\Mutations\AddAttachmentMimeMutation::class,
-                'adminUpdateAttachmentMime'     => \Syscover\Admin\GraphQL\Mutations\UpdateAttachmentMimeMutation::class,
-                'adminDeleteAttachmentMime'     => \Syscover\Admin\GraphQL\Mutations\DeleteAttachmentMimeMutation::class,
+                'adminAddAttachmentMime'            => \Syscover\Admin\GraphQL\Mutations\AddAttachmentMimeMutation::class,
+                'adminUpdateAttachmentMime'         => \Syscover\Admin\GraphQL\Mutations\UpdateAttachmentMimeMutation::class,
+                'adminDeleteAttachmentMime'         => \Syscover\Admin\GraphQL\Mutations\DeleteAttachmentMimeMutation::class,
 
                 // ATTACHMENT
-                'adminCropAttachment'           => \Syscover\Admin\GraphQL\Mutations\CropAttachmentMutation::class,
-                'adminDeleteAttachment'         => \Syscover\Admin\GraphQL\Mutations\DeleteAttachmentMutation::class,
+                'adminCropAttachment'               => \Syscover\Admin\GraphQL\Mutations\CropAttachmentMutation::class,
+                'adminDeleteAttachment'             => \Syscover\Admin\GraphQL\Mutations\DeleteAttachmentMutation::class,
 
                 // USER
-                'adminAddUser'                  => \Syscover\Admin\GraphQL\Mutations\AddUserMutation::class,
-                'adminUpdateUser'               => \Syscover\Admin\GraphQL\Mutations\UpdateUserMutation::class,
-                'adminDeleteUser'               => \Syscover\Admin\GraphQL\Mutations\DeleteUserMutation::class,
+                'adminAddUser'                      => \Syscover\Admin\GraphQL\Mutations\AddUserMutation::class,
+                'adminUpdateUser'                   => \Syscover\Admin\GraphQL\Mutations\UpdateUserMutation::class,
+                'adminDeleteUser'                   => \Syscover\Admin\GraphQL\Mutations\DeleteUserMutation::class,
             ]
         ]));
     }

@@ -21,6 +21,11 @@ class TerritorialAreas1PaginationQuery extends Query
     public function args()
     {
         return [
+            'filters' => [
+                'name'          => 'filters',
+                'type'          => Type::listOf(GraphQL::type('CoreSQLQueryInput')),
+                'description'   => 'to filter queries'
+            ],
             'sql' => [
                 'name'          => 'sql',
                 'type'          => Type::listOf(GraphQL::type('CoreSQLQueryInput')),
@@ -31,7 +36,7 @@ class TerritorialAreas1PaginationQuery extends Query
 
     public function resolve($root, $args)
     {
-        $query = SQLService::getQueryFiltered(TerritorialArea1::builder(), empty($args['sql']) ? [] : $args['sql']);
+        $query = SQLService::getQueryFiltered(TerritorialArea1::builder(), $args['sql'], $args['filters']);
 
         // count records filtered
         $filtered = $query->count();

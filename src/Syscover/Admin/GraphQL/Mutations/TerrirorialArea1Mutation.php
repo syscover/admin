@@ -19,7 +19,7 @@ class AddTerritorialArea1Mutation extends TerritorialArea1Mutation
 {
     protected $attributes = [
         'name' => 'addTerritorialArea1',
-        'description' => 'Add new action'
+        'description' => 'Add new territorial area 1'
     ];
 
     public function args()
@@ -42,7 +42,7 @@ class UpdateTerritorialArea1Mutation extends TerritorialArea1Mutation
 {
     protected $attributes = [
         'name' => 'updateTerritorialArea1',
-        'description' => 'Update action'
+        'description' => 'Update territorial area 1'
     ];
 
     public function args()
@@ -65,7 +65,7 @@ class DeleteTerritorialArea1Mutation extends TerritorialArea1Mutation
 {
     protected $attributes = [
         'name' => 'deleteTerritorialArea1',
-        'description' => 'Delete action'
+        'description' => 'Delete territorial area 1'
     ];
 
     public function args()
