@@ -1,5 +1,6 @@
 <?php namespace Syscover\Admin\GraphQL\Types;
 
+use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as GraphQLType;
 
@@ -45,13 +46,25 @@ class CountryType extends GraphQLType
                 'type' => Type::string(),
                 'description' => 'Territorial area 1 name of country'
             ],
+            'territorial_areas_1' => [
+                'type' => Type::listOf(GraphQL::type('AdminTerritorialArea1')),
+                'description' => 'Territorial areas 1 list'
+            ],
             'territorial_area_2' => [
                 'type' => Type::string(),
                 'description' => 'Territorial area 2 name of country'
             ],
+            'territorial_areas_2' => [
+                'type' => Type::listOf(GraphQL::type('AdminTerritorialArea2')),
+                'description' => 'Territorial areas 2 list'
+            ],
             'territorial_area_3' => [
                 'type' => Type::string(),
                 'description' => 'Territorial area 3 name of country'
+            ],
+            'territorial_areas_3' => [
+                'type' => Type::listOf(GraphQL::type('AdminTerritorialArea3')),
+                'description' => 'Territorial areas 3 list'
             ],
             'zones' => [
                 'type' => Type::listOf(Type::string()),

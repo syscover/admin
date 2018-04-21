@@ -13,7 +13,7 @@ class TerritorialArea1 extends CoreModel
     protected $table        = 'admin_territorial_area_1';
     protected $primaryKey   = 'ix';
     protected $fillable     = ['ix', 'id', 'country_id', 'name', 'slug'];
-    public $with            = ['country', 'territorialAreas2'];
+    //public $with            = ['country', 'territorial_areas_2'];
 
     private static $rules   = [
         'id'      => 'required|between:1,6|unique:001_003_territorial_area_1,id_003',
@@ -37,7 +37,7 @@ class TerritorialArea1 extends CoreModel
         return $this->belongsTo(Country::class, 'country_id', 'id');
     }
 
-    public function territorialAreas2()
+    public function territorial_areas_2()
     {
         return $this->hasMany(TerritorialArea2::class, 'territorial_area_1_id');
     }

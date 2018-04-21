@@ -13,7 +13,7 @@ class TerritorialArea2 extends CoreModel
     protected $table        = 'admin_territorial_area_2';
     protected $primaryKey   = 'ix';
     protected $fillable     = ['ix', 'id', 'country_id', 'territorial_area_1_id', 'name', 'slug'];
-    public $with            = ['country', 'territorialAreas3'];
+    public $with            = ['territorial_area_1', 'territorial_areas_3'];
 
     private static $rules   = [
         'id'                => 'required|between:1,10|unique:territorial_area_2,id',
@@ -30,10 +30,8 @@ class TerritorialArea2 extends CoreModel
 
     public function scopeBuilder($query)
     {
-        return $query
-            ->join('admin_country', 'admin_territorial_area_2.country_id', '=', 'admin_country.id')
-            ->join('admin_territorial_area_1', 'admin_territorial_area_2.territorial_area_1_id', '=', 'admin_territorial_area_1.id')
-            ->select('admin_country.*', 'admin_territorial_area_1.*', 'admin_territorial_area_2.*', 'admin_country.name as country_name', 'admin_territorial_area_1.name as territorial_area_1_name', 'admin_territorial_area_2.name as territorial_area_2_name');
+        return $query->join('admin_territorial_area_1', 'admin_territorial_area_2.territorial_area_1_id', '=', 'admin_territorial_area_1.id')
+            ->select('admin_territorial_area_1.*', 'admin_territorial_area_2.*', 'admin_territorial_area_1.name as territorial_area_1_name', 'admin_territorial_area_2.name as territorial_area_2_name');
     }
 
     public function country()
@@ -41,7 +39,12 @@ class TerritorialArea2 extends CoreModel
         return $this->belongsTo(Country::class, 'country_id', 'id');
     }
 
-    public function territorialAreas3()
+    public function territorial_area_1()
+    {
+        return $this->belongsTo(TerritorialArea1::class, 'territorial_area_1_id', 'id');
+    }
+
+    public function territorial_areas_3()
     {
          return $this->hasMany(TerritorialArea3::class, 'territorial_area_2_id');
     }
