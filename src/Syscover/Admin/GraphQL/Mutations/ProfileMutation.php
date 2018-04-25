@@ -4,6 +4,7 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Mutation;
 use Syscover\Admin\Models\Profile;
+use Syscover\Admin\Services\ProfileService;
 use Syscover\Core\Services\SQLService;
 
 class ProfileMutation extends Mutation
@@ -33,7 +34,7 @@ class AddProfileMutation extends ProfileMutation
 
     public function resolve($root, $args)
     {
-        return Profile::create($args['object']);
+        return ProfileService::create($args['object']);
     }
 }
 
@@ -46,10 +47,7 @@ class UpdateProfileMutation extends ProfileMutation
 
     public function resolve($root, $args)
     {
-        Profile::where('id', $args['object']['id'])
-            ->update($args['object']);
-
-        return Profile::find($args['object']['id']);
+        return ProfileService::update($args['object']);
     }
 }
 
