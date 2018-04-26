@@ -6,13 +6,13 @@ class ActionService
 {
     public static function create($object)
     {
-        ActionService::check($object);
+        ActionService::checkCreate($object);
         return Action::create(ActionService::builder($object));
     }
 
     public static function update($object)
     {
-        ActionService::check($object);
+        ActionService::checkUpdate($object);
         Action::where('ix', $object['ix'])->update(ActionService::builder($object));
 
         return Action::find($object['ix']);
@@ -21,17 +21,17 @@ class ActionService
     private static function builder($object)
     {
         $object = collect($object);
-        $data = [];
-
-        if($object->has('id'))      $data['id'] = $object->get('id');
-        if($object->has('name'))    $data['name'] = $object->get('name');
-
-        return $data;
+        return $object->only('id', 'name')->toArray();
     }
 
-    private static function check($object)
+    private static function checkCreate($object)
     {
         if(empty($object['id']))     throw new \Exception('You have to define a id field to create a action');
         if(empty($object['name']))   throw new \Exception('You have to define a name field to create a action');
+    }
+
+    private static function checkUpdate($object)
+    {
+        if(empty($object['ix'])) throw new \Exception('You have to define a ix field to update a action');
     }
 }
