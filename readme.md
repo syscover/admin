@@ -97,10 +97,10 @@ ADMIN_BASE_LANG=en
 ADMIN_PANEL_URL=http://panel.mydomain.com
 ```
 
-**9 - Register cron command on file app/Console/Kernel.php add to $commands array**
+**9 - Register cron command your server**
 
 ```
-\Syscover\Admin\Commands\Cron::class,
+* * * * * php /path-to-your-project/artisan schedule:run >> /dev/null 2>&1
 
 ```
 
@@ -110,6 +110,8 @@ url: http://www.your-domain.com/pulsar
 user: admin@pulsar.local
 pasword: 123456
 ```
+
+
 
 
 

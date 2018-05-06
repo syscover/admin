@@ -44,7 +44,7 @@ class AdminCreateTableField extends Migration {
                 // 5 - Array
                 // 6 - Object
 
-                $table->boolean('required');
+                $table->boolean('required')->default(false);
                 $table->smallInteger('sort')->unsigned()->nullable();
                 $table->integer('max_length')->unsigned()->nullable();
                 $table->string('pattern')->nullable()->nullable();

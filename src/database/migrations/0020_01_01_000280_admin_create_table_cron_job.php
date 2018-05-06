@@ -24,7 +24,7 @@ class AdminCreateTableCronJob extends Migration
 				$table->string('command');
 				$table->timestamp('last_run')->default(DB::raw('CURRENT_TIMESTAMP'));
 				$table->timestamp('next_run')->default(DB::raw('CURRENT_TIMESTAMP'));
-				$table->boolean('active');
+				$table->boolean('active')->default(false);
 
 				$table->timestamps();
                 $table->softDeletes();

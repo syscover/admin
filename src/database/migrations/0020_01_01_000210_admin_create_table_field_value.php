@@ -26,7 +26,7 @@ class AdminCreateTableFieldValue extends Migration {
                 $table->integer('field_id')->unsigned();
                 $table->string('name');
                 $table->smallInteger('sort')->unsigned()->nullable();
-                $table->boolean('featured');
+                $table->boolean('featured')->default(false);
                 $table->json('data_lang')->nullable();
                 $table->json('data')->nullable();
 

@@ -22,7 +22,7 @@ class AdminCreateTableLang extends Migration
 				$table->string('name');
 				$table->string('icon')->nullable();
 				$table->smallInteger('sort')->unsigned();
-				$table->boolean('active');
+				$table->boolean('active')->default(false);
 
                 $table->timestamps();
                 $table->softDeletes();

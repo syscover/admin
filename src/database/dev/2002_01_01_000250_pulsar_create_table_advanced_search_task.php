@@ -23,7 +23,7 @@ class PulsarCreateTableAdvancedSearchTask extends Migration {
 				$table->text('parameters')->nullable();
 				$table->string('extension_file');
 				$table->string('filename');
-				$table->boolean('created');
+				$table->boolean('created')->default(false);
 
 				$table->foreign('user_id', 'fk01_advanced_search_task')
 					->references('id')

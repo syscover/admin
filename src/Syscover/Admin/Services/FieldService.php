@@ -4,11 +4,6 @@ use Syscover\Admin\Models\Field;
 
 class FieldService
 {
-    /**
-     * @param  array    $object     contain properties of action
-     * @return \Syscover\Admin\Models\Field
-     * @throws \Exception
-     */
     public static function create($object)
     {
         if(empty($object['lang_id']))   throw new \Exception('You have to define a lang_id field to create a field');
@@ -49,11 +44,6 @@ class FieldService
         }
     }
 
-    /**
-     * @param array $object     contain properties of action
-     * @return \Syscover\Admin\Models\Field
-     * @throws \Exception
-     */
     public static function update($object)
     {
         // set label field
@@ -81,24 +71,10 @@ class FieldService
     private static function builder($object)
     {
         $object = collect($object);
-        $data = [];
 
-        if($object->has('field_group_id'))  $data['field_group_id'] = $object->get('field_group_id');
-        if($object->has('name'))            $data['name'] = $object->get('name');
-        if($object->has('labels'))          $data['labels'] = $object->get('labels');
-        if($object->has('field_type_id'))   $data['field_type_id'] = $object->get('field_type_id');
-        if($object->has('field_type_id'))   $data['field_type_name'] = collect(config('pulsar-admin.field_types'))->where('id', $object->get('field_type_id'))->first()->name;
-        if($object->has('data_type_id'))    $data['data_type_id'] = $object->get('data_type_id');
-        if($object->has('data_type_id'))    $data['data_type_name'] = collect(config('pulsar-admin.data_types'))->where('id', $object->get('data_type_id'))->first()->name;
-        if($object->has('required'))        $data['required'] = $object->get('required');
-        if($object->has('sort'))            $data['sort'] = $object->get('sort');
-        if($object->has('max_length'))      $data['max_length'] = $object->get('max_length');
-        if($object->has('pattern'))         $data['pattern'] = $object->get('pattern');
-        if($object->has('label_class'))     $data['label_class'] = $object->get('label_class');
-        if($object->has('component_class')) $data['component_class'] = $object->get('component_class');
-        if($object->has('data_lang'))       $data['data_lang'] = $object->get('data_lang');
-        if($object->has('data'))            $data['data'] = $object->get('data');
+        if($object->has('field_type_id'))   $object['field_type_name'] = collect(config('pulsar-admin.field_types'))->where('id', $object->get('field_type_id'))->first()->name;
+        if($object->has('data_type_id'))    $object['data_type_name'] = collect(config('pulsar-admin.data_types'))->where('id', $object->get('data_type_id'))->first()->name;
 
-        return $data;
+        return $object->only('field_group_id', 'name', 'labels', 'field_type_id', 'field_type_name', 'data_type_id', 'data_type_name', 'required', 'sort', 'max_length', 'pattern', 'label_class', 'component_class', 'data_lang', 'data')->toArray();
     }
 }
