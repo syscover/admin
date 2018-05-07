@@ -47,7 +47,7 @@ class AdminCreateTableField extends Migration {
                 $table->boolean('required')->default(false);
                 $table->smallInteger('sort')->unsigned()->nullable();
                 $table->integer('max_length')->unsigned()->nullable();
-                $table->string('pattern')->nullable()->nullable();
+                $table->string('pattern')->nullable();
                 $table->string('label_class')->nullable();      // class style for label
                 $table->string('component_class')->nullable();  // class style for component
                 $table->json('data_lang')->nullable(); // Set different langs in json
