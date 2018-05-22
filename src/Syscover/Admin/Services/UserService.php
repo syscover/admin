@@ -5,36 +5,45 @@ use Syscover\Admin\Models\User;
 
 class UserService
 {
-    /**
-     * @param  array    $object     contain properties of user
-     * @return \Syscover\Admin\Models\User
-     */
     public static function create($object)
     {
-        $object['password'] = Hash::make($object['password']);
-
-        return  User::create($object);
+        UserService::checkCreate($object);
+        return User::create(UserService::builder($object));
     }
 
-    /**
-     * @param array     $object     contain properties of user
-     * @return \Syscover\Admin\Models\User
-     */
     public static function update($object)
     {
+        UserService::checkUpdate($object);
+        User::where('id', $object['id'])->update(UserService::builder($object));
+
+        return User::find($object['id']);
+    }
+
+    private static function builder($object)
+    {
         $object = collect($object);
+        $object = $object->only('name', 'surname', 'email', 'lang_id', 'access', 'profile_id', 'user', 'password');
 
-        User::where('id', $object->get('id'))->update([
-            'name'          => $object->get('name'),
-            'surname'       => $object->get('surname'),
-            'email'         => $object->get('email'),
-            'lang_id'       => $object->get('lang_id'),
-            'profile_id'    => $object->get('profile_id'),
-            'access'        => $object->get('access'),
-            'user'          => $object->get('user'),
-            'password'      => Hash::make($object->get('password'))
-        ]);
+        if($object->has('password'))
+        {
+            if($object->get('password')) $object['password'] = Hash::make($object->get('password')); else $object = $object->forget('password');
+        }
 
-        return User::find($object->get('id'));
+        return $object->toArray();
+    }
+
+    private static function checkCreate($object)
+    {
+        if(empty($object['name']))          throw new \Exception('You have to define a name field to create a user');
+        if(empty($object['lang_id']))       throw new \Exception('You have to define a lang_id field to create a user');
+        if(empty($object['email']))         throw new \Exception('You have to define a email field to create a user');
+        if(empty($object['profile_id']))    throw new \Exception('You have to define a profile_id field to create a user');
+        if(empty($object['user']))          throw new \Exception('You have to define a user field to create a user');
+        if(empty($object['password']))      throw new \Exception('You have to define a password field to create a user');
+    }
+
+    private static function checkUpdate($object)
+    {
+        if(empty($object['id'])) throw new \Exception('You have to define a id field to update a user');
     }
 }

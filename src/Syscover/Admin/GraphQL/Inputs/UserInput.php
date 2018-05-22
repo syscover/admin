@@ -36,7 +36,7 @@ class UserInput extends GraphQLType
                 'description' => 'Username of user'
             ],
             'password' => [
-                'type' => Type::nonNull(Type::string()),
+                'type' => Type::string(),
                 'description' => 'Password of user'
             ],
             'email' => [
