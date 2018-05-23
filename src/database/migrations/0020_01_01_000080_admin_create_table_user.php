@@ -23,7 +23,7 @@ class AdminCreateTableUser extends Migration
                 $table->string('lang_id', 2);
                 $table->string('email', 150);
                 $table->integer('profile_id')->unsigned();
-                $table->boolean('access')->default(false);
+                $table->boolean('active')->default(false);
                 $table->string('user', 150);
                 $table->string('password');
                 $table->string('remember_token')->nullable();

@@ -30,7 +30,7 @@ class UserType extends GraphQLType
                 'type' => GraphQL::type('AdminProfile'),
                 'description' => 'Profile object of user'
             ],
-            'access' => [
+            'active' => [
                 'type' => Type::nonNull(Type::boolean()),
                 'description' => 'check if user can to access'
             ],

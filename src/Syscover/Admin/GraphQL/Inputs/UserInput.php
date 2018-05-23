@@ -27,7 +27,7 @@ class UserInput extends GraphQLType
                 'type' => Type::nonNull(Type::int()),
                 'description' => 'Profile to set permissions of user'
             ],
-            'access' => [
+            'active' => [
                 'type' => Type::nonNull(Type::boolean()),
                 'description' => 'check if user can to access'
             ],
