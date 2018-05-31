@@ -47,6 +47,18 @@ class Field extends CoreModel
         return $this->belongsTo(FieldGroup::class, 'field_group_id');
     }
 
+    // accessors
+    public function __get($name)
+    {
+        switch ($name) {
+            case 'labels':
+                return collect($this->getAttribute('labels'));
+                break;
+        }
+
+        return parent::__get($name);
+    }
+
     /**
      * Overwrite deleteTranslationRecord from CoreModel to delete json language field, in labels column
      *
