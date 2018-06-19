@@ -16,6 +16,9 @@ class AdminServiceProvider extends ServiceProvider
         // register routes
         $this->loadRoutesFrom(__DIR__ . '/../../routes/api.php');
 
+        // register translations
+        $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'admin');
+
         // register migrations
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
 
@@ -23,11 +26,6 @@ class AdminServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../database/seeds/' => base_path('/database/seeds')
         ], 'seeds');
-
-        // register tests
-//        $this->publishes([
-//            __DIR__ . '/../../tests/Feature/' => base_path('/tests/Feature')
-//        ], 'tests');
 
         // register config files
         $this->publishes([
