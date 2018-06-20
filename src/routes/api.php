@@ -28,7 +28,7 @@ Route::get('api/v1/admin/territorial-area-3',                           'Syscove
 Route::get('api/v1/admin/territorial-area-3/{id}',                      'Syscover\Admin\Controllers\TerritorialArea3Controller@show')->name('showAdminTerritorialArea3');
 
 // ATTACHMENTS
-Route::post('api/v1/admin/attachment-upload',                           'Syscover\Admin\Controllers\AttachmentController@index')->name('adminAttachmentUpload');
+Route::post('api/v1/admin/attachment-upload',                           'Syscover\Admin\Controllers\AttachmentController@index')->name('pulsar.admin_attachment_upload');
 Route::post('api/v1/admin/attachment-upload/crop',                      'Syscover\Admin\Controllers\AttachmentController@crop')->name('cropAdminAttachmentUpload');
 Route::post('api/v1/admin/attachment-upload/delete',                    'Syscover\Admin\Controllers\AttachmentController@destroy')->name('destroyAdminAttachmentUpload');
 

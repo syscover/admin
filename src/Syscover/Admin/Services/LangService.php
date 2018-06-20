@@ -21,7 +21,7 @@ class LangService
     private static function builder($object)
     {
         $object = collect($object);
-        return $object->only('id', 'name', 'icon', 'sort', 'active')->toArray();
+        return $object->only(['id', 'name', 'icon', 'sort', 'active'])->toArray();
     }
 
     private static function checkCreate($object)

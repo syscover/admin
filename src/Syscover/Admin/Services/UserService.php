@@ -22,7 +22,7 @@ class UserService
     private static function builder($object)
     {
         $object = collect($object);
-        $object = $object->only('name', 'surname', 'email', 'lang_id', 'active', 'profile_id', 'user', 'password');
+        $object = $object->only(['name', 'surname', 'email', 'lang_id', 'active', 'profile_id', 'user', 'password']);
 
         if($object->has('password'))
         {

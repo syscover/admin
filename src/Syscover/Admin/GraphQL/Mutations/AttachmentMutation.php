@@ -88,7 +88,7 @@ class CropAttachmentMutation extends AttachmentMutation
         $args['object']['attachment']['width']  = $image->width();
         $args['object']['attachment']['height'] = $image->height();
         $args['object']['attachment']['size']   = $image->filesize();
-        $args['object']['attachment']['data']   = ['exif' => $image->exif()];
+        $args['object']['attachment']['data']   = ['exif' => collect($image->exif())->only(config('pulsar-core.exif_fields_allowed'))];
 
         return $args['object'];
     }

@@ -21,7 +21,7 @@ class PackageService
     private static function builder($object)
     {
         $object = collect($object);
-        return $object->only('name', 'root', 'active', 'sort')->toArray();
+        return $object->only(['name', 'root', 'active', 'sort'])->toArray();
     }
 
     private static function checkCreate($object)

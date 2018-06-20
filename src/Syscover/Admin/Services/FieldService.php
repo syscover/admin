@@ -77,7 +77,7 @@ class FieldService
         if($object->has('field_type_id'))   $object['field_type_name'] = collect(config('pulsar-admin.field_types'))->where('id', $object->get('field_type_id'))->first()->name;
         if($object->has('data_type_id'))    $object['data_type_name'] = collect(config('pulsar-admin.data_types'))->where('id', $object->get('data_type_id'))->first()->name;
 
-        return $object->only('field_group_id', 'name', 'labels', 'field_type_id', 'field_type_name', 'data_type_id', 'data_type_name', 'required', 'sort', 'max_length', 'pattern', 'label_class', 'component_class', 'data_lang', 'data')->toArray();
+        return $object->only(['field_group_id', 'name', 'labels', 'field_type_id', 'field_type_name', 'data_type_id', 'data_type_name', 'required', 'sort', 'max_length', 'pattern', 'label_class', 'component_class', 'data_lang', 'data'])->toArray();
     }
 
     private static function checkCreate($object)

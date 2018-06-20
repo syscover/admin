@@ -379,7 +379,7 @@ class AttachmentService
             $attachment->width = $image->width();
             $attachment->height = $image->height();
             $attachment->size = $image->filesize();
-            $attachment->data = ['exif' => $image->exif()];
+            $attachment->data = ['exif' => collect($image->exif())->only(config('pulsar-core.exif_fields_allowed'))];
         }
 
 

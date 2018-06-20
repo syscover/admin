@@ -69,7 +69,6 @@ class AttachmentController extends BaseController
             $parameters['attachment']['mime']   = mimetype_from_extension($parameters['attachment']['extension']);
         }
 
-
         $image->crop($parameters['crop']['width'], $parameters['crop']['height'], $parameters['crop']['x'], $parameters['crop']['y']);
         $image->resize($attachmentFamily->width, $attachmentFamily->height);
         $image->save(
@@ -81,7 +80,8 @@ class AttachmentController extends BaseController
         $parameters['attachment']['width']  = $image->width();
         $parameters['attachment']['height'] = $image->height();
         $parameters['attachment']['size']   = $image->filesize();
-        $parameters['attachment']['data']   = ['exif' => $image->exif()];
+        // set fields to save from EXIT to avoid utf-8 characters, that they are includes by software like Photoshop
+        $parameters['attachment']['data']   = ['exif' => collect($image->exif())->only(config('pulsar-core.exif_fields_allowed'))];
 
         $response['status'] = "success";
         $response['data'] = $parameters;
@@ -173,8 +173,7 @@ class AttachmentController extends BaseController
      */
     private function storeAttachmentsLibraryTmp($files)
     {
-        if(! is_array($files))
-            $files = [$files];
+        if(! is_array($files)) $files = [$files];
 
         $attachmentsLibraryTmp = [];
         foreach ($files as $file)
@@ -207,7 +206,9 @@ class AttachmentController extends BaseController
                 // set image properties
                 $attachment['width']    = $image->width();
                 $attachment['height']   = $image->height();
-                $attachment['data']     = ['exif' => $image->exif()];
+
+                // set fields to save from EXIT to avoid utf-8 characters, that they are includes by software like Photoshop
+                $attachment['data']     = ['exif' => collect($image->exif())->only(config('pulsar-core.exif_fields_allowed'))];
             }
 
             $attachmentsLibraryTmp[] = $attachment;
