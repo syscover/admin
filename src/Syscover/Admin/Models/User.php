@@ -59,6 +59,11 @@ class User extends CoreModel implements
             ->select('admin_profile.*', 'admin_user.*', 'admin_profile.name as profile_name', 'admin_user.name as user_name');
     }
 
+    public function scopeCalculateFoundRows($query)
+    {
+        return $query->select(DB::raw('SQL_CALC_FOUND_ROWS admin_user.id'));
+    }
+
     /**
      * Get profile from user
      *

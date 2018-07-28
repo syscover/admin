@@ -1,5 +1,6 @@
 <?php namespace Syscover\Admin\Models;
 
+use Illuminate\Support\Facades\DB;
 use Syscover\Core\Models\CoreModel;
 use Illuminate\Support\Facades\Validator;
 use Syscover\Admin\Traits\Translatable;
@@ -37,5 +38,10 @@ class FieldValue extends CoreModel
     {
         return $query->join('admin_field', 'admin_field_value.field_id', '=', 'admin_field.id')
             ->select('admin_field.*', 'admin_field_value.*', 'admin_field.name as field_name', 'admin_field_value.name as field_value_name');
+    }
+
+    public function scopeCalculateFoundRows($query)
+    {
+        return $query->select(DB::raw('SQL_CALC_FOUND_ROWS admin_field.ix'));
     }
 }

@@ -1,5 +1,6 @@
 <?php namespace Syscover\Admin\Models;
 
+use Illuminate\Support\Facades\DB;
 use Syscover\Core\Models\CoreModel;
 use Illuminate\Support\Facades\Validator;
 
@@ -32,6 +33,11 @@ class Resource extends CoreModel
     {
         return $query->join('admin_package', 'admin_resource.package_id', '=', 'admin_package.id')
             ->select('admin_package.*', 'admin_resource.*', 'admin_package.name as package_name', 'admin_resource.name as resource_name');
+    }
+
+    public function scopeCalculateFoundRows($query)
+    {
+        return $query->select(DB::raw('SQL_CALC_FOUND_ROWS admin_resource.ix'));
     }
 
     public function package()

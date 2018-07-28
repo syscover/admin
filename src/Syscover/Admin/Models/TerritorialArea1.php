@@ -27,11 +27,6 @@ class TerritorialArea1 extends CoreModel
         return Validator::make($data, static::$rules);
     }
 
-    public function scopeBuilder($query)
-    {
-        return $query;
-    }
-
     public function country()
     {
         return $this->belongsTo(Country::class, 'country_id', 'id');

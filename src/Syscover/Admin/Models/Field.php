@@ -1,5 +1,6 @@
 <?php namespace Syscover\Admin\Models;
 
+use Illuminate\Support\Facades\DB;
 use Syscover\Core\Models\CoreModel;
 use Illuminate\Support\Facades\Validator;
 
@@ -32,7 +33,12 @@ class Field extends CoreModel
     public function scopeBuilder($query)
     {
         return $query->leftJoin('admin_field_group', 'admin_field.field_group_id', '=', 'admin_field_group.id')
-            ->select('admin_field_group.*', 'admin_field.*', 'admin_field_group.name as field_group_name', 'admin_field.name as field_name');
+            ->addSelect('admin_field_group.*', 'admin_field.*', 'admin_field_group.name as field_group_name', 'admin_field.name as field_name');
+    }
+
+    public function scopeCalculateFoundRows($query)
+    {
+        return $query->select(DB::raw('SQL_CALC_FOUND_ROWS admin_field.id'));
     }
 
     public function values()

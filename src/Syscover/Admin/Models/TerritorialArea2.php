@@ -34,6 +34,11 @@ class TerritorialArea2 extends CoreModel
             ->select('admin_territorial_area_1.*', 'admin_territorial_area_2.*', 'admin_territorial_area_1.name as territorial_area_1_name', 'admin_territorial_area_2.name as territorial_area_2_name');
     }
 
+    public function scopeCalculateFoundRows($query)
+    {
+        return $query->select(DB::raw('SQL_CALC_FOUND_ROWS admin_territorial_area_2.ix'));
+    }
+
     public function country()
     {
         return $this->belongsTo(Country::class, 'country_id', 'id');

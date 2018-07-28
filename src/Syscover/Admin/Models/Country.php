@@ -44,11 +44,6 @@ class Country extends CoreModel
         return Validator::make($data, static::$rules);
     }
 
-    public function scopeBuilder($query)
-    {
-        return $query;
-    }
-
     public function territorial_areas_1()
     {
         return $this->hasMany(TerritorialArea1::class, 'country_id', 'id');

@@ -36,18 +36,9 @@ class TerritorialAreas3PaginationQuery extends Query
 
     public function resolve($root, $args)
     {
-        $query = SQLService::getQueryFiltered(TerritorialArea3::builder(), $args['sql'], $args['filters']);
-
-        // count records filtered
-        $filtered = $query->count();
-
-        // total records
-        $total = SQLService::countPaginateTotalRecords(TerritorialArea3::builder());
-
         return (Object) [
-            'total'     => $total,
-            'filtered'  => $filtered,
-            'query'     => $query
+            // set setEagerLoads to clean eager loads to use FOUND_ROWS() MySql Function
+            'query' => TerritorialArea3::calculateFoundRows()->builder()->setEagerLoads([])
         ];
     }
 }
