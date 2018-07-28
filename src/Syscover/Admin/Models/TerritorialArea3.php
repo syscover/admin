@@ -33,7 +33,7 @@ class TerritorialArea3 extends CoreModel
     {
         return $query->join('admin_territorial_area_1', 'admin_territorial_area_3.territorial_area_1_id', '=', 'admin_territorial_area_1.id')
             ->join('admin_territorial_area_2', 'admin_territorial_area_3.territorial_area_2_id', '=', 'admin_territorial_area_2.id')
-            ->select('admin_territorial_area_1.*', 'admin_territorial_area_2.*', 'admin_territorial_area_3.*', 'admin_territorial_area_1.name as territorial_area_1_name', 'admin_territorial_area_2.name as territorial_area_2_name', 'admin_territorial_area_3.name as territorial_area_3_name');
+            ->addSelect('admin_territorial_area_1.*', 'admin_territorial_area_2.*', 'admin_territorial_area_3.*', 'admin_territorial_area_1.name as territorial_area_1_name', 'admin_territorial_area_2.name as territorial_area_2_name', 'admin_territorial_area_3.name as territorial_area_3_name');
     }
 
     public function scopeCalculateFoundRows($query)

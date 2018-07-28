@@ -31,7 +31,7 @@ class TerritorialArea2 extends CoreModel
     public function scopeBuilder($query)
     {
         return $query->join('admin_territorial_area_1', 'admin_territorial_area_2.territorial_area_1_id', '=', 'admin_territorial_area_1.id')
-            ->select('admin_territorial_area_1.*', 'admin_territorial_area_2.*', 'admin_territorial_area_1.name as territorial_area_1_name', 'admin_territorial_area_2.name as territorial_area_2_name');
+            ->addSelect('admin_territorial_area_1.*', 'admin_territorial_area_2.*', 'admin_territorial_area_1.name as territorial_area_1_name', 'admin_territorial_area_2.name as territorial_area_2_name');
     }
 
     public function scopeCalculateFoundRows($query)

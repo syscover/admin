@@ -56,7 +56,7 @@ class User extends CoreModel implements
     public function scopeBuilder($query)
     {
         return $query->join('admin_profile', 'admin_user.profile_id', '=', 'admin_profile.id')
-            ->select('admin_profile.*', 'admin_user.*', 'admin_profile.name as profile_name', 'admin_user.name as user_name');
+            ->addSelect('admin_profile.*', 'admin_user.*', 'admin_profile.name as profile_name', 'admin_user.name as user_name');
     }
 
     public function scopeCalculateFoundRows($query)
