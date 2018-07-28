@@ -1,5 +1,6 @@
 <?php namespace Syscover\Admin\Models;
 
+use Illuminate\Support\Facades\DB;
 use Syscover\Core\Models\CoreModel;
 use Illuminate\Support\Facades\Validator;
 
@@ -27,7 +28,12 @@ class AttachmentMime extends CoreModel
     public function scopeBuilder($query)
     {
         return $query->join('admin_resource', 'admin_attachment_mime.resource_id', '=', 'admin_resource.id')
-            ->select('admin_resource.*', 'admin_attachment_mime.*', 'admin_resource.name as resource_name');
+            ->addSelect('admin_resource.*', 'admin_attachment_mime.*', 'admin_resource.name as resource_name');
+    }
+
+    public function scopeCalculateFoundRows($query)
+    {
+        return $query->select(DB::raw('SQL_CALC_FOUND_ROWS admin_attachment_mime.id'));
     }
 
     public function resource()
