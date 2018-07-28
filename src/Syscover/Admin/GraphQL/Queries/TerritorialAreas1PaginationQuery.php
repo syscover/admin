@@ -3,7 +3,6 @@
 use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
-use Syscover\Core\Services\SQLService;
 use Syscover\Admin\Models\TerritorialArea1;
 
 class TerritorialAreas1PaginationQuery extends Query
