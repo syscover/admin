@@ -31,18 +31,9 @@ class ActionsPaginationQuery extends Query
 
     public function resolve($root, $args)
     {
-        $query = SQLService::getQueryFiltered(Action::builder(), $args['sql']);
-
-        // count records filtered
-        $filtered = $query->count();
-
-        // total records
-        $total = SQLService::countPaginateTotalRecords(Action::builder());
-
         return (Object) [
-            'total'     => $total,
-            'filtered'  => $filtered,
-            'query'     => $query
+            // set setEagerLoads to clean eager loads to use FOUND_ROWS() MySql Function
+            'query' => Action::calculateFoundRows()->builder()
         ];
     }
 }

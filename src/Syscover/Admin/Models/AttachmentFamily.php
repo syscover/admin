@@ -1,5 +1,6 @@
 <?php namespace Syscover\Admin\Models;
 
+use Illuminate\Support\Facades\DB;
 use Syscover\Core\Models\CoreModel;
 use Illuminate\Support\Facades\Validator;
 
@@ -30,7 +31,12 @@ class AttachmentFamily extends CoreModel
     public function scopeBuilder($query)
     {
         return $query->join('admin_resource', 'admin_attachment_family.resource_id', '=', 'admin_resource.id')
-            ->select('admin_attachment_family.*', 'admin_resource.name as resource_name', 'admin_attachment_family.name as attachment_family_name');
+            ->addSelect('admin_attachment_family.*', 'admin_resource.name as resource_name', 'admin_attachment_family.name as attachment_family_name');
+    }
+
+    public function scopeCalculateFoundRows($query)
+    {
+        return $query->select(DB::raw('SQL_CALC_FOUND_ROWS admin_attachment_family.id'));
     }
 
     public function resource()

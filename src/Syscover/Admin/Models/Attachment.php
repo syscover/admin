@@ -31,11 +31,6 @@ class Attachment extends CoreModel
         return Validator::make($data, static::$rules);
     }
 
-    public function scopeBuilder($query)
-    {
-        return $query;
-    }
-
     public function family()
     {
         return $this->belongsTo(AttachmentFamily::class, 'family_id');
