@@ -32,7 +32,7 @@ class Resource extends CoreModel
     public function scopeBuilder($query)
     {
         return $query->join('admin_package', 'admin_resource.package_id', '=', 'admin_package.id')
-            ->addSelect('admin_package.*', 'admin_resource.*', 'admin_package.name as package_name', 'admin_resource.name as resource_name');
+            ->addSelect('admin_package.*', 'admin_resource.*', 'admin_package.name as admin_package_name', 'admin_resource.name as admin_resource_name');
     }
 
     public function scopeCalculateFoundRows($query)
