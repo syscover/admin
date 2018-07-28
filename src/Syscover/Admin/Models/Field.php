@@ -32,8 +32,9 @@ class Field extends CoreModel
 
     public function scopeBuilder($query)
     {
-        return $query->leftJoin('admin_field_group', 'admin_field.field_group_id', '=', 'admin_field_group.id')
-            ->addSelect('admin_field_group.*', 'admin_field.*', 'admin_field_group.name as field_group_name', 'admin_field.name as field_name');
+        return $query
+            ->leftJoin('admin_field_group', 'admin_field.field_group_id', '=', 'admin_field_group.id')
+            ->addSelect('admin_field_group.*', 'admin_field.*', 'admin_field_group.name as admin_field_group_name', 'admin_field.name as admin_field_name');
     }
 
     public function scopeCalculateFoundRows($query)

@@ -32,7 +32,7 @@ class CronJob extends CoreModel
     {
         return $query
             ->join('admin_package', 'admin_cron_job.package_id', '=', 'admin_package.id')
-            ->select('admin_package.*', 'admin_cron_job.*', 'admin_package.name as package_name', 'admin_cron_job.name as cron_job_name');
+            ->select('admin_package.*', 'admin_cron_job.*', 'admin_package.name as admin_package_name', 'admin_cron_job.name as admin_cron_job_name');
     }
 
     public static function getCronJobsToRun($timestamp)

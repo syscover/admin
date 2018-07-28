@@ -36,8 +36,9 @@ class FieldValue extends CoreModel
 
     public function scopeBuilder($query)
     {
-        return $query->join('admin_field', 'admin_field_value.field_id', '=', 'admin_field.id')
-            ->addSelect('admin_field.*', 'admin_field_value.*', 'admin_field.name as field_name', 'admin_field_value.name as field_value_name');
+        return $query
+            ->join('admin_field', 'admin_field_value.field_id', '=', 'admin_field.id')
+            ->addSelect('admin_field.*', 'admin_field_value.*', 'admin_field.name as admin_field_name', 'admin_field_value.name as admin_field_value_name');
     }
 
     public function scopeCalculateFoundRows($query)
