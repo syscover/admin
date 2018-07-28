@@ -3,7 +3,6 @@
 use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
-use Syscover\Core\Services\SQLService;
 use Syscover\Admin\Models\FieldGroup;
 
 class FieldGroupsPaginationQuery extends Query

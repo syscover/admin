@@ -3,7 +3,6 @@
 use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Mutation;
-use Illuminate\Support\Facades\Hash;
 use Syscover\Admin\Models\User;
 use Syscover\Admin\Services\UserService;
 use Syscover\Core\Services\SQLService;
