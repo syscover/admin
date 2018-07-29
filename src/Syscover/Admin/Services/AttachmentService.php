@@ -277,7 +277,15 @@ class AttachmentService
 
         // load element and get img tags
         $doc = new \DOMDocument();
+
+        // set error level to avoid errors when links has & symbol
+        $internalErrors = libxml_use_internal_errors(true);
+
         $doc->loadHTML($article);
+
+        // Restore error level
+        libxml_use_internal_errors($internalErrors);
+
         $tags = $doc->getElementsByTagName('img');
         $hasSaved = false;
 
