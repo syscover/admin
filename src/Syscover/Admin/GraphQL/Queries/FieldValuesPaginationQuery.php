@@ -36,8 +36,7 @@ class FieldValuesPaginationQuery extends Query
     public function resolve($root, $args)
     {
         return (Object) [
-            // set setEagerLoads to clean eager loads to use FOUND_ROWS() MySql Function
-            'query' => FieldValue::calculateFoundRows()->builder()->setEagerLoads([])
+            'query' => FieldValue::calculateFoundRows()->builder()
         ];
     }
 }

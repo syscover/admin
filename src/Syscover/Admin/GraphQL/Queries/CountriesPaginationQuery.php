@@ -37,8 +37,7 @@ class CountriesPaginationQuery extends Query
     public function resolve($root, $args)
     {
         return (Object) [
-            // set setEagerLoads to clean eager loads to use FOUND_ROWS() MySql Function
-            'query' => Country::calculateFoundRows()->builder()->setEagerLoads([])
+            'query' => Country::calculateFoundRows()->builder()
         ];
     }
 

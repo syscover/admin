@@ -36,8 +36,7 @@ class TerritorialAreas2PaginationQuery extends Query
     public function resolve($root, $args)
     {
         return (Object) [
-            // set setEagerLoads to clean eager loads to use FOUND_ROWS() MySql Function
-            'query' => TerritorialArea2::calculateFoundRows()->builder()->setEagerLoads([])
+            'query' => TerritorialArea2::calculateFoundRows()->builder()
         ];
     }
 }

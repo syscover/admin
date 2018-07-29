@@ -31,8 +31,7 @@ class ProfilesPaginationQuery extends Query
     public function resolve($root, $args)
     {
         return (Object) [
-            // set setEagerLoads to clean eager loads to use FOUND_ROWS() MySql Function
-            'query' => Profile::calculateFoundRows()->builder()->setEagerLoads([])
+            'query' => Profile::calculateFoundRows()->builder()
         ];
     }
 }
