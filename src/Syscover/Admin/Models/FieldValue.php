@@ -43,6 +43,6 @@ class FieldValue extends CoreModel
 
     public function scopeCalculateFoundRows($query)
     {
-        return $query->select(DB::raw('SQL_CALC_FOUND_ROWS admin_field.ix'));
+        return $query->select(DB::raw('SQL_CALC_FOUND_ROWS admin_field_value.ix'));
     }
 }
