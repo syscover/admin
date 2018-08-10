@@ -4,12 +4,10 @@ use Syscover\Admin\Models\FieldValue;
 
 class FieldValueService
 {
-    /**
-     * @param  array    $object     contain properties of action
-     * @return $this|\Illuminate\Database\Eloquent\Model
-     */
     public static function create($object)
     {
+        FieldValueService::checkCreate($object);
+
         if(isset($object['id']))
         {
             $id         = $object['id'];
@@ -26,37 +24,37 @@ class FieldValueService
         $object['counter']      = $counter;
         $object['data_lang']    = FieldValue::addDataLang($object['lang_id'], $object['id'], ['field_id' => $object['field_id']]);
 
-        return FieldValue::create($object);
+        return FieldValue::create(FieldValueService::builder($object));
     }
 
-    /**
-     * @param array     $object     contain properties of action
-     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null|static|static[]
-     */
     public static function update($object)
     {
+        FieldValueService::checkUpdate($object);
+        FieldValue::where('id', $object['id'])->where('field_id', $object['field_id'])->update(FieldValueService::builder($object, ['id']));
+        FieldValue::where('ix', $object['ix'])->update(FieldValueService::builder($object));
+
+        return FieldValue::find($object['ix']);
+    }
+
+    private static function builder($object, $filterKeys = null)
+    {
         $object = collect($object);
+        if($filterKeys) return $object->only($filterKeys)->toArray();
 
-        $fieldValue = FieldValue::find($object['ix']);
+        return $object->only(['id', 'lang_id', 'field_id', 'counter', 'sort', 'featured', 'name', 'data_lang', 'data'])->toArray();
+    }
 
-        // change id for object of all languages
-        FieldValue::where('field_id', $object->get('field_id'))
-            ->where('id', $fieldValue->id)
-            ->update(['id' => $object->get('id')]);
+    private static function checkCreate($object)
+    {
+        if(empty($object['lang_id']))   throw new \Exception('You have to define a lang_id field to create a field value');
+        if(empty($object['field_id']))  throw new \Exception('You have to define a field_id field to create a field value');
+        if(empty($object['name']))      throw new \Exception('You have to define a name field to create a field value');
+    }
 
-
-        FieldValue::where('field_id', $object->get('field_id'))
-            ->where('id', $fieldValue->id)
-            ->where('lang_id', $object->get('lang_id'))
-            ->update([
-                'name'          => $object->get('name'),
-                'sort'          => $object->get('sort'),
-                'featured'      => $object->get('featured')
-            ]);
-
-        return FieldValue::where('id', $object->get('id'))
-            ->where('lang_id', $object->get('lang_id'))
-            ->where('field_id', $object->get('field_id'))
-            ->first();
+    private static function checkUpdate($object)
+    {
+        if(empty($object['ix']))        throw new \Exception('You have to define a ix field to update a field value');
+        if(empty($object['id']))        throw new \Exception('You have to define a id field to update a field value');
+        if(empty($object['field_id']))  throw new \Exception('You have to define a field_id field to update a field value');
     }
 }
