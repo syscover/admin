@@ -48,6 +48,7 @@ return [
         (object)['id' => 'text',                'name' => 'Text',                   'values' => false],
         (object)['id' => 'text-area',           'name' => 'Text Area',              'values' => false],
         (object)['id' => 'wysiwyg',             'name' => 'Wysiwyg',                'values' => false],
+        (object)['id' => 'datetime-local',      'name' => 'Datetime local',         'values' => false],
     ],
 
     //******************************************************************************************************************
