@@ -64,8 +64,8 @@ Set this default values, for JWT can create pulsar user
 Inside guards array
 ```
 'api' => [
-    'driver' => 'jwt',
-    'provider' => 'adminUser',
+    'driver'    => 'jwt',
+    'provider'  => 'adminUser',
 ],
 
 'admin' => [
@@ -106,7 +106,6 @@ ADMIN_PANEL_URL=http://panel.mydomain.com
 
 **10 - When the installation is complete you can access these data**
 ```
-url: http://www.your-domain.com/pulsar
 user: admin@pulsar.local
 pasword: 123456
 ```
