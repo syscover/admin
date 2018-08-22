@@ -24,7 +24,7 @@ class AdminCreateTableAction extends Migration
                 $table->timestamps();
                 $table->softDeletes();
 
-                $table->index('id', 'ix01_admin_action');
+                $table->unique('id', 'ui01_admin_action');
 			});
 		}
 	}

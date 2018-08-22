@@ -18,7 +18,7 @@ class AdminCreateTableAttachment extends Migration {
                 $table->engine = 'InnoDB';
 
                 $table->increments('ix');
-                $table->integer('id');
+                $table->integer('id')->unsigned();
                 $table->string('lang_id', 2);
                 $table->integer('object_id')->unsigned()->nullable();
                 $table->string('object_type');
