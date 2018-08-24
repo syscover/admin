@@ -92,7 +92,7 @@ if (! function_exists('get_territorial_area_id'))
 if (! function_exists('get_srcset'))
 {
     /**
-     * get get_src from sizes
+     * get get_srcset from sizes
      *
      * @param $sizes
      * @return string
@@ -131,7 +131,7 @@ if (! function_exists('get_src_srcset'))
         $src    = get_src($attachment->data['sizes']);    // set original image, for older browsers
         $srcset = get_srcset($attachment->data['sizes']);
 
-        return 'src="' . $src . '" srcset="' . $srcset . '"';
+        return $src . ' srcset="' . $srcset . '"';
     }
 }
 
@@ -171,6 +171,8 @@ if (! function_exists('get_src'))
     {
         $sizes = collect($sizes)->sortBy('width');
 
-        return $sizes->last()['url']; // set original image, for older browsers
+        //return $sizes->last()['url']; // set original image, for older browsers
+
+        return 'src="' . $sizes->last()['url'] . '"';
     }
 }
