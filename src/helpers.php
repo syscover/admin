@@ -89,6 +89,22 @@ if (! function_exists('get_territorial_area_id'))
     }
 }
 
+if (! function_exists('get_src'))
+{
+    /**
+     * get bigest image
+     *
+     * @param $sizes
+     * @return string
+     */
+    function get_src($sizes)
+    {
+        $sizes = collect($sizes)->sortBy('width');
+
+        return $sizes->last()['url']; // set original image, for older browsers
+    }
+}
+
 if (! function_exists('get_srcset'))
 {
     /**
@@ -131,7 +147,7 @@ if (! function_exists('get_src_srcset'))
         $src    = get_src($attachment->data['sizes']);    // set original image, for older browsers
         $srcset = get_srcset($attachment->data['sizes']);
 
-        return $src . ' srcset="' . $srcset . '"';
+        return 'src="' . $src . '" srcset="' . $srcset . '"';
     }
 }
 
@@ -156,23 +172,5 @@ if (! function_exists('get_src_srcset_alt_title'))
 
         $value = get_src_srcset($attachment);
         return $value . ' alt="' . $attachment->alt . '" title="' . $attachment->title . '"';
-    }
-}
-
-if (! function_exists('get_src'))
-{
-    /**
-     * get smaller image
-     *
-     * @param $sizes
-     * @return string
-     */
-    function get_src($sizes)
-    {
-        $sizes = collect($sizes)->sortBy('width');
-
-        //return $sizes->last()['url']; // set original image, for older browsers
-
-        return 'src="' . $sizes->last()['url'] . '"';
     }
 }
