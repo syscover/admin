@@ -1,7 +1,8 @@
 <?php namespace Syscover\Admin\Models;
 
-use Illuminate\Support\Facades\DB;
+use Laravel\Passport\HasApiTokens;
 use Syscover\Core\Models\CoreModel;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\Authenticatable;
@@ -11,7 +12,6 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Syscover\Admin\Notifications\ResetPassword as ResetPasswordNotification;
-use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
  * Class User
@@ -21,11 +21,10 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class User extends CoreModel implements
     AuthenticatableContract,
     AuthorizableContract,
-    CanResetPasswordContract,
-    JWTSubject
+    CanResetPasswordContract
 {
     use Authenticatable, Authorizable, CanResetPassword;
-    use Notifiable;
+    use Notifiable, HasApiTokens;
 
     protected $table        = 'admin_user';
     protected $fillable     = ['id', 'name', 'surname', 'email', 'lang_id', 'active', 'profile_id', 'user', 'password'];
@@ -74,25 +73,5 @@ class User extends CoreModel implements
     public function profile()
     {
         return $this->belongsTo(Profile::class, 'profile_id');
-    }
-
-    /**
-     * Get the identifier that will be stored in the subject claim of the JWT.
-     *
-     * @return mixed
-     */
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
-
-    /**
-     * Return a key value array, containing any custom claims to be added to the JWT.
-     *
-     * @return array
-     */
-    public function getJWTCustomClaims()
-    {
-        return $this->toArray();
     }
 }

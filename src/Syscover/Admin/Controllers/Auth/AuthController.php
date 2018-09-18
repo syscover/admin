@@ -1,86 +1,86 @@
 <?php namespace Syscover\Admin\Controllers\Auth;
 
-use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
 class AuthController extends Controller
 {
     /**
-     * Get a JWT token via given credentials.
+     * Login user and create token
      *
-     * @param  \Illuminate\Http\Request  $request
-     *
-     * @return \Illuminate\Http\JsonResponse
+     * @param  [string]     email
+     * @param  [string]     password
+     * @param  [boolean]    remember_me
+     * @return [string]     status
+     * @return [string]     status_text
+     * @return [string]     access_token
+     * @return [string]     token_type
+     * @return [string]     expires_at
      */
-    public function login(Request $request)
+    public function login()
     {
-        $credentials = $request->only('user', 'password');
+        $credentials = request(['user', 'password']);
 
-        if ($token = $this->guard()->attempt($credentials))
+        if (! Auth::attempt($credentials))
         {
-            return $this->respondWithToken($token);
+            return response()->json([
+                'status'        => 401,
+                'status_text'   => 'Unauthorized'
+            ], 401);
         }
 
-        return response()->json(['error' => 'Unauthorized'], 401);
+        $user = request()->user();
+
+        $tokenResult    = $user->createToken('Personal Access Token');
+        $token          = $tokenResult->token;
+
+        if (request('remember_me'))
+        {
+            $token->expires_at = Carbon::now()->addMonths(1);
+        }
+
+        $token->save();
+
+        return response()->json([
+            'status'        => 200,
+            'status_text'   => 'Successfully authorization',
+            'access_token'  => $tokenResult->accessToken,
+            'user'          => request()->user(),
+            'token_type'    => 'Bearer',
+            'expires_at'    => Carbon::parse($tokenResult->token->expires_at)->toDateTimeString()
+        ]);
+    }
+
+    /**
+     * Logout user (Revoke the token)
+     *
+     * @return [string]     status
+     * @return [string]     status_text
+     */
+    public function logout()
+    {
+        request()->user()->token()->revoke();
+
+        return response()->json([
+            'status'        => 200,
+            'status_text'   => 'Successfully logged out'
+        ]);
     }
 
     /**
      * Get the authenticated User
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return [string]     status
+     * @return [string]     status_text
+     * @return [User]       data
      */
-    public function me()
-    {
-        return response()->json($this->guard()->user());
-    }
-
-    /**
-     * Log the user out (Invalidate the token)
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function logout()
-    {
-        $this->guard()->logout();
-
-        return response()->json(['message' => 'Successfully logged out']);
-    }
-
-    /**
-     * Refresh a token.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function refresh()
-    {
-        return $this->respondWithToken($this->guard()->refresh());
-    }
-
-    /**
-     * Get the token array structure.
-     *
-     * @param  string $token
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    protected function respondWithToken($token)
+    public function user()
     {
         return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => $this->guard()->factory()->getTTL() * 60
+            'status'        => 200,
+            'statusText'    => 'ok',
+            'data'          => request()->user()
         ]);
-    }
-
-    /**
-     * Get the guard to be used during authentication.
-     *
-     * @param string $guard
-     * @return \Illuminate\Contracts\Auth\Guard
-     */
-    public function guard($guard = 'api')
-    {
-        return Auth::guard($guard);
     }
 }

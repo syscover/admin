@@ -63,13 +63,15 @@ Set this default values, for JWT can create pulsar user
 
 Inside guards array
 ```
-'api' => [
-    'driver'    => 'jwt',
+// Api guard get the auth from provider defined un default guard,
+// and to define a default guard, this must to be defined like session driver
+'admin' => [
+    'driver'    => 'session',
     'provider'  => 'adminUser',
 ],
 
-'admin' => [
-    'driver'    => 'session',
+'api' => [
+    'driver'    => 'passport',
     'provider'  => 'adminUser',
 ],
 ```
