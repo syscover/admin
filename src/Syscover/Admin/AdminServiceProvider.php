@@ -30,10 +30,6 @@ class AdminServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../config/pulsar-admin.php' => config_path('pulsar-admin.php'),
         ]);
-
-        // register GraphQL types and schema
-        AdminGraphQLServiceProvider::bootGraphQLTypes();
-        AdminGraphQLServiceProvider::bootGraphQLSchema();
 	}
 
 	/**

@@ -1,3 +1,4 @@
+# Actions
 # Query to get actions list
 adminActions(sql:[CoreSQLInput]): [AdminAction!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQL@get")
 # Query to get action

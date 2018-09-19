@@ -1,3 +1,4 @@
+# Actions
 #
 adminCreateAction(object: AdminActionInput!): AdminAction @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQL@create")
 #

@@ -8,6 +8,22 @@ type AdminAction {
     name: String!
 }
 
+type AdminPackage {
+    id: ID!
+    name: String!
+    root: String!
+    active: Boolean!
+    sort: Int!
+}
+
+type AdminResource {
+    ix: ID!
+    id: String!
+    name: String!
+    package_id: Int!
+    package: AdminPackage!
+}
+
 type AdminTerritorialArea1 {
     ix: ID!
     id: String!
@@ -51,5 +67,55 @@ type AdminCountry {
     territorial_areas_3: [AdminTerritorialArea3]
     zones: [String]
     data_lang: [String]
+}
 
+type AdminAttachmentFamily {
+    id: ID!
+    resource_id: String!
+    resource: AdminResource!
+    name: String
+    width: Int
+    height: Int
+    sizes: [String]
+    quality: Int
+    format: String
+}
+
+type AdminAttachmentLibrary {
+    id: ID!
+    name: String
+    base_path: String
+    file_name: String
+    url: String
+    mime: String
+    extension: String
+    size: String
+    width: Int
+    height: Int
+    data: Object
+}
+
+type AdminAttachment {
+    ix: ID!
+    id: String!
+    lang_id: String!
+    object_id: Int!
+    onject_type: String!
+    family_id: Int
+    family: AdminAttachmentFamily
+    sort: Int
+    alt: String
+    title: String
+    base_path: String
+    file_name: String
+    url: String
+    mime: String
+    extension: String
+    size: String
+    width: Int
+    height: Int
+    library_id: Int
+    library_file_name: String
+    attachment_library: AdminAttachmentLibrary
+    data: Object
 }
