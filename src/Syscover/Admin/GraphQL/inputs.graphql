@@ -1,0 +1,9 @@
+# Action that user can to do in application, this is for set permissions
+input AdminActionInput {
+    # The index of action
+    ix: ID
+    # The id of action
+    id: String!
+    # The name of action
+    name: String!
+}

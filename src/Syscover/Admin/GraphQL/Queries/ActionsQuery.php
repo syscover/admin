@@ -1,6 +1,5 @@
 <?php namespace Syscover\Admin\GraphQL\Queries;
 
-use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
 use Syscover\Core\Services\SQLService;

@@ -1,0 +1,55 @@
+# Action that user can to do in application, this is for set permissions
+type AdminAction {
+    # The index of action
+    ix: ID!
+    # The id of action
+    id: String!
+    # The name of action
+    name: String!
+}
+
+type AdminTerritorialArea1 {
+    ix: ID!
+    id: String!
+    country_id: String!
+    name: String
+    slug: String
+}
+
+type AdminTerritorialArea2 {
+    ix: ID!
+    id: String!
+    country_id: String!
+    territorial_area_1_id: String!
+    name: String
+    slug: String
+}
+
+type AdminTerritorialArea3 {
+    ix: ID!
+    id: String!
+    country_id: String!
+    territorial_area_1_id: String!
+    territorial_area_2_id: String!
+    name: String
+    slug: String
+}
+
+type AdminCountry {
+    ix: ID!
+    id: String!
+    lang_id: String!
+    name: String!
+    slug: String
+    sort: Int
+    prefix: Int
+    territorial_area_1: String
+    territorial_area_2: String
+    territorial_area_3: String
+    territorial_areas_1: [AdminTerritorialArea1]
+    territorial_areas_2: [AdminTerritorialArea2]
+    territorial_areas_3: [AdminTerritorialArea3]
+    zones: [String]
+    data_lang: [String]
+
+}

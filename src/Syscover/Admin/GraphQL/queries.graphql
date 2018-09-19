@@ -1,0 +1,6 @@
+# Query to get actions list
+adminActions(sql:[CoreSQLInput]): [AdminAction!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQL@get")
+# Query to get action
+adminAction(sql:[CoreSQLInput]): AdminAction @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQL@find")
+# Query to get actions paginated
+adminActionsPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQL@paginate")

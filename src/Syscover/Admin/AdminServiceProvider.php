@@ -3,7 +3,6 @@
 use Illuminate\Support\ServiceProvider;
 use Syscover\Admin\GraphQL\AdminGraphQLServiceProvider;
 
-
 class AdminServiceProvider extends ServiceProvider
 {
 	/**
