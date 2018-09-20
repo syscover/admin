@@ -1,7 +1,39 @@
 # Actions
-# Query to get actions list
-adminActions(sql:[CoreSQLInput]): [AdminAction!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQL@get")
-# Query to get action
-adminAction(sql:[CoreSQLInput]): AdminAction @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQL@find")
-# Query to get actions paginated
-adminActionsPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQL@paginate")
+""" Query to get actions list """
+adminActions(sql:[CoreSQLInput]): [AdminAction!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQLService@get")
+""" Query to get action """
+adminAction(sql:[CoreSQLInput]): AdminAction @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQLService@find")
+""" Query to get actions paginated """
+adminActionsPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQLService@paginate")
+
+# Packages
+""" Query to get packages list """
+adminPackages(sql:[CoreSQLInput]): [AdminPackage!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PackageGraphQLService@get")
+""" Query to get package """
+adminPackage(sql:[CoreSQLInput]): AdminPackage @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PackageGraphQLService@find")
+""" Query to get packages paginated """
+adminPackagesPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PackageGraphQLService@paginate")
+
+# Resources
+""" Query to get resources list """
+adminResources(sql:[CoreSQLInput]): [AdminResource!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ResourceGraphQLService@get")
+""" Query to get resource """
+adminResource(sql:[CoreSQLInput]): AdminResource @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ResourceGraphQLService@find")
+""" Query to get resources paginated """
+adminResourcesPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ResourceGraphQLService@paginate")
+
+# AttachmentFamilies
+""" Query to get attachment families list """
+adminAttachmentFamilies(sql:[CoreSQLInput]): [AdminAttachmentFamily!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\AttachmentFamilyGraphQLService@get")
+""" Query to get attachment family """
+adminAttachmentFamily(sql:[CoreSQLInput]): AdminAttachmentFamily @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\AttachmentFamilyGraphQLService@find")
+""" Query to get attachment families paginated """
+adminAttachmentFamiliesPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\AttachmentFamilyGraphQLService@paginate")
+
+# FieldGroups
+""" Query to get field groups list """
+adminFieldGroups(sql:[CoreSQLInput]): [AdminFieldGroup!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldGroupGraphQLService@get")
+""" Query to get field group """
+adminFieldGroup(sql:[CoreSQLInput]): AdminFieldGroup @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldGroupGraphQLService@find")
+""" Query to get field groups paginated """
+adminFieldGroupsPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldGroupGraphQLService@paginate")

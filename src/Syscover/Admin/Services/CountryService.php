@@ -18,7 +18,7 @@ class CountryService
         CountryService::checkUpdate($object);
 
         if(empty($object['zones']) && is_array($object['zones'])) $object['zones'] = null;
-        if(! empty($object['zones']) && (is_array($object['zones']) && count($object['zones']) > 0)) $object['zones'] = json_encode($object['zones']);
+        if(! empty($object['zones']) && is_array($object['zones']) && count($object['zones']) > 0) $object['zones'] = json_encode($object['zones']);
 
         Country::where('id', $object['id'])->update(CountryService::builder($object, ['id', 'sort', 'prefix', 'zones']));
         Country::where('ix', $object['ix'])->update(CountryService::builder($object, ['name', 'territorial_area_1', 'territorial_area_2', 'territorial_area_3']));

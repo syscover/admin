@@ -1,7 +1,7 @@
 # Actions
 #
-adminCreateAction(object: AdminActionInput!): AdminAction @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQL@create")
+adminCreateAction(object: AdminActionInput!): AdminAction @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQLService@create")
 #
-adminUpdateAction(object: AdminActionInput!): AdminAction @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQL@update")
+adminUpdateAction(object: AdminActionInput!): AdminAction @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQLService@update")
 #
-adminDeleteAction(id: Int!): AdminAction @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQL@delete")
+adminDeleteAction(id: Int!): AdminAction @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQLService@delete")

@@ -1,15 +1,12 @@
 # Action that user can to do in application, this is for set permissions
 type AdminAction {
-    # The index of action
-    ix: ID!
-    # The id of action
+    ix: Int!
     id: String!
-    # The name of action
     name: String!
 }
 
 type AdminPackage {
-    id: ID!
+    id: Int!
     name: String!
     root: String!
     active: Boolean!
@@ -17,7 +14,7 @@ type AdminPackage {
 }
 
 type AdminResource {
-    ix: ID!
+    ix: Int!
     id: String!
     name: String!
     package_id: Int!
@@ -25,7 +22,7 @@ type AdminResource {
 }
 
 type AdminTerritorialArea1 {
-    ix: ID!
+    ix: Int!
     id: String!
     country_id: String!
     name: String
@@ -33,7 +30,7 @@ type AdminTerritorialArea1 {
 }
 
 type AdminTerritorialArea2 {
-    ix: ID!
+    ix: Int!
     id: String!
     country_id: String!
     territorial_area_1_id: String!
@@ -42,7 +39,7 @@ type AdminTerritorialArea2 {
 }
 
 type AdminTerritorialArea3 {
-    ix: ID!
+    ix: Int!
     id: String!
     country_id: String!
     territorial_area_1_id: String!
@@ -52,7 +49,7 @@ type AdminTerritorialArea3 {
 }
 
 type AdminCountry {
-    ix: ID!
+    ix: Int!
     id: String!
     lang_id: String!
     name: String!
@@ -70,7 +67,7 @@ type AdminCountry {
 }
 
 type AdminAttachmentFamily {
-    id: ID!
+    id: Int!
     resource_id: String!
     resource: AdminResource!
     name: String
@@ -82,7 +79,7 @@ type AdminAttachmentFamily {
 }
 
 type AdminAttachmentLibrary {
-    id: ID!
+    id: Int!
     name: String
     base_path: String
     file_name: String
@@ -96,7 +93,7 @@ type AdminAttachmentLibrary {
 }
 
 type AdminAttachment {
-    ix: ID!
+    ix: Int!
     id: String!
     lang_id: String!
     object_id: Int!
@@ -118,4 +115,11 @@ type AdminAttachment {
     library_file_name: String
     attachment_library: AdminAttachmentLibrary
     data: Object
+}
+
+type AdminFieldGroup {
+    id: Int!
+    name: String!
+    resource_id: String!
+    resource: AdminResource!
 }
