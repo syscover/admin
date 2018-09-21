@@ -24,12 +24,17 @@ Syscover\Admin\AdminServiceProvider::class,
 php artisan vendor:publish --provider="Syscover\Admin\AdminServiceProvider"
 ```
 
-**3 - Execute optimize command load new classes**
+**3 - Register middlewares pulsar.navtools on file app/Http/Kernel.php add to routeMiddleware array**
+```
+'pulsar.auth' => \Syscover\Admin\Middleware\Authenticate::class
+```
+
+**4 - Execute optimize command load new classes**
 ```
 composer dump-autoload
 ```
 
-**4 - Config laravel queue, in file config/queue.php replace database connection by**
+**5 - Config laravel queue, in file config/queue.php replace database connection by**
 ```
 'database' => [
     'driver' => 'database',
@@ -39,19 +44,19 @@ composer dump-autoload
 ],
 ```
 
-**5 - And execute migrations and seed database**
+**6 - And execute migrations and seed database**
 ```
 php artisan queue:table
 php artisan migrate
 php artisan db:seed --class="AdminTableSeeder"
 ```
 
-**6 - Execute command to load all updates**
+**7 - Execute command to load all updates**
 ```
 php artisan migrate --path=vendor/syscover/pulsar-admin/src/database/migrations/updates
 ```
 
-**7 - include this arrays in config/auth.php**
+**8 - include this arrays in config/auth.php**
 
 Set this default values, for JWT can create pulsar user
 ```
@@ -93,20 +98,20 @@ Inside passwords array
 ],
 ```
 
-**8 - Set base lang application and panel url in .env file**
+**9 - Set base lang application and panel url in .env file**
 ```
 ADMIN_BASE_LANG=en
 ADMIN_PANEL_URL=http://panel.mydomain.com
 ```
 
-**9 - Register cron command your server**
+**10 - Register cron command your server**
 
 ```
 * * * * * php /path-to-your-project/artisan schedule:run >> /dev/null 2>&1
 
 ```
 
-**10 - When the installation is complete you can access these data**
+**11 - When the installation is complete you can access these data**
 ```
 user: admin@pulsar.local
 pasword: 123456
