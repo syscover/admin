@@ -6,6 +6,14 @@ adminLang(sql:[CoreSQLInput]): AdminLang @field(resolver: "Syscover\\Admin\\Grap
 """ Query to get langs paginated """
 adminLangsPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\LangGraphQLService@paginate")
 
+# Countries
+""" Query to get countries list """
+adminCountries(sql:[CoreSQLInput]): [AdminCountry!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\CountryGraphQLService@get")
+""" Query to get country """
+adminCountry(sql:[CoreSQLInput]): AdminCountry @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\CountryGraphQLService@find")
+""" Query to get countries paginated """
+adminCountriesPagination(sql:[CoreSQLInput] filters:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\CountryGraphQLService@paginate")
+
 # Actions
 """ Query to get actions list """
 adminActions(sql:[CoreSQLInput]): [AdminAction!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQLService@get")
