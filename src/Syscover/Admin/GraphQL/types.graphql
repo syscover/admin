@@ -140,5 +140,4 @@ type AdminUser {
     email: String!
     name: String!
     surname: String
-
 }
