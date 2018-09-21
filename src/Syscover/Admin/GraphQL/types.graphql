@@ -1,4 +1,12 @@
-# Action that user can to do in application, this is for set permissions
+type AdminLang {
+    ix: Int!
+    id: String!
+    name: String!
+    icon: String
+    sort: Int
+    active: Boolean
+}
+
 type AdminAction {
     ix: Int!
     id: String!
