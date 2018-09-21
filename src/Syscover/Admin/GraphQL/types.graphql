@@ -144,6 +144,26 @@ type AdminFieldValue {
     data_lang: [String]
 }
 
+type AdminField {
+    id: Int!
+    field_group_id: Int!
+    field_group_name: String
+    name: String!
+    labels: [CoreTranslationField!]!
+    field_type_id: String!
+    field_type_name: String!
+    data_type_id: Int!
+    data_type_name: String!
+    required: Boolean!
+    sort: Int
+    max_length: Int
+    pattern: String
+    label_class: String
+    component_class: String
+    values: [AdminFieldValue]
+    data_lang: [String]
+}
+
 type AdminProfile {
     id: Int
     name: String

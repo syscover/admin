@@ -62,6 +62,14 @@ adminFieldValue(sql:[CoreSQLInput]): AdminFieldValue @field(resolver: "Syscover\
 """ Query to get field values paginated """
 adminFieldValuesPagination(sql:[CoreSQLInput] filters:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldValueGraphQLService@paginate")
 
+# Fields
+""" Query to get fields list """
+adminFields(sql:[CoreSQLInput]): [AdminField!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldGraphQLService@get")
+""" Query to get field """
+adminField(sql:[CoreSQLInput]): AdminField @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldGraphQLService@find")
+""" Query to get fields paginated """
+adminFieldsPagination(sql:[CoreSQLInput] filters:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldGraphQLService@paginate")
+
 # Profiles
 """ Query to get packages list """
 adminProfiles(sql:[CoreSQLInput]): [AdminProfile!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ProfileGraphQLService@get")
