@@ -123,3 +123,22 @@ type AdminFieldGroup {
     resource_id: String!
     resource: AdminResource!
 }
+
+type AdminProfile {
+    id: Int
+    name: String
+}
+
+type AdminUser {
+    id: Int!
+    lang_id: String!
+    profile_id: Int!
+    profile: AdminProfile!
+    active: Boolean!
+    user: String!
+    password: String!
+    email: String!
+    name: String!
+    surname: String
+
+}
