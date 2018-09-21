@@ -132,6 +132,18 @@ type AdminFieldGroup {
     resource: AdminResource!
 }
 
+type AdminFieldValue {
+    ix: Int!
+    id: String!
+    lang_id: String!
+    field_id: Int!
+    counter: Int
+    sort: Int
+    featured: Boolean
+    name: String
+    data_lang: [String]
+}
+
 type AdminProfile {
     id: Int
     name: String
