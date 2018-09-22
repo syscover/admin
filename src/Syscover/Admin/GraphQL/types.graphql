@@ -74,6 +74,14 @@ type AdminCountry {
     data_lang: [String]
 }
 
+type AdminAttachmentMime {
+    id: Int!
+    resource_id: String!
+    resource: AdminResource!
+    mime: String!
+
+}
+
 type AdminAttachmentFamily {
     id: Int!
     resource_id: String!
