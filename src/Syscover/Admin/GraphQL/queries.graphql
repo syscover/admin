@@ -102,3 +102,11 @@ adminProfile(sql:[CoreSQLInput]): AdminProfile @field(resolver: "Syscover\\Admin
 """ Query to get packages paginated """
 adminProfilesPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ProfileGraphQLService@paginate")
 
+# Users
+""" Query to get users list """
+adminUsers(sql:[CoreSQLInput]): [AdminUser!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\UserGraphQLService@get")
+""" Query to get user """
+adminUser(sql:[CoreSQLInput]): AdminUser @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\UserGraphQLService@find")
+""" Query to get users paginated """
+adminUsersPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\UserGraphQLService@paginate")
+
