@@ -113,7 +113,7 @@ type AdminAttachment {
     id: String!
     lang_id: String!
     object_id: Int!
-    onject_type: String!
+    object_type: String!
     family_id: Int
     family: AdminAttachmentFamily
     sort: Int
