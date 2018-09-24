@@ -6,7 +6,7 @@ class FieldService
 {
     public static function create($object)
     {
-        FieldService::checkCreate($object);
+        self::checkCreate($object);
 
         if(empty($object['id']))
         {
@@ -14,7 +14,7 @@ class FieldService
 
             $object['data_lang'] = Field::addDataLang($object['lang_id']);
 
-            return Field::create(FieldService::builder($object));
+            return Field::create(self::builder($object));
         }
         else
         {
@@ -46,7 +46,7 @@ class FieldService
 
     public static function update($object)
     {
-        FieldService::checkUpdate($object);
+        self::checkUpdate($object);
 
         // set label field
         if(! empty($object['label']))
@@ -65,7 +65,7 @@ class FieldService
             $object['labels'] = json_encode($labels);
         }
 
-        Field::where('id', $object['id'])->update(FieldService::builder($object));
+        Field::where('id', $object['id'])->update(self::builder($object));
 
         return Field::find($object['id']);
     }

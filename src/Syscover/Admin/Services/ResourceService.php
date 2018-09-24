@@ -4,29 +4,35 @@ use Syscover\Admin\Models\Resource;
 
 class ResourceService
 {
-    /**
-     * @param  array    $object     contain properties of action
-     * @return \Syscover\Admin\Models\Resource
-     */
     public static function create($object)
     {
-        return Resource::create($object);
+        self::checkCreate($object);
+        return Resource::create(self::builder($object));
     }
 
-    /**
-     * @param array     $object     contain properties of action
-     * @return \Syscover\Admin\Models\Resource
-     */
     public static function update($object)
     {
+        self::checkUpdate($object);
+        Resource::where('ix', $object['ix'])->update(self::builder($object));
+
+        return Resource::find($object['ix']);
+    }
+
+    private static function builder($object)
+    {
         $object = collect($object);
+        return $object->only(['id', 'name', 'package_id'])->toArray();
+    }
 
-        Resource::where('ix', $object->get('ix'))
-            ->update([
-                'id'    => $object->get('id'),
-                'name'  => $object->get('name')
-            ]);
+    private static function checkCreate($object)
+    {
+        if(empty($object['id']))            throw new \Exception('You have to define a id field to create a resource');
+        if(empty($object['name']))          throw new \Exception('You have to define a name field to create a resource');
+        if(empty($object['package_id']))    throw new \Exception('You have to define a package_id field to create a resource');
+    }
 
-        return Resource::find($object->get('ix'));
+    private static function checkUpdate($object)
+    {
+        if(empty($object['ix'])) throw new \Exception('You have to define a ix field to update a resource');
     }
 }

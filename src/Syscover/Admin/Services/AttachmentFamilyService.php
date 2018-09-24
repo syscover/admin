@@ -6,18 +6,18 @@ class AttachmentFamilyService
 {
     public static function create($object)
     {
-        AttachmentFamilyService::checkCreate($object);
-        return AttachmentFamily::create(AttachmentFamilyService::builder($object));
+        self::checkCreate($object);
+        return AttachmentFamily::create(self::builder($object));
     }
 
     public static function update($object)
     {
-        AttachmentFamilyService::checkUpdate($object);
+        self::checkUpdate($object);
 
         if(empty($object['sizes']) && is_array($object['sizes'])) $object['sizes'] = null;
         if(! empty($object['sizes']) && is_array($object['sizes']) && count($object['sizes']) > 0) $object['sizes'] = json_encode($object['sizes']);
 
-        AttachmentFamily::where('id', $object['id'])->update(AttachmentFamilyService::builder($object));
+        AttachmentFamily::where('id', $object['id'])->update(self::builder($object));
 
         return AttachmentFamily::find($object['id']);
     }

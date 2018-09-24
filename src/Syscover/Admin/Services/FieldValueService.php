@@ -6,7 +6,7 @@ class FieldValueService
 {
     public static function create($object)
     {
-        FieldValueService::checkCreate($object);
+        self::checkCreate($object);
 
         if(isset($object['id']))
         {
@@ -24,14 +24,14 @@ class FieldValueService
         $object['counter']      = $counter;
         $object['data_lang']    = FieldValue::addDataLang($object['lang_id'], $object['id'], ['field_id' => $object['field_id']]);
 
-        return FieldValue::create(FieldValueService::builder($object));
+        return FieldValue::create(self::builder($object));
     }
 
     public static function update($object)
     {
-        FieldValueService::checkUpdate($object);
-        FieldValue::where('id', $object['id'])->where('field_id', $object['field_id'])->update(FieldValueService::builder($object, ['id']));
-        FieldValue::where('ix', $object['ix'])->update(FieldValueService::builder($object));
+        self::checkUpdate($object);
+        FieldValue::where('id', $object['id'])->where('field_id', $object['field_id'])->update(self::builder($object, ['id']));
+        FieldValue::where('ix', $object['ix'])->update(self::builder($object));
 
         return FieldValue::find($object['ix']);
     }

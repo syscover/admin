@@ -6,14 +6,14 @@ class ActionService
 {
     public static function create($object)
     {
-        ActionService::checkCreate($object);
-        return Action::create(ActionService::builder($object));
+        self::checkCreate($object);
+        return Action::create(self::builder($object));
     }
 
     public static function update($object)
     {
-        ActionService::checkUpdate($object);
-        Action::where('ix', $object['ix'])->update(ActionService::builder($object));
+        self::checkUpdate($object);
+        Action::where('ix', $object['ix'])->update(self::builder($object));
 
         return Action::find($object['ix']);
     }

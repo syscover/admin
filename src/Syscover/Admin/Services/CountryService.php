@@ -6,22 +6,22 @@ class CountryService
 {
     public static function create($object)
     {
-        CountryService::checkCreate($object);
+        self::checkCreate($object);
 
         $object['data_lang'] = Country::addDataLang($object['lang_id'], $object['id']);
 
-        return Country::create(CountryService::builder($object));
+        return Country::create(self::builder($object));
     }
 
     public static function update($object)
     {
-        CountryService::checkUpdate($object);
+        self::checkUpdate($object);
 
         if(empty($object['zones']) && is_array($object['zones'])) $object['zones'] = null;
         if(! empty($object['zones']) && is_array($object['zones']) && count($object['zones']) > 0) $object['zones'] = json_encode($object['zones']);
 
-        Country::where('id', $object['id'])->update(CountryService::builder($object, ['id', 'sort', 'prefix', 'zones']));
-        Country::where('ix', $object['ix'])->update(CountryService::builder($object, ['name', 'territorial_area_1', 'territorial_area_2', 'territorial_area_3']));
+        Country::where('id', $object['id'])->update(self::builder($object, ['id', 'sort', 'prefix', 'zones']));
+        Country::where('ix', $object['ix'])->update(self::builder($object, ['name', 'territorial_area_1', 'territorial_area_2', 'territorial_area_3']));
 
         return Country::find($object['ix']);
     }

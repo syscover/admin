@@ -7,14 +7,14 @@ class UserService
 {
     public static function create($object)
     {
-        UserService::checkCreate($object);
-        return User::create(UserService::builder($object));
+        self::checkCreate($object);
+        return User::create(self::builder($object));
     }
 
     public static function update($object)
     {
-        UserService::checkUpdate($object);
-        User::where('id', $object['id'])->update(UserService::builder($object));
+        self::checkUpdate($object);
+        User::where('id', $object['id'])->update(self::builder($object));
 
         return User::find($object['id']);
     }

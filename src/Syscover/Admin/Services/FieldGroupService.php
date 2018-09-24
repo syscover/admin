@@ -6,14 +6,14 @@ class FieldGroupService
 {
     public static function create($object)
     {
-        FieldGroupService::checkCreate($object);
-        return FieldGroup::create(FieldGroupService::builder($object));
+        self::checkCreate($object);
+        return FieldGroup::create(self::builder($object));
     }
 
     public static function update($object)
     {
-        FieldGroupService::checkUpdate($object);
-        FieldGroup::where('id', $object['id'])->update(FieldGroupService::builder($object));
+        self::checkUpdate($object);
+        FieldGroup::where('id', $object['id'])->update(self::builder($object));
 
         return FieldGroup::find($object['id']);
     }

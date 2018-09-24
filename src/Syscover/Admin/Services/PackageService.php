@@ -6,14 +6,14 @@ class PackageService
 {
     public static function create($object)
     {
-        PackageService::checkCreate($object);
-        return Package::create(PackageService::builder($object));
+        self::checkCreate($object);
+        return Package::create(self::builder($object));
     }
 
     public static function update($object)
     {
-        PackageService::checkUpdate($object);
-        Package::where('id', $object['id'])->update(PackageService::builder($object));
+        self::checkUpdate($object);
+        Package::where('id', $object['id'])->update(self::builder($object));
 
         return Package::find($object['id']);
     }

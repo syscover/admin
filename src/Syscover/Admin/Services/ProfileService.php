@@ -6,14 +6,14 @@ class ProfileService
 {
     public static function create($object)
     {
-        ProfileService::check($object);
-        return Profile::create(ProfileService::builder($object));
+        self::checkCreate($object);
+        return Profile::create(self::builder($object));
     }
 
     public static function update($object)
     {
-        ProfileService::check($object);
-        Profile::where('id', $object['id'])->update(ProfileService::builder($object));
+        self::checkUpdate($object);
+        Profile::where('id', $object['id'])->update(self::builder($object));
 
         return Profile::find($object['id']);
     }
@@ -21,16 +21,16 @@ class ProfileService
     private static function builder($object)
     {
         $object = collect($object);
-        $data = [];
-
-        if($object->has('id'))      $data['id'] = $object->get('id');
-        if($object->has('name'))    $data['name'] = $object->get('name');
-
-        return $data;
+        return $object->only(['id', 'name'])->toArray();
     }
 
-    private static function check($object)
+    private static function checkCreate($object)
     {
-        if(empty($object['name'])) throw new \Exception('You have to define a name field to create a profile');
+        if(empty($object['name']))   throw new \Exception('You have to define a name field to create a profile');
+    }
+
+    private static function checkUpdate($object)
+    {
+        if(empty($object['ix'])) throw new \Exception('You have to define a ix field to update a profile');
     }
 }

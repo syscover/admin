@@ -6,14 +6,14 @@ class LangService
 {
     public static function create($object)
     {
-        LangService::checkCreate($object);
-        return Lang::create(LangService::builder($object));
+        self::checkCreate($object);
+        return Lang::create(self::builder($object));
     }
 
     public static function update($object, $ix)
     {
-        LangService::checkUpdate($object);
-        Lang::where('ix', $ix)->update(LangService::builder($object));
+        self::checkUpdate($object);
+        Lang::where('ix', $ix)->update(self::builder($object));
 
         return Lang::find($ix);
     }

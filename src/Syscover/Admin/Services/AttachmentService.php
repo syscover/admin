@@ -60,12 +60,12 @@ class AttachmentService
 
     public static function storeAttachments($attachments, $directory, $urlBase, $objectType, $objectId, $langId)
     {
-        AttachmentService::manageAttachments($attachments, $directory, $urlBase, $objectType, $objectId, $langId, 'store');
+        self::manageAttachments($attachments, $directory, $urlBase, $objectType, $objectId, $langId, 'store');
     }
 
     public static function updateAttachments($attachments, $directory, $urlBase, $objectType, $objectId, $langId)
     {
-        AttachmentService::manageAttachments($attachments, $directory, $urlBase, $objectType, $objectId, $langId, 'update');
+        self::manageAttachments($attachments, $directory, $urlBase, $objectType, $objectId, $langId, 'update');
     }
 
     /**
@@ -122,7 +122,7 @@ class AttachmentService
                 ]);
 
                 // create sizes from image
-                AttachmentService::setAttachmentSizes($attachmentObject, $urlBase, $objectId);
+                self::setAttachmentSizes($attachmentObject, $urlBase, $objectId);
             }
             else
             {
@@ -158,12 +158,12 @@ class AttachmentService
                     if($attachmentOld->family_id !== $attachmentObject->family_id)
                     {
                         // create sizes from image
-                        AttachmentService::setAttachmentSizes($attachmentObject, $urlBase, $objectId);
+                        self::setAttachmentSizes($attachmentObject, $urlBase, $objectId);
                     }
                 }
                 elseif($action === 'store') // can to be data from new lang object
                 {
-                    $newFileName = AttachmentService::getRandomFilename($attachment['extension']);
+                    $newFileName = self::getRandomFilename($attachment['extension']);
 
                     // move file from temp file to attachment directory
                     File::copy($attachment['base_path'] . '/' . $attachment['file_name'], $attachment['base_path'] . '/' . $newFileName);
@@ -192,7 +192,7 @@ class AttachmentService
                     ]);
 
                     // create sizes from image
-                    AttachmentService::setAttachmentSizes($attachmentObject, $urlBase, $objectId);
+                    self::setAttachmentSizes($attachmentObject, $urlBase, $objectId);
                 }
             }
         }
@@ -314,7 +314,7 @@ class AttachmentService
                 // get data element insert in editor.component.ts line 112
                 $attachment = json_decode($tag->getAttribute('data-dh2-image'));
 
-                $sizes = AttachmentService::setWysiwygAttachmentSizes($attachment, $directory, $urlBase, $id, $attachmentFamilyClass);
+                $sizes = self::setWysiwygAttachmentSizes($attachment, $directory, $urlBase, $id, $attachmentFamilyClass);
 
                 $tag->setAttribute('src', get_src($sizes));
                 $tag->setAttribute('srcset', get_srcset($sizes));
