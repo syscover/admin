@@ -1,7 +1,9 @@
+# Langs
+adminCreateLang(object:AdminLangInput!): AdminLang @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\LangGraphQLService@create")
+adminUpdateLang(object:AdminLangInput!): AdminLang @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\LangGraphQLService@update")
+adminDeleteLang(id:String!): AdminLang @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\LangGraphQLService@delete")
+
 # Actions
-#
-adminCreateAction(object: AdminActionInput!): AdminAction @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQLService@create")
-#
-adminUpdateAction(object: AdminActionInput!): AdminAction @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQLService@update")
-#
-adminDeleteAction(id: Int!): AdminAction @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQLService@delete")
+adminCreateAction(object:AdminActionInput!): AdminAction @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQLService@create")
+adminUpdateAction(object:AdminActionInput!): AdminAction @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQLService@update")
+adminDeleteAction(id:String!): AdminAction @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQLService@delete")

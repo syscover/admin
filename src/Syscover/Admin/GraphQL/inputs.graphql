@@ -1,9 +1,14 @@
-# Action that user can to do in application, this is for set permissions
-input AdminActionInput {
-    # The index of action
-    ix: ID
-    # The id of action
+type AdminLangInput {
+    ix: Int
     id: String!
-    # The name of action
+    name: String!
+    icon: String
+    sort: Int
+    active: Boolean
+}
+
+input AdminActionInput {
+    ix: Int
+    id: String!
     name: String!
 }
