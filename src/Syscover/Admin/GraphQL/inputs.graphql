@@ -1,3 +1,84 @@
+input AdminActionInput {
+    ix: Int
+    id: String!
+    name: String!
+}
+
+input AdminAttachmentInput {
+    alt: String
+    attachment_library: AdminAttachmentLibraryInput
+    base_path: String
+    data: Object
+    extension: String
+    family_id: Int
+    file_name: String
+    height: Int
+    id: Int
+    ix: Int
+    lang_id: String
+    library_file_name: String
+    library_id: Int
+    mime: String
+    object_id: Int
+    object_type: String
+    size: String
+    sort: Int
+    title: String
+    uploaded: Boolean
+    url: String
+    width: Int
+}
+
+input AdminAttachmentFamilyInput {
+    format: String
+    height: Int
+    id: Int
+    name: String
+    quality: Int
+    resource_id: String
+    sizes: [String]
+    width: Int
+}
+
+input AdminAttachmentLibraryInput {
+    id: Int
+    name: String
+    base_path: String
+    file_name: String
+    url: String
+    mime: String
+    extension: String
+    size: String
+    width: Int
+    height: Int
+    data: Object
+}
+
+input AdminCountryInput {
+    ix: Int
+    id: String!
+    lang_id: String!
+    name: String!
+    slug: String
+    sort: Int
+    prefix: Int
+    territorial_area_1: String
+    territorial_area_2: String
+    territorial_area_3: String
+    zones: [String]
+    data_lang: [String]
+}
+
+input AdminCropInput {
+    height: Int
+    rotate: Int
+    scaleX: Int
+    scaleY: Int
+    width: Int
+    x: Int
+    y: Int
+}
+
 input AdminLangInput {
     ix: Int
     id: String!
@@ -5,12 +86,6 @@ input AdminLangInput {
     icon: String
     sort: Int
     active: Boolean
-}
-
-input AdminActionInput {
-    ix: Int
-    id: String!
-    name: String!
 }
 
 input AdminPackageInput {
@@ -28,44 +103,29 @@ input AdminResourceInput {
     package_id: Int!
 }
 
-
-
-# xx
-input AdminAttachmentLibraryInput {
-    id: Int
-    name: String
-    base_path: String
-    file_name: String
-    url: String
-    mime: String
-    extension: String
-    size: String
-    width: Int
-    height: Int
-    data: Object
+input AdminTerritorialArea1Input {
+    ix: Int
+    id: String!
+    country_id: String!
+    name: String!
+    slug: String
 }
 
-input AdminAttachmentInput {
+input AdminTerritorialArea2Input {
     ix: Int
-    id: String
-    lang_id: String
-    object_id: Int
-    object_type: String
-    family_id: Int
-    sort: Int
-    alt: String
-    title: String
-    base_path: String
-    file_name: String
-    url: String
-    mime: String
-    extension: String
-    size: String
-    width: Int
-    height: Int
-    library_id: Int
-    library_file_name: String
-    attachment_library: AdminAttachmentLibraryInput
-    data: Object
-    uploaded: Boolean
+    id: String!
+    country_id: String!
+    territorial_area_1_id: String!
+    name: String!
+    slug: String
+}
+
+input AdminTerritorialArea3Input {
+    ix: Int
+    id: String!
+    country_id: String!
+    territorial_area_1_id: String!
+    territorial_area_2_id: String!
+    name: String!
+    slug: String
 }

@@ -1,19 +1,48 @@
-# Langs
-adminCreateLang(object:AdminLangInput!): AdminLang @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\LangGraphQLService@create")
-adminUpdateLang(object:AdminLangInput!): AdminLang @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\LangGraphQLService@update")
-adminDeleteLang(id:String!): AdminLang @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\LangGraphQLService@delete")
-
-# Actions
+# Action
 adminCreateAction(object:AdminActionInput!): AdminAction @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQLService@create")
 adminUpdateAction(object:AdminActionInput!): AdminAction @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQLService@update")
 adminDeleteAction(id:String!): AdminAction @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQLService@delete")
 
-# Packages
+# Attachment
+adminCropAttachment(object:Object!): Object @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\AttachmentGraphQLService@crop")
+adminDeleteAttachment(attachment:AdminAttachmentInput!): Object @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\AttachmentGraphQLService@delete")
+
+# AttachmentFamily
+adminCreateAttachmentFamily(object:AdminAttachmentFamilyInput!): AdminAttachmentFamily @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\AttachmentFamilyGraphQLService@create")
+adminUpdateAttachmentFamily(object:AdminAttachmentFamilyInput!): AdminAttachmentFamily @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\AttachmentFamilyGraphQLService@update")
+adminDeleteAttachmentFamily(id:Int!): AdminAttachmentFamily @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\AttachmentFamilyGraphQLService@delete")
+
+# Country
+adminCreateCountry(object:AdminCountryInput!): AdminCountry @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\CountryGraphQLService@create")
+adminUpdateCountry(object:AdminCountryInput!): AdminCountry @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\CountryGraphQLService@update")
+adminDeleteCountry(id:String! lang_id:String!): AdminCountry @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\CountryGraphQLService@delete")
+
+# Lang
+adminCreateLang(object:AdminLangInput!): AdminLang @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\LangGraphQLService@create")
+adminUpdateLang(object:AdminLangInput!): AdminLang @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\LangGraphQLService@update")
+adminDeleteLang(id:String!): AdminLang @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\LangGraphQLService@delete")
+
+# Package
 adminCreatePackage(object:AdminPackageInput!): AdminPackage @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PackageGraphQLService@create")
 adminUpdatePackage(object:AdminPackageInput!): AdminPackage @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PackageGraphQLService@update")
 adminDeletePackage(id:Int!): AdminPackage @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PackageGraphQLService@delete")
 
-# Resources
+# Resource
 adminCreateResource(object:AdminResourceInput!): AdminResource @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ResourceGraphQLService@create")
 adminUpdateResource(object:AdminResourceInput!): AdminResource @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ResourceGraphQLService@update")
 adminDeleteResource(id:String!): AdminResource @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ResourceGraphQLService@delete")
+
+# TerritorialArea1
+adminCreateTerritorialArea1(object:AdminTerritorialArea1Input!): AdminTerritorialArea1 @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea1GraphQLService@create")
+adminUpdateTerritorialArea1(object:AdminTerritorialArea1Input!): AdminTerritorialArea1 @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea1GraphQLService@update")
+adminDeleteTerritorialArea1(id:String!): AdminTerritorialArea1 @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea1GraphQLService@delete")
+
+# TerritorialArea2
+adminCreateTerritorialArea2(object:AdminTerritorialArea2Input!): AdminTerritorialArea2 @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea2GraphQLService@create")
+adminUpdateTerritorialArea2(object:AdminTerritorialArea2Input!): AdminTerritorialArea2 @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea2GraphQLService@update")
+adminDeleteTerritorialArea2(id:String!): AdminTerritorialArea2 @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea2GraphQLService@delete")
+
+# TerritorialArea3
+adminCreateTerritorialArea3(object:AdminTerritorialArea3Input!): AdminTerritorialArea3 @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea3GraphQLService@create")
+adminUpdateTerritorialArea3(object:AdminTerritorialArea3Input!): AdminTerritorialArea3 @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea3GraphQLService@update")
+adminDeleteTerritorialArea3(id:String!): AdminTerritorialArea3 @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea3GraphQLService@delete")

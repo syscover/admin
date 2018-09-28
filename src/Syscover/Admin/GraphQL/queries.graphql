@@ -1,44 +1,4 @@
-# Langs
-""" Query to get langs list """
-adminLangs(sql:[CoreSQLInput]): [AdminLang!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\LangGraphQLService@get")
-""" Query to get lang """
-adminLang(sql:[CoreSQLInput]): AdminLang @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\LangGraphQLService@find")
-""" Query to get langs paginated """
-adminLangsPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\LangGraphQLService@paginate")
-
-# Countries
-""" Query to get countries list """
-adminCountries(sql:[CoreSQLInput]): [AdminCountry!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\CountryGraphQLService@get")
-""" Query to get country """
-adminCountry(sql:[CoreSQLInput]): AdminCountry @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\CountryGraphQLService@find")
-""" Query to get countries paginated """
-adminCountriesPagination(sql:[CoreSQLInput] filters:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\CountryGraphQLService@paginate")
-
-# Territorial Area 1
-""" Query to get territorial areas 1 list """
-adminTerritorialAreas1(sql:[CoreSQLInput]): [AdminTerritorialArea1!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea1GraphQLService@get")
-""" Query to get territorial area 1 """
-adminTerritorialArea1(sql:[CoreSQLInput]): AdminTerritorialArea1 @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea1GraphQLService@find")
-""" Query to get territorial areas 1 paginated """
-adminTerritorialAreas1Pagination(sql:[CoreSQLInput] filters:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea1GraphQLService@paginate")
-
-# Territorial Area 2
-""" Query to get territorial areas 2 list """
-adminTerritorialAreas2(sql:[CoreSQLInput]): [AdminTerritorialArea2!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea2GraphQLService@get")
-""" Query to get territorial area 2 """
-adminTerritorialArea2(sql:[CoreSQLInput]): AdminTerritorialArea2 @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea2GraphQLService@find")
-""" Query to get territorial areas 2 paginated """
-adminTerritorialAreas2Pagination(sql:[CoreSQLInput] filters:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea2GraphQLService@paginate")
-
-# Territorial Area 3
-""" Query to get territorial areas 3 list """
-adminTerritorialAreas3(sql:[CoreSQLInput]): [AdminTerritorialArea3!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea3GraphQLService@get")
-""" Query to get territorial area 3 """
-adminTerritorialArea3(sql:[CoreSQLInput]): AdminTerritorialArea3 @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea3GraphQLService@find")
-""" Query to get territorial areas 3 paginated """
-adminTerritorialAreas3Pagination(sql:[CoreSQLInput] filters:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea3GraphQLService@paginate")
-
-# Actions
+# Action
 """ Query to get actions list """
 adminActions(sql:[CoreSQLInput]): [AdminAction!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQLService@get")
 """ Query to get action """
@@ -46,23 +6,7 @@ adminAction(sql:[CoreSQLInput]): AdminAction @field(resolver: "Syscover\\Admin\\
 """ Query to get actions paginated """
 adminActionsPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQLService@paginate")
 
-# Packages
-""" Query to get packages list """
-adminPackages(sql:[CoreSQLInput]): [AdminPackage!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PackageGraphQLService@get")
-""" Query to get package """
-adminPackage(sql:[CoreSQLInput]): AdminPackage @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PackageGraphQLService@find")
-""" Query to get packages paginated """
-adminPackagesPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PackageGraphQLService@paginate")
-
-# Resources
-""" Query to get resources list """
-adminResources(sql:[CoreSQLInput]): [AdminResource!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ResourceGraphQLService@get")
-""" Query to get resource """
-adminResource(sql:[CoreSQLInput]): AdminResource @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ResourceGraphQLService@find")
-""" Query to get resources paginated """
-adminResourcesPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ResourceGraphQLService@paginate")
-
-# AttachmentFamilies
+# AttachmentFamily
 """ Query to get attachment families list """
 adminAttachmentFamilies(sql:[CoreSQLInput]): [AdminAttachmentFamily!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\AttachmentFamilyGraphQLService@get")
 """ Query to get attachment family """
@@ -70,23 +14,15 @@ adminAttachmentFamily(sql:[CoreSQLInput]): AdminAttachmentFamily @field(resolver
 """ Query to get attachment families paginated """
 adminAttachmentFamiliesPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\AttachmentFamilyGraphQLService@paginate")
 
-# FieldGroups
-""" Query to get field groups list """
-adminFieldGroups(sql:[CoreSQLInput]): [AdminFieldGroup!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldGroupGraphQLService@get")
-""" Query to get field group """
-adminFieldGroup(sql:[CoreSQLInput]): AdminFieldGroup @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldGroupGraphQLService@find")
-""" Query to get field groups paginated """
-adminFieldGroupsPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldGroupGraphQLService@paginate")
+# Country
+""" Query to get countries list """
+adminCountries(sql:[CoreSQLInput]): [AdminCountry!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\CountryGraphQLService@get")
+""" Query to get country """
+adminCountry(sql:[CoreSQLInput]): AdminCountry @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\CountryGraphQLService@find")
+""" Query to get countries paginated """
+adminCountriesPagination(sql:[CoreSQLInput] filters:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\CountryGraphQLService@paginate")
 
-# FieldValues
-""" Query to get field values list """
-adminFieldValues(sql:[CoreSQLInput]): [AdminFieldValue!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldValueGraphQLService@get")
-""" Query to get field value """
-adminFieldValue(sql:[CoreSQLInput]): AdminFieldValue @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldValueGraphQLService@find")
-""" Query to get field values paginated """
-adminFieldValuesPagination(sql:[CoreSQLInput] filters:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldValueGraphQLService@paginate")
-
-# Fields
+# Field
 """ Query to get fields list """
 adminFields(sql:[CoreSQLInput]): [AdminField!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldGraphQLService@get")
 """ Query to get field """
@@ -94,7 +30,39 @@ adminField(sql:[CoreSQLInput]): AdminField @field(resolver: "Syscover\\Admin\\Gr
 """ Query to get fields paginated """
 adminFieldsPagination(sql:[CoreSQLInput] filters:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldGraphQLService@paginate")
 
-# Profiles
+# FieldGroup
+""" Query to get field groups list """
+adminFieldGroups(sql:[CoreSQLInput]): [AdminFieldGroup!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldGroupGraphQLService@get")
+""" Query to get field group """
+adminFieldGroup(sql:[CoreSQLInput]): AdminFieldGroup @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldGroupGraphQLService@find")
+""" Query to get field groups paginated """
+adminFieldGroupsPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldGroupGraphQLService@paginate")
+
+# FieldValue
+""" Query to get field values list """
+adminFieldValues(sql:[CoreSQLInput]): [AdminFieldValue!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldValueGraphQLService@get")
+""" Query to get field value """
+adminFieldValue(sql:[CoreSQLInput]): AdminFieldValue @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldValueGraphQLService@find")
+""" Query to get field values paginated """
+adminFieldValuesPagination(sql:[CoreSQLInput] filters:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldValueGraphQLService@paginate")
+
+# Lang
+""" Query to get langs list """
+adminLangs(sql:[CoreSQLInput]): [AdminLang!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\LangGraphQLService@get")
+""" Query to get lang """
+adminLang(sql:[CoreSQLInput]): AdminLang @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\LangGraphQLService@find")
+""" Query to get langs paginated """
+adminLangsPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\LangGraphQLService@paginate")
+
+# Package
+""" Query to get packages list """
+adminPackages(sql:[CoreSQLInput]): [AdminPackage!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PackageGraphQLService@get")
+""" Query to get package """
+adminPackage(sql:[CoreSQLInput]): AdminPackage @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PackageGraphQLService@find")
+""" Query to get packages paginated """
+adminPackagesPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PackageGraphQLService@paginate")
+
+# Profile
 """ Query to get packages list """
 adminProfiles(sql:[CoreSQLInput]): [AdminProfile!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ProfileGraphQLService@get")
 """ Query to get package """
@@ -102,11 +70,42 @@ adminProfile(sql:[CoreSQLInput]): AdminProfile @field(resolver: "Syscover\\Admin
 """ Query to get packages paginated """
 adminProfilesPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ProfileGraphQLService@paginate")
 
-# Users
+# Resource
+""" Query to get resources list """
+adminResources(sql:[CoreSQLInput]): [AdminResource!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ResourceGraphQLService@get")
+""" Query to get resource """
+adminResource(sql:[CoreSQLInput]): AdminResource @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ResourceGraphQLService@find")
+""" Query to get resources paginated """
+adminResourcesPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ResourceGraphQLService@paginate")
+
+# TerritorialArea1
+""" Query to get territorial areas 1 list """
+adminTerritorialAreas1(sql:[CoreSQLInput]): [AdminTerritorialArea1!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea1GraphQLService@get")
+""" Query to get territorial area 1 """
+adminTerritorialArea1(sql:[CoreSQLInput]): AdminTerritorialArea1 @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea1GraphQLService@find")
+""" Query to get territorial areas 1 paginated """
+adminTerritorialAreas1Pagination(sql:[CoreSQLInput] filters:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea1GraphQLService@paginate")
+
+# TerritorialArea2
+""" Query to get territorial areas 2 list """
+adminTerritorialAreas2(sql:[CoreSQLInput]): [AdminTerritorialArea2!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea2GraphQLService@get")
+""" Query to get territorial area 2 """
+adminTerritorialArea2(sql:[CoreSQLInput]): AdminTerritorialArea2 @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea2GraphQLService@find")
+""" Query to get territorial areas 2 paginated """
+adminTerritorialAreas2Pagination(sql:[CoreSQLInput] filters:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea2GraphQLService@paginate")
+
+# TerritorialArea3
+""" Query to get territorial areas 3 list """
+adminTerritorialAreas3(sql:[CoreSQLInput]): [AdminTerritorialArea3!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea3GraphQLService@get")
+""" Query to get territorial area 3 """
+adminTerritorialArea3(sql:[CoreSQLInput]): AdminTerritorialArea3 @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea3GraphQLService@find")
+""" Query to get territorial areas 3 paginated """
+adminTerritorialAreas3Pagination(sql:[CoreSQLInput] filters:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea3GraphQLService@paginate")
+
+# User
 """ Query to get users list """
 adminUsers(sql:[CoreSQLInput]): [AdminUser!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\UserGraphQLService@get")
 """ Query to get user """
 adminUser(sql:[CoreSQLInput]): AdminUser @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\UserGraphQLService@find")
 """ Query to get users paginated """
 adminUsersPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\UserGraphQLService@paginate")
-

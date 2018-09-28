@@ -1,85 +1,32 @@
-type AdminLang {
-    ix: Int!
-    id: String!
-    name: String!
-    icon: String
-    sort: Int
-    active: Boolean
-}
-
 type AdminAction {
     ix: Int!
     id: String!
     name: String!
 }
 
-type AdminPackage {
-    id: Int!
-    name: String!
-    root: String!
-    active: Boolean!
-    sort: Int!
-}
-
-type AdminResource {
-    ix: Int!
-    id: String!
-    name: String!
-    package_id: Int!
-    package: AdminPackage!
-}
-
-type AdminTerritorialArea1 {
-    ix: Int!
-    id: String!
-    country_id: String!
-    name: String
-    slug: String
-}
-
-type AdminTerritorialArea2 {
-    ix: Int!
-    id: String!
-    country_id: String!
-    territorial_area_1_id: String!
-    name: String
-    slug: String
-}
-
-type AdminTerritorialArea3 {
-    ix: Int!
-    id: String!
-    country_id: String!
-    territorial_area_1_id: String!
-    territorial_area_2_id: String!
-    name: String
-    slug: String
-}
-
-type AdminCountry {
+type AdminAttachment {
     ix: Int!
     id: String!
     lang_id: String!
-    name: String!
-    slug: String
+    object_id: Int!
+    object_type: String!
+    family_id: Int
+    family: AdminAttachmentFamily
     sort: Int
-    prefix: Int
-    territorial_area_1: String
-    territorial_area_2: String
-    territorial_area_3: String
-    territorial_areas_1: [AdminTerritorialArea1]
-    territorial_areas_2: [AdminTerritorialArea2]
-    territorial_areas_3: [AdminTerritorialArea3]
-    zones: [String]
-    data_lang: [String]
-}
-
-type AdminAttachmentMime {
-    id: Int!
-    resource_id: String!
-    resource: AdminResource!
-    mime: String!
-
+    alt: String
+    title: String
+    base_path: String
+    file_name: String
+    url: String
+    mime: String
+    extension: String
+    size: String
+    width: Int
+    height: Int
+    library_id: Int
+    library_file_name: String
+    attachment_library: AdminAttachmentLibrary
+    data: Object
 }
 
 type AdminAttachmentFamily {
@@ -108,47 +55,29 @@ type AdminAttachmentLibrary {
     data: Object
 }
 
-type AdminAttachment {
-    ix: Int!
-    id: String!
-    lang_id: String!
-    object_id: Int!
-    object_type: String!
-    family_id: Int
-    family: AdminAttachmentFamily
-    sort: Int
-    alt: String
-    title: String
-    base_path: String
-    file_name: String
-    url: String
-    mime: String
-    extension: String
-    size: String
-    width: Int
-    height: Int
-    library_id: Int
-    library_file_name: String
-    attachment_library: AdminAttachmentLibrary
-    data: Object
-}
-
-type AdminFieldGroup {
+type AdminAttachmentMime {
     id: Int!
-    name: String!
     resource_id: String!
     resource: AdminResource!
+    mime: String!
+
 }
 
-type AdminFieldValue {
+type AdminCountry {
     ix: Int!
     id: String!
     lang_id: String!
-    field_id: Int!
-    counter: Int
+    name: String!
+    slug: String
     sort: Int
-    featured: Boolean
-    name: String
+    prefix: Int
+    territorial_area_1: String
+    territorial_area_2: String
+    territorial_area_3: String
+    territorial_areas_1: [AdminTerritorialArea1]
+    territorial_areas_2: [AdminTerritorialArea2]
+    territorial_areas_3: [AdminTerritorialArea3]
+    zones: [String]
     data_lang: [String]
 }
 
@@ -172,9 +101,80 @@ type AdminField {
     data_lang: [String]
 }
 
+type AdminFieldGroup {
+    id: Int!
+    name: String!
+    resource_id: String!
+    resource: AdminResource!
+}
+
+type AdminFieldValue {
+    ix: Int!
+    id: String!
+    lang_id: String!
+    field_id: Int!
+    counter: Int
+    sort: Int
+    featured: Boolean
+    name: String
+    data_lang: [String]
+}
+
+type AdminLang {
+    ix: Int!
+    id: String!
+    name: String!
+    icon: String
+    sort: Int
+    active: Boolean
+}
+
+type AdminPackage {
+    id: Int!
+    name: String!
+    root: String!
+    active: Boolean!
+    sort: Int!
+}
+
 type AdminProfile {
     id: Int
     name: String
+}
+
+type AdminResource {
+    ix: Int!
+    id: String!
+    name: String!
+    package_id: Int!
+    package: AdminPackage!
+}
+
+type AdminTerritorialArea1 {
+    ix: Int!
+    id: String!
+    country_id: String!
+    name: String!
+    slug: String
+}
+
+type AdminTerritorialArea2 {
+    ix: Int!
+    id: String!
+    country_id: String!
+    territorial_area_1_id: String!
+    name: String!
+    slug: String
+}
+
+type AdminTerritorialArea3 {
+    ix: Int!
+    id: String!
+    country_id: String!
+    territorial_area_1_id: String!
+    territorial_area_2_id: String!
+    name: String!
+    slug: String
 }
 
 type AdminUser {
