@@ -1,4 +1,4 @@
-type AdminLangInput {
+input AdminLangInput {
     ix: Int
     id: String!
     name: String!
@@ -11,4 +11,60 @@ input AdminActionInput {
     ix: Int
     id: String!
     name: String!
+}
+
+input AdminPackageInput {
+    id: Int
+    name: String!
+    root: String!
+    active: Boolean!
+    sort: Int!
+}
+
+input AdminResourceInput {
+    ix: Int
+    id: String!
+    name: String!
+    package_id: Int!
+}
+
+# xx
+
+input AdminAttachmentLibraryInput {
+    id: Int
+    name: String
+    base_path: String
+    file_name: String
+    url: String
+    mime: String
+    extension: String
+    size: String
+    width: Int
+    height: Int
+    data: Object
+}
+
+input AdminAttachmentInput {
+    ix: Int
+    id: String
+    lang_id: String
+    object_id: Int
+    object_type: String
+    family_id: Int
+    sort: Int
+    alt: String
+    title: String
+    base_path: String
+    file_name: String
+    url: String
+    mime: String
+    extension: String
+    size: String
+    width: Int
+    height: Int
+    library_id: Int
+    library_file_name: String
+    attachment_library: AdminAttachmentLibraryInput
+    data: Object
+    uploaded: Boolean
 }

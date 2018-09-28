@@ -7,3 +7,13 @@ adminDeleteLang(id:String!): AdminLang @field(resolver: "Syscover\\Admin\\GraphQ
 adminCreateAction(object:AdminActionInput!): AdminAction @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQLService@create")
 adminUpdateAction(object:AdminActionInput!): AdminAction @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQLService@update")
 adminDeleteAction(id:String!): AdminAction @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQLService@delete")
+
+# Packages
+adminCreatePackage(object:AdminPackageInput!): AdminPackage @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PackageGraphQLService@create")
+adminUpdatePackage(object:AdminPackageInput!): AdminPackage @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PackageGraphQLService@update")
+adminDeletePackage(id:Int!): AdminPackage @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PackageGraphQLService@delete")
+
+# Resources
+adminCreateResource(object:AdminResourceInput!): AdminResource @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ResourceGraphQLService@create")
+adminUpdateResource(object:AdminResourceInput!): AdminResource @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ResourceGraphQLService@update")
+adminDeleteResource(id:String!): AdminResource @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ResourceGraphQLService@delete")
