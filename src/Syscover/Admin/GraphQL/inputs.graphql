@@ -28,8 +28,9 @@ input AdminResourceInput {
     package_id: Int!
 }
 
-# xx
 
+
+# xx
 input AdminAttachmentLibraryInput {
     id: Int
     name: String
