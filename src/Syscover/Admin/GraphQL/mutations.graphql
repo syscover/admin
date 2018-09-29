@@ -17,6 +17,21 @@ adminCreateCountry(object:AdminCountryInput!): AdminCountry @field(resolver: "Sy
 adminUpdateCountry(object:AdminCountryInput!): AdminCountry @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\CountryGraphQLService@update")
 adminDeleteCountry(id:String! lang_id:String!): AdminCountry @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\CountryGraphQLService@delete")
 
+# Field
+adminCreateField(object:AdminFieldInput!): AdminField @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldGraphQLService@create")
+adminUpdateField(object:AdminFieldInput!): AdminField @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldGraphQLService@update")
+adminDeleteField(id:Int! lang_id:String!): AdminField @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldGraphQLService@delete")
+
+# FieldGroup
+adminCreateFieldGroup(object:AdminFieldGroupInput!): AdminFieldGroup @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldGroupGraphQLService@create")
+adminUpdateFieldGroup(object:AdminFieldGroupInput!): AdminFieldGroup @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldGroupGraphQLService@update")
+adminDeleteFieldGroup(id:Int!): AdminFieldGroup @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldGroupGraphQLService@delete")
+
+# FieldValue
+adminCreateFieldValue(object:AdminFieldValueInput!): AdminFieldValue @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldValueGraphQLService@create")
+adminUpdateFieldValue(object:AdminFieldValueInput!): AdminFieldValue @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldValueGraphQLService@update")
+adminDeleteFieldValue(id:Int! lang_id:String! field_id:Int!): AdminFieldValue @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldValueGraphQLService@delete")
+
 # Lang
 adminCreateLang(object:AdminLangInput!): AdminLang @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\LangGraphQLService@create")
 adminUpdateLang(object:AdminLangInput!): AdminLang @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\LangGraphQLService@update")
@@ -46,3 +61,13 @@ adminDeleteTerritorialArea2(id:String!): AdminTerritorialArea2 @field(resolver: 
 adminCreateTerritorialArea3(object:AdminTerritorialArea3Input!): AdminTerritorialArea3 @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea3GraphQLService@create")
 adminUpdateTerritorialArea3(object:AdminTerritorialArea3Input!): AdminTerritorialArea3 @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea3GraphQLService@update")
 adminDeleteTerritorialArea3(id:String!): AdminTerritorialArea3 @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea3GraphQLService@delete")
+
+# Profile
+adminCreateProfile(object:AdminProfileInput!): AdminProfile @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ProfileGraphQLService@create")
+adminUpdateProfile(object:AdminProfileInput!): AdminProfile @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ProfileGraphQLService@update")
+adminDeleteProfile(id:Int!): AdminProfile @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ProfileGraphQLService@delete")
+
+# User
+adminCreateUser(object:AdminUserInput!): AdminUser @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\UserGraphQLService@create")
+adminUpdateUser(object:AdminUserInput!): AdminUser @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\UserGraphQLService@update")
+adminDeleteUser(id:Int!): AdminUser @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\UserGraphQLService@delete")

@@ -31,6 +31,6 @@ class ProfileService
 
     private static function checkUpdate($object)
     {
-        if(empty($object['ix'])) throw new \Exception('You have to define a ix field to update a profile');
+        if(empty($object['id'])) throw new \Exception('You have to define a id field to update a profile');
     }
 }

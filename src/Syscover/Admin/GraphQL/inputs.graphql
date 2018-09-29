@@ -79,6 +79,40 @@ input AdminCropInput {
     y: Int
 }
 
+input AdminFieldInput {
+    component_class: String
+    data_type_id: Int
+    field_group_id: Int
+    field_type_id: String
+    id: Int
+    label: String
+    label_class: String
+    lang_id: String
+    max_length: Int
+    name: String
+    required: Boolean
+    sort: Int
+    pattern: String
+}
+
+input AdminFieldGroupInput {
+    id: Int
+    name: String!
+    resource_id: String!
+}
+
+input AdminFieldValueInput {
+    ix: Int
+    id: String
+    lang_id: String
+    field_id: Int
+    counter: Int
+    sort: Int
+    featured: Boolean
+    name: String
+    data_lang: [String]
+}
+
 input AdminLangInput {
     ix: Int
     id: String!
@@ -128,4 +162,21 @@ input AdminTerritorialArea3Input {
     territorial_area_2_id: String!
     name: String!
     slug: String
+}
+
+input AdminProfileInput {
+    id: Int
+    name: String!
+}
+
+input AdminUserInput {
+    id: Int
+    lang_id: String!
+    profile_id: Int!
+    active: Boolean!
+    user: String!
+    password: String
+    email: String!
+    name: String!
+    surname: String
 }

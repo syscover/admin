@@ -138,8 +138,8 @@ type AdminPackage {
 }
 
 type AdminProfile {
-    id: Int
-    name: String
+    id: Int!
+    name: String!
 }
 
 type AdminResource {

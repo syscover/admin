@@ -82,11 +82,15 @@ class FieldService
 
     private static function checkCreate($object)
     {
-        if(empty($object['field_group_id']))    throw new \Exception('You have to define a field_group_id field to create a field');
+        // only for create a new object, not for mew translate
+        if(empty($object['id']))
+        {
+            if(empty($object['field_group_id']))    throw new \Exception('You have to define a field_group_id field to create a field');
+            if(empty($object['field_type_id']))     throw new \Exception('You have to define a field_type_id field to create a field');
+            if(empty($object['data_type_id']))      throw new \Exception('You have to define a data_type_id field to create a field');
+        }
         if(empty($object['lang_id']))           throw new \Exception('You have to define a lang_id field to create a field');
         if(empty($object['label']))             throw new \Exception('You have to define a label field to create a field');
-        if(empty($object['field_type_id']))     throw new \Exception('You have to define a field_type_id field to create a field');
-        if(empty($object['data_type_id']))      throw new \Exception('You have to define a data_type_id field to create a field');
     }
 
     private static function checkUpdate($object)
