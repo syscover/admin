@@ -74,7 +74,7 @@ class DeleteFieldMutation extends FieldMutation
 
     public function resolve($root, $args)
     {
-        $object = SQLService::destroyRecord($args['id'], Field::class, $args['lang_id']);
+        $object = SQLService::deleteRecord($args['id'], Field::class, $args['lang_id']);
 
         return $object;
     }

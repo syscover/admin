@@ -70,7 +70,7 @@ class DeleteProfileMutation extends ProfileMutation
 
     public function resolve($root, $args)
     {
-        $object = SQLService::destroyRecord($args['id'], Profile::class);
+        $object = SQLService::deleteRecord($args['id'], Profile::class);
 
         return $object;
     }

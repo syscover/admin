@@ -70,7 +70,7 @@ class DeleteUserMutation extends UserMutation
 
     public function resolve($root, $args)
     {
-        $object = SQLService::destroyRecord($args['id'], User::class);
+        $object = SQLService::deleteRecord($args['id'], User::class);
 
         return $object;
     }

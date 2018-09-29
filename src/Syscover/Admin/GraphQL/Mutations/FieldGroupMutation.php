@@ -72,7 +72,7 @@ class DeleteFieldGroupMutation extends FieldGroupMutation
 
     public function resolve($root, $args)
     {
-        $object = SQLService::destroyRecord($args['id'], FieldGroup::class);
+        $object = SQLService::deleteRecord($args['id'], FieldGroup::class);
 
         return $object;
     }

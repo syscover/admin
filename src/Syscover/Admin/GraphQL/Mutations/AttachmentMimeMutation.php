@@ -72,7 +72,7 @@ class DeleteAttachmentMimeMutation extends AttachmentMimeMutation
 
     public function resolve($root, $args)
     {
-        $object = SQLService::destroyRecord($args['id'], AttachmentMime::class);
+        $object = SQLService::deleteRecord($args['id'], AttachmentMime::class);
 
         return $object;
     }
