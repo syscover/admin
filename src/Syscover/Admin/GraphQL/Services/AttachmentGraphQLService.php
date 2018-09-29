@@ -14,6 +14,10 @@ class AttachmentGraphQLService extends CoreGraphQLService
 
     public function crop($root, array $args)
     {
+        // encode stdClass to change to array
+        $args['object'] = json_decode(json_encode($args['object']), true);
+
+
         // TODO: Manejar error 500 por llegar al límite de memoria (php_value memory_limit 256M)
         /**
          * config http://image.intervention.io with imagemagick
