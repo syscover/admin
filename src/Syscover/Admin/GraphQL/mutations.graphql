@@ -12,6 +12,11 @@ adminCreateAttachmentFamily(object:AdminAttachmentFamilyInput!): AdminAttachment
 adminUpdateAttachmentFamily(object:AdminAttachmentFamilyInput!): AdminAttachmentFamily @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\AttachmentFamilyGraphQLService@update")
 adminDeleteAttachmentFamily(id:Int!): AdminAttachmentFamily @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\AttachmentFamilyGraphQLService@delete")
 
+# AttachmentMime
+adminCreateAttachmentMime(object:AdminAttachmentMimeInput!): AdminAttachmentMime @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\AttachmentMimeGraphQLService@create")
+adminUpdateAttachmentMime(object:AdminAttachmentMimeInput!): AdminAttachmentMime @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\AttachmentMimeGraphQLService@update")
+adminDeleteAttachmentMime(id:Int!): AdminAttachmentMime @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\AttachmentMimeGraphQLService@delete")
+
 # Country
 adminCreateCountry(object:AdminCountryInput!): AdminCountry @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\CountryGraphQLService@create")
 adminUpdateCountry(object:AdminCountryInput!): AdminCountry @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\CountryGraphQLService@update")

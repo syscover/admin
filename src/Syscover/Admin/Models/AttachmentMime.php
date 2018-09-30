@@ -39,6 +39,6 @@ class AttachmentMime extends CoreModel
 
     public function resource()
     {
-        return $this->belongsTo(Resource::class, 'resource_id');
+        return $this->belongsTo(Resource::class, 'resource_id', 'id');
     }
 }

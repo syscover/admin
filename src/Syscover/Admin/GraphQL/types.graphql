@@ -60,7 +60,6 @@ type AdminAttachmentMime {
     resource_id: String!
     resource: AdminResource!
     mime: String!
-
 }
 
 type AdminCountry {

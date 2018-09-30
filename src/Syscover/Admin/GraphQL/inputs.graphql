@@ -54,6 +54,12 @@ input AdminAttachmentLibraryInput {
     data: Object
 }
 
+input AdminAttachmentMimeInput {
+    id: Int
+    resource_id: String
+    mime: String
+}
+
 input AdminCountryInput {
     ix: Int
     id: String!
