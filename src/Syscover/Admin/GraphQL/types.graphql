@@ -128,6 +128,19 @@ type AdminLang {
     active: Boolean
 }
 
+type AdminOAuthClient {
+    id: Int!
+    user_id: Int
+    name: String
+    secret: String
+    redirect: String
+    personal_access_client: Boolean
+    password_client: Boolean
+    revoked: Boolean
+    created_at: String
+    updated_at: String
+}
+
 type AdminPackage {
     id: Int!
     name: String!
