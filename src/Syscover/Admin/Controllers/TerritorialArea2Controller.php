@@ -1,6 +1,5 @@
 <?php namespace Syscover\Admin\Controllers;
 
-use Illuminate\Http\Request;
 use Syscover\Core\Controllers\CoreController;
 use Syscover\Admin\Models\TerritorialArea2;
 

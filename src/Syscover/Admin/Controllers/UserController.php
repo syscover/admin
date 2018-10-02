@@ -1,7 +1,6 @@
 <?php namespace Syscover\Admin\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Syscover\Admin\Services\UserService;
 use Syscover\Core\Controllers\CoreController;
 use Syscover\Admin\Models\User;
