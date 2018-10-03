@@ -12,6 +12,7 @@ class OAuthAccessToken extends CoreModel
 {
 	protected $table        = 'oauth_access_tokens';
     protected $primaryKey   = 'id';
+    public $incrementing    = false; // for id string type
     protected $fillable     = ['id', 'user_id', 'client_id', 'name', 'scopes', 'revoked'];
     private static $rules   = [];
 

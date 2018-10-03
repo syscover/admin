@@ -42,10 +42,15 @@ adminCreateLang(object:AdminLangInput!): AdminLang @field(resolver: "Syscover\\A
 adminUpdateLang(object:AdminLangInput!): AdminLang @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\LangGraphQLService@update")
 adminDeleteLang(id:String!): AdminLang @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\LangGraphQLService@delete")
 
+# OAuthAccessToken
+adminCreateOAuthAccessToken(object:AdminOAuthAccessTokenInput!): AdminOAuthPersonalAccessTokenResult @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\OAuthAccessTokenGraphQLService@create")
+adminUpdateOAuthAccessToken(object:AdminOAuthAccessTokenInput!): AdminOAuthAccessToken @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\OAuthAccessTokenGraphQLService@update")
+adminDeleteOAuthAccessToken(id:Int!): AdminOAuthAccessToken @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\OAuthAccessTokenGraphQLService@delete")
+
 # OAuthClient
-adminCreateOAuthClient(object:AdminOAuthClientInput!): AdminOAuthClient @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\OAuthGraphQLService@create")
-adminUpdateOAuthClient(object:AdminOAuthClientInput!): AdminOAuthClient @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\OAuthGraphQLService@update")
-adminDeleteOAuthClient(id:Int!): AdminOAuthClient @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\OAuthGraphQLService@delete")
+adminCreateOAuthClient(object:AdminOAuthClientInput!): AdminOAuthClient @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\OAuthClientGraphQLService@create")
+adminUpdateOAuthClient(object:AdminOAuthClientInput!): AdminOAuthClient @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\OAuthClientGraphQLService@update")
+adminDeleteOAuthClient(id:String!): AdminOAuthClient @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\OAuthClientGraphQLService@delete")
 
 # Package
 adminCreatePackage(object:AdminPackageInput!): AdminPackage @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PackageGraphQLService@create")

@@ -128,6 +128,23 @@ type AdminLang {
     active: Boolean
 }
 
+type AdminOAuthPersonalAccessTokenResult {
+    accessToken: String
+    token: AdminOAuthAccessToken
+}
+
+type AdminOAuthAccessToken {
+    id: String
+    user_id: Int
+    client_id: Int!
+    name: String
+    scopes: String
+    revoked: Boolean!
+    created_at: String
+    updated_at: String
+    expires_at: String
+}
+
 type AdminOAuthClient {
     id: Int!
     user_id: Int

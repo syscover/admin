@@ -128,6 +128,12 @@ input AdminLangInput {
     active: Boolean
 }
 
+input AdminOAuthAccessTokenInput {
+    id: String
+    user_id: Int!
+    name: String
+}
+
 input AdminOAuthClientInput {
     id: Int
     user_id: Int!
