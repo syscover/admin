@@ -62,11 +62,11 @@ adminLang(sql:[CoreSQLInput]): AdminLang @field(resolver: "Syscover\\Admin\\Grap
 """ Query to get langs paginated """
 adminLangsPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\LangGraphQLService@paginate")
 
-# OAuth
+# OAuthClient
 """ Query to get oauth clients list """
-adminOAuthClients(user_id:Int): [AdminOAuthClient!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\OAuthGraphQLService@resolveForUser")
+adminOAuthClients(sql:[CoreSQLInput]): [AdminOAuthClient!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\OAuthGraphQLService@get")
 """ Query to get lang """
-adminOAuthClient(id:Int): [AdminOAuthClient!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\OAuthGraphQLService@resolveForUser")
+adminOAuthClient(sql:[CoreSQLInput]): AdminOAuthClient @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\OAuthGraphQLService@find")
 """ Query to get langs paginated """
 adminOAuthClientsPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\OAuthGraphQLService@paginate")
 

@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 class AuthController extends Controller
 {
     /**
-     * Login user and create token
+     * Login user and create a Personal Access Token
      *
      * @param  [string]     email
      * @param  [string]     password
@@ -20,9 +20,10 @@ class AuthController extends Controller
      */
     public function login()
     {
-        $credentials = request(['user', 'password']);
+        $credentials    = request(['user', 'password']);
+        $guard          = request('guard');
 
-        if (! Auth::attempt($credentials))
+        if (! Auth::guard($guard)->attempt($credentials))
         {
             return response()->json([
                 'status'        => 401,
@@ -30,8 +31,7 @@ class AuthController extends Controller
             ], 401);
         }
 
-        $user = request()->user();
-
+        $user           = Auth::guard($guard)->user();
         $tokenResult    = $user->createToken('Personal Access Token');
         $token          = $tokenResult->token;
 
@@ -46,7 +46,7 @@ class AuthController extends Controller
             'status'        => 200,
             'status_text'   => 'Successfully authorization',
             'access_token'  => $tokenResult->accessToken,
-            'user'          => request()->user(),
+            'user'          => $user,
             'token_type'    => 'Bearer',
             'expires_at'    => Carbon::parse($tokenResult->token->expires_at)->toDateTimeString()
         ]);

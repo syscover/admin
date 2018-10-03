@@ -42,6 +42,11 @@ adminCreateLang(object:AdminLangInput!): AdminLang @field(resolver: "Syscover\\A
 adminUpdateLang(object:AdminLangInput!): AdminLang @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\LangGraphQLService@update")
 adminDeleteLang(id:String!): AdminLang @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\LangGraphQLService@delete")
 
+# OAuthClient
+adminCreateOAuthClient(object:AdminOAuthClientInput!): AdminOAuthClient @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\OAuthGraphQLService@create")
+adminUpdateOAuthClient(object:AdminOAuthClientInput!): AdminOAuthClient @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\OAuthGraphQLService@update")
+adminDeleteOAuthClient(id:Int!): AdminOAuthClient @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\OAuthGraphQLService@delete")
+
 # Package
 adminCreatePackage(object:AdminPackageInput!): AdminPackage @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PackageGraphQLService@create")
 adminUpdatePackage(object:AdminPackageInput!): AdminPackage @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PackageGraphQLService@update")
