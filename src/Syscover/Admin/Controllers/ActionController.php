@@ -24,16 +24,17 @@ class ActionController extends CoreController
         }
         catch (\Exception $e)
         {
-            $response['status']     = "error";
-            $response['message']    = $e->getMessage();
-
-            return response()->json($response, 500);
+            return response()->json([
+                'status'        => 500,
+                'statusText'    => $e->getMessage()
+            ], 500);
         }
 
-        $response['status'] = "success";
-        $response['data']   = $object;
-
-        return response()->json($response);
+        return response()->json([
+            'status'        => 200,
+            'statusText'    => 'success',
+            'data'          => $object
+        ]);
     }
 
     /**
