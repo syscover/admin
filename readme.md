@@ -26,6 +26,7 @@ php artisan vendor:publish --provider="Syscover\Admin\AdminServiceProvider"
 
 **3 - Register middlewares pulsar.navtools on file app/Http/Kernel.php add to routeMiddleware array**
 ```
+'client'      => \Laravel\Passport\Http\Middleware\CheckClientCredentials::class,
 'pulsar.auth' => \Syscover\Admin\Middleware\Authenticate::class
 ```
 
