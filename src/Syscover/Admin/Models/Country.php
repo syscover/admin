@@ -46,17 +46,17 @@ class Country extends CoreModel
 
     public function territorial_areas_1()
     {
-        return $this->hasMany(TerritorialArea1::class, 'country_id', 'id');
+        return $this->hasMany(TerritorialArea1::class, 'country_id', 'id')->orderBy('name', 'asc');
     }
 
     public function territorial_areas_2()
     {
-        return $this->hasMany(TerritorialArea2::class, 'country_id', 'id');
+        return $this->hasMany(TerritorialArea2::class, 'country_id', 'id')->orderBy('name', 'asc');
     }
 
     public function territorial_areas_3()
     {
-        return $this->hasMany(TerritorialArea3::class, 'country_id', 'id');
+        return $this->hasMany(TerritorialArea3::class, 'country_id', 'id')->orderBy('name', 'asc');
     }
 
     public function getTerritorialAreaName($zone)
