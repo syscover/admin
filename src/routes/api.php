@@ -19,12 +19,12 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['api', 'client']], function
 });
 
 // COUNTRY
-Route::get('admin/country/{lang?}',                                 'Syscover\Admin\Controllers\CountryController@index')->name('api.admin_country');
-Route::get('admin/country/{id}/{lang}',                             'Syscover\Admin\Controllers\CountryController@show')->name('api.admin_show_country');
-Route::post('admin/country/search',                                 'Syscover\Admin\Controllers\CountryController@search')->name('api.admin_search_country');
-Route::post('admin/country',                                        'Syscover\Admin\Controllers\CountryController@store')->name('api.admin_store_country');
-Route::put('admin/country/{id}/{lang}',                             'Syscover\Admin\Controllers\CountryController@update')->name('api.admin_update_country');
-Route::delete('admin/country/{id}/{lang?}',                         'Syscover\Admin\Controllers\CountryController@destroy')->name('api.admin_destroy_country');
+Route::get('api/v1/admin/country/{lang?}',                                 'Syscover\Admin\Controllers\CountryController@index')->name('api.admin_country');
+Route::get('api/v1/admin/country/{id}/{lang}',                             'Syscover\Admin\Controllers\CountryController@show')->name('api.admin_show_country');
+Route::post('api/v1/admin/country/search',                                 'Syscover\Admin\Controllers\CountryController@search')->name('api.admin_search_country');
+Route::post('api/v1/admin/country',                                        'Syscover\Admin\Controllers\CountryController@store')->name('api.admin_store_country');
+Route::put('api/v1/admin/country/{id}/{lang}',                             'Syscover\Admin\Controllers\CountryController@update')->name('api.admin_update_country');
+Route::delete('api/v1/admin/country/{id}/{lang?}',                         'Syscover\Admin\Controllers\CountryController@destroy')->name('api.admin_destroy_country');
 
 
 // TERRITORIAL AREAS 1
