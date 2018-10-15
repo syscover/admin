@@ -1,22 +1,26 @@
 <?php
 
-Route::group(['prefix' => 'api/v1', 'middleware' => ['api', 'client']], function () {
+Route::group(['prefix' => 'api/v1', 'middleware' => ['api']], function () {
 
-        // LOGIN
-        Route::post('login',                                                'Syscover\Admin\Controllers\Auth\AuthController@login')->name('api.admin_login');
+    // CONFIG
+    Route::get('admin/config/bootstrap',                            'Syscover\Admin\Controllers\ConfigController@bootstrap')->name('api.admin_bootstrap');
 
-        // CONFIG
-        Route::get('admin/config/bootstrap',                                'Syscover\Admin\Controllers\ConfigController@bootstrap')->name('api.admin_bootstrap');
-        Route::post('admin/config/values',                                  'Syscover\Admin\Controllers\ConfigController@values')->name('api.adminValuesConfig');
 
-        // USER
-        Route::get('admin/user',                                            'Syscover\Admin\Controllers\UserController@index')->name('api.admin_user');
-        Route::get('admin/user/{id}',                                       'Syscover\Admin\Controllers\UserController@show')->name('api.admin_show_user');
-        Route::post('admin/user',                                           'Syscover\Admin\Controllers\UserController@store')->name('api.admin_store_user');
-        Route::post('admin/user/search',                                    'Syscover\Admin\Controllers\UserController@search')->name('api.admin_search_user');
-        Route::put('admin/user/{id}',                                       'Syscover\Admin\Controllers\UserController@update')->name('api.admin_update_user');
-        Route::delete('admin/user/{id}',                                    'Syscover\Admin\Controllers\UserController@destroy')->name('api.admin_destroy_user');
 });
+
+
+Route::post('login',                                                'Syscover\Admin\Controllers\Auth\AuthController@login')->name('api.admin_login');
+
+// CONFIG
+Route::post('api/v1/admin/config/values',                                  'Syscover\Admin\Controllers\ConfigController@values')->name('api.adminValuesConfig');
+
+// USER
+Route::get('api/v1/admin/user',                                            'Syscover\Admin\Controllers\UserController@index')->name('api.admin_user');
+Route::get('api/v1/admin/user/{id}',                                       'Syscover\Admin\Controllers\UserController@show')->name('api.admin_show_user');
+Route::post('api/v1/admin/user',                                           'Syscover\Admin\Controllers\UserController@store')->name('api.admin_store_user');
+Route::post('api/v1/admin/user/search',                                    'Syscover\Admin\Controllers\UserController@search')->name('api.admin_search_user');
+Route::put('api/v1/admin/user/{id}',                                       'Syscover\Admin\Controllers\UserController@update')->name('api.admin_update_user');
+Route::delete('api/v1/admin/user/{id}',                                    'Syscover\Admin\Controllers\UserController@destroy')->name('api.admin_destroy_user');
 
 // COUNTRY
 Route::get('api/v1/admin/country/{lang?}',                                 'Syscover\Admin\Controllers\CountryController@index')->name('api.admin_country');
