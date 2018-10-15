@@ -5,11 +5,12 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['api']], function () {
     // CONFIG
     Route::get('admin/config/bootstrap',                            'Syscover\Admin\Controllers\ConfigController@bootstrap')->name('api.admin_bootstrap');
 
-
+    // LOGIN
+    Route::post('login',                                            'Syscover\Admin\Controllers\Auth\AuthController@login')->name('api.admin_login');
 });
 
 
-Route::post('login',                                                'Syscover\Admin\Controllers\Auth\AuthController@login')->name('api.admin_login');
+
 
 // CONFIG
 Route::post('api/v1/admin/config/values',                                  'Syscover\Admin\Controllers\ConfigController@values')->name('api.adminValuesConfig');
