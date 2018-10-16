@@ -15,7 +15,7 @@ class AttachmentGraphQLService extends CoreGraphQLService
     public function crop($root, array $args)
     {
         // encode stdClass to change to array
-        $args['object'] = json_decode(json_encode($args['object']), true);
+        $args['payload'] = json_decode(json_encode($args['payload']), true);
 
 
         // TODO: Manejar error 500 por llegar al límite de memoria (php_value memory_limit 256M)
@@ -23,54 +23,54 @@ class AttachmentGraphQLService extends CoreGraphQLService
          * config http://image.intervention.io with imagemagick
          */
         Image::configure(['driver' => 'imagick']);
-        $image = Image::make($args['object']['attachment']['attachment_library']['base_path'] . '/' . $args['object']['attachment']['attachment_library']['file_name']);
+        $image = Image::make($args['payload']['attachment']['attachment_library']['base_path'] . '/' . $args['payload']['attachment']['attachment_library']['file_name']);
 
         // set format from attachment family
         // TODO este if se puede hacer una función, código usado en AttachmentService line 345
-        if(! empty($args['object']['attachment_family']['format']) && mimetype_from_extension($args['object']['attachment_family']['format']) !== $args['object']['attachment']['mime'])
+        if(! empty($args['payload']['attachment_family']['format']) && mimetype_from_extension($args['payload']['attachment_family']['format']) !== $args['payload']['attachment']['mime'])
         {
-            $image = $image->encode($args['object']['attachment_family']['format'], 100); // set format image
+            $image = $image->encode($args['payload']['attachment_family']['format'], 100); // set format image
 
-            $args['object']['attachment']['file_name']  = basename($args['object']['attachment']['file_name'], '.' . $args['object']['attachment']['extension']) . '.' . $args['object']['attachment_family']['format'];
-            $args['object']['attachment']['extension']  = $args['object']['attachment_family']['format']; // change extension file
+            $args['payload']['attachment']['file_name']  = basename($args['payload']['attachment']['file_name'], '.' . $args['payload']['attachment']['extension']) . '.' . $args['payload']['attachment_family']['format'];
+            $args['payload']['attachment']['extension']  = $args['payload']['attachment_family']['format']; // change extension file
 
             // change extension file of url
-            $url = pathinfo($args['object']['attachment']['url']);
-            $args['object']['attachment']['url']    = $url['dirname'] . '/' . $url['filename'] . '.' . $args['object']['attachment_family']['format'];
+            $url = pathinfo($args['payload']['attachment']['url']);
+            $args['payload']['attachment']['url']    = $url['dirname'] . '/' . $url['filename'] . '.' . $args['payload']['attachment_family']['format'];
             // get mime type
-            $args['object']['attachment']['mime']   = mimetype_from_extension($args['object']['attachment']['extension']);
+            $args['payload']['attachment']['mime']   = mimetype_from_extension($args['payload']['attachment']['extension']);
         }
 
 
         // crop
-        $image->crop($args['object']['crop']['width'], $args['object']['crop']['height'], $args['object']['crop']['x'], $args['object']['crop']['y']);
+        $image->crop($args['payload']['crop']['width'], $args['payload']['crop']['height'], $args['payload']['crop']['x'], $args['payload']['crop']['y']);
 
         // resize
-        if($args['object']['attachment_family']['width'] === null || $args['object']['attachment_family']['height'] === null)
+        if($args['payload']['attachment_family']['width'] === null || $args['payload']['attachment_family']['height'] === null)
         {
-            $image->resize($args['object']['attachment_family']['width'], $args['object']['attachment_family']['height'], function($constraint) {
+            $image->resize($args['payload']['attachment_family']['width'], $args['payload']['attachment_family']['height'], function($constraint) {
                 $constraint->aspectRatio(); // Constraint the current aspect-ratio of the image.
                 $constraint->upsize(); // Keep image from being upsized.
             });
         }
         else
         {
-            $image->resize($args['object']['attachment_family']['width'], $args['object']['attachment_family']['height']);
+            $image->resize($args['payload']['attachment_family']['width'], $args['payload']['attachment_family']['height']);
         }
 
         // save
         $image->save(
-            $args['object']['attachment']['base_path'] . '/' . $args['object']['attachment']['file_name'],
-            ! empty($args['object']['attachment_family']['quality']) ? 90 : $args['object']['attachment_family']['quality'] // set quality image
+            $args['payload']['attachment']['base_path'] . '/' . $args['payload']['attachment']['file_name'],
+            ! empty($args['payload']['attachment_family']['quality']) ? 90 : $args['payload']['attachment_family']['quality'] // set quality image
         );
 
         // get new properties from image cropped
-        $args['object']['attachment']['width']  = $image->width();
-        $args['object']['attachment']['height'] = $image->height();
-        $args['object']['attachment']['size']   = $image->filesize();
-        $args['object']['attachment']['data']   = ['exif' => collect($image->exif())->only(config('pulsar-core.exif_fields_allowed'))];
+        $args['payload']['attachment']['width']  = $image->width();
+        $args['payload']['attachment']['height'] = $image->height();
+        $args['payload']['attachment']['size']   = $image->filesize();
+        $args['payload']['attachment']['data']   = ['exif' => collect($image->exif())->only(config('pulsar-core.exif_fields_allowed'))];
 
-        return $args['object'];
+        return $args['payload'];
     }
 
     public function delete($root, array $args)
