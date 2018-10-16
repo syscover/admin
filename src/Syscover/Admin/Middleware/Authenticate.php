@@ -12,6 +12,6 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-        return route('web.login-' . user_lang());
+        return route('web.show_login_form-' . user_lang());
     }
 }
