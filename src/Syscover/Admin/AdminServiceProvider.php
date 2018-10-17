@@ -16,7 +16,7 @@ class AdminServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__ . '/../../routes/api.php');
 
         // register translations
-        $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'admin');
+        $this->loadTranslationsFrom(__DIR__ . '/../../resources/lang', 'admin');
 
         // register migrations
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
