@@ -105,6 +105,37 @@ if (! function_exists('get_src'))
     }
 }
 
+if (! function_exists('get_size_src'))
+{
+    /**
+     * get images with determinate $width and $height pixels
+     *
+     * @param   $attachment
+     * @param   int $width
+     * @param   int $height
+     * @return  null|string
+     */
+    function get_size_src($attachment, int $width, int $height = 0)
+    {
+        if(! is_object($attachment))
+            $attachment = (object)$attachment;
+
+        if(! isset($attachment->data['sizes']) || (isset($attachment->data['sizes']) && ! is_array($attachment->data['sizes'])))
+            return null;
+
+        $sizes = collect($attachment->data['sizes'])->sortBy('width');
+
+        foreach ($sizes as $size)
+        {
+            if($size['width'] >= $width && $size['height'] >= $height) {
+                return $size['url'];
+            }
+        }
+
+        return $sizes->last()['url'];
+    }
+}
+
 if (! function_exists('get_srcset'))
 {
     /**
