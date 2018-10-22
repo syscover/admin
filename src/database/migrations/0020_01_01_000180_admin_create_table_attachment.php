@@ -20,8 +20,8 @@ class AdminCreateTableAttachment extends Migration {
                 $table->increments('ix');
                 $table->integer('id')->unsigned();
                 $table->string('lang_id', 2);
-                $table->integer('object_id')->unsigned()->nullable();
                 $table->string('object_type');
+                $table->integer('object_id')->unsigned()->nullable();
                 $table->integer('family_id')->unsigned()->nullable();
                 $table->integer('sort')->unsigned()->nullable();
                 $table->string('alt')->nullable();
@@ -57,9 +57,8 @@ class AdminCreateTableAttachment extends Migration {
                     ->onDelete('set null')
                     ->onUpdate('cascade');
 
-                $table->index('object_id', 'ix01_admin_attachment');
-                $table->index('object_type', 'ix02_admin_attachment');
-                $table->index(['id', 'lang_id'], 'ix03_admin_attachment');
+                $table->index(['id', 'lang_id'], 'ix01_admin_attachment');
+                $table->index(['object_type', 'object_id'], 'ix02_admin_attachment');
             });
         }
     }
