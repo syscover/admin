@@ -24,10 +24,12 @@ Syscover\Admin\AdminServiceProvider::class,
 php artisan vendor:publish --provider="Syscover\Admin\AdminServiceProvider"
 ```
 
-**3 - Register middlewares pulsar.navtools on file app/Http/Kernel.php add to routeMiddleware array**
+**3 - Register client and pulsar.auth middlewares on file app/Http/Kernel.php and add to routeMiddleware array**
 ```
+...
 'client'      => \Laravel\Passport\Http\Middleware\CheckClientCredentials::class,
 'pulsar.auth' => \Syscover\Admin\Middleware\Authenticate::class
+...
 ```
 
 **4 - Execute optimize command load new classes**
@@ -59,7 +61,7 @@ php artisan migrate --path=vendor/syscover/pulsar-admin/src/database/migrations/
 
 **8 - include this arrays in config/auth.php**
 
-Set this default values, for JWT can create pulsar user
+Set this default values, for laravel passport can create pulsar user
 ```
 'defaults' => [
     'guard'     => 'admin',
@@ -105,11 +107,17 @@ ADMIN_BASE_LANG=en
 ADMIN_PANEL_URL=http://panel.mydomain.com
 ```
 
-**10 - Register cron command your server**
-
+**10 - Add graphQL routes to routes/graphql/schema.graphql file**
 ```
-* * * * * php /path-to-your-project/artisan schedule:run >> /dev/null 2>&1
+# Admin types
+#import ./../../vendor/syscover/pulsar-admin/src/Syscover/Admin/GraphQL/inputs.graphql
+#import ./../../vendor/syscover/pulsar-admin/src/Syscover/Admin/GraphQL/types.graphql
 
+# Admin queries
+#import ./../../vendor/syscover/pulsar-admin/src/Syscover/Admin/GraphQL/queries.graphql
+
+# Admin mutations
+#import ./../../vendor/syscover/pulsar-admin/src/Syscover/Admin/GraphQL/mutations.graphql
 ```
 
 **11 - When the installation is complete you can access these data**
@@ -127,7 +135,13 @@ pasword: 123456
 
 
 
+-- CHECK
+**xx - Register cron command your server**
 
+```
+* * * * * php /path-to-your-project/artisan schedule:run >> /dev/null 2>&1
+
+```
 
 ## Cron task
 To implement the cron system must follow the following steps:
