@@ -29,6 +29,7 @@ return [
     'attachment_resources' => [
         (object)['id' => 'cms-article',             'name' => 'Articles'],
         (object)['id' => 'market-product',          'name' => 'Products'],
+        (object)['id' => 'wine-wine',               'name' => 'Wines'],
         (object)['id' => 'hotels-hotel',            'name' => 'Hotels'],
         (object)['id' => 'crm-customer',            'name' => 'Customers'],
         (object)['id' => 'spas-spa',                'name' => 'Spas'],
