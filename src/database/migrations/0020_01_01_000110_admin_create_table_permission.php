@@ -24,6 +24,7 @@ class AdminCreateTablePermission extends Migration
                 $table->timestamps();
                 $table->softDeletes();
 				
+				$table->primary(['profile_id', 'resource_id', 'action_id'], 'pk01_admin_permission');
 				$table->foreign('profile_id', 'fk01_admin_permission')
 					->references('id')
 					->on('admin_profile')
@@ -39,8 +40,7 @@ class AdminCreateTablePermission extends Migration
 					->on('admin_action')
 					->onDelete('cascade')
 					->onUpdate('cascade');
-				
-				$table->primary(['profile_id', 'resource_id', 'action_id'], 'pk01_admin_permission');
+
 			});
 		}
 	}
