@@ -101,6 +101,11 @@ Inside passwords array
 ],
 ```
 
+Execute this command to init laravel passport
+```
+php artisan passport:install
+```
+
 **9 - Set base lang application and panel url in .env file**
 ```
 ADMIN_BASE_LANG=en
