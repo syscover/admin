@@ -171,6 +171,17 @@ type AdminProfile {
     name: String!
 }
 
+type AdminReport {
+    id: String!
+    subject: String!
+    emails: [String!]!
+    cc: [String]
+    schedule_frequency: String
+    filename: String!
+    extension: String!
+    sql: String!
+}
+
 type AdminResource {
     ix: Int!
     id: String!

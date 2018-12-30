@@ -94,6 +94,14 @@ adminProfile(sql:[CoreSQLInput]): AdminProfile @field(resolver: "Syscover\\Admin
 """ Query to get packages paginated """
 adminProfilesPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ProfileGraphQLService@paginate")
 
+# Report
+""" Query to get reports list """
+adminReports(sql:[CoreSQLInput]): [AdminReport!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ReportGraphQLService@get")
+""" Query to get report """
+adminReport(sql:[CoreSQLInput]): AdminReport @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ReportGraphQLService@find")
+""" Query to get reports paginated """
+adminReportsPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ReportGraphQLService@paginate")
+
 # Resource
 """ Query to get resources list """
 adminResources(sql:[CoreSQLInput]): [AdminResource!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ResourceGraphQLService@get")

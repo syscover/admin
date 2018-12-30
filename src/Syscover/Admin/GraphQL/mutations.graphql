@@ -57,6 +57,11 @@ adminCreatePackage(payload:AdminPackageInput!): AdminPackage @field(resolver: "S
 adminUpdatePackage(payload:AdminPackageInput!): AdminPackage @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PackageGraphQLService@update")
 adminDeletePackage(id:Int!): AdminPackage @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PackageGraphQLService@delete")
 
+# Report
+adminCreateReport(payload:AdminReportInput!): AdminReport @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ReportGraphQLService@create")
+adminUpdateReport(payload:AdminReportInput!): AdminReport @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ReportGraphQLService@update")
+adminDeleteReport(id:Int!): AdminReport @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ReportGraphQLService@delete")
+
 # Resource
 adminCreateResource(payload:AdminResourceInput!): AdminResource @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ResourceGraphQLService@create")
 adminUpdateResource(payload:AdminResourceInput!): AdminResource @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ResourceGraphQLService@update")

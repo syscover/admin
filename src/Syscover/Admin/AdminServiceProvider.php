@@ -1,7 +1,8 @@
 <?php namespace Syscover\Admin;
 
 use Illuminate\Support\ServiceProvider;
-use Syscover\Admin\GraphQL\AdminGraphQLServiceProvider;
+use Illuminate\Console\Scheduling\Schedule;
+use Syscover\Admin\Services\CronService;
 
 class AdminServiceProvider extends ServiceProvider
 {
@@ -30,6 +31,38 @@ class AdminServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../config/pulsar-admin.php' => config_path('pulsar-admin.php'),
         ]);
+
+        // call code after boot application
+        $this->app->booted(function () {
+
+            // declare schedule
+            $schedule = app(Schedule::class);
+
+            // get daily reports
+            $schedule->call(function () {
+                CronService::checkDailyReports();
+            })->daily();
+
+            // get weekly reports
+            $schedule->call(function () {
+                CronService::checkWeeklyReports();
+            })->weekly();
+
+            // get monthly reports
+            $schedule->call(function () {
+                CronService::checkMonthlyReports();
+            })->monthly();
+
+            // get quarterly reports
+            $schedule->call(function () {
+                CronService::checkQuarterlyReports();
+            })->quarterly();
+
+            // get yearly reports
+            $schedule->call(function () {
+                CronService::checkYearlyReports();
+            })->yearly();
+        });
 	}
 
 	/**

@@ -71,5 +71,9 @@ return [
         (object)['id' => '25',      'name' => '-25%'],
         (object)['id' => '50',      'name' => '-50%'],
         (object)['id' => '75',      'name' => '-75%'],
+    ],
+
+    'schedule_frequencies' => [
+
     ]
 ];

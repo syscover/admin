@@ -21,7 +21,9 @@ class AdminCreateTableReport extends Migration
 
                 $table->string('subject');
                 $table->json('emails');
-                $table->json('cc');
+                $table->json('cc')->nullable();
+
+                $table->string('schedule_frequency')->nullable();
 
                 $table->string('filename');
                 $table->string('extension');
@@ -30,6 +32,8 @@ class AdminCreateTableReport extends Migration
 
 				$table->timestamps();
                 $table->softDeletes();
+
+                $table->index('schedule_frequency', 'ix01_admin_report');
 			});
 		}
 	}

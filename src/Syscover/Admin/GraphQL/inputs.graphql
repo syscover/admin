@@ -188,6 +188,17 @@ input AdminProfileInput {
     name: String!
 }
 
+input AdminReportInput {
+    id: String
+    subject: String!
+    emails: [String!]!
+    cc: [String]
+    schedule_frequency: String
+    filename: String!
+    extension: String!
+    sql: String!
+}
+
 input AdminUserInput {
     id: Int
     lang_id: String!

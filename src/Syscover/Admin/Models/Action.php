@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Validator;
 class Action extends CoreModel
 {
 	protected $table        = 'admin_action';
-    protected $primaryKey   = 'ix';
     protected $fillable     = ['ix', 'id', 'name'];
 
     private static $rules   = [
