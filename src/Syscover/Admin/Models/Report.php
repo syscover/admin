@@ -11,4 +11,8 @@ class Report extends CoreModel
 {
     protected $table        = 'admin_report';
     protected $fillable     = ['id', 'subject', 'emails', 'cc', 'schedule_frequency', 'filename', 'extension', 'sql'];
+    protected $casts        = [
+        'emails'    => 'array',
+        'cc'        => 'array'
+    ];
 }
