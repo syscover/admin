@@ -32,7 +32,7 @@ class AdminCreateTableReport extends Migration
 				$table->timestamps();
                 $table->softDeletes();
 
-                $table->index('schedule_frequency', 'ix01_admin_report');
+                $table->index('frequency_id', 'ix01_admin_report');
 			});
 		}
 	}

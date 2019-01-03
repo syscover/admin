@@ -172,13 +172,12 @@ type AdminProfile {
 }
 
 type AdminReport {
-    id: String!
+    id: Int!
     subject: String!
     emails: [String!]!
-    cc: [String]
-    schedule_frequency: String
     filename: String!
     extension: String!
+    frequency_id: Int!
     sql: String!
 }
 

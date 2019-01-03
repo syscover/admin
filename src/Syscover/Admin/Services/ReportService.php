@@ -24,10 +24,9 @@ class ReportService
         return $object->only([
             'subject',
             'emails',
-            'cc',
-            'schedule_frequency',
             'filename',
             'extension',
+            'frequency_id',
             'sql'
         ])->toArray();
     }
@@ -38,6 +37,7 @@ class ReportService
         if(empty($object['emails']))        throw new \Exception('You have to define a emails field to create a report');
         if(empty($object['filename']))      throw new \Exception('You have to define a filename field to create a report');
         if(empty($object['extension']))     throw new \Exception('You have to define a extension field to create a report');
+        if(empty($object['frequency_id']))  throw new \Exception('You have to define a frequency_id field to create a report');
         if(empty($object['sql']))           throw new \Exception('You have to define a sql field to create a report');
     }
 
