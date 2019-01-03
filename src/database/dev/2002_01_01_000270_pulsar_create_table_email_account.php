@@ -17,7 +17,7 @@ class PulsarCreateTableEmailAccount extends Migration
             Schema::create('email_account', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
                 
-                $table->increments('id')->unsigned();
+                $table->increments('id');
                 $table->string('name');
                 $table->string('email');
                 $table->string('reply_to')->nullable();

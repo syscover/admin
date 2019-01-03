@@ -16,7 +16,7 @@ class PulsarCreateTableAdvancedSearchTask extends Migration {
 			Schema::create('advanced_search_task', function ($table) {
 				$table->engine = 'InnoDB';
 
-				$table->increments('id')->unsigned();
+				$table->increments('id');
 				$table->integer('date')->unsigned();
 				$table->integer('user_id')->unsigned();
 				$table->string('model');

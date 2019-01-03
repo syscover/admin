@@ -16,7 +16,7 @@ class PulsarCreateTableReportTask extends Migration {
 			Schema::create('report_task', function ($table) {
 				$table->engine = 'InnoDB';
 
-				$table->increments('id')->unsigned();
+				$table->increments('id');
 				$table->integer('date')->unsigned();
 				$table->integer('user_id')->unsigned();
 

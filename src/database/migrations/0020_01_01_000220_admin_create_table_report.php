@@ -17,16 +17,15 @@ class AdminCreateTableReport extends Migration
 			Schema::create('admin_report', function (Blueprint $table) {
 				$table->engine = 'InnoDB';
 				
-				$table->increments('id')->unsigned();
+				$table->increments('id');
 
                 $table->string('subject');
                 $table->json('emails');
-                $table->json('cc')->nullable();
-
-                $table->string('schedule_frequency')->nullable();
 
                 $table->string('filename');
                 $table->string('extension');
+
+                $table->tinyInteger('frequency_id')->unsigned();
 
                 $table->text('sql');
 
