@@ -73,7 +73,24 @@ return [
         (object)['id' => '75',      'name' => '-75%'],
     ],
 
-    'schedule_frequencies' => [
+    //******************************************************************************************************************
+    //***  Frequencies to execute report
+    //******************************************************************************************************************
+    'frequencies' => [
+        (object)['id' => 1, 'name' => 'admin::pulsar.once'],
+        (object)['id' => 2, 'name' => 'admin::pulsar.daily'],
+        (object)['id' => 3, 'name' => 'admin::pulsar.weekly'],
+        (object)['id' => 4, 'name' => 'admin::pulsar.monthly'],
+        (object)['id' => 5, 'name' => 'admin::pulsar.quarterly'],
+        (object)['id' => 6, 'name' => 'admin::pulsar.yearly']
+    ],
 
+    //******************************************************************************************************************
+    //***  Extensions files
+    //******************************************************************************************************************
+    'extensions' => [
+        (object)['id' => 'csv',     'name' => '.csv'],
+        (object)['id' => 'xls',     'name' => '.xls'],
+        (object)['id' => 'xlsx',    'name' => '.xlsx']
     ]
 ];
