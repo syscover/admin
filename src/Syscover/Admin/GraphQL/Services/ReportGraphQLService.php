@@ -8,4 +8,14 @@ class ReportGraphQLService extends CoreGraphQLService
 {
     protected $modelClassName = Report::class;
     protected $serviceClassName = ReportService::class;
+
+    public function run($root, array $args)
+    {
+        $report = Report::find($args['id']);
+
+        ReportService::executeReport($report);
+
+        return $report;
+    }
+
 }

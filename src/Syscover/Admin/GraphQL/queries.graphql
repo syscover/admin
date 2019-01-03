@@ -101,6 +101,8 @@ adminReports(sql:[CoreSQLInput]): [AdminReport!]! @field(resolver: "Syscover\\Ad
 adminReport(sql:[CoreSQLInput]): AdminReport @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ReportGraphQLService@find")
 """ Query to get reports paginated """
 adminReportsPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ReportGraphQLService@paginate")
+""" Query to run report """
+adminRunReport(id:Int!): AdminReport @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ReportGraphQLService@run")
 
 # Resource
 """ Query to get resources list """
