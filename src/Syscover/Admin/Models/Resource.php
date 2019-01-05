@@ -45,4 +45,9 @@ class Resource extends CoreModel
     {
         return $this->belongsTo(Package::class, 'package_id');
     }
+
+    public function setFileAttribute($value)
+    {
+        $this->attributes['file'] = $value;
+    }
 }

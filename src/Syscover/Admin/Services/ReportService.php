@@ -1,6 +1,9 @@
 <?php namespace Syscover\Admin\Services;
 
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Concerns\FromCollection;
+
+use Maatwebsite\Excel\Facades\Excel;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Style\Style;
@@ -60,45 +63,85 @@ class ReportService
 
         if (count($response) === 0) return null;
 
-        $response = self::castingNumericData($response);
+        switch ($report->extension)
+        {
+            case 'csv':
+
+                break;
+            case 'xls':
+
+                break;
+            case 'xlsx':
+
+                break;
+        }
+
+        $response = Excel::download(new ReportExport($report->sql), 'invoices.' . $report->extension);
+
+        return $response->getFile();
+
+        // dd($response->getFile()->getMimeType());
+        // dd($response->getFile()->getPathname());
+
+        // get MIME to define Content-Type
+//        $mime = finfo_file(finfo_open (), 'image.jpg', FILEINFO_MIME_TYPE);
+//        header('Content-Type: ' . $mime);
+//        readfile('image.jpg');
+//        exit();
+
+//        $response = Excel::download(new ReportExport($report->sql), 'invoices.xlsx');
+//        $response->trustXSendfileTypeHeader();
+//        $response->setContentDisposition(\Symfony\Component\HttpFoundation\ResponseHeaderBag::DISPOSITION_ATTACHMENT, 'invoices.xlsx', iconv('UTF-8', 'ASCII//TRANSLIT', 'invoices.xlsx'));
+//
+//        dd($response);
+//        return $response;
+
+        // dd($response);
+
+        // $response = self::castingNumericData($response);
 
         // format response to manage with collections
-        $response = collect(array_map(function($item) {
-            return collect($item);
-        }, $response));
+//        $response = collect(array_map(function($item) {
+//            return collect($item);
+//        }, $response));
 
 
         // $report->operation_rows;
-        $filename = $report->filename . '-' . uniqid();
-
-        $spreadsheet = new Spreadsheet();
-
-        // set properties
-        $spreadsheet->getProperties()
-            ->setTitle($report->subject)
-            ->setCreator('DH2');
+        //$filename = $report->filename . '-' . uniqid();
 
 
-        // header style
-        $headerStyle = new Style();
-        $headerStyle->applyFromArray([
-            'font' => [
-                'bold' => true
-            ],
-            'fill' => [
-                'fillType' => Fill::FILL_SOLID,
-                'color' => ['rgb' => '204204204'],
-            ]
-        ]);
+        // Excel::download();
 
 
-        // set data headers from array
-        $worksheet = $spreadsheet->getActiveSheet()
-            ->fromArray($response->first()->keys()->toArray(), null, 'A1', true);
 
-        // set data headers from array
-        $worksheet->duplicateStyle($headerStyle, 'A1:' . $worksheet->getHighestDataColumn() . '1')
-            ->fromArray($response->toArray(), null, 'A2', true);
+
+//        $spreadsheet = new Spreadsheet();
+//
+//        // set properties
+//        $spreadsheet->getProperties()
+//            ->setTitle($report->subject)
+//            ->setCreator('DH2');
+//
+//
+//        // header style
+//        $headerStyle = new Style();
+//        $headerStyle->applyFromArray([
+//            'font' => [
+//                'bold' => true
+//            ],
+//            'fill' => [
+//                'fillType' => Fill::FILL_SOLID,
+//                'color' => ['rgb' => '204204204'],
+//            ]
+//        ]);
+//
+//        // set data headers from array
+//        $worksheet = $spreadsheet->getActiveSheet()
+//            ->fromArray($response->first()->keys()->toArray(), null, 'A1', true);
+//
+//        // set data headers from array
+//        $worksheet->duplicateStyle($headerStyle, 'A1:' . $worksheet->getHighestDataColumn() . '1')
+//            ->fromArray($response->toArray(), null, 'A2', true);
 
 
 
@@ -126,5 +169,21 @@ class ReportService
             }
         }
         return $response;
+    }
+}
+
+class ReportExport implements FromCollection
+{
+    private $sql;
+
+    public function __construct($sql)
+    {
+        $this->sql = $sql;
+    }
+
+    public function collection()
+    {
+        $response = DB::select(DB::raw($this->sql));
+        return collect($response);
     }
 }

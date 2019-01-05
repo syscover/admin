@@ -12,10 +12,13 @@ class ReportGraphQLService extends CoreGraphQLService
     public function run($root, array $args)
     {
         $report = Report::find($args['id']);
-
-        ReportService::executeReport($report);
+        $file = ReportService::executeReport($report);
+        $report->file = [
+            'pathname'  => $file->getPathname(),
+            'mime'      => $file->getMimeType(),
+            'size'      => $file->getSize()
+        ];
 
         return $report;
     }
-
 }

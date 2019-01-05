@@ -7,7 +7,12 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['api']], function () {
 
     // LOGIN
     Route::post('login',                                            'Syscover\Admin\Controllers\Auth\AuthController@login')->name('api.admin_login');
+
+    // DOWNLOAD FILES
+    Route::post('admin/file-manager/read',                          'Syscover\Admin\Controllers\FileManagerController@read')->name('api.admin_read');
 });
+
+
 
 // CONFIG
 Route::post('api/v1/admin/config/values',                                  'Syscover\Admin\Controllers\ConfigController@values')->name('api.adminValuesConfig');
