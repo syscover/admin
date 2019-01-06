@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\FromCollection;
-
 use Maatwebsite\Excel\Facades\Excel;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
@@ -56,6 +55,10 @@ class ReportService
         if(empty($object['id']))    throw new \Exception('You have to define a id field to update a report');
     }
 
+    /**
+     * @param Report $report
+     * @return \Symfony\Component\HttpFoundation\File\File|null
+     */
     public static function executeReport(Report $report)
     {
         // Execute query from report task
@@ -63,40 +66,9 @@ class ReportService
 
         if (count($response) === 0) return null;
 
-        switch ($report->extension)
-        {
-            case 'csv':
-
-                break;
-            case 'xls':
-
-                break;
-            case 'xlsx':
-
-                break;
-        }
-
-        $response = Excel::download(new ReportExport($report->sql), 'invoices.' . $report->extension);
+        $response = Excel::download(new ReportExport($response), $report->filename . $report->extension);
 
         return $response->getFile();
-
-        // dd($response->getFile()->getMimeType());
-        // dd($response->getFile()->getPathname());
-
-        // get MIME to define Content-Type
-//        $mime = finfo_file(finfo_open (), 'image.jpg', FILEINFO_MIME_TYPE);
-//        header('Content-Type: ' . $mime);
-//        readfile('image.jpg');
-//        exit();
-
-//        $response = Excel::download(new ReportExport($report->sql), 'invoices.xlsx');
-//        $response->trustXSendfileTypeHeader();
-//        $response->setContentDisposition(\Symfony\Component\HttpFoundation\ResponseHeaderBag::DISPOSITION_ATTACHMENT, 'invoices.xlsx', iconv('UTF-8', 'ASCII//TRANSLIT', 'invoices.xlsx'));
-//
-//        dd($response);
-//        return $response;
-
-        // dd($response);
 
         // $response = self::castingNumericData($response);
 
@@ -104,15 +76,6 @@ class ReportService
 //        $response = collect(array_map(function($item) {
 //            return collect($item);
 //        }, $response));
-
-
-        // $report->operation_rows;
-        //$filename = $report->filename . '-' . uniqid();
-
-
-        // Excel::download();
-
-
 
 
 //        $spreadsheet = new Spreadsheet();
@@ -142,14 +105,13 @@ class ReportService
 //        // set data headers from array
 //        $worksheet->duplicateStyle($headerStyle, 'A1:' . $worksheet->getHighestDataColumn() . '1')
 //            ->fromArray($response->toArray(), null, 'A2', true);
-
-
-
-
     }
 
-    /*
+    /**
      * Transform string data to number data, to operate with excel
+     *
+     * @param array $response
+     * @return array
      */
     private static function castingNumericData(array $response)
     {
@@ -172,18 +134,23 @@ class ReportService
     }
 }
 
+/**
+ * Class to export from collection
+ *
+ * Class ReportExport
+ * @package Syscover\Admin\Services
+ */
 class ReportExport implements FromCollection
 {
-    private $sql;
+    private $report;
 
-    public function __construct($sql)
+    public function __construct($report)
     {
-        $this->sql = $sql;
+        $this->report = $report;
     }
 
     public function collection()
     {
-        $response = DB::select(DB::raw($this->sql));
-        return collect($response);
+        return collect($this->report);
     }
 }
