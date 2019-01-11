@@ -33,7 +33,8 @@ return [
         (object)['id' => 'crm-customer',            'name' => 'Customers'],
         (object)['id' => 'spas-spa',                'name' => 'Spas'],
         (object)['id' => 'wine-wine',               'name' => 'Wines'],
-        (object)['id' => 'wine-winery',             'name' => 'Wineries']
+        (object)['id' => 'wine-winery',             'name' => 'Wineries'],
+        (object)['id' => 'forem-group',             'name' => 'Groups'],
     ],
 
     //******************************************************************************************************************
