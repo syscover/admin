@@ -205,3 +205,17 @@ if (! function_exists('get_src_srcset_alt_title'))
         return $value . ' alt="' . $attachment->alt . '" title="' . $attachment->title . '"';
     }
 }
+
+
+if (! function_exists('has_scout'))
+{
+    /**
+     * function to know if scout is configured
+     *
+     * @return  boolean
+     */
+    function has_scout()
+    {
+        return  config('scout.driver') === 'algolia' || config('scout.driver') === 'pulsar-search';
+    }
+}
