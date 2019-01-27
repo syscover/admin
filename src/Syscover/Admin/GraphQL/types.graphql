@@ -172,6 +172,12 @@ type AdminPackage {
     sort: Int!
 }
 
+type AdminPermission {
+    profile_id: Int!
+    resource_id: String!
+    action_id: String!
+}
+
 type AdminProfile {
     id: Int!
     name: String!

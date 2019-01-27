@@ -12,7 +12,7 @@ class Profile extends CoreModel
 {
     protected $table        = 'admin_profile';
     protected $fillable     = ['name'];
-
+    public $with            = ['permissions'];
     private static $rules   = [
         'name' => 'required|between:2,50'
     ];
@@ -20,5 +20,10 @@ class Profile extends CoreModel
     public static function validate($data)
     {
         return Validator::make($data, static::$rules);
+    }
+
+    public function permissions()
+    {
+        return $this->hasMany(Permission::class, 'profile_id');
     }
 }
