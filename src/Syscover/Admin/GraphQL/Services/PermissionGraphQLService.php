@@ -11,24 +11,16 @@ class PermissionGraphQLService extends CoreGraphQLService
 
     public function update($root, array $args)
     {
-        Permission::where('profile_id', $args['profile_id'])
-            ->where('resource_id', $args['resource_id'])
-            ->delete();
-
-        $permissions = [];
-
-        foreach ($args['actions'] as $action)
+        if ($args['checked'])
         {
-            $permissions[] = [
-                'profile_id'    => $args['profile_id'],
-                'resource_id'   => $args['resource_id'],
-                'action_id'     => $action,
-            ];
+            $this->service->create($args);
         }
-
-        if (count($permissions) > 0)
+        else
         {
-            Permission::insert($permissions);
+            Permission::where('profile_id', $args['profile_id'])
+                ->where('resource_id', $args['resource_id'])
+                ->where('action_id', $args['action_id'])
+                ->delete();
         }
 
         return true;

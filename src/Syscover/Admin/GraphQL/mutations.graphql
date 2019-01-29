@@ -58,7 +58,7 @@ adminUpdatePackage(payload:AdminPackageInput!): AdminPackage @field(resolver: "S
 adminDeletePackage(id:Int!): AdminPackage @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PackageGraphQLService@delete")
 
 # Permissions
-adminUpdatePermissions(profile_id:Int! resource_id:String! actions:[String]!): Boolean @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PermissionGraphQLService@update")
+adminUpdatePermission(profile_id:Int! resource_id:String! action_id:String! checked:Boolean!): Boolean @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PermissionGraphQLService@update")
 
 # Report
 adminCreateReport(payload:AdminReportInput!): AdminReport @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ReportGraphQLService@create")

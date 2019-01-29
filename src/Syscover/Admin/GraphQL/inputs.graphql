@@ -149,6 +149,13 @@ input AdminPackageInput {
     sort: Int!
 }
 
+input AdminPermissionInput {
+    profile_id: Int!
+    resource_id: String!
+    action_id: String!
+    checked: Boolean!
+}
+
 input AdminResourceInput {
     ix: Int
     id: String!
