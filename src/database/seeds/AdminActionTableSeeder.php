@@ -12,6 +12,7 @@ class AdminActionTableSeeder extends Seeder
             ['id' => 'create',  'name' => 'Create'],
             ['id' => 'delete',  'name' => 'Delete'],
             ['id' => 'edit',    'name' => 'Edit'],
+            ['id' => 'list',    'name' => 'List'],
             ['id' => 'show',    'name' => 'Show']
         ]);
     }
