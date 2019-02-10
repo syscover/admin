@@ -140,6 +140,8 @@ pasword: 123456
 
 
 
+
+
 -- CHECK
 **xx - Register cron command your server**
 
