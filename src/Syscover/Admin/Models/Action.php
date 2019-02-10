@@ -12,7 +12,7 @@ class Action extends CoreModel
 {
 	protected $table        = 'admin_action';
     protected $primaryKey   = 'ix';
-    protected $fillable     = ['ix', 'id', 'name'];
+    protected $fillable     = ['id', 'name'];
 
     private static $rules   = [
         'id'    => 'required|between:2,25|unique:action,id',
