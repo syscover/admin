@@ -2,15 +2,31 @@
 
 Route::group(['prefix' => 'api/v1', 'middleware' => ['api']], function () {
 
-    // CONFIG
+    // Config
     Route::get('admin/config/bootstrap',                            'Syscover\Admin\Controllers\ConfigController@bootstrap')->name('api.admin_bootstrap');
 
-    // LOGIN
+    // Login
     Route::post('login',                                            'Syscover\Admin\Controllers\Auth\AuthController@login')->name('api.admin_login');
 
-    // DOWNLOAD FILES
+    // Download files
     Route::post('admin/file-manager/read',                          'Syscover\Admin\Controllers\FileManagerController@read')->name('api.admin_read');
 });
+
+Route::group(['prefix' => 'api/v1', 'middleware' => ['api']], function () {
+
+    // Actions
+    Route::get('admin/action',                                       'Syscover\Admin\Controllers\ActionController@index')->name('api.admin_action');
+    Route::get('admin/action/{id}',                                  'Syscover\Admin\Controllers\ActionController@show')->name('api.admin_show_action');
+    Route::post('admin/action',                                      'Syscover\Admin\Controllers\ActionController@store')->name('api.admin_store_action');
+    Route::post('admin/action/search',                               'Syscover\Admin\Controllers\ActionController@search')->name('api.admin_search_action');
+    Route::put('admin/action/{id}',                                  'Syscover\Admin\Controllers\ActionController@update')->name('api.admin_update_action');
+    Route::delete('admin/action/{id}',                               'Syscover\Admin\Controllers\ActionController@destroy')->name('api.admin_destroy_action');
+});
+
+
+
+
+
 
 
 

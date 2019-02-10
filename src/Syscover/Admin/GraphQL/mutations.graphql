@@ -1,5 +1,5 @@
 # Action
-adminCreateAction(payload:AdminActionInput!): AdminAction @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQLService@create")
+adminCreateAction(payload:AdminActionInput!): AdminAction @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQLService@store")
 adminUpdateAction(payload:AdminActionInput!): AdminAction @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQLService@update")
 adminDeleteAction(id:String!): AdminAction @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ActionGraphQLService@delete")
 

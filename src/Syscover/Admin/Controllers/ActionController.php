@@ -8,34 +8,8 @@ use Syscover\Admin\Models\Action;
 class ActionController extends CoreController
 {
     protected $model = Action::class;
+    protected $service = ActionService::class;
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     * @throws \Exception
-     */
-    public function store(Request $request)
-    {
-        try
-        {
-            $object = ActionService::create($request->all());
-        }
-        catch (\Exception $e)
-        {
-            return response()->json([
-                'status'        => 500,
-                'statusText'    => $e->getMessage()
-            ], 500);
-        }
-
-        return response()->json([
-            'status'        => 200,
-            'statusText'    => 'success',
-            'data'          => $object
-        ]);
-    }
 
     /**
      * Update the specified resource in storage.

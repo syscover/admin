@@ -1,9 +1,20 @@
 <?php namespace Syscover\Admin\Services;
 
+use Syscover\Core\Services\Service;
 use Syscover\Admin\Models\Action;
 
-class ActionService
+class ActionService extends Service
 {
+    public function store(array $data)
+    {
+        $this->validate($data, [
+            'id'    => 'required|between:2,25|unique:admin_action,id',
+            'name'  => 'required|between:2,255'
+        ]);
+
+        return Action::create($data);
+    }
+
     public static function create($object)
     {
         self::checkCreate($object);
@@ -21,13 +32,10 @@ class ActionService
     private static function builder($object)
     {
         $object = collect($object);
-        return $object->only(['id', 'name'])->toArray();
-    }
-
-    private static function checkCreate($object)
-    {
-        if(empty($object['id']))     throw new \Exception('You have to define a id field to create a action');
-        if(empty($object['name']))   throw new \Exception('You have to define a name field to create a action');
+        return $object->only([
+            'id',
+            'name'
+        ])->toArray();
     }
 
     private static function checkUpdate($object)
