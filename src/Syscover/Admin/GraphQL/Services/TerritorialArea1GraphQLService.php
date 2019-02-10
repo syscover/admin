@@ -6,6 +6,6 @@ use Syscover\Core\GraphQL\Services\CoreGraphQLService;
 
 class TerritorialArea1GraphQLService extends CoreGraphQLService
 {
-    protected $modelClassName = TerritorialArea1::class;
+    protected $model = TerritorialArea1::class;
     protected $serviceClassName = TerritorialArea1Service::class;
 }

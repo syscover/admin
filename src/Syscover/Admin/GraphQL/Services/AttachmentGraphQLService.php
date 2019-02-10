@@ -9,7 +9,7 @@ use function GuzzleHttp\Psr7\mimetype_from_extension;
 
 class AttachmentGraphQLService extends CoreGraphQLService
 {
-    protected $modelClassName = Attachment::class;
+    protected $model = Attachment::class;
     protected $serviceClassName = AttachmentService::class;
 
     public function crop($root, array $args)

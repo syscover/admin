@@ -1,5 +1,6 @@
 <?php namespace Syscover\Admin\Services;
 
+use Syscover\Core\Exceptions\ModelNotChangeException;
 use Syscover\Core\Services\Service;
 use Syscover\Admin\Models\Action;
 
@@ -18,8 +19,8 @@ class ActionService extends Service
     public function update(array $data, int $id)
     {
         $this->validate($data, [
-            'id'    => 'required|between:2,25|unique:admin_action,id',
-            'name'  => 'required|between:2,255'
+            'id'    => 'between:2,25|unique:admin_action,id',
+            'name'  => 'between:2,255'
         ]);
 
         $action = Action::findOrFail($id);
@@ -27,10 +28,7 @@ class ActionService extends Service
         $action->fill($data);
 
         // check is model
-        if ($action->isClean())
-        {
-            throw new \Exception('At least one value must change');
-        }
+        if ($action->isClean()) throw new ModelNotChangeException('At least one value must change');
 
         // save changes
         $action->save();

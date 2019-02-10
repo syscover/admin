@@ -7,12 +7,12 @@ use Syscover\Core\Services\SQLService;
 
 class FieldValueGraphQLService extends CoreGraphQLService
 {
-    protected $modelClassName = FieldValue::class;
+    protected $model = FieldValue::class;
     protected $serviceClassName = FieldValueService::class;
 
     public function delete($root, array $args)
     {
-        $object = SQLService::deleteRecord($args['id'], $this->modelClassName, $args['lang_id'] ?? null, null, ['field_id' => $args['field_id']]);
+        $object = SQLService::deleteRecord($args['id'], get_class($this->model), $args['lang_id'] ?? null, null, ['field_id' => $args['field_id']]);
 
         return $object;
     }

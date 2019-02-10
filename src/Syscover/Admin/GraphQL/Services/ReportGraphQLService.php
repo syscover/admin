@@ -6,7 +6,7 @@ use Syscover\Admin\Models\Report;
 
 class ReportGraphQLService extends CoreGraphQLService
 {
-    protected $modelClassName = Report::class;
+    protected $model = Report::class;
     protected $serviceClassName = ReportService::class;
 
     public function run($root, array $args)

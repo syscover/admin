@@ -6,6 +6,6 @@ use Syscover\Core\GraphQL\Services\CoreGraphQLService;
 
 class UserGraphQLService extends CoreGraphQLService
 {
-    protected $modelClassName = User::class;
+    protected $model = User::class;
     protected $serviceClassName = UserService::class;
 }

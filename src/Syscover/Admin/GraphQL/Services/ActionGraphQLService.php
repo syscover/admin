@@ -6,6 +6,6 @@ use Syscover\Core\GraphQL\Services\CoreGraphQLService;
 
 class ActionGraphQLService extends CoreGraphQLService
 {
-    protected $modelClassName = Action::class;
+    protected $model = Action::class;
     protected $serviceClassName = ActionService::class;
 }
