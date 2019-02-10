@@ -15,31 +15,26 @@ class ActionService extends Service
         return Action::create($data);
     }
 
-    public static function create($object)
+    public function update(array $data, int $id)
     {
-        self::checkCreate($object);
-        return Action::create(self::builder($object));
-    }
+        $this->validate($data, [
+            'id'    => 'required|between:2,25|unique:admin_action,id',
+            'name'  => 'required|between:2,255'
+        ]);
 
-    public static function update($object)
-    {
-        self::checkUpdate($object);
-        Action::where('ix', $object['ix'])->update(self::builder($object));
+        $action = Action::findOrFail($id);
 
-        return Action::find($object['ix']);
-    }
+        $action->fill($data);
 
-    private static function builder($object)
-    {
-        $object = collect($object);
-        return $object->only([
-            'id',
-            'name'
-        ])->toArray();
-    }
+        // check is model
+        if ($action->isClean())
+        {
+            throw new \Exception('At least one value must change');
+        }
 
-    private static function checkUpdate($object)
-    {
-        if(empty($object['ix'])) throw new \Exception('You have to define a ix field to update a action');
+        // save changes
+        $action->save();
+
+        return $action;
     }
 }
