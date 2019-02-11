@@ -7,5 +7,5 @@ use Syscover\Core\GraphQL\Services\CoreGraphQLService;
 class OAuthClientGraphQLService extends CoreGraphQLService
 {
     protected $model = OAuthClient::class;
-    protected $serviceClassName = OAuthClientService::class;
+    protected $service = OAuthClientService::class;
 }

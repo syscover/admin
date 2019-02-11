@@ -7,5 +7,5 @@ use Syscover\Core\GraphQL\Services\CoreGraphQLService;
 class CountryGraphQLService extends CoreGraphQLService
 {
     protected $model = Country::class;
-    protected $serviceClassName = CountryService::class;
+    protected $service = CountryService::class;
 }

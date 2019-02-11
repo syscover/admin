@@ -7,5 +7,5 @@ use Syscover\Core\GraphQL\Services\CoreGraphQLService;
 class OAuthAccessTokenGraphQLService extends CoreGraphQLService
 {
     protected $model = OAuthAccessToken::class;
-    protected $serviceClassName = OAuthAccessTokenService::class;
+    protected $service = OAuthAccessTokenService::class;
 }

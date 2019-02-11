@@ -7,5 +7,5 @@ use Syscover\Core\GraphQL\Services\CoreGraphQLService;
 class ProfileGraphQLService extends CoreGraphQLService
 {
     protected $model = Profile::class;
-    protected $serviceClassName = ProfileService::class;
+    protected $service = ProfileService::class;
 }

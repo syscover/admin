@@ -7,5 +7,5 @@ use Syscover\Core\GraphQL\Services\CoreGraphQLService;
 class AttachmentFamilyGraphQLService extends CoreGraphQLService
 {
     protected $model = AttachmentFamily::class;
-    protected $serviceClassName = AttachmentFamilyService::class;
+    protected $service = AttachmentFamilyService::class;
 }

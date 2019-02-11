@@ -8,7 +8,7 @@ use Syscover\Core\Services\SQLService;
 class FieldValueGraphQLService extends CoreGraphQLService
 {
     protected $model = FieldValue::class;
-    protected $serviceClassName = FieldValueService::class;
+    protected $service = FieldValueService::class;
 
     public function delete($root, array $args)
     {
