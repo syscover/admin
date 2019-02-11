@@ -1,38 +1,41 @@
 <?php namespace Syscover\Admin\Services;
 
+use Syscover\Core\Exceptions\ModelNotChangeException;
+use Syscover\Core\Services\Service;
 use Syscover\Admin\Models\Package;
 
-class PackageService
+class PackageService extends Service
 {
-    public static function create($object)
+    public function store(array $data)
     {
-        self::checkCreate($object);
-        return Package::create(self::builder($object));
+        $this->validate($data, [
+            'name'      => 'required|between:2,255',
+            'root'      => 'required|between:2,255',
+            'active'    => 'required',
+            'sort'      => 'required|numeric|min:0'
+        ]);
+
+        Package::create($data);
     }
 
-    public static function update($object)
+    public function update(array $data, int $id)
     {
-        self::checkUpdate($object);
-        Package::where('id', $object['id'])->update(self::builder($object));
+        $this->validate($data, [
+            'name'      => 'between:2,255',
+            'root'      => 'between:2,255',
+            'sort'      => 'numeric|min:0'
+        ]);
 
-        return Package::find($object['id']);
-    }
+        $object = Package::findOrFail($id);
 
-    private static function builder($object)
-    {
-        $object = collect($object);
-        return $object->only(['name', 'root', 'active', 'sort'])->toArray();
-    }
+        $object->fill($data);
 
-    private static function checkCreate($object)
-    {
-        if(empty($object['name']))      throw new \Exception('You have to define a name field to create a package');
-        if(empty($object['root']))      throw new \Exception('You have to define a root field to create a package');
-        if(empty($object['sort']))      throw new \Exception('You have to define a sort field to create a package');
-    }
+        // check is model
+        if ($object->isClean()) throw new ModelNotChangeException('At least one value must change');
 
-    private static function checkUpdate($object)
-    {
-        if(empty($object['id']))      throw new \Exception('You have to define a id field to update a package');
+        // save changes
+        $object->save();
+
+        return $object;
     }
 }

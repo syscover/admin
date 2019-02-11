@@ -1,7 +1,6 @@
 <?php namespace Syscover\Admin\Models;
 
 use Syscover\Core\Models\CoreModel;
-use Illuminate\Support\Facades\Validator;
 
 /**
  * Class Action

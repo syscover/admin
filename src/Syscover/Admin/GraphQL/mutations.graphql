@@ -53,7 +53,7 @@ adminUpdateOAuthClient(payload:AdminOAuthClientInput!): AdminOAuthClient @field(
 adminDeleteOAuthClient(id:String!): AdminOAuthClient @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\OAuthClientGraphQLService@delete")
 
 # Package
-adminCreatePackage(payload:AdminPackageInput!): AdminPackage @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PackageGraphQLService@create")
+adminCreatePackage(payload:AdminPackageInput!): AdminPackage @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PackageGraphQLService@store")
 adminUpdatePackage(payload:AdminPackageInput!): AdminPackage @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PackageGraphQLService@update")
 adminDeletePackage(id:Int!): AdminPackage @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PackageGraphQLService@delete")
 

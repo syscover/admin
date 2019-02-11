@@ -23,16 +23,16 @@ class ActionService extends Service
             'name'  => 'between:2,255'
         ]);
 
-        $action = Action::findOrFail($id);
+        $object = Action::findOrFail($id);
 
-        $action->fill($data);
+        $object->fill($data);
 
         // check is model
-        if ($action->isClean()) throw new ModelNotChangeException('At least one value must change');
+        if ($object->isClean()) throw new ModelNotChangeException('At least one value must change');
 
         // save changes
-        $action->save();
+        $object->save();
 
-        return $action;
+        return $object;
     }
 }
