@@ -4,7 +4,7 @@ use Syscover\Core\Models\CoreModel;
 
 /**
  * Class Action
- * @package Syscover\Pulsar\Models
+ * @package Syscover\Admin\Models
  */
 
 class Action extends CoreModel

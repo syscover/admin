@@ -7,7 +7,7 @@ use Syscover\Admin\Models\Lang;
 
 /**
  * Class LangController
- * @package Syscover\Pulsar\Controllers
+ * @package Syscover\Admin\Controllers
  */
 
 class LangController extends CoreController

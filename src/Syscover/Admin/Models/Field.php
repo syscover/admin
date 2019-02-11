@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Validator;
 
 /**
  * Class Field
- * @package Syscover\Pulsar\Models
+ * @package Syscover\Admin\Models
  */
 
 class Field extends CoreModel

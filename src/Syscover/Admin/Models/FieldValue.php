@@ -7,7 +7,7 @@ use Syscover\Admin\Traits\Translatable;
 
 /**
  * Class FieldValue
- * @package Syscover\Pulsar\Models
+ * @package Syscover\Admin\Models
  */
 
 class FieldValue extends CoreModel
