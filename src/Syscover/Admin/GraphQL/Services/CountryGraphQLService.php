@@ -6,6 +6,9 @@ use Syscover\Core\GraphQL\Services\CoreGraphQLService;
 
 class CountryGraphQLService extends CoreGraphQLService
 {
-    protected $model = Country::class;
-    protected $service = CountryService::class;
+    public function __construct(Country $model, CountryService $service)
+    {
+        $this->model = $model;
+        $this->service = $service;
+    }
 }

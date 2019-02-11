@@ -8,8 +8,11 @@ use Syscover\Core\GraphQL\Services\CoreGraphQLService;
 
 class PermissionGraphQLService extends CoreGraphQLService
 {
-    protected $model = Permission::class;
-    protected $service = PermissionService::class;
+    public function __construct(Permission $model, PermissionService $service)
+    {
+        $this->model = $model;
+        $this->service = $service;
+    }
 
     public function update($root, array $args)
     {

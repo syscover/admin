@@ -6,6 +6,9 @@ use Syscover\Core\GraphQL\Services\CoreGraphQLService;
 
 class OAuthClientGraphQLService extends CoreGraphQLService
 {
-    protected $model = OAuthClient::class;
-    protected $service = OAuthClientService::class;
+    public function __construct(OAuthClient $model, OAuthClientService $service)
+    {
+        $this->model = $model;
+        $this->service = $service;
+    }
 }

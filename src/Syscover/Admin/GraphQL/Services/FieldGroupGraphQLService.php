@@ -6,6 +6,9 @@ use Syscover\Core\GraphQL\Services\CoreGraphQLService;
 
 class FieldGroupGraphQLService extends CoreGraphQLService
 {
-    protected $model = FieldGroup::class;
-    protected $service = FieldGroupService::class;
+    public function __construct(FieldGroup $model, FieldGroupService $service)
+    {
+        $this->model = $model;
+        $this->service = $service;
+    }
 }

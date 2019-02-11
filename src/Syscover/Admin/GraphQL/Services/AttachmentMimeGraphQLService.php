@@ -6,6 +6,9 @@ use Syscover\Core\GraphQL\Services\CoreGraphQLService;
 
 class AttachmentMimeGraphQLService extends CoreGraphQLService
 {
-    protected $model = AttachmentMime::class;
-    protected $service = AttachmentMimeService::class;
+    public function __construct(AttachmentMime $model, AttachmentMimeService $service)
+    {
+        $this->model = $model;
+        $this->service = $service;
+    }
 }
