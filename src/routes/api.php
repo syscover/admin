@@ -12,7 +12,7 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['api']], function () {
     Route::post('admin/file-manager/read',                          'Syscover\Admin\Controllers\FileManagerController@read')->name('api.admin_read');
 });
 
-Route::group(['prefix' => 'api/v1', 'middleware' => ['api']], function () {
+Route::group(['prefix' => 'api/v1', 'middleware' => ['api', 'client']], function () {
 
     // Actions
     Route::get('admin/action',                                       'Syscover\Admin\Controllers\ActionController@index')->name('api.admin_action');

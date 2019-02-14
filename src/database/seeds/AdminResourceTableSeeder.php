@@ -32,6 +32,8 @@ class AdminResourceTableSeeder extends Seeder {
             ['id' => 'admin-field-value',           'name' => 'Custom fields - Values',                 'package_id' => 20],
             ['id' => 'admin-field-group',           'name' => 'Custom fields - Groups',                 'package_id' => 20],
             ['id' => 'admin-report',                'name' => 'Reports',                                'package_id' => 20],
+            ['id' => 'admin-oauth-client',          'name' => 'APIs -- Clients',                        'package_id' => 20],
+            ['id' => 'admin-oauth-access-token',    'name' => 'APIs -- Access token',                   'package_id' => 20],
 //            ['id' => 'dh2',                         'name' => 'Digital H2',                              'package_id' => 1]
         ]);
     }
