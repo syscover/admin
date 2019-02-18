@@ -216,3 +216,8 @@ input AdminUserInput {
     name: String!
     surname: String
 }
+
+input AdminVersionInput {
+    package_id: Int!
+    version: String!
+}
