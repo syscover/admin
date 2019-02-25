@@ -23,15 +23,18 @@ class VersionService
                     'version'       => $version['version']
                 ];
             }
-
         }
 
         $client = new Client([
             'base_uri' => $baseUri
         ]);
 
-        $client->request('POST', $uri, [
-            'variables' => $versions
+        $response = $client->request('POST', $uri, [
+            'form_params' => [
+                'variables' => $versions
+            ]
         ]);
+
+        return $response->getBody()->getContents();
     }
 }

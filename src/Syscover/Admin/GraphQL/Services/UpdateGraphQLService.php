@@ -8,11 +8,11 @@ class UpdateGraphQLService extends CoreGraphQLService
 {
     public function check($root, array $args)
     {
-        $packages = Package::where('active', true)->get();
-info('hola mundo');
         // call to api update
-        VersionService::check($packages);
+        $versions = VersionService::check(Package::where('active', true)->get());
 
-        return true;
+        $versions = json_decode($versions, true);
+
+        return $versions['data'];
     }
 }

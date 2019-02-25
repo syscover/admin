@@ -146,7 +146,7 @@ adminTerritorialAreas3Pagination(sql:[CoreSQLInput] filters:[CoreSQLInput]): Cor
 
 # Update
 """ Query to check update """
-adminCheckUpdates: Boolean @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\UpdateGraphQLService@check")
+adminCheckUpdates: Object @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\UpdateGraphQLService@check")
 
 # User
 """ Query to get users list """
