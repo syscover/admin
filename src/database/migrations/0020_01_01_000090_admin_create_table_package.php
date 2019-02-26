@@ -20,6 +20,7 @@ class AdminCreateTablePackage extends Migration
 				$table->increments('id');
 				$table->string('name');
 				$table->string('root');
+                $table->string('version')->nullable();
 				$table->boolean('active')->default(false);
 				$table->integer('sort')->unsigned();
 

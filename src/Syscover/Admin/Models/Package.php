@@ -10,7 +10,7 @@ use Syscover\Core\Models\CoreModel;
 class Package extends CoreModel
 {
 	protected $table        = 'admin_package';
-    protected $fillable     = ['id', 'name', 'root', 'active', 'sort'];
+    protected $fillable     = ['id', 'name', 'root', 'version', 'active', 'sort'];
     protected $casts        = [
         'active'            => 'boolean'
     ];
