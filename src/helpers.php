@@ -219,3 +219,27 @@ if (! function_exists('has_scout'))
         return  config('scout.driver') === 'algolia' || config('scout.driver') === 'pulsar-search';
     }
 }
+
+if (! function_exists('package_version'))
+{
+    /**
+     * function to know if scout is configured
+     *
+     * @return  boolean
+     */
+    function package_version(\Syscover\Admin\Models\Package $package)
+    {
+        // get path of version file
+        $path = env('APP_ENV') === 'production' ?
+            'vendor/syscover/pulsar-' . $package->root . '/src/version.php' :
+            'workbench/syscover/pulsar-' . $package->root . '/src/version.php';
+
+        if (file_exists(base_path($path)))
+        {
+            $version = require base_path($path);
+            return $version['version'];
+        }
+
+        return null;
+    }
+}
