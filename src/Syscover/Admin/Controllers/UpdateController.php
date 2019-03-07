@@ -1,12 +1,13 @@
-<?php namespace Syscover\Admin\GraphQL\Services;
+<?php namespace Syscover\Admin\Controllers;
 
+use Illuminate\Http\Request;
+use Syscover\Core\Controllers\CoreController;
 use Syscover\Admin\Models\Package;
 use Syscover\Admin\Services\VersionService;
-use Syscover\Core\GraphQL\Services\CoreGraphQLService;
 
-class UpdateGraphQLService extends CoreGraphQLService
+class UpdateController extends CoreController
 {
-    public function check($root, array $args)
+    public function check(Request $request)
     {
         $packages = Package::where('active', true)->get();
 
@@ -26,6 +27,6 @@ class UpdateGraphQLService extends CoreGraphQLService
         // transform string to array
         $versions = json_decode($versions, true);
 
-        return $versions['data'];
+        return $this->successResponse($versions['data']);
     }
 }
