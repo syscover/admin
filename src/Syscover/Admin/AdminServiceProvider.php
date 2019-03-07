@@ -22,6 +22,11 @@ class AdminServiceProvider extends ServiceProvider
         // register migrations
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
 
+        // register tests
+        $this->publishes([
+            __DIR__ . '/../../tests/Feature' => base_path('/tests/Feature')
+        ], 'tests');
+
         // register seeds
         $this->publishes([
             __DIR__ . '/../../database/seeds/' => base_path('/database/seeds')
