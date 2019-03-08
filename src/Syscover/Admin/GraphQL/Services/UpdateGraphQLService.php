@@ -1,30 +1,20 @@
 <?php namespace Syscover\Admin\GraphQL\Services;
 
-use Syscover\Admin\Models\Package;
-use Syscover\Admin\Services\VersionService;
+use Syscover\Admin\Services\UpdateService;
 use Syscover\Core\GraphQL\Services\CoreGraphQLService;
 
 class UpdateGraphQLService extends CoreGraphQLService
 {
     public function check($root, array $args)
     {
-        $packages = Package::where('active', true)->get();
+        $versions = UpdateService::check();
 
-        // check local versions
-        foreach ($packages as $package)
-        {
-            if (! $package->version)
-            {
-                $package->version = package_version($package);
-                $package->save();
-            }
-        }
+        return $versions['data'];
+    }
 
-        // call to api update
-        $versions = VersionService::check($packages);
-
-        // transform string to array
-        $versions = json_decode($versions, true);
+    public function execute($root, array $args)
+    {
+        $versions = UpdateService::execute();
 
         return $versions['data'];
     }

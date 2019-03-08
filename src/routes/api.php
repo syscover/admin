@@ -12,7 +12,12 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['api']], function () {
     Route::post('admin/file-manager/read',                          'Syscover\Admin\Controllers\FileManagerController@read')->name('api.admin_read');
 });
 
-Route::group(['prefix' => 'api/v1', 'middleware' => ['api', 'client']], function () {
+// Route::group(['prefix' => 'api/v1', 'middleware' => ['api', 'client']], function () {
+Route::group(['prefix' => 'api/v1', 'middleware' => ['api']], function () {
+
+    // Updates
+    Route::get('admin/updates/check',                               'Syscover\Admin\Controllers\UpdateController@check')->name('api.admin_updates_check');
+    Route::get('admin/updates/execute',                             'Syscover\Admin\Controllers\UpdateController@execute')->name('api.admin_updates_execute');
 
     // Actions
     Route::get('admin/action',                                       'Syscover\Admin\Controllers\ActionController@index')->name('api.admin_action');
