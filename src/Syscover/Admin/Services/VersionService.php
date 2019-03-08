@@ -13,7 +13,8 @@ class VersionService
 
         foreach ($packages as $package)
         {
-            if ($version = package_version($package))
+            $version = package_version($package->root)['version'] ?? null;
+            if ($version)
             {
                 $versions[] = [
                     'package_id'    => $package->id,

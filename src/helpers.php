@@ -223,23 +223,26 @@ if (! function_exists('has_scout'))
 if (! function_exists('package_version'))
 {
     /**
-     * function to know if scout is configured
-     *
-     * @return  boolean
+     * @param   string $root
+     * @return  mixed|null
      */
-    function package_version(\Syscover\Admin\Models\Package $package)
+    function package_version(string $root)
     {
         // get path of version file
         $path = env('APP_ENV') === 'production' ?
-            'vendor/syscover/pulsar-' . $package->root . '/src/version.php' :
-            'workbench/syscover/pulsar-' . $package->root . '/src/version.php';
+            'vendor/syscover/pulsar-' . $root . '/src/version.php' :
+            'workbench/syscover/pulsar-' . $root . '/src/version.php';
 
         if (file_exists(base_path($path)))
         {
-            $version = require base_path($path);
-            return $version['version'];
+            return require base_path($path);
         }
 
-        return null;
+        return [
+            'version'           => null,
+            'package'           => null,
+            'provider'          => null,
+            'migration_path'    => null
+        ];
     }
 }

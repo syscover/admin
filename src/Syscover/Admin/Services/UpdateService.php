@@ -1,5 +1,9 @@
 <?php namespace Syscover\Admin\Services;
 
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 use Syscover\Admin\Models\Package;
 
 class UpdateService
@@ -13,7 +17,7 @@ class UpdateService
         {
             if (! $package->version)
             {
-                $package->version = package_version($package);
+                $package->version = package_version($package->root)['version'] ?? null;
                 $package->save();
             }
         }
@@ -40,12 +44,37 @@ class UpdateService
 
             foreach ($versions as $version)
             {
-                // ejecutar query
-                info($version['query']);
+                $localVersion = package_version($version['package']['root']);
 
-                // ejecutar migrations
+                // execute composer
+                if ($version['composer'])
+                {
+                    $process = new Process([config('pulsar-admin.composer_bin'), 'require', '--working-dir=' . base_path(), 'syscover/pulsar-admin'], null, ['COMPOSER_HOME' => storage_path() . '/composer']);
+                    $process->setTimeout(null);
+                    $process->run();
 
-                // ejecutar composer
+                    if (!$process->isSuccessful()) {
+                        throw new ProcessFailedException($process);
+                    }
+                }
+
+                // execute publish
+                if ($version['publish'])
+                {
+                    Artisan::call('vendor:publish', ['provider' => $localVersion['provider'], 'force' => '']);
+                }
+
+                // execute migration
+                if (! empty($version['migration']))
+                {
+                    Artisan::call('migrate', ['path' => $localVersion['migration_path']]);
+                }
+
+                // execute query
+                if (! empty($version['query']))
+                {
+                    DB::select(DB::raw($version['query']));
+                }
             }
         }
 

@@ -32,10 +32,10 @@ class AdminServiceProvider extends ServiceProvider
             __DIR__ . '/../../database/seeds/' => base_path('/database/seeds')
         ], 'seeds');
 
-        // register config files
+        // register config
         $this->publishes([
-            __DIR__ . '/../../config/pulsar-admin.php' => config_path('pulsar-admin.php'),
-        ]);
+            __DIR__ . '/../../config/pulsar-admin.php' => config_path('pulsar-admin.php')
+        ], 'config');
 
         // call code after boot application
         $this->app->booted(function () {
