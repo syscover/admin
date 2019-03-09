@@ -5,7 +5,7 @@ use Illuminate\Support\Collection;
 
 class VersionService
 {
-    public static function check(Collection $packages)
+    public static function check(Collection $packages, string $panelVersion)
     {
         $baseUri    = env('APP_ENV') === 'production' ? 'https://updates.syscover.net' : 'http://api.pulsar.local';
         $versions   = [];
@@ -29,7 +29,8 @@ class VersionService
 
         $response = $client->request('POST', $uri, [
             'form_params' => [
-                'variables' => $versions
+                'variables'     => $versions,
+                'panel_version' => $panelVersion
             ]
         ]);
 

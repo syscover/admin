@@ -249,8 +249,11 @@ type AdminVersion {
     package_id: Int!
     package: AdminPackage!
     version: String!
-    migration: Boolean!
-    config: Boolean!
-    query: String
+    minimal_panel_version: String
+    composer: Boolean!
     publish: Boolean!
+    migration: Boolean!
+    query: String
+    provide: Boolean!
+    provide_from: String!
 }

@@ -146,8 +146,8 @@ adminTerritorialAreas3Pagination(sql:[CoreSQLInput] filters:[CoreSQLInput]): Cor
 
 # Update
 """ Query to check update """
-adminCheckUpdates: [AdminVersion] @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\UpdateGraphQLService@check")
-adminExecuteUpdates: [AdminVersion] @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\UpdateGraphQLService@execute")
+adminCheckUpdates(panel_version:String!): [AdminVersion] @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\UpdateGraphQLService@check")
+adminExecuteUpdates(panel_version:String!): [AdminVersion] @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\UpdateGraphQLService@execute")
 
 # User
 """ Query to get users list """

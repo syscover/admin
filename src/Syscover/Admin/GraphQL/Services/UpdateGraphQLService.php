@@ -7,14 +7,14 @@ class UpdateGraphQLService extends CoreGraphQLService
 {
     public function check($root, array $args)
     {
-        $versions = UpdateService::check();
+        $versions = UpdateService::check($args['panel_version']);
 
         return $versions['data'];
     }
 
     public function execute($root, array $args)
     {
-        $versions = UpdateService::execute();
+        $versions = UpdateService::execute($args['panel_version']);
 
         return $versions['data'];
     }

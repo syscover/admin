@@ -8,7 +8,7 @@ use Syscover\Admin\Models\Package;
 
 class UpdateService
 {
-    public static function check()
+    public static function check(string $panelVersion)
     {
         $packages = Package::where('active', true)->get();
 
@@ -23,7 +23,7 @@ class UpdateService
         }
 
         // call to api update
-        $versions = VersionService::check($packages);
+        $versions = VersionService::check($packages, $panelVersion);
 
         // transform string to array
         $versions = json_decode($versions, true);
@@ -31,9 +31,9 @@ class UpdateService
         return $versions;
     }
 
-    public static function execute()
+    public static function execute(string $panelVersion)
     {
-        $response = self::check();
+        $response = self::check($panelVersion);
 
         // group versions
         $versionsGrouped = collect($response['data'])->groupBy('package_id');

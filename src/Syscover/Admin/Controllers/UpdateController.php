@@ -8,14 +8,14 @@ class UpdateController extends CoreController
 {
     public function check(Request $request)
     {
-        $versions = UpdateService::check();
+        $versions = UpdateService::check($request->input('panel_version'));
 
         return $this->successResponse($versions['data']);
     }
 
     public function execute(Request $request)
     {
-        $versions = UpdateService::execute();
+        $versions = UpdateService::execute($request->input('panel_version'));
 
         return $this->successResponse($versions['data']);
     }
