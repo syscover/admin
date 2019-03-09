@@ -9,9 +9,9 @@ class AdminResourceTableSeeder extends Seeder {
     {
         Resource::insert([
             ['id' => 'admin-country',               'name' => 'Countries',                              'package_id' => 20],
-            ['id' => 'admin-country-ta1',           'name' => 'Countries -- Territorial Area 1',       'package_id' => 20],
-            ['id' => 'admin-country-ta2',           'name' => 'Countries -- Territorial Area 2',       'package_id' => 20],
-            ['id' => 'admin-country-ta3',           'name' => 'Countries -- Territorial Area 3',       'package_id' => 20],
+            ['id' => 'admin-country-ta1',           'name' => 'Countries -- Territorial Areas 1',       'package_id' => 20],
+            ['id' => 'admin-country-ta2',           'name' => 'Countries -- Territorial Areas 2',       'package_id' => 20],
+            ['id' => 'admin-country-ta3',           'name' => 'Countries -- Territorial Areas 3',       'package_id' => 20],
             ['id' => 'admin-lang',                  'name' => 'Languages',                              'package_id' => 20],
             ['id' => 'admin-oauth-access-token',    'name' => 'Oauth - Access tokens',                  'package_id' => 20],
             ['id' => 'admin-oauth-client',          'name' => 'Oauth - Clients',                        'package_id' => 20],
