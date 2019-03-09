@@ -17,7 +17,7 @@ class UpdateService
         {
             if (! $package->version)
             {
-                $package->version = package_version($package->root)['version'] ?? null;
+                $package->version = '1.0.0';
                 $package->save();
             }
         }
@@ -38,46 +38,80 @@ class UpdateService
         // group versions
         $versionsGrouped = collect($response['data'])->groupBy('package_id');
 
+        // get all packages to update
+        $packages = Package::whereIn('id', $versionsGrouped->keys())->get();
+
+        // get packages to execute with composer
+        $packagesComposerName = [];
         foreach ($versionsGrouped as $packageId => $versions)
         {
             $versions->sortBy('id');
+            foreach ($versions as $version)
+            {
+                if ($version['composer'])
+                {
+                    // get package name to update with composer
+                    $packagesComposerName[] = package_version($version['package']['root'])['package'];
+                    break;
+                }
+            }
+        }
 
+        info('Execute composer update for this packages: ' . implode(' ', $packagesComposerName));
+
+        // if there are any packages execute composer update
+        if (count($packagesComposerName) > 0)
+        {
+            $process = new Process([config('pulsar-admin.composer_bin'), 'update', '--working-dir=' . base_path(), implode(' ', $packagesComposerName)], null, ['COMPOSER_HOME' => storage_path() . '/composer']);
+            $process->setTimeout(null);
+            $process->run();
+
+            if (!$process->isSuccessful())
+            {
+                throw new ProcessFailedException($process);
+            }
+            info('Composer update is over');
+        }
+
+        // execute the rest of processes
+        foreach ($versionsGrouped as $packageId => $versions)
+        {
+            $versions->sortBy('id');
+            $lastVersion = null;
             foreach ($versions as $version)
             {
                 $localVersion = package_version($version['package']['root']);
 
-                // execute composer
-                if ($version['composer'])
-                {
-                    $process = new Process([config('pulsar-admin.composer_bin'), 'require', '--working-dir=' . base_path(), 'syscover/pulsar-admin'], null, ['COMPOSER_HOME' => storage_path() . '/composer']);
-                    $process->setTimeout(null);
-                    $process->run();
-
-                    if (!$process->isSuccessful()) {
-                        throw new ProcessFailedException($process);
-                    }
-                }
-
                 // execute publish
                 if ($version['publish'])
                 {
-                    Artisan::call('vendor:publish', ['provider' => $localVersion['provider'], 'force' => '']);
+                    info('Execute vendor publish command: vendor:publish --provider="' . $localVersion['provider'] . '" --force');
+                    Artisan::call('vendor:publish --provider="' . $localVersion['provider'] . '" --force');
                 }
 
                 // execute migration
                 if (! empty($version['migration']))
                 {
-                    Artisan::call('migrate', ['path' => $localVersion['migration_path']]);
+                    info('Execute migrate command: migrate --path=' . $localVersion['migration_path']);
+                    Artisan::call('migrate --path=' . $localVersion['migration_path']);
                 }
 
                 // execute query
                 if (! empty($version['query']))
                 {
+                    info('Execute query from version: ' . $version['version']);
                     DB::select(DB::raw($version['query']));
                 }
+
+                $lastVersion = $version;
             }
+
+            // update version number
+            $package = $packages->firstWhere('id', $packageId);
+            $package->version = $lastVersion['version'];
+            $package->save();
         }
 
-        return self::check();
+        return self::check($panelVersion);
     }
 }

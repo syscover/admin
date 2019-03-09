@@ -13,14 +13,10 @@ class VersionService
 
         foreach ($packages as $package)
         {
-            $version = package_version($package->root)['version'] ?? null;
-            if ($version)
-            {
-                $versions[] = [
-                    'package_id'    => $package->id,
-                    'version'       => $version
-                ];
-            }
+            $versions[] = [
+                'package_id'    => $package->id,
+                'version'       => $package->version
+            ];
         }
 
         $client = new Client([

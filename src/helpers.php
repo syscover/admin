@@ -239,7 +239,6 @@ if (! function_exists('package_version'))
         }
 
         return [
-            'version'           => null,
             'package'           => null,
             'provider'          => null,
             'migration_path'    => null
