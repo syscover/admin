@@ -47,6 +47,19 @@ composer dump-autoload
 ],
 ```
 
+```
+'failed' => [
+    'database' => env('DB_CONNECTION', 'mysql'),
+    'table' => 'admin_failed_jobs',
+],
+```
+
+after that set your QUEUE_CONNECTION variable environment with database value 
+
+```
+QUEUE_CONNECTION=database
+```
+
 **6 - And execute migrations and seed database**
 ```
 php artisan queue:table
