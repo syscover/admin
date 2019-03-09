@@ -114,28 +114,38 @@ Inside passwords array
 ],
 ```
 
-Execute this command to init laravel passport
-```
-php artisan passport:install
-```
-
 **9 - Set base lang application and panel url in .env file**
 ```
 ADMIN_BASE_LANG=en
 ADMIN_PANEL_URL=http://panel.mydomain.com
 ```
 
-**10 - Add graphQL routes to routes/graphql/schema.graphql file**
+**10 - Add graphQL routes to graphql/schema.graphql file**
 ```
+# Core
+#import ./../vendor/syscover/pulsar-core/src/Syscover/Core/GraphQL/scalars.graphql
+#import ./../vendor/syscover/pulsar-core/src/Syscover/Core/GraphQL/inputs.graphql
+#import ./../vendor/syscover/pulsar-core/src/Syscover/Core/GraphQL/types.graphql
+
 # Admin types
-#import ./../../vendor/syscover/pulsar-admin/src/Syscover/Admin/GraphQL/inputs.graphql
-#import ./../../vendor/syscover/pulsar-admin/src/Syscover/Admin/GraphQL/types.graphql
+#import ./../vendor/syscover/pulsar-admin/src/Syscover/Admin/GraphQL/inputs.graphql
+#import ./../vendor/syscover/pulsar-admin/src/Syscover/Admin/GraphQL/types.graphql
 
-# Admin queries
-#import ./../../vendor/syscover/pulsar-admin/src/Syscover/Admin/GraphQL/queries.graphql
+type Query {
+    # Core
+    #import ./../vendor/syscover/pulsar-core/src/Syscover/Core/GraphQL/queries.graphql
+    
+    # Admin queries
+    #import ./../vendor/syscover/pulsar-admin/src/Syscover/Admin/GraphQL/queries.graphql
+}
 
-# Admin mutations
-#import ./../../vendor/syscover/pulsar-admin/src/Syscover/Admin/GraphQL/mutations.graphql
+type Mutation {
+    # Core
+    #import ./../vendor/syscover/pulsar-core/src/Syscover/Core/GraphQL/mutations.graphql
+    
+    # Admin mutations
+    #import ./../vendor/syscover/pulsar-admin/src/Syscover/Admin/GraphQL/mutations.graphql
+}
 ```
 
 **11 - When the installation is complete you can access these data**
