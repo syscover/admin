@@ -104,14 +104,6 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['api', 'client']], function
 
     /*
     |----------------------------------
-    | CRON JOBS
-    |----------------------------------
-    */
-    Route::get('api/v1/admin/cron-job',                                     ['as' => 'adminCronJob',                        'uses' => 'Syscover\Admin\Controllers\CronJobController@index']);
-    Route::get('api/v1/admin/cron-job/{id}',                                ['as' => 'showAdminCronJob',                    'uses' => 'Syscover\Admin\Controllers\CronJobController@show']);
-
-    /*
-    |----------------------------------
     | FIELD
     |----------------------------------
     */
