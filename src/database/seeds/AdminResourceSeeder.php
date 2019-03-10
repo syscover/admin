@@ -3,13 +3,14 @@
 use Illuminate\Database\Seeder;
 use Syscover\Admin\Models\Resource;
 
-class AdminResourceTableSeeder extends Seeder {
+class AdminResourceSeeder extends Seeder {
 
     public function run()
     {
         Resource::insert([
             // App
             ['id' => 'app',                             'name' => 'Application',                            'package_id' => 1],
+            ['id' => 'dashboard',                       'name' => 'Dashboard',                              'package_id' => 1],
 
             // Admin package
             ['id' => 'admin',                           'name' => 'Administration Package',                 'package_id' => 20],

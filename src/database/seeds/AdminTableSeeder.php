@@ -9,16 +9,16 @@ class AdminTableSeeder extends Seeder
     {
         Model::unguard();
 
-        $this->call(AdminLangTableSeeder::class);
-        $this->call(AdminCountryTableSeeder::class);
-        $this->call(AdminTerritorialArea1TableSeeder::class);
-        $this->call(AdminTerritorialArea2TableSeeder::class);
-        $this->call(AdminActionTableSeeder::class);
-        $this->call(AdminPackageTableSeeder::class);
-        $this->call(AdminProfileTableSeeder::class);
-        $this->call(AdminResourceTableSeeder::class);
-        $this->call(AdminUserTableSeeder::class);
-        $this->call(AdminPermissionTableSeeder::class);
+        $this->call(AdminLangSeeder::class);
+        $this->call(AdminCountrySeeder::class);
+        $this->call(AdminTerritorialArea1Seeder::class);
+        $this->call(AdminTerritorialArea2Seeder::class);
+        $this->call(AdminActionSeeder::class);
+        $this->call(AdminPackageSeeder::class);
+        $this->call(AdminProfileSeeder::class);
+        $this->call(AdminResourceSeeder::class);
+        $this->call(AdminUserSeeder::class);
+        $this->call(AdminPermissionSeeder::class);
 
         Model::reguard();
     }

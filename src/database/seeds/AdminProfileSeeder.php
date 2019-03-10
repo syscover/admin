@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Syscover\Admin\Models\Profile;
 
-class AdminProfileTableSeeder extends Seeder
+class AdminProfileSeeder extends Seeder
 {
     public function run()
     {

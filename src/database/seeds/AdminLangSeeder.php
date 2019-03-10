@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Syscover\Admin\Models\Lang;
 
-class AdminLangTableSeeder extends Seeder
+class AdminLangSeeder extends Seeder
 {
     public function run()
     {

@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Syscover\Admin\Models\Action;
 
-class AdminActionTableSeeder extends Seeder
+class AdminActionSeeder extends Seeder
 {
     public function run()
     {

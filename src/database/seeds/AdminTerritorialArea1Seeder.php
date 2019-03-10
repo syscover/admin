@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Syscover\Admin\Models\TerritorialArea1;
 
-class AdminTerritorialArea1TableSeeder extends Seeder
+class AdminTerritorialArea1Seeder extends Seeder
 {
     public function run()
     {

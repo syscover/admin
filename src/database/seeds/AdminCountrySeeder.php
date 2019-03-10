@@ -2,7 +2,7 @@
 use Illuminate\Database\Seeder;
 use Syscover\Admin\Models\Country;
 
-class AdminCountryTableSeeder extends Seeder
+class AdminCountrySeeder extends Seeder
 {
     public function run()
     {
