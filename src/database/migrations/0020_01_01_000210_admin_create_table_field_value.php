@@ -19,6 +19,7 @@ class AdminCreateTableFieldValue extends Migration {
 
                 $table->increments('ix');
                 $table->string('id', 30);
+
                 // counter to assign number to id if has not ID
                 $table->integer('counter')->unsigned()->nullable();
 
