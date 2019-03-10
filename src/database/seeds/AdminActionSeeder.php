@@ -21,5 +21,5 @@ class AdminActionSeeder extends Seeder
 
 /*
  * Command to run:
- * php artisan db:seed --class="AdminActionTableSeeder"
+ * php artisan db:seed --class="AdminActionSeeder"
  */

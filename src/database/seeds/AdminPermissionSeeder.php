@@ -74,5 +74,5 @@ class AdminPermissionSeeder extends Seeder {
 
 /*
  * Command to run:
- * php artisan db:seed --class="AdminPermissionTableSeeder"
+ * php artisan db:seed --class="AdminPermissionSeeder"
  */

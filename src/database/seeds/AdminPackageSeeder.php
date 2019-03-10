@@ -17,5 +17,5 @@ class AdminPackageSeeder extends Seeder
 
 /*
  * Command to run:
- * php artisan db:seed --class="AdminPackageTableSeeder"
+ * php artisan db:seed --class="AdminPackageSeeder"
  */

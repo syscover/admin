@@ -20,12 +20,20 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['api']], function () {
     Route::get('admin/updates/execute',                             'Syscover\Admin\Controllers\UpdateController@execute')->name('api.admin_updates_execute');
 
     // Actions
-    Route::get('admin/action',                                       'Syscover\Admin\Controllers\ActionController@index')->name('api.admin_action');
-    Route::get('admin/action/{id}',                                  'Syscover\Admin\Controllers\ActionController@show')->name('api.admin_show_action');
-    Route::post('admin/action',                                      'Syscover\Admin\Controllers\ActionController@store')->name('api.admin_store_action');
-    Route::post('admin/action/search',                               'Syscover\Admin\Controllers\ActionController@search')->name('api.admin_search_action');
-    Route::put('admin/action/{id}',                                  'Syscover\Admin\Controllers\ActionController@update')->name('api.admin_update_action');
-    Route::delete('admin/action/{id}',                               'Syscover\Admin\Controllers\ActionController@destroy')->name('api.admin_destroy_action');
+    Route::get('admin/action',                                      'Syscover\Admin\Controllers\ActionController@index')->name('api.admin_action');
+    Route::get('admin/action/{id}',                                 'Syscover\Admin\Controllers\ActionController@show')->name('api.admin_show_action');
+    Route::post('admin/action',                                     'Syscover\Admin\Controllers\ActionController@store')->name('api.admin_store_action');
+    Route::post('admin/action/search',                              'Syscover\Admin\Controllers\ActionController@search')->name('api.admin_search_action');
+    Route::put('admin/action/{id}',                                 'Syscover\Admin\Controllers\ActionController@update')->name('api.admin_update_action');
+    Route::delete('admin/action/{id}',                              'Syscover\Admin\Controllers\ActionController@destroy')->name('api.admin_destroy_action');
+
+    // Packages
+    Route::get('admin/package',                                     'Syscover\Admin\Controllers\PackageController@index')->name('api.admin_package');
+    Route::get('admin/package/{id}',                                'Syscover\Admin\Controllers\PackageController@show')->name('api.admin_show_package');
+    Route::post('admin/package',                                    'Syscover\Admin\Controllers\PackageController@store')->name('api.admin_store_package');
+    Route::post('admin/package/search',                             'Syscover\Admin\Controllers\PackageController@search')->name('api.admin_search_package');
+    Route::put('admin/package/{id}',                                'Syscover\Admin\Controllers\PackageController@update')->name('api.admin_update_package');
+    Route::delete('admin/package/{id}',                             'Syscover\Admin\Controllers\PackageController@destroy')->name('api.admin_destroy_package');
 });
 
 
@@ -90,17 +98,7 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['api', 'client']], function
     Route::put('api/v1/admin/lang/{id}',                                    ['as' => 'updateAdminLang',                     'uses' => 'Syscover\Admin\Controllers\LangController@update']);
     Route::delete('api/v1/admin/lang/{id}',                                 ['as' => 'destroyAdminLang',                    'uses' => 'Syscover\Admin\Controllers\LangController@destroy']);
 
-    /*
-    |----------------------------------
-    | PACKAGES
-    |----------------------------------
-    */
-    Route::get('api/v1/admin/package',                                      ['as' => 'adminPackage',                        'uses' => 'Syscover\Admin\Controllers\PackageController@index']);
-    Route::get('api/v1/admin/package/{id}',                                 ['as' => 'showAdminPackage',                    'uses' => 'Syscover\Admin\Controllers\PackageController@show']);
-    Route::post('api/v1/admin/package',                                     ['as' => 'storeAdminPackage',                   'uses' => 'Syscover\Admin\Controllers\PackageController@store']);
-    Route::post('api/v1/admin/package/search',                              ['as' => 'searchAdminPackage',                  'uses' => 'Syscover\Admin\Controllers\PackageController@search']);
-    Route::put('api/v1/admin/package/{id}',                                 ['as' => 'updateAdminPackage',                  'uses' => 'Syscover\Admin\Controllers\PackageController@update']);
-    Route::delete('api/v1/admin/package/{id}',                              ['as' => 'destroyAdminPackage',                 'uses' => 'Syscover\Admin\Controllers\PackageController@destroy']);
+
 
     /*
     |----------------------------------

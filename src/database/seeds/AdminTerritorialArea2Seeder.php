@@ -1191,5 +1191,5 @@ class AdminTerritorialArea2Seeder extends Seeder
 
 /*
  * Command to run:
- * php artisan db:seed --class="AdminTerritorialArea2TableSeeder"
+ * php artisan db:seed --class="AdminTerritorialArea2Seeder"
  */

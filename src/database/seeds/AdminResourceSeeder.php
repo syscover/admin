@@ -54,5 +54,5 @@ class AdminResourceSeeder extends Seeder {
 
 /*
  * Command to run:
- * php artisan db:seed --class="AdminResourceTableSeeder"
+ * php artisan db:seed --class="AdminResourceSeeder"
  */

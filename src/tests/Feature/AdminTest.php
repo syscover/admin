@@ -14,8 +14,39 @@ class AdminTest extends TestCase
         $response
             ->assertStatus(200)
             ->assertJson([
-                'status' => 200,
-                'statusText' => 'success'
+                'status'        => 200,
+                'statusText'    => 'success'
+            ]);
+    }
+
+    // Packages
+    public function testGetPackages()
+    {
+        $response = $this->json('GET', route('api.admin_package'));
+
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'status'        => 200,
+                'statusText'    => 'success'
+            ]);
+    }
+
+    public function testStorePackages()
+    {
+        $response = $this->json('POST', route('api.admin_package'), [
+            'name'      => 'Unit Testing',
+            'root'      => 'test',
+            'version'   => '1.0.0',
+            'active'    => true,
+            'sort'      => 1
+        ]);
+
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'status'        => 200,
+                'statusText'    => 'success'
             ]);
     }
 }

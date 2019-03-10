@@ -18,5 +18,5 @@ class AdminLangSeeder extends Seeder
 
 /*
  * Command to run:
- * php artisan db:seed --class="AdminLangTableSeeder"
+ * php artisan db:seed --class="AdminLangSeeder"
  */

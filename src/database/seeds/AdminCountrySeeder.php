@@ -1021,5 +1021,5 @@ class AdminCountrySeeder extends Seeder
 
 /*
  * Command to run:
- * php artisan db:seed --class="PulsarCountryTableSeeder"
+ * php artisan db:seed --class="PulsarCountrySeeder"
  */

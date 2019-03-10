@@ -18,5 +18,5 @@ class AdminProfileSeeder extends Seeder
 
 /*
  * Command to run:
- * php artisan db:seed --class="AdminProfileTableSeeder"
+ * php artisan db:seed --class="AdminProfileSeeder"
  */

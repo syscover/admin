@@ -21,6 +21,7 @@ class PackageService extends Service
     public function update(array $data, int $id)
     {
         $this->validate($data, [
+            'id'        => 'numeric',
             'name'      => 'between:2,255',
             'root'      => 'between:2,255',
             'sort'      => 'numeric|min:0'
