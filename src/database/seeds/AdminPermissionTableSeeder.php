@@ -8,6 +8,8 @@ class AdminPermissionTableSeeder extends Seeder {
     public function run()
     {
         Permission::insert([
+
+            ['profile_id' => '1',   'resource_id' => 'app',                 'action_id' => 'access'],
             ['profile_id' => '1',   'resource_id' => 'admin',               'action_id' => 'access'],
             ['profile_id' => '1',   'resource_id' => 'admin-perm',          'action_id' => 'access'],
             ['profile_id' => '1',   'resource_id' => 'admin-perm-action',   'action_id' => 'access'],
@@ -16,6 +18,7 @@ class AdminPermissionTableSeeder extends Seeder {
             ['profile_id' => '1',   'resource_id' => 'admin-perm-resource', 'action_id' => 'access'],
             ['profile_id' => '1',   'resource_id' => 'admin-user',          'action_id' => 'access'],
 
+            ['profile_id' => '1',   'resource_id' => 'app',                 'action_id' => 'create'],
             ['profile_id' => '1',   'resource_id' => 'admin',               'action_id' => 'create'],
             ['profile_id' => '1',   'resource_id' => 'admin-perm',          'action_id' => 'create'],
             ['profile_id' => '1',   'resource_id' => 'admin-perm-action',   'action_id' => 'create'],
@@ -24,6 +27,7 @@ class AdminPermissionTableSeeder extends Seeder {
             ['profile_id' => '1',   'resource_id' => 'admin-perm-resource', 'action_id' => 'create'],
             ['profile_id' => '1',   'resource_id' => 'admin-user',          'action_id' => 'create'],
 
+            ['profile_id' => '1',   'resource_id' => 'app',                 'action_id' => 'delete'],
             ['profile_id' => '1',   'resource_id' => 'admin',               'action_id' => 'delete'],
             ['profile_id' => '1',   'resource_id' => 'admin-perm',          'action_id' => 'delete'],
             ['profile_id' => '1',   'resource_id' => 'admin-perm-action',   'action_id' => 'delete'],
@@ -32,6 +36,7 @@ class AdminPermissionTableSeeder extends Seeder {
             ['profile_id' => '1',   'resource_id' => 'admin-perm-resource', 'action_id' => 'delete'],
             ['profile_id' => '1',   'resource_id' => 'admin-user',          'action_id' => 'delete'],
 
+            ['profile_id' => '1',   'resource_id' => 'app',                 'action_id' => 'edit'],
             ['profile_id' => '1',   'resource_id' => 'admin',               'action_id' => 'edit'],
             ['profile_id' => '1',   'resource_id' => 'admin-perm',          'action_id' => 'edit'],
             ['profile_id' => '1',   'resource_id' => 'admin-perm-action',   'action_id' => 'edit'],
@@ -40,6 +45,7 @@ class AdminPermissionTableSeeder extends Seeder {
             ['profile_id' => '1',   'resource_id' => 'admin-perm-resource', 'action_id' => 'edit'],
             ['profile_id' => '1',   'resource_id' => 'admin-user',          'action_id' => 'edit'],
 
+            ['profile_id' => '1',   'resource_id' => 'app',                 'action_id' => 'list'],
             ['profile_id' => '1',   'resource_id' => 'admin',               'action_id' => 'list'],
             ['profile_id' => '1',   'resource_id' => 'admin-perm',          'action_id' => 'list'],
             ['profile_id' => '1',   'resource_id' => 'admin-perm-action',   'action_id' => 'list'],
@@ -48,6 +54,7 @@ class AdminPermissionTableSeeder extends Seeder {
             ['profile_id' => '1',   'resource_id' => 'admin-perm-resource', 'action_id' => 'list'],
             ['profile_id' => '1',   'resource_id' => 'admin-user',          'action_id' => 'list'],
 
+            ['profile_id' => '1',   'resource_id' => 'app',                 'action_id' => 'show'],
             ['profile_id' => '1',   'resource_id' => 'admin',               'action_id' => 'show'],
             ['profile_id' => '1',   'resource_id' => 'admin-perm',          'action_id' => 'show'],
             ['profile_id' => '1',   'resource_id' => 'admin-perm-action',   'action_id' => 'show'],
