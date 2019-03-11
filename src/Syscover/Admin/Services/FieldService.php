@@ -12,7 +12,7 @@ class FieldService
         {
             if(! empty($object['label'])) $object['labels'] = [['id' => $object['lang_id'], 'value' => $object['label']]];
 
-            $object['data_lang'] = Field::addDataLang($object['lang_id']);
+            $object['data_lang'] = Field::getDataLang($object['lang_id']);
 
             return Field::create(self::builder($object));
         }
