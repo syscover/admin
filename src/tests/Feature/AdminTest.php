@@ -1,13 +1,12 @@
-<?php
-
-namespace Tests\Feature;
+<?php namespace Tests\Feature;
 
 use Tests\TestCase;
+use Syscover\Admin\Models\Package;
 
 class AdminTest extends TestCase
 {
     // Actions
-    public function testGetActions()
+    public function testGetActions(): void
     {
         $response = $this->json('GET', route('api.admin_action'));
 
@@ -20,7 +19,7 @@ class AdminTest extends TestCase
     }
 
     // Packages
-    public function testGetPackages()
+    public function testGetPackages(): void
     {
         $response = $this->json('GET', route('api.admin_package'));
 
@@ -32,7 +31,7 @@ class AdminTest extends TestCase
             ]);
     }
 
-    public function testStorePackages()
+    public function testStorePackage(): void
     {
         $response = $this->json('POST', route('api.admin_package'), [
             'name'      => 'Unit Testing',
@@ -43,10 +42,16 @@ class AdminTest extends TestCase
         ]);
 
         $response
-            ->assertStatus(200)
+            ->assertStatus(201)
             ->assertJson([
-                'status'        => 200,
+                'status'        => 201,
                 'statusText'    => 'success'
             ]);
+    }
+
+    public function tearDown(): void
+    {
+        Package::where('name', 'Unit Testing')->delete();
+        parent::tearDown();
     }
 }
