@@ -1,52 +1,72 @@
 <?php namespace Syscover\Admin\Services;
 
+use Syscover\Core\Services\Service;
+use Syscover\Core\Exceptions\ModelNotChangeException;
 use Syscover\Admin\Models\Country;
 
-class CountryService
+class CountryService extends Service
 {
-    public static function create($object)
+    public function store(array $data)
     {
-        self::checkCreate($object);
+        $this->validate($data, [
+            'id'                => 'required|alpha|size:2',
+            'lang_id'           => 'required',
+            'name'              => 'required|between:2,100',
+            'slug'              => 'required|between:1,255',
+            'sort'              => 'nullable|min:0|numeric',
+            'prefix'            => 'between:1,5',
+            'territorialArea1'  => 'between:0,50',
+            'territorialArea2'  => 'between:0,50',
+            'territorialArea3'  => 'between:0,50',
+            'latitude'          => 'numeric',
+            'longitude'         => 'numeric',
+            'zoom'              => 'integer',
+            'zones'             => 'array'
+        ]);
 
-        $object['data_lang'] = Country::addDataLang($object['lang_id'], $object['id']);
+        $object['data_lang'] = Country::getDataLang($data['lang_id'], $data['id']);
 
-        return Country::create(self::builder($object));
+        return Country::create($data);
     }
 
-    public static function update($object)
+    public function update(array $data, int $id)
     {
-        self::checkUpdate($object);
+        $this->validate($data, [
+            'ix'                => 'required|integer',
+            'id'                => 'required|alpha|size:2',
+            'lang_id'           => 'required',
+            'name'              => 'required|between:2,100',
+            'slug'              => 'required|between:1,255',
+            'sort'              => 'nullable|min:0|numeric',
+            'prefix'            => 'between:1,5',
+            'territorialArea1'  => 'between:0,50',
+            'territorialArea2'  => 'between:0,50',
+            'territorialArea3'  => 'between:0,50',
+            'latitude'          => 'numeric',
+            'longitude'         => 'numeric',
+            'zoom'              => 'integer',
+            'zones'             => 'array'
+        ]);
 
-        if(empty($object['zones']) && is_array($object['zones'])) $object['zones'] = null;
-        if(! empty($object['zones']) && is_array($object['zones']) && count($object['zones']) > 0) $object['zones'] = json_encode($object['zones']);
+        $object = Country::findOrFail($id);
 
-        Country::where('id', $object['id'])->update(self::builder($object, ['id', 'sort', 'prefix', 'zones']));
-        Country::where('ix', $object['ix'])->update(self::builder($object, ['name', 'territorial_area_1', 'territorial_area_2', 'territorial_area_3']));
+        $object->fill($data);
 
-        return Country::find($object['ix']);
-    }
+        // check is model has changed
+        if ($object->isClean()) throw new ModelNotChangeException('At least one value must change');
 
-    private static function builder($object, $filterKeys = null)
-    {
-        $object = collect($object);
-        if($filterKeys) return $object->only($filterKeys)->toArray();
+        // save changes
+        $object->save();
 
-        return $object->only(['id', 'lang_id', 'name', 'slug', 'sort', 'prefix', 'territorial_area_1', 'territorial_area_2', 'territorial_area_3', 'zones', 'data_lang'])->toArray();
-    }
+        // save changes in all object, with the same id
+        // this method is exclusive form elements multi language
+        $commonData = $object->only('id', 'sort', 'prefix', 'zones');
 
-    private static function checkCreate($object)
-    {
-        if(empty($object['id']))        throw new \Exception('You have to define a id field to create a country');
-        if(empty($object['lang_id']))   throw new \Exception('You have to define a lang_id field to create a country');
-        if(empty($object['name']))      throw new \Exception('You have to define a name field to create a country');
-        if(empty($object['slug']))      throw new \Exception('You have to define a slug field to create a country');
-        if(! empty($object['zones']) && ! is_array($object['zones'])) throw new \Exception('Zones field has to be a array to create a country');
-    }
+        // save zones, an parse array object by json_encode function
+        $commonData['zones'] = ! empty($commonData['zones']) && is_array($commonData['zones']) && count($commonData['zones']) > 0 ? json_encode($commonData['zones']) : null;
 
-    private static function checkUpdate($object)
-    {
-        if(empty($object['ix'])) throw new \Exception('You have to define a ix field to update a country');
-        if(empty($object['id'])) throw new \Exception('You have to define a id field to update a country');
-        if(! empty($object['zones']) && ! is_array($object['zones'])) throw new \Exception('Zones field has to be a array to update a country');
+        Country::where('id', $object->id)->update($commonData);
+
+        return $object;
     }
 }

@@ -1,7 +1,6 @@
 <?php namespace Syscover\Admin\Models;
 
 use Syscover\Core\Models\CoreModel;
-use Illuminate\Support\Facades\Validator;
 use Syscover\Admin\Traits\Translatable;
 
 /**
@@ -26,23 +25,6 @@ class Country extends CoreModel
         'territorial_areas_2',
         'territorial_areas_3'
     ];
-
-    private static $rules   = [
-        'id'                => 'required|alpha|size:2|unique:001_country,id',
-        'name'              => 'required|between:2,100',
-        'sort'              => 'min:0|numeric',
-        'prefix'            => 'between:1,5',
-        'territorialArea1'  => 'between:0,50',
-        'territorialArea2'  => 'between:0,50',
-        'territorialArea3'  => 'between:0,50'
-    ];
-
-    public static function validate($data, $specialRules = [])
-    {
-        if(isset($specialRules['idRule']) && $specialRules['idRule'])   static::$rules['id'] = 'required|alpha|size:2';
-
-        return Validator::make($data, static::$rules);
-    }
 
     public function territorial_areas_1()
     {
