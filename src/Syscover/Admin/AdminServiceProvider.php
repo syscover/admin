@@ -22,11 +22,6 @@ class AdminServiceProvider extends ServiceProvider
         // register migrations
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
 
-        // register tests
-        $this->publishes([
-            __DIR__ . '/../../tests/Feature' => base_path('/tests/Feature')
-        ], 'tests');
-
         // register seeds
         $this->publishes([
             __DIR__ . '/../../database/seeds/' => base_path('/database/seeds')
@@ -36,6 +31,11 @@ class AdminServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../config/pulsar-admin.php' => config_path('pulsar-admin.php')
         ], 'config');
+
+        // register tests
+        $this->publishes([
+            __DIR__ . '/../../tests/Feature' => base_path('/tests/Feature')
+        ], 'tests');
 
         // call code after boot application
         $this->app->booted(function () {

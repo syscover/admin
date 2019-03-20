@@ -29,7 +29,7 @@ class CountryService extends Service
         return Country::create($data);
     }
 
-    public function update(array $data, int $id)
+    public function update(array $data, int $ix)
     {
         $this->validate($data, [
             'ix'                => 'required|integer',
@@ -48,7 +48,8 @@ class CountryService extends Service
             'zones'             => 'array'
         ]);
 
-        $object = Country::findOrFail($id);
+        $object = Country::findOrFail($ix);
+        $oldId  = $object->id; // retrieve the id for common update
 
         $object->fill($data);
 
@@ -65,7 +66,7 @@ class CountryService extends Service
         // save zones, an parse array object by json_encode function
         $commonData['zones'] = ! empty($commonData['zones']) && is_array($commonData['zones']) && count($commonData['zones']) > 0 ? json_encode($commonData['zones']) : null;
 
-        Country::where('id', $object->id)->update($commonData);
+        Country::where('id', $oldId)->update($commonData);
 
         return $object;
     }
