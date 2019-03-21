@@ -63,24 +63,31 @@ class AdminUpdateV13 extends Migration
             });
         }
 
-        if (Schema::hasColumn('admin_country', 'latitude'))
+        if (! Schema::hasColumn('admin_country', 'latitude'))
         {
             Schema::table('admin_country', function (Blueprint $table) {
                 $table->decimal('latitude', 17, 14)->nullable()->after('territorial_area_3');
             });
         }
 
-        if (Schema::hasColumn('admin_country', 'longitude'))
+        if (! Schema::hasColumn('admin_country', 'longitude'))
         {
             Schema::table('admin_country', function (Blueprint $table) {
                 $table->decimal('longitude', 17, 14)->nullable()->after('latitude');
             });
         }
 
-        if (Schema::hasColumn('admin_country', 'zoom'))
+        if (! Schema::hasColumn('admin_country', 'zoom'))
         {
             Schema::table('admin_country', function (Blueprint $table) {
                 $table->tinyInteger('zoom')->nullable()->after('longitude');
+            });
+        }
+
+        if (! Schema::hasColumn('admin_attachment_family', 'fit_type'))
+        {
+            Schema::table('admin_attachment_family', function (Blueprint $table) {
+                $table->tinyInteger('fit_type')->unsigned()->default(1)->after('height');
             });
         }
 	}

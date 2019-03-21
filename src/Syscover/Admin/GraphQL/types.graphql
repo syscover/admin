@@ -36,6 +36,7 @@ type AdminAttachmentFamily {
     name: String
     width: Int
     height: Int
+    fit_type: Int!
     sizes: [String]
     quality: Int
     format: String
