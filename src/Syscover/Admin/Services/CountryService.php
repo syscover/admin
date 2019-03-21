@@ -45,7 +45,7 @@ class CountryService extends Service
             'latitude'          => 'numeric',
             'longitude'         => 'numeric',
             'zoom'              => 'integer',
-            'zones'             => 'array'
+            'zones'             => 'nullable|array'
         ]);
 
         $object = Country::findOrFail($ix);
@@ -61,7 +61,7 @@ class CountryService extends Service
 
         // save changes in all object, with the same id
         // this method is exclusive form elements multi language
-        $commonData = $object->only('id', 'sort', 'prefix', 'zones');
+        $commonData = $object->only('id', 'sort', 'prefix', 'zones', 'latitude', 'longitude', 'zoom');
 
         // save zones, an parse array object by json_encode function
         $commonData['zones'] = ! empty($commonData['zones']) && is_array($commonData['zones']) && count($commonData['zones']) > 0 ? json_encode($commonData['zones']) : null;

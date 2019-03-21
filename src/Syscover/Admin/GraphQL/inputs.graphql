@@ -72,6 +72,9 @@ input AdminCountryInput {
     territorial_area_2: String
     territorial_area_3: String
     zones: [String]
+    latitude: Float
+    longitude: Float
+    zoom: Int
     data_lang: [String]
 }
 

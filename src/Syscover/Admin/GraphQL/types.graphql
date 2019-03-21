@@ -77,6 +77,9 @@ type AdminCountry {
     territorial_areas_2: [AdminTerritorialArea2]
     territorial_areas_3: [AdminTerritorialArea3]
     zones: [String]
+    latitude: Float
+    longitude: Float
+    zoom: Int
     data_lang: [String]
 }
 
