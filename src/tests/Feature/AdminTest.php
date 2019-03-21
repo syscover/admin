@@ -18,6 +18,19 @@ class AdminTest extends TestCase
             ]);
     }
 
+    // Attachments families
+    public function testGetAttachmentsFamilies(): void
+    {
+        $response = $this->json('GET', route('api.admin_attachment_family'));
+
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'status'        => 200,
+                'statusText'    => 'success'
+            ]);
+    }
+
     // Packages
     public function testGetPackages(): void
     {

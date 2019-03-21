@@ -1,7 +1,7 @@
 <?php namespace Syscover\Admin\Services;
 
-use Syscover\Core\Exceptions\ModelNotChangeException;
 use Syscover\Core\Services\Service;
+use Syscover\Core\Exceptions\ModelNotChangeException;
 use Syscover\Admin\Models\Action;
 
 class ActionService extends Service

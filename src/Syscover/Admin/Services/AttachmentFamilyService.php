@@ -1,41 +1,51 @@
 <?php namespace Syscover\Admin\Services;
 
+use Syscover\Core\Services\Service;
+use Syscover\Core\Exceptions\ModelNotChangeException;
 use Syscover\Admin\Models\AttachmentFamily;
 
-class AttachmentFamilyService
+class AttachmentFamilyService extends Service
 {
-    public static function create($object)
+    public function store(array $data)
     {
-        self::checkCreate($object);
-        return AttachmentFamily::create(self::builder($object));
+        $this->validate($data, [
+            'resource_id'   => 'required|exists:admin_resource,id',
+            'name'          => 'required|between:2,255',
+            'width'         => 'nullable|integer',
+            'height'        => 'nullable|integer',
+            'fit_type'      => 'nullable|integer|in:1,2,3,4,5',
+            'sizes'         => 'nullable|array',
+            'quality'       => 'nullable|integer|between:1,100',
+            'format'        => 'nullable|in:jpg,png,gif,tif,bmp,data-url'
+        ]);
+
+        return AttachmentFamily::create($data);
     }
 
-    public static function update($object)
+    public function update(array $data, int $id)
     {
-        self::checkUpdate($object);
+        $this->validate($data, [
+            'id'            => 'integer',
+            'resource_id'   => 'required|exists:admin_resource,id',
+            'name'          => 'required|between:2,255',
+            'width'         => 'nullable|integer',
+            'height'        => 'nullable|integer',
+            'fit_type'      => 'nullable|integer|in:1,2,3,4,5',
+            'sizes'         => 'nullable|array',
+            'quality'       => 'nullable|integer|between:1,100',
+            'format'        => 'nullable|in:jpg,png,gif,tif,bmp,data-url'
+        ]);
 
-        if(empty($object['sizes']) && is_array($object['sizes'])) $object['sizes'] = null;
-        if(! empty($object['sizes']) && is_array($object['sizes']) && count($object['sizes']) > 0) $object['sizes'] = json_encode($object['sizes']);
+        $object = AttachmentFamily::findOrFail($id);
 
-        AttachmentFamily::where('id', $object['id'])->update(self::builder($object));
+        $object->fill($data);
 
-        return AttachmentFamily::find($object['id']);
-    }
+        // check is model
+        if ($object->isClean()) throw new ModelNotChangeException('At least one value must change');
 
-    private static function builder($object)
-    {
-        $object = collect($object);
-        return $object->only(['resource_id', 'name', 'width', 'height', 'sizes', 'quality', 'format'])->toArray();
-    }
+        // save changes
+        $object->save();
 
-    private static function checkCreate($object)
-    {
-        if(empty($object['resource_id']))   throw new \Exception('You have to define a resource_id field to create a attachment family');
-        if(empty($object['name']))          throw new \Exception('You have to define a name field to create a attachment family');
-    }
-
-    private static function checkUpdate($object)
-    {
-        if(empty($object['id']))      throw new \Exception('You have to define a id field to update a attachment family');
+        return $object;
     }
 }

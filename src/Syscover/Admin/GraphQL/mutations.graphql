@@ -8,7 +8,7 @@ adminCropAttachment(payload:Object!): Object @field(resolver: "Syscover\\Admin\\
 adminDeleteAttachment(attachment:AdminAttachmentInput!): Object @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\AttachmentGraphQLService@delete")
 
 # AttachmentFamily
-adminCreateAttachmentFamily(payload:AdminAttachmentFamilyInput!): AdminAttachmentFamily @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\AttachmentFamilyGraphQLService@create")
+adminCreateAttachmentFamily(payload:AdminAttachmentFamilyInput!): AdminAttachmentFamily @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\AttachmentFamilyGraphQLService@store")
 adminUpdateAttachmentFamily(payload:AdminAttachmentFamilyInput!): AdminAttachmentFamily @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\AttachmentFamilyGraphQLService@update")
 adminDeleteAttachmentFamily(id:Int!): AdminAttachmentFamily @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\AttachmentFamilyGraphQLService@delete")
 

@@ -27,6 +27,14 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['api']], function () {
     Route::put('admin/action/{id}',                                 'Syscover\Admin\Controllers\ActionController@update')->name('api.admin_update_action');
     Route::delete('admin/action/{id}',                              'Syscover\Admin\Controllers\ActionController@destroy')->name('api.admin_destroy_action');
 
+    // attachments families
+    Route::get('attachment-family/action',                          'Syscover\Admin\Controllers\ActionController@index')->name('api.admin_attachment_family');
+    Route::get('attachment-family/action/{id}',                     'Syscover\Admin\Controllers\ActionController@show')->name('api.admin_show_attachment_family');
+    Route::post('attachment-family/action',                         'Syscover\Admin\Controllers\ActionController@store')->name('api.admin_store_attachment_family');
+    Route::post('attachment-family/action/search',                  'Syscover\Admin\Controllers\ActionController@search')->name('api.admin_search_attachment_family');
+    Route::put('attachment-family/action/{id}',                     'Syscover\Admin\Controllers\ActionController@update')->name('api.admin_update_attachment_family');
+    Route::delete('attachment-family/action/{id}',                  'Syscover\Admin\Controllers\ActionController@destroy')->name('api.admin_destroy_attachment_family');
+
     // Packages
     Route::get('admin/package',                                     'Syscover\Admin\Controllers\PackageController@index')->name('api.admin_package');
     Route::get('admin/package/{id}',                                'Syscover\Admin\Controllers\PackageController@show')->name('api.admin_show_package');
@@ -160,17 +168,6 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['api', 'client']], function
     Route::put('api/v1/admin/resource/{id}',                                ['as' => 'updateAdminResource',                 'uses' => 'Syscover\Admin\Controllers\ResourceController@update']);
     Route::delete('api/v1/admin/resource/{id}',                             ['as' => 'destroyAdminResource',                'uses' => 'Syscover\Admin\Controllers\ResourceController@destroy']);
 
-    /*
-    |----------------------------------
-    | ACTIONS
-    |----------------------------------
-    */
-    Route::get('api/v1/admin/action',                                       ['as' => 'adminAction',                         'uses' => 'Syscover\Admin\Controllers\ActionController@index']);
-    Route::get('api/v1/admin/action/{id}',                                  ['as' => 'showAdminAction',                     'uses' => 'Syscover\Admin\Controllers\ActionController@show']);
-    Route::post('api/v1/admin/action',                                      ['as' => 'storeAdminAction',                    'uses' => 'Syscover\Admin\Controllers\ActionController@store']);
-    Route::post('api/v1/admin/action/search',                               ['as' => 'searchAdminAction',                   'uses' => 'Syscover\Admin\Controllers\ActionController@search']);
-    Route::put('api/v1/admin/action/{id}',                                  ['as' => 'updateAdminAction',                   'uses' => 'Syscover\Admin\Controllers\ActionController@update']);
-    Route::delete('api/v1/admin/action/{id}',                               ['as' => 'destroyAdminAction',                  'uses' => 'Syscover\Admin\Controllers\ActionController@destroy']);
 
     /*
     |----------------------------------
@@ -183,16 +180,4 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['api', 'client']], function
     Route::post('api/v1/admin/attachment-mime/search',                      ['as' => 'searchAdminAttachmentMime',           'uses' => 'Syscover\Admin\Controllers\AttachmentMimeController@search']);
     Route::put('api/v1/admin/attachment-mime/{id}',                         ['as' => 'updateAdminAttachmentMime',           'uses' => 'Syscover\Admin\Controllers\AttachmentMimeController@update']);
     Route::delete('api/v1/admin/attachment-mime/{id}',                      ['as' => 'destroyAdminAttachmentMime',          'uses' => 'Syscover\Admin\Controllers\AttachmentMimeController@destroy']);
-
-    /*
-    |----------------------------------
-    | ATTACHMENT FAMILIES
-    |----------------------------------
-    */
-    Route::get('api/v1/admin/attachment-family',                            ['as' => 'adminAttachmentFamily',               'uses' => 'Syscover\Admin\Controllers\AttachmentFamilyController@index']);
-    Route::get('api/v1/admin/attachment-family/{id}',                       ['as' => 'showAdminAttachmentFamily',           'uses' => 'Syscover\Admin\Controllers\AttachmentFamilyController@show']);
-    Route::post('api/v1/admin/attachment-family',                           ['as' => 'storeAdminAttachmentFamily',          'uses' => 'Syscover\Admin\Controllers\AttachmentFamilyController@store']);
-    Route::post('api/v1/admin/attachment-family/search',                    ['as' => 'searchAdminAttachmentFamily',         'uses' => 'Syscover\Admin\Controllers\AttachmentFamilyController@search']);
-    Route::put('api/v1/admin/attachment-family/{id}',                       ['as' => 'updateAdminAttachmentFamily',         'uses' => 'Syscover\Admin\Controllers\AttachmentFamilyController@update']);
-    Route::delete('api/v1/admin/attachment-family/{id}',                    ['as' => 'destroyAdminAttachmentFamily',        'uses' => 'Syscover\Admin\Controllers\AttachmentFamilyController@destroy']);
 });

@@ -87,8 +87,14 @@ class AdminUpdateV13 extends Migration
         if (! Schema::hasColumn('admin_attachment_family', 'fit_type'))
         {
             Schema::table('admin_attachment_family', function (Blueprint $table) {
-                $table->tinyInteger('fit_type')->unsigned()->default(1)->after('height');
+                $table->tinyInteger('fit_type')->unsigned()->nullable()->after('height');
+                $table->smallInteger('quality')->unsigned()->nullable()->default(null)->change();
             });
+
+            // set all attachment family to crop if has width
+            \Syscover\Admin\Models\AttachmentFamily::whereNotNull('width')->update([
+                'fit_type' => 1
+            ]);
         }
 	}
 
