@@ -73,7 +73,7 @@ class AttachmentController extends BaseController
         $image->resize($attachmentFamily->width, $attachmentFamily->height);
         $image->save(
             $parameters['attachment']['base_path'] . '/' . $parameters['attachment']['file_name'],
-            ! empty($parameters['attachment_family']['quality'])? 90 : $parameters['attachment_family']['quality'] // set quality image
+            ! empty($parameters['attachment_family']['quality']) ? 90 : $parameters['attachment_family']['quality'] // set quality image
         );
 
         // get new properties from image cropped

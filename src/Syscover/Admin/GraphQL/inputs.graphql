@@ -5,6 +5,8 @@ input AdminActionInput {
 }
 
 input AdminAttachmentInput {
+    ix: Int
+    id: Int
     alt: String
     attachment_library: AdminAttachmentLibraryInput
     base_path: String
@@ -13,8 +15,6 @@ input AdminAttachmentInput {
     family_id: Int
     file_name: String
     height: Int
-    id: Int
-    ix: Int
     lang_id: String
     library_file_name: String
     library_id: Int

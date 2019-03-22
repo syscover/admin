@@ -6,7 +6,7 @@ type AdminAction {
 
 type AdminAttachment {
     ix: Int!
-    id: String!
+    id: Int!
     lang_id: String!
     object_id: Int!
     object_type: String!

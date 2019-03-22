@@ -14,6 +14,12 @@ use Syscover\Admin\Models\AttachmentLibrary;
  */
 class AttachmentService
 {
+    const CROP_FIT = 1;
+    const WIDTH_FIT = 2;
+    const HEIGHT_FIT = 3;
+    const WIDTH_FREE_CROP_FIT = 4;
+    const HEIGHT_FREE_CROP_FIT = 5;
+
     /**
      * Function to store attachments library elements
      * @param $attachments array
@@ -121,6 +127,10 @@ class AttachmentService
                     'data'                  => $attachment['data']
                 ]);
 
+
+                // set fit attachment
+                self::setAttachmentFit($attachmentObject);
+
                 // create sizes from image
                 self::setAttachmentSizes($attachmentObject, $urlBase, $objectId);
             }
@@ -157,6 +167,9 @@ class AttachmentService
 
                     if($attachmentOld->family_id !== $attachmentObject->family_id)
                     {
+                        // set fit attachment
+                        self::setAttachmentFit($attachmentObject);
+
                         // create sizes from image
                         self::setAttachmentSizes($attachmentObject, $urlBase, $objectId);
                     }
@@ -191,10 +204,52 @@ class AttachmentService
                         'data'                  => $attachment['data']
                     ]);
 
+                    // set fit attachment
+                    self::setAttachmentFit($attachmentObject);
+
                     // create sizes from image
                     self::setAttachmentSizes($attachmentObject, $urlBase, $objectId);
                 }
             }
+        }
+    }
+
+    private static function setAttachmentFit($attachment)
+    {
+        if(
+            ! empty($attachment->family_id) &&
+            $attachment->family->fit_type === self::WIDTH_FIT ||
+            $attachment->family->fit_type === self::HEIGHT_FIT
+        )
+        {
+            /**
+             * config http://image.intervention.io with imagemagick
+             */
+            Image::configure(['driver' => 'imagick']);
+            $image = Image::make(base_path('storage/app/public/library') . '/' . $attachment->library_file_name);
+
+            $proportion = $attachment->width / $attachment->height;
+
+            if ($attachment->family->fit_type === self::WIDTH_FIT && $attachment->family->width > 0)
+            {
+                $attachment->width = $attachment->family->width;
+                $attachment->height = $attachment->family->width / $proportion;
+
+                $image->resize($attachment->width, $attachment->height);
+            }
+            elseif ($attachment->family->fit_type === self::HEIGHT_FIT && $attachment->family->height > 0)
+            {
+                $attachment->height = $attachment->family->height;
+                $attachment->width = $attachment->family->height * $proportion;
+
+                $image->resize($attachment->width, $attachment->height);
+            }
+
+            // save image
+            $image->save($attachment->base_path . '/' . $attachment->file_name);
+
+            // save attachment in database
+            $attachment->save();
         }
     }
 
@@ -450,7 +505,6 @@ class AttachmentService
      * @param   integer     $objectId
      * @param   string      $objectType
      * @param   string      $lang
-     * @return  boolean     $response
      */
     public static function deleteAttachments($objectId, $objectType, $lang = null)
     {
