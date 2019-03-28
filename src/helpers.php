@@ -115,7 +115,7 @@ if (! function_exists('get_size_src'))
      * @param   int $height
      * @return  null|string
      */
-    function get_size_src($attachment, int $width, int $height = 0)
+    function get_size_src($attachment, int $width = null, int $height = null)
     {
         if(! is_object($attachment))
             $attachment = (object)$attachment;
@@ -123,12 +123,37 @@ if (! function_exists('get_size_src'))
         if(! isset($attachment->data['sizes']) || (isset($attachment->data['sizes']) && ! is_array($attachment->data['sizes'])))
             return null;
 
-        $sizes = collect($attachment->data['sizes'])->sortBy('width');
-
-        foreach ($sizes as $size)
+        if($width !== null && $height !== null)
         {
-            if($size['width'] >= $width && $size['height'] >= $height) {
-                return $size['url'];
+            $sizes = collect($attachment->data['sizes'])->sortBy('width');
+
+            foreach ($sizes as $size)
+            {
+                if($size['width'] >= $width && $size['height'] >= $height) {
+                    return $size['url'];
+                }
+            }
+        }
+        elseif($width !== null)
+        {
+            $sizes = collect($attachment->data['sizes'])->sortBy('width');
+
+            foreach ($sizes as $size)
+            {
+                if($size['width'] >= $width) {
+                    return $size['url'];
+                }
+            }
+        }
+        elseif($height !== null)
+        {
+            $sizes = collect($attachment->data['sizes'])->sortBy('height');
+
+            foreach ($sizes as $size)
+            {
+                if($size['height'] >= $height) {
+                    return $size['url'];
+                }
             }
         }
 
