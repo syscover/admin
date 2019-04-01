@@ -25,6 +25,7 @@ input AdminAttachmentInput {
     sort: Int
     title: String
     uploaded: Boolean
+    changed_image: Boolean
     url: String
     width: Int
 }

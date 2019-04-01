@@ -165,7 +165,7 @@ class AttachmentService
                         ->where('lang_id', $attachment['lang_id'])
                         ->first();
 
-                    if($attachmentOld->family_id !== $attachmentObject->family_id)
+                    if($attachment['changed_image'])
                     {
                         // set fit attachment
                         self::setAttachmentFit($attachmentObject);

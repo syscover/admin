@@ -44,7 +44,6 @@ class AttachmentGraphQLService extends CoreGraphQLService
             $args['payload']['attachment']['mime']   = mimetype_from_extension($args['payload']['attachment']['extension']);
         }
 
-
         // crop
         $image->crop($args['payload']['crop']['width'], $args['payload']['crop']['height'], $args['payload']['crop']['x'], $args['payload']['crop']['y']);
 
