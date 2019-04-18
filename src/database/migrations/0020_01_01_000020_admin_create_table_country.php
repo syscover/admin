@@ -19,7 +19,7 @@ class AdminCreateTableCountry extends Migration
 
                 $table->increments('ix');
                 $table->string('id', 2);
-                $table->string('lang_id', 2);
+                $table->integer('lang_id')->unsigned();
                 $table->string('name');
                 $table->string('slug');
                 $table->smallInteger('sort')->unsigned()->nullable();
@@ -35,15 +35,15 @@ class AdminCreateTableCountry extends Migration
 
                 $table->timestamps();
                 $table->softDeletes();
-                
-                $table->foreign('lang_id', 'fk01_admin_country')
+
+                $table->index(['id', 'lang_id'], 'admin_country_id_lang_id_idx');
+                $table->index('slug', 'admin_country_slug_idx');
+
+                $table->foreign('lang_id', 'admin_country_lang_id_fk')
                     ->references('id')
                     ->on('admin_lang')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
-
-                $table->index(['id', 'lang_id'], 'ix01_admin_country');
-                $table->index('slug', 'ix02_admin_country');
             });
         }
 	}

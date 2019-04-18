@@ -20,7 +20,7 @@ class AdminCreateTableUser extends Migration
                 $table->increments('id');
                 $table->string('name');
                 $table->string('surname')->nullable();
-                $table->string('lang_id', 2);
+                $table->integer('lang_id')->unsigned();
                 $table->string('email');
                 $table->integer('profile_id')->unsigned();
                 $table->boolean('active')->default(false);
@@ -31,9 +31,9 @@ class AdminCreateTableUser extends Migration
                 $table->timestamps();
                 $table->softDeletes();
 
-                $table->unique('user', 'ui01_admin_user');
+                $table->unique('user', 'admin_user_user_uq');
 
-                $table->foreign('lang_id', 'fk01_admin_user')
+                $table->foreign('lang_id', 'admin_user_lang_id_fk')
                     ->references('id')
                     ->on('admin_lang')
                     ->onDelete('restrict')

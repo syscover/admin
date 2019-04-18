@@ -22,7 +22,6 @@ class AdminCreateTableFieldValue extends Migration {
 
                 // counter to assign number to id if has not ID
                 $table->integer('counter')->unsigned()->nullable();
-
                 $table->integer('lang_id')->unsigned();
                 $table->integer('field_id')->unsigned();
                 $table->string('name');
@@ -33,20 +32,20 @@ class AdminCreateTableFieldValue extends Migration {
 
                 $table->timestamps();
                 $table->softDeletes();
-                
-                $table->foreign('lang_id', 'fk01_admin_field_value')
+
+                $table->unique(['id', 'lang_id', 'field_id'], 'admin_field_value_id_lang_id_field_id_uq');
+                $table->index('id', 'admin_field_value_id_idx');
+
+                $table->foreign('lang_id', 'admin_field_value_lang_id_fk')
                     ->references('id')
                     ->on('admin_lang')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
-                $table->foreign('field_id', 'fk02_admin_field_value')
+                $table->foreign('field_id', 'admin_field_value_field_id_fk')
                     ->references('id')
                     ->on('admin_field')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
-
-                $table->unique(['id', 'lang_id', 'field_id'], 'ui01_admin_field_value');
-                $table->index('id', 'ix01_admin_field_value');
             });
         }
     }

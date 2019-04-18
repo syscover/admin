@@ -19,7 +19,7 @@ class AdminCreateTableAttachment extends Migration {
 
                 $table->increments('ix');
                 $table->integer('id')->unsigned();
-                $table->string('lang_id', 2);
+                $table->integer('lang_id')->unsigned();
                 $table->string('object_type');
                 $table->integer('object_id')->unsigned()->nullable();
                 $table->integer('family_id')->unsigned()->nullable();
@@ -41,24 +41,24 @@ class AdminCreateTableAttachment extends Migration {
                 $table->timestamps();
                 $table->softDeletes();
                 
-                $table->foreign('lang_id', 'fk01_admin_attachment')
+                $table->foreign('lang_id', 'admin_attachment_lang_id_fk')
                     ->references('id')
                     ->on('admin_lang')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
-                $table->foreign('family_id', 'fk02_admin_attachment')
+                $table->foreign('family_id', 'admin_attachment_family_id_fk')
                     ->references('id')
                     ->on('admin_attachment_family')
                     ->onDelete('restrict')
                     ->onUpdate('cascade');
-                $table->foreign('library_id', 'fk03_admin_attachment')
+                $table->foreign('library_id', 'admin_attachment_library_id_fk')
                     ->references('id')
                     ->on('admin_attachment_library')
                     ->onDelete('set null')
                     ->onUpdate('cascade');
 
-                $table->index(['id', 'lang_id'], 'ix01_admin_attachment');
-                $table->index(['object_type', 'object_id'], 'ix02_admin_attachment');
+                $table->index(['id', 'lang_id'], 'admin_attachment_id_lang_id_idx');
+                $table->index(['object_type', 'object_id'], 'admin_attachment_object_type_object_id_idx');
             });
         }
     }
