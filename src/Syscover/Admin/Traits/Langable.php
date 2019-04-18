@@ -2,7 +2,7 @@
 
 use Syscover\Admin\Models\Lang;
 
-trait Translatable
+trait Langable
 {
     public function lang()
     {

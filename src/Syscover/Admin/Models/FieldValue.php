@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\DB;
 use Syscover\Core\Models\CoreModel;
 use Illuminate\Support\Facades\Validator;
-use Syscover\Admin\Traits\Translatable;
+use Syscover\Admin\Traits\Langable;
 
 /**
  * Class FieldValue
@@ -12,7 +12,7 @@ use Syscover\Admin\Traits\Translatable;
 
 class FieldValue extends CoreModel
 {
-    use Translatable;
+    use Langable;
 
 	protected $table        = 'admin_field_value';
     protected $primaryKey   = 'ix';
