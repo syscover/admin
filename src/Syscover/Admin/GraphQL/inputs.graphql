@@ -15,7 +15,7 @@ input AdminAttachmentInput {
     family_id: Int
     file_name: String
     height: Int
-    lang_id: String
+    lang_id: Int
     library_file_name: String
     library_id: Int
     mime: String
@@ -65,7 +65,7 @@ input AdminAttachmentMimeInput {
 input AdminCountryInput {
     ix: Int
     id: String!
-    lang_id: String!
+    lang_id: Int!
     name: String!
     slug: String
     sort: Int
@@ -98,7 +98,7 @@ input AdminFieldInput {
     id: Int
     label: String
     label_class: String
-    lang_id: String
+    lang_id: Int
     max_length: Int
     name: String
     required: Boolean
@@ -115,7 +115,7 @@ input AdminFieldGroupInput {
 input AdminFieldValueInput {
     ix: Int
     id: String
-    lang_id: String
+    lang_id: Int
     field_id: Int
     counter: Int
     sort: Int
@@ -125,8 +125,8 @@ input AdminFieldValueInput {
 }
 
 input AdminLangInput {
-    ix: Int
-    id: String!
+    id: Int
+    code: String!
     name: String!
     icon: String
     sort: Int
@@ -213,7 +213,7 @@ input AdminReportInput {
 
 input AdminUserInput {
     id: Int
-    lang_id: String!
+    lang_id: Int!
     profile_id: Int!
     active: Boolean!
     user: String!

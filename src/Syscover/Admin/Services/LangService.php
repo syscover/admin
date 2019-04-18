@@ -1,38 +1,42 @@
 <?php namespace Syscover\Admin\Services;
 
 use Syscover\Admin\Models\Lang;
+use Syscover\Core\Exceptions\ModelNotChangeException;
 
 class LangService
 {
-    public static function create($object)
+    public function store(array $data)
     {
-        self::checkCreate($object);
-        return Lang::create(self::builder($object));
+        $this->validate($data, [
+            'code'      => 'required|alpha|size:2|unique:lang,id',
+            'name'      => 'required|between:2,255',
+            'icon'      => 'required',
+            'sort'      => 'min:0|numeric'
+        ]);
+
+        return Lang::create($data);
     }
 
-    public static function update($object, $ix)
+    public function update(array $data, int $id)
     {
-        self::checkUpdate($object);
-        Lang::where('ix', $ix)->update(self::builder($object));
+        $this->validate($data, [
+            'id'        => 'numeric',
+            'code'      => 'required|alpha|size:2|unique:lang,id',
+            'name'      => 'required|between:2,255',
+            'icon'      => 'required',
+            'sort'      => 'min:0|numeric'
+        ]);
 
-        return Lang::find($ix);
-    }
+        $object = Lang::findOrFail($id);
 
-    private static function builder($object)
-    {
-        $object = collect($object);
-        return $object->only(['id', 'name', 'icon', 'sort', 'active'])->toArray();
-    }
+        $object->fill($data);
 
-    private static function checkCreate($object)
-    {
-        if(empty($object['id']))     throw new \Exception('You have to define a id field to create a lang');
-        if(empty($object['name']))   throw new \Exception('You have to define a name field to create a lang');
-        if(empty($object['sort']))   throw new \Exception('You have to define a sort field to create a lang');
-    }
+        // check is model
+        if ($object->isClean()) throw new ModelNotChangeException('At least one value must change');
 
-    private static function checkUpdate($object)
-    {
-        if(empty($object['ix']))     throw new \Exception('You have to define a ix field to update a lang');
+        // save changes
+        $object->save();
+
+        return $object;
     }
 }

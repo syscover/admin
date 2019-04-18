@@ -7,7 +7,7 @@ type AdminAction {
 type AdminAttachment {
     ix: Int!
     id: Int!
-    lang_id: String!
+    lang_id: Int!
     object_id: Int!
     object_type: String!
     family_id: Int
@@ -66,7 +66,8 @@ type AdminAttachmentMime {
 type AdminCountry {
     ix: Int!
     id: String!
-    lang_id: String!
+    lang_id: Int!
+    lang: AdminLang
     name: String!
     slug: String
     sort: Int
@@ -114,7 +115,7 @@ type AdminFieldGroup {
 type AdminFieldValue {
     ix: Int!
     id: String!
-    lang_id: String!
+    lang_id: Int!
     field_id: Int!
     counter: Int
     sort: Int
@@ -130,8 +131,8 @@ type AdminFile {
 }
 
 type AdminLang {
-    ix: Int!
-    id: String!
+    id: Int!
+    code: String!
     name: String!
     icon: String
     sort: Int
@@ -236,7 +237,7 @@ type AdminTerritorialArea3 {
 
 type AdminUser {
     id: Int!
-    lang_id: String!
+    lang_id: Int!
     profile_id: Int!
     profile: AdminProfile!
     active: Boolean!

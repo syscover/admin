@@ -1,7 +1,7 @@
 <?php namespace Syscover\Admin\Models;
 
 use Syscover\Core\Models\CoreModel;
-use Syscover\Admin\Traits\Translatable;
+use Syscover\Admin\Traits\Langable;
 
 /**
  * Class Country
@@ -10,7 +10,7 @@ use Syscover\Admin\Traits\Translatable;
 
 class Country extends CoreModel
 {
-    use Translatable;
+    use Langable;
 
     protected $table        = 'admin_country';
     protected $primaryKey   = 'ix';

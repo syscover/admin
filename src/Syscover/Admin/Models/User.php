@@ -5,6 +5,7 @@ use Laravel\Passport\HasApiTokens;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Notifications\Notifiable;
+use Syscover\Admin\Traits\Langable;
 use Syscover\Core\Traits\CanManageCrud;
 use Syscover\Core\Traits\CanManageDataLang;
 
@@ -16,13 +17,14 @@ class User extends BaseUser
 {
     use CanManageCrud, CanManageDataLang;
     use Notifiable, HasApiTokens;
+    use Langable;
 
     protected $table        = 'admin_user';
     protected $fillable     = ['id', 'name', 'surname', 'email', 'lang_id', 'active', 'profile_id', 'user', 'password'];
     protected $casts        = [
         'active' => 'boolean'
     ];
-    public $with            = ['profile'];
+    public $with            = ['profile', 'lang'];
     protected $hidden       = ['password', 'remember_token'];
 
     private static $rules   = [

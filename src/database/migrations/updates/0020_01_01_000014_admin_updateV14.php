@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 use Syscover\Core\Services\SchemaService;
 
 class AdminUpdateV14 extends Migration
@@ -27,7 +28,6 @@ class AdminUpdateV14 extends Migration
             });
         }
 
-
         if (SchemaService::hasIndex('admin_field_value', 'fk01_admin_field_value'))
         {
             Schema::table('admin_field_value', function (Blueprint $table) {
@@ -50,6 +50,22 @@ class AdminUpdateV14 extends Migration
             \Syscover\Admin\Models\Country::where('lang_id', 'fr')->update([
                 'lang_id' => 4
             ]);
+
+            DB::select(DB::raw('UPDATE admin_field_value set data_lang = REPLACE(data_lang, \'"de"\', 1);'));
+            DB::select(DB::raw('UPDATE admin_field_value set data_lang = REPLACE(data_lang, \'"en"\', 2);'));
+            DB::select(DB::raw('UPDATE admin_field_value set data_lang = REPLACE(data_lang, \'"es"\', 3);'));
+            DB::select(DB::raw('UPDATE admin_field_value set data_lang = REPLACE(data_lang, \'"fr"\', 4);'));
+
+            // refactor lang in admin_field
+            DB::select(DB::raw('UPDATE admin_field set data_lang = REPLACE(data_lang, \'"de"\', 1);'));
+            DB::select(DB::raw('UPDATE admin_field set data_lang = REPLACE(data_lang, \'"en"\', 2);'));
+            DB::select(DB::raw('UPDATE admin_field set data_lang = REPLACE(data_lang, \'"es"\', 3);'));
+            DB::select(DB::raw('UPDATE admin_field set data_lang = REPLACE(data_lang, \'"fr"\', 4);'));
+
+            DB::select(DB::raw('UPDATE admin_field set labels = REPLACE(labels, \'"de"\', 1);'));
+            DB::select(DB::raw('UPDATE admin_field set labels = REPLACE(labels, \'"en"\', 2);'));
+            DB::select(DB::raw('UPDATE admin_field set labels = REPLACE(labels, \'"es"\', 3);'));
+            DB::select(DB::raw('UPDATE admin_field set labels = REPLACE(labels, \'"fr"\', 4);'));
 
 
             Schema::table('admin_field_value', function (Blueprint $table) {
@@ -84,6 +100,11 @@ class AdminUpdateV14 extends Migration
             \Syscover\Admin\Models\Country::where('lang_id', 'fr')->update([
                 'lang_id' => 4
             ]);
+
+            DB::select(DB::raw('UPDATE admin_country set data_lang = REPLACE(data_lang, \'"de"\', 1);'));
+            DB::select(DB::raw('UPDATE admin_country set data_lang = REPLACE(data_lang, \'"en"\', 2);'));
+            DB::select(DB::raw('UPDATE admin_country set data_lang = REPLACE(data_lang, \'"es"\', 3);'));
+            DB::select(DB::raw('UPDATE admin_country set data_lang = REPLACE(data_lang, \'"fr"\', 4);'));
 
             Schema::table('admin_country', function (Blueprint $table) {
                 $table->integer('lang_id')->unsigned()->change();

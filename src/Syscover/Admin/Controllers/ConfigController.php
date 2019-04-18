@@ -3,27 +3,9 @@
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use Syscover\Admin\Models\Lang;
-use Syscover\Admin\Models\Package;
 
 class ConfigController extends BaseController
 {
-    /**
-     * Get values to bootstrap frontend application,
-     * this values will be available throughout the application lifecycle
-     *
-     * @return  \Illuminate\Http\JsonResponse
-     */
-    public function bootstrap()
-    {
-        $response['status']     = "success";
-        $response['base_lang']  = base_lang();
-        $response['langs']      = Lang::where('active', true)->get();
-        $response['packages']   = Package::all();
-
-        return response()->json($response);
-    }
-
     /**
      * Get values from anuy config files
      *

@@ -10,21 +10,21 @@ class CountryService extends Service
     {
         $this->validate($data, [
             'id'                => 'required|alpha|size:2',
-            'lang_id'           => 'required',
+            'lang_id'           => 'required|numeric',
             'name'              => 'required|between:2,100',
             'slug'              => 'required|between:1,255',
             'sort'              => 'nullable|min:0|numeric',
-            'prefix'            => 'between:1,5',
+            'prefix'            => 'nullable|between:1,5',
             'territorialArea1'  => 'between:0,50',
             'territorialArea2'  => 'between:0,50',
             'territorialArea3'  => 'between:0,50',
-            'latitude'          => 'numeric',
-            'longitude'         => 'numeric',
-            'zoom'              => 'integer',
+            'latitude'          => 'nullable|numeric',
+            'longitude'         => 'nullable|numeric',
+            'zoom'              => 'nullable|integer',
             'zones'             => 'array'
         ]);
 
-        $object['data_lang'] = Country::getDataLang($data['lang_id'], $data['id']);
+        $data['data_lang'] = Country::getDataLang($data['lang_id'], $data['id']);
 
         return Country::create($data);
     }
@@ -42,9 +42,9 @@ class CountryService extends Service
             'territorialArea1'  => 'between:0,50',
             'territorialArea2'  => 'between:0,50',
             'territorialArea3'  => 'between:0,50',
-            'latitude'          => 'numeric',
-            'longitude'         => 'numeric',
-            'zoom'              => 'integer',
+            'latitude'          => 'nullable|numeric',
+            'longitude'         => 'nullable|numeric',
+            'zoom'              => 'nullable|integer',
             'zones'             => 'nullable|array'
         ]);
 
