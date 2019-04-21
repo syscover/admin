@@ -19,7 +19,7 @@ class BootstrapController extends BaseController
     {
         $langs = Lang::where('active', true)->get();
 
-        $response['base_lang']  = $langs->where('code', base_lang())->first();
+        $response['base_lang']  = $langs->where('id', base_lang())->first();
         $response['langs']      = $langs;
         $response['packages']   = Package::all();
 

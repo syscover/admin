@@ -10,7 +10,7 @@ class CountryService extends Service
     {
         $this->validate($data, [
             'id'                => 'required|alpha|size:2',
-            'lang_id'           => 'required|numeric',
+            'lang_id'           => 'required|size:2|exists:admin_lang,id',
             'name'              => 'required|between:2,100',
             'slug'              => 'required|between:1,255',
             'sort'              => 'nullable|min:0|numeric',
@@ -33,8 +33,8 @@ class CountryService extends Service
     {
         $this->validate($data, [
             'ix'                => 'required|integer',
-            'id'                => 'required|alpha|size:2',
-            'lang_id'           => 'required',
+            'id'                => 'required|alpha|size:2|exists:admin_lang,id',
+            'lang_id'           => 'required|size:2',
             'name'              => 'required|between:2,100',
             'slug'              => 'required|between:1,255',
             'sort'              => 'nullable|min:0|numeric',

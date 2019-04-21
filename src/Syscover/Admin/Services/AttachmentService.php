@@ -78,13 +78,13 @@ class AttachmentService
      *  Function to store attachment elements
      *
      * @access	public
-     * @param   \Illuminate\Support\Facades\Request     $attachments
-     * @param   string                                  $directory
-     * @param   string                                  $urlBase
-     * @param   string                                  $objectType
-     * @param   integer                                 $objectId
-     * @param   string                                  $langId
-     * @param   string                                  $action
+     * @param   array       $attachments
+     * @param   string      $directory
+     * @param   string      $urlBase
+     * @param   string      $objectType
+     * @param   integer     $objectId
+     * @param   string      $langId
+     * @param   string      $action
      *
      */
     private static function manageAttachments($attachments, $directory, $urlBase, $objectType, $objectId, $langId, $action)
@@ -216,15 +216,9 @@ class AttachmentService
 
     private static function setAttachmentFit($attachment)
     {
-        if(
-            ! empty($attachment->family_id) &&
-            $attachment->family->fit_type === self::WIDTH_FIT ||
-            $attachment->family->fit_type === self::HEIGHT_FIT
-        )
+        if ($attachment->family && ($attachment->family->fit_type === self::WIDTH_FIT || $attachment->family->fit_type === self::HEIGHT_FIT))
         {
-            /**
-             * config http://image.intervention.io with imagemagick
-             */
+            // http://image.intervention.io with imagemagick
             Image::configure(['driver' => 'imagick']);
             $image = Image::make(base_path('storage/app/public/library') . '/' . $attachment->library_file_name);
 

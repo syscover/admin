@@ -10,8 +10,9 @@ use Syscover\Core\Models\CoreModel;
 class Lang extends CoreModel
 {
     protected $table        = 'admin_lang';
-    protected $fillable     = ['id' ,'code', 'name', 'icon', 'sort', 'active'];
+    protected $primaryKey   = 'ix';
+    protected $fillable     = ['ix' ,'id', 'name', 'icon', 'sort', 'active'];
     protected $casts        = [
-        'active'    => 'boolean'
+        'active' => 'boolean'
     ];
 }

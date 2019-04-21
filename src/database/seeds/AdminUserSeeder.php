@@ -12,7 +12,7 @@ class AdminUserSeeder extends Seeder
                 'id'                => 1,
                 'name'              => 'Pulsar',
                 'surname'           => 'Pulsar',
-                'lang_id'           => 2,
+                'lang_id'           => 'es',
                 'email'             => 'admin@pulsar.local',
                 'profile_id'        => '1',
                 'active'            => '1',

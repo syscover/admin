@@ -20,12 +20,12 @@ adminDeleteAttachmentMime(id:Int!): AdminAttachmentMime @field(resolver: "Syscov
 # Country
 adminCreateCountry(payload:AdminCountryInput!): AdminCountry @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\CountryGraphQLService@store")
 adminUpdateCountry(payload:AdminCountryInput!): AdminCountry @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\CountryGraphQLService@update")
-adminDeleteCountry(id:String! lang_id:Int!): AdminCountry @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\CountryGraphQLService@delete")
+adminDeleteCountry(id:String! lang_id:String!): AdminCountry @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\CountryGraphQLService@delete")
 
 # Field
 adminCreateField(payload:AdminFieldInput!): AdminField @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldGraphQLService@create")
 adminUpdateField(payload:AdminFieldInput!): AdminField @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldGraphQLService@update")
-adminDeleteField(id:Int! lang_id:Int!): AdminField @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldGraphQLService@delete")
+adminDeleteField(id:Int! lang_id:String!): AdminField @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldGraphQLService@delete")
 
 # FieldGroup
 adminCreateFieldGroup(payload:AdminFieldGroupInput!): AdminFieldGroup @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldGroupGraphQLService@create")
@@ -35,7 +35,7 @@ adminDeleteFieldGroup(id:Int!): AdminFieldGroup @field(resolver: "Syscover\\Admi
 # FieldValue
 adminCreateFieldValue(payload:AdminFieldValueInput!): AdminFieldValue @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldValueGraphQLService@create")
 adminUpdateFieldValue(payload:AdminFieldValueInput!): AdminFieldValue @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldValueGraphQLService@update")
-adminDeleteFieldValue(id:String! lang_id:Int! field_id:Int!): AdminFieldValue @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldValueGraphQLService@delete")
+adminDeleteFieldValue(id:String! lang_id:String! field_id:Int!): AdminFieldValue @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\FieldValueGraphQLService@delete")
 
 # Lang
 adminCreateLang(payload:AdminLangInput!): AdminLang @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\LangGraphQLService@create")

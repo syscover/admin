@@ -8,7 +8,7 @@ class LangService
     public function store(array $data)
     {
         $this->validate($data, [
-            'code'      => 'required|alpha|size:2|unique:lang,id',
+            'id'        => 'required|alpha|size:2|unique:lang,id',
             'name'      => 'required|between:2,255',
             'icon'      => 'required',
             'sort'      => 'min:0|numeric'
@@ -20,8 +20,8 @@ class LangService
     public function update(array $data, int $id)
     {
         $this->validate($data, [
-            'id'        => 'numeric',
-            'code'      => 'required|alpha|size:2|unique:lang,id',
+            'ix'        => 'numeric',
+            'id'        => 'required|alpha|size:2|unique:lang,id',
             'name'      => 'required|between:2,255',
             'icon'      => 'required',
             'sort'      => 'min:0|numeric'
