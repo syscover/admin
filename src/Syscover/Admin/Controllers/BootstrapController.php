@@ -17,10 +17,10 @@ class BootstrapController extends BaseController
      */
     public function index()
     {
-        $langs = Lang::where('active', true)->get();
+        $langs = Lang::all();
 
         $response['base_lang']  = $langs->where('id', base_lang())->first();
-        $response['langs']      = $langs;
+        $response['langs']      = $langs->where('active', true);
         $response['packages']   = Package::all();
 
         return $this->successResponse($response);
