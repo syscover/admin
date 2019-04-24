@@ -17,10 +17,12 @@ class BootstrapController extends BaseController
      */
     public function index()
     {
+        // TODO controlar fallos
+
         $langs = Lang::all();
 
         $response['base_lang']  = $langs->where('id', base_lang())->first();
-        $response['langs']      = $langs->where('active', true);
+        $response['langs']      = $langs->where('active', true)->values();  // create a new collection with the keys reset to consecutive integers with values method
         $response['packages']   = Package::all();
 
         return $this->successResponse($response);
