@@ -8,6 +8,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 use Syscover\Admin\Models\Attachment;
 use Syscover\Admin\Models\AttachmentFamily;
 use Syscover\Admin\Services\AttachmentService;
+use Syscover\Core\Services\ImageService;
 
 class AttachmentController extends BaseController
 {
@@ -180,6 +181,7 @@ class AttachmentController extends BaseController
         {
             // save file in library directory, if no exist laravel create directory
             $file->store('public/tmp');
+
             // get mime type
             $mime = $file->getMimeType();
 
@@ -203,11 +205,14 @@ class AttachmentController extends BaseController
                 Image::configure(['driver' => 'imagick']);
                 $image = Image::make(storage_path('app/public/tmp/' . $file->hashName()));
 
+                // check orientation to avoid error from mobile photo
+                $image = ImageService::checkOrientation($image);
+
                 // set image properties
                 $attachment['width']    = $image->width();
                 $attachment['height']   = $image->height();
 
-                // set fields to save from EXIT to avoid utf-8 characters, that they are includes by software like Photoshop
+                // set fields to save from EXIF to avoid utf-8 characters, that they are includes by software like Photoshop
                 $attachment['data']     = ['exif' => collect($image->exif())->only(config('pulsar-core.exif_fields_allowed'))];
             }
 
