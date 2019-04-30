@@ -165,7 +165,7 @@ class AttachmentService
                         ->where('lang_id', $attachment['lang_id'])
                         ->first();
 
-                    if($attachment['changed_image'])
+                    if ($attachment['changed_image'] || ($attachmentOld->family_id !== $attachmentObject->family_id))
                     {
                         // set fit attachment
                         self::setAttachmentFit($attachmentObject);
@@ -174,7 +174,7 @@ class AttachmentService
                         self::setAttachmentSizes($attachmentObject, $urlBase, $objectId);
                     }
                 }
-                elseif($action === 'store') // can to be data from new lang object
+                elseif ($action === 'store') // can to be data from new lang object
                 {
                     $newFileName = self::getRandomFilename($attachment['extension']);
 
