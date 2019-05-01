@@ -20,7 +20,7 @@ class AdminCreateTableUser extends Migration
                 $table->increments('id');
                 $table->string('name');
                 $table->string('surname')->nullable();
-                $table->integer('lang_id')->unsigned();
+                $table->string('lang_id', 2);
                 $table->string('email');
                 $table->integer('profile_id')->unsigned();
                 $table->boolean('active')->default(false);

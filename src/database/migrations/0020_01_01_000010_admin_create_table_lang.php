@@ -17,8 +17,8 @@ class AdminCreateTableLang extends Migration
 			Schema::create('admin_lang', function (Blueprint $table) {
 				$table->engine = 'InnoDB';
 
-                $table->increments('id');
-				$table->string('code', 2);
+                $table->increments('ix');
+                $table->string('id', 2);
 				$table->string('name');
 				$table->string('icon')->nullable();
 				$table->smallInteger('sort')->unsigned();

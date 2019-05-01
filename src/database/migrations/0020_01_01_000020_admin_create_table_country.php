@@ -19,7 +19,7 @@ class AdminCreateTableCountry extends Migration
 
                 $table->increments('ix');
                 $table->string('id', 2);
-                $table->integer('lang_id')->unsigned();
+                $table->string('lang_id', 2);
                 $table->string('name');
                 $table->string('slug');
                 $table->smallInteger('sort')->unsigned()->nullable();

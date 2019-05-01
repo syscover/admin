@@ -22,7 +22,7 @@ class AdminCreateTableFieldValue extends Migration {
 
                 // counter to assign number to id if has not ID
                 $table->integer('counter')->unsigned()->nullable();
-                $table->integer('lang_id')->unsigned();
+                $table->string('lang_id', 2);
                 $table->integer('field_id')->unsigned();
                 $table->string('name');
                 $table->smallInteger('sort')->unsigned()->nullable();
