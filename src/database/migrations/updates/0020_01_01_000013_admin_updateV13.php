@@ -23,7 +23,7 @@ class AdminUpdateV13 extends Migration
             Schema::table('admin_lang', function (Blueprint $table) {
 
                 $table->dropIndex('ix01_admin_lang');
-                $table->unique('id', 'ui01_admin_lang');
+                $table->unique('id', 'admin_lang_id_uq');
             });
         }
 
@@ -32,7 +32,7 @@ class AdminUpdateV13 extends Migration
             Schema::table('admin_resource', function (Blueprint $table) {
 
                 $table->dropIndex('ix01_admin_resource');
-                $table->unique('id', 'ui01_admin_resource');
+                $table->unique('id', 'admin_resource_id_uq');
             });
         }
 
@@ -41,7 +41,7 @@ class AdminUpdateV13 extends Migration
             Schema::table('admin_territorial_area_1', function (Blueprint $table) {
 
                 $table->dropIndex('ix01_admin_territorial_area_1');
-                $table->unique('id', 'ui01_admin_territorial_area_1');
+                $table->unique('id', 'admin_territorial_area_1_id_uq');
             });
         }
 
@@ -50,7 +50,7 @@ class AdminUpdateV13 extends Migration
             Schema::table('admin_territorial_area_2', function (Blueprint $table) {
 
                 $table->dropIndex('ix01_admin_territorial_area_2');
-                $table->unique('id', 'ui01_admin_territorial_area_2');
+                $table->unique('id', 'admin_territorial_area_2_id_uq');
             });
         }
 
@@ -59,7 +59,7 @@ class AdminUpdateV13 extends Migration
             Schema::table('admin_territorial_area_3', function (Blueprint $table) {
 
                 $table->dropIndex('ix01_admin_territorial_area_3');
-                $table->unique('id', 'ui01_admin_territorial_area_3');
+                $table->unique('id', 'admin_territorial_area_3_id_uq');
             });
         }
 
