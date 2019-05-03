@@ -45,6 +45,7 @@ return [
         (object)['id' => 'wine-winery',             'name' => 'Wineries'],
         (object)['id' => 'forem-group',             'name' => 'Groups'],
         (object)['id' => 'innova-monument',         'name' => 'Monuments'],
+        (object)['id' => 'innova-characteristic',   'name' => 'Characteristics'],
     ],
 
     //******************************************************************************************************************
