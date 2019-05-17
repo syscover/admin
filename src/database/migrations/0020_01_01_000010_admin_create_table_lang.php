@@ -27,7 +27,7 @@ class AdminCreateTableLang extends Migration
                 $table->timestamps();
                 $table->softDeletes();
 
-                $table->unique('id', 'admin_lang_code_uq');
+                $table->unique('id', 'admin_lang_id_uq');
 			});
 		}
 	}

@@ -25,7 +25,7 @@ class AdminCreateTableResource extends Migration
                 $table->timestamps();
                 $table->softDeletes();
 
-                $table->unique('id', 'ui01_admin_resource');
+                $table->unique('id', 'admin_resource_id_uq');
 				$table->foreign('package_id', 'fk01_admin_resource')
 					->references('id')
 					->on('admin_package')

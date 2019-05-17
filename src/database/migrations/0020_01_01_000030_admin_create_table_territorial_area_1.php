@@ -32,7 +32,7 @@ class AdminCreateTableTerritorialArea1 extends Migration
 					->onDelete('restrict')
 					->onUpdate('cascade');
 
-                $table->unique('id', 'ui01_admin_territorial_area_1');
+                $table->unique('id', 'admin_territorial_area_1_id_uq');
                 $table->index('slug', 'ix02_admin_territorial_area_1');
 			});
 		}
