@@ -26,10 +26,6 @@ return [
         (object)['id' => 'hotels-hotel',            'name' => 'Hotels'],
         (object)['id' => 'spas-spa',                'name' => 'Spas'],
         (object)['id' => 'wineries-winery',         'name' => 'Wineries'],
-
-
-        (object)['id' => 'peci-file',               'name' => 'PECI']
-
     ],
 
     //******************************************************************************************************************
