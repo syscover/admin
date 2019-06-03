@@ -21,6 +21,7 @@ class AdminCreateTableReport extends Migration
 
                 $table->string('subject');
                 $table->json('emails');
+                $table->json('profiles');
 
                 $table->string('filename');
                 $table->string('extension');

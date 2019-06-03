@@ -62,7 +62,7 @@ adminUpdatePermission(profile_id:Int! resource_id:String! action_id:String! chec
 adminAddAllPermissions(profile_id:Int!): Boolean @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PermissionGraphQLService@addAllPermissions")
 
 # Report
-adminCreateReport(payload:AdminReportInput!): AdminReport @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ReportGraphQLService@create")
+adminCreateReport(payload:AdminReportInput!): AdminReport @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ReportGraphQLService@store")
 adminUpdateReport(payload:AdminReportInput!): AdminReport @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ReportGraphQLService@update")
 adminDeleteReport(id:Int!): AdminReport @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ReportGraphQLService@delete")
 

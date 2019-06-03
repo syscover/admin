@@ -205,6 +205,7 @@ input AdminReportInput {
     id: Int
     subject: String!
     emails: [String!]!
+    profiles: [Int!]!
     filename: String!
     extension: String!
     frequency_id: Int!
