@@ -1,64 +1,74 @@
 <?php namespace Syscover\Admin\Services;
 
+use Syscover\Admin\Exports\ExportCollection;
+use Syscover\Core\Services\Service;
+use Syscover\Core\Exceptions\ModelNotChangeException;
+use Syscover\Admin\Models\Report;
+
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Facades\Excel;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Style\Style;
-use Syscover\Admin\Models\Report;
 
-class ReportService
+
+class ReportService extends Service
 {
-    public static function create($object)
+    public function store(array $data)
     {
-        self::checkCreate($object);
-        return Report::create(self::builder($object));
+        $this->validate($data, [
+            'subject'       => 'required|between:2,255',
+            'emails'        => 'required|array',
+            'profiles'      => 'required|array',
+            'filename'      => 'required|between:2,255',
+            'extension'     => 'required|between:2,255',
+            'frequency_id'  => 'required|integer',
+            'sql'           => 'required',
+        ]);
+
+        return Report::create($data);
     }
 
-    public static function update($object)
+    public function update(array $data, int $id)
     {
-        self::checkUpdate($object);
+        $this->validate($data, [
+            'id'            => 'numeric',
+            'subject'       => 'required|between:2,255',
+            'emails'        => 'required|array',
+            'profiles'      => 'required|array',
+            'filename'      => 'required|between:2,255',
+            'extension'     => 'required|between:2,255',
+            'frequency_id'  => 'required|integer',
+            'sql'           => 'required',
+        ]);
 
-        if(! empty($object['emails'])) $object['emails'] = json_encode($object['emails']);
+        $object = Report::findOrFail($id);
 
-        Report::where('id', $object['id'])->update(self::builder($object));
+        $object->fill($data);
 
-        return Report::find($object['id']);
+        // check is model
+        if ($object->isClean()) throw new ModelNotChangeException('At least one value must change');
+
+        // save changes
+        $object->save();
+
+        return $object;
     }
 
-    private static function builder($object)
+    public static function executeReport2(Report $report)
     {
-        $object = collect($object);
-        return $object->only([
-            'subject',
-            'emails',
-            'filename',
-            'extension',
-            'frequency_id',
-            'sql'
-        ])->toArray();
+        // Execute query from report task
+        $response = DB::select(DB::raw($report->sql));
+
+        if (count($response) === 0) return null;
+
+        Excel::store(new ExportCollection($response), 'public/admin/reports/invoices.xlsx', 'local');
+
+        return 'invoices.xlsx';
     }
 
-    private static function checkCreate($object)
-    {
-        if(empty($object['subject']))       throw new \Exception('You have to define a subject field to create a report');
-        if(empty($object['emails']))        throw new \Exception('You have to define a emails field to create a report');
-        if(empty($object['filename']))      throw new \Exception('You have to define a filename field to create a report');
-        if(empty($object['extension']))     throw new \Exception('You have to define a extension field to create a report');
-        if(empty($object['frequency_id']))  throw new \Exception('You have to define a frequency_id field to create a report');
-        if(empty($object['sql']))           throw new \Exception('You have to define a sql field to create a report');
-    }
 
-    private static function checkUpdate($object)
-    {
-        if(empty($object['id']))    throw new \Exception('You have to define a id field to update a report');
-    }
-
-    /**
-     * @param Report $report
-     * @return \Symfony\Component\HttpFoundation\File\File|null
-     */
     public static function executeReport(Report $report)
     {
         // Execute query from report task
@@ -66,45 +76,17 @@ class ReportService
 
         if (count($response) === 0) return null;
 
-        $response = Excel::download(new ReportExport($response), $report->filename . $report->extension);
+        $filePath = 'public/admin/reports/' . $report->filename . '.' . $report->extension;
 
-        return $response->getFile();
+        Excel::store(new ExportCollection($response), $filePath, 'local');
 
-        // $response = self::castingNumericData($response);
+        $pathname = storage_path('app/' . $filePath);
 
-        // format response to manage with collections
-//        $response = collect(array_map(function($item) {
-//            return collect($item);
-//        }, $response));
-
-
-//        $spreadsheet = new Spreadsheet();
-//
-//        // set properties
-//        $spreadsheet->getProperties()
-//            ->setTitle($report->subject)
-//            ->setCreator('DH2');
-//
-//
-//        // header style
-//        $headerStyle = new Style();
-//        $headerStyle->applyFromArray([
-//            'font' => [
-//                'bold' => true
-//            ],
-//            'fill' => [
-//                'fillType' => Fill::FILL_SOLID,
-//                'color' => ['rgb' => '204204204'],
-//            ]
-//        ]);
-//
-//        // set data headers from array
-//        $worksheet = $spreadsheet->getActiveSheet()
-//            ->fromArray($response->first()->keys()->toArray(), null, 'A1', true);
-//
-//        // set data headers from array
-//        $worksheet->duplicateStyle($headerStyle, 'A1:' . $worksheet->getHighestDataColumn() . '1')
-//            ->fromArray($response->toArray(), null, 'A2', true);
+        return [
+            'pathname'  => $pathname,
+            'mime'      => mime_content_type($pathname),
+            'size'      => filesize($pathname)
+        ];
     }
 
     /**
@@ -131,26 +113,5 @@ class ReportService
             }
         }
         return $response;
-    }
-}
-
-/**
- * Class to export from collection
- *
- * Class ReportExport
- * @package Syscover\Admin\Services
- */
-class ReportExport implements FromCollection
-{
-    private $report;
-
-    public function __construct($report)
-    {
-        $this->report = $report;
-    }
-
-    public function collection()
-    {
-        return collect($this->report);
     }
 }

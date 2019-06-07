@@ -8,9 +8,8 @@ class FileManagerController extends CoreController
     public function read(Request $request)
     {
         $file = $request->input('file');
-
-        header('Content-Type: ' . $file['mime']);
-        readfile($file['pathname']);
+        header('Content-Type: ' . $file['mime'] ?? null);
+        readfile($file['pathname'] ?? null);
         exit;
     }
 }
