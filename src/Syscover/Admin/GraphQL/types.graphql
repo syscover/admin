@@ -125,6 +125,7 @@ type AdminFieldValue {
 }
 
 type AdminFile {
+    filename: String!
     pathname: String!
     mime: String!
     size: Int!

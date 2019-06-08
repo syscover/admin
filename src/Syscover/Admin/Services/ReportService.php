@@ -1,17 +1,12 @@
 <?php namespace Syscover\Admin\Services;
 
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 use Syscover\Admin\Exports\ExportCollection;
 use Syscover\Core\Services\Service;
 use Syscover\Core\Exceptions\ModelNotChangeException;
 use Syscover\Admin\Models\Report;
-
-use Illuminate\Support\Facades\DB;
-use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Facades\Excel;
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Style\Fill;
-use PhpOffice\PhpSpreadsheet\Style\Style;
-
 
 class ReportService extends Service
 {
@@ -76,13 +71,15 @@ class ReportService extends Service
 
         if (count($response) === 0) return null;
 
-        $filePath = 'public/admin/reports/' . $report->filename . '.' . $report->extension;
+        $filename = $report->filename . '-' . Str::uuid() . '.' . $report->extension;
+        $filePath = 'public/admin/reports/' . $filename;
 
         Excel::store(new ExportCollection($response), $filePath, 'local');
 
         $pathname = storage_path('app/' . $filePath);
 
         return [
+            'filename'  => $filename,
             'pathname'  => $pathname,
             'mime'      => mime_content_type($pathname),
             'size'      => filesize($pathname)
