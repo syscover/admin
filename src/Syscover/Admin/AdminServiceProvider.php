@@ -45,28 +45,29 @@ class AdminServiceProvider extends ServiceProvider
 
             // get daily reports
             $schedule->call(function () {
-                CronService::checkDailyReports();
+                CronService::checkReports(2);
             })->daily();
 
             // get weekly reports
             $schedule->call(function () {
-                CronService::checkWeeklyReports();
+                CronService::checkReports(3);
             })->weekly();
 
             // get monthly reports
             $schedule->call(function () {
-                CronService::checkMonthlyReports();
+                CronService::checkReports(4);
             })->monthly();
 
             // get quarterly reports
             $schedule->call(function () {
-                CronService::checkQuarterlyReports();
+                CronService::checkReports(5);
             })->quarterly();
 
             // get yearly reports
             $schedule->call(function () {
-                CronService::checkYearlyReports();
+                CronService::checkReports(6);
             })->yearly();
+
         });
 	}
 

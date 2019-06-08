@@ -7,35 +7,14 @@ use Syscover\Admin\Models\Report;
 
 class CronService
 {
-    public static function checkDailyReports()
+    public static function checkReports($frequency)
     {
-        info('Call Syscover\Admin\Services\CronService::checkDailyReports function');
+        info('Call Syscover\Admin\Services\CronService::checkReports function with frequency: ' . $frequency);
 
-        $reports = Report::builder()->where('frequency_id', 2)->get();
-
+        $reports = Report::builder()->where('frequency_id', $frequency)->get();
         foreach ($reports as $report)
         {
             ReportService::executeReport($report);
         }
-    }
-
-    public static function checkWeeklyReports()
-    {
-        info('Call Syscover\Admin\Services\CronService::checkWeeklyReports function');
-    }
-
-    public static function checkMonthlyReports()
-    {
-
-    }
-
-    public static function checkQuarterlyReports()
-    {
-
-    }
-
-    public static function checkYearlyReports()
-    {
-
     }
 }
