@@ -1,5 +1,6 @@
 <?php namespace Syscover\Admin\Services;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
@@ -51,19 +52,6 @@ class ReportService extends Service
         return $object;
     }
 
-    public static function executeReport2(Report $report)
-    {
-        // Execute query from report task
-        $response = DB::select(DB::raw($report->sql));
-
-        if (count($response) === 0) return null;
-
-        Excel::store(new ExportCollection($response), 'public/admin/reports/invoices.xlsx', 'local');
-
-        return 'invoices.xlsx';
-    }
-
-
     public static function executeReport(Report $report)
     {
         // Execute query from report task
@@ -79,6 +67,7 @@ class ReportService extends Service
         $pathname = storage_path('app/' . $filePath);
 
         return [
+            'url'       => asset('storage/admin/reports/' . $filename),
             'filename'  => $filename,
             'pathname'  => $pathname,
             'mime'      => mime_content_type($pathname),
