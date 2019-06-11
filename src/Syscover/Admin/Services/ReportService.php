@@ -64,14 +64,15 @@ class ReportService extends Service
 
         Excel::store(new ExportCollection($response), $filePath, 'local');
 
-        $pathname = storage_path('app/' . $filePath);
+        $pathname = 'app/' . $filePath;
+        $absoluteRoute = storage_path($pathname);
 
         return [
             'url'       => asset('storage/admin/reports/' . $filename),
             'filename'  => $filename,
             'pathname'  => $pathname,
-            'mime'      => mime_content_type($pathname),
-            'size'      => filesize($pathname)
+            'mime'      => mime_content_type($absoluteRoute),
+            'size'      => filesize($absoluteRoute)
         ];
     }
 

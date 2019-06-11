@@ -124,14 +124,6 @@ type AdminFieldValue {
     data_lang: [String]
 }
 
-type AdminFile {
-    url: String
-    filename: String!
-    pathname: String!
-    mime: String!
-    size: Int!
-}
-
 type AdminLang {
     ix: Int!
     id: String!
@@ -200,7 +192,7 @@ type AdminReport {
     extension: String!
     frequency_id: Int!
     sql: String!
-    file: AdminFile
+    file: CoreFile
 }
 
 type AdminResource {
