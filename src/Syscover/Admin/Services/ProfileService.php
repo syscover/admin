@@ -3,8 +3,9 @@
 use Syscover\Admin\Models\Permission;
 use Syscover\Admin\Models\Profile;
 use Syscover\Core\Exceptions\ModelNotChangeException;
+use Syscover\Core\Services\Service;
 
-class ProfileService
+class ProfileService extends Service
 {
     public function store(array $data)
     {
