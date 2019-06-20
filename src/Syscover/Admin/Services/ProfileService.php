@@ -1,36 +1,52 @@
 <?php namespace Syscover\Admin\Services;
 
+use Syscover\Admin\Models\Permission;
 use Syscover\Admin\Models\Profile;
+use Syscover\Core\Exceptions\ModelNotChangeException;
 
 class ProfileService
 {
-    public static function create($object)
+    public function store(array $data)
     {
-        self::checkCreate($object);
-        return Profile::create(self::builder($object));
+        $this->validate($data, [
+            'name'          => 'required|between:2,255',
+            'profile_id'    => 'nullable|integer'
+        ]);
+
+        $profile = Profile::create($data);
+
+        // check if has to copy permissions
+        if (! empty($data['profile_id']))
+        {
+            $permissions = Permission::where('profile_id', $data['profile_id'])->get();
+
+            $permissions->transform(function($item) use ($data) {
+               return $item->profile_id = $data['profile_id'];
+            });
+
+            Permission::insert($permissions);
+        }
+
+        return $profile;
     }
 
-    public static function update($object)
+    public function update(array $data, int $id)
     {
-        self::checkUpdate($object);
-        Profile::where('id', $object['id'])->update(self::builder($object));
+        $this->validate($data, [
+            'id'    => 'integer',
+            'name'  => 'between:2,255'
+        ]);
 
-        return Profile::find($object['id']);
-    }
+        $object = Profile::findOrFail($id);
 
-    private static function builder($object)
-    {
-        $object = collect($object);
-        return $object->only(['id', 'name'])->toArray();
-    }
+        $object->fill($data);
 
-    private static function checkCreate($object)
-    {
-        if(empty($object['name']))   throw new \Exception('You have to define a name field to create a profile');
-    }
+        // check is model
+        if ($object->isClean()) throw new ModelNotChangeException('At least one value must change');
 
-    private static function checkUpdate($object)
-    {
-        if(empty($object['id'])) throw new \Exception('You have to define a id field to update a profile');
+        // save changes
+        $object->save();
+
+        return $object;
     }
 }

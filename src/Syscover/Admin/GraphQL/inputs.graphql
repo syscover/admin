@@ -162,6 +162,12 @@ input AdminPermissionInput {
     checked: Boolean!
 }
 
+input AdminProfileInput {
+    id: Int
+    name: String!
+    profile_id: Int
+}
+
 input AdminResourceInput {
     ix: Int
     id: String!
@@ -194,11 +200,6 @@ input AdminTerritorialArea3Input {
     territorial_area_2_id: String!
     name: String!
     slug: String
-}
-
-input AdminProfileInput {
-    id: Int
-    name: String!
 }
 
 input AdminReportInput {

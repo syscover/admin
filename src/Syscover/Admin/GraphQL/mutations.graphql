@@ -61,6 +61,11 @@ adminDeletePackage(id:Int!): AdminPackage @field(resolver: "Syscover\\Admin\\Gra
 adminUpdatePermission(profile_id:Int! resource_id:String! action_id:String! checked:Boolean!): Boolean @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PermissionGraphQLService@update")
 adminAddAllPermissions(profile_id:Int!): Boolean @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PermissionGraphQLService@addAllPermissions")
 
+# Profile
+adminCreateProfile(payload:AdminProfileInput!): AdminProfile @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ProfileGraphQLService@store")
+adminUpdateProfile(payload:AdminProfileInput!): AdminProfile @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ProfileGraphQLService@update")
+adminDeleteProfile(id:Int!): AdminProfile @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ProfileGraphQLService@delete")
+
 # Report
 adminCreateReport(payload:AdminReportInput!): AdminReport @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ReportGraphQLService@store")
 adminUpdateReport(payload:AdminReportInput!): AdminReport @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ReportGraphQLService@update")
@@ -85,11 +90,6 @@ adminDeleteTerritorialArea2(id:String!): AdminTerritorialArea2 @field(resolver: 
 adminCreateTerritorialArea3(payload:AdminTerritorialArea3Input!): AdminTerritorialArea3 @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea3GraphQLService@create")
 adminUpdateTerritorialArea3(payload:AdminTerritorialArea3Input!): AdminTerritorialArea3 @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea3GraphQLService@update")
 adminDeleteTerritorialArea3(id:String!): AdminTerritorialArea3 @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\TerritorialArea3GraphQLService@delete")
-
-# Profile
-adminCreateProfile(payload:AdminProfileInput!): AdminProfile @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ProfileGraphQLService@create")
-adminUpdateProfile(payload:AdminProfileInput!): AdminProfile @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ProfileGraphQLService@update")
-adminDeleteProfile(id:Int!): AdminProfile @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ProfileGraphQLService@delete")
 
 # User
 adminCreateUser(payload:AdminUserInput!): AdminUser @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\UserGraphQLService@create")
