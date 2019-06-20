@@ -19,11 +19,12 @@ class ProfileService extends Service
         // check if has to copy permissions
         if (! empty($data['profile_id']))
         {
-            $permissions = Permission::where('profile_id', $data['profile_id'])->get();
+            $permissions = Permission::where('profile_id', $data['profile_id'])->get()->toArray();
 
-            $permissions->transform(function($item) use ($data) {
-               return $item->profile_id = $data['profile_id'];
-            });
+            foreach ($permissions as &$permission)
+            {
+                $permission['profile_id'] = $profile->id;
+            }
 
             Permission::insert($permissions);
         }
