@@ -168,6 +168,18 @@ input AdminProfileInput {
     profile_id: Int
 }
 
+input AdminReportInput {
+    id: Int
+    subject: String!
+    emails: [String!]!
+    profiles: [Int!]!
+    filename: String!
+    extension: String!
+    frequency_id: Int!
+    sql: String
+    wildcards: Object
+}
+
 input AdminResourceInput {
     ix: Int
     id: String!
@@ -200,17 +212,6 @@ input AdminTerritorialArea3Input {
     territorial_area_2_id: String!
     name: String!
     slug: String
-}
-
-input AdminReportInput {
-    id: Int
-    subject: String!
-    emails: [String!]!
-    profiles: [Int!]!
-    filename: String!
-    extension: String!
-    frequency_id: Int!
-    sql: String!
 }
 
 input AdminUserInput {

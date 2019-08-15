@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'countries'                                 => 'Countries',
     'daily'                                     => 'Daily',
     'fit_crop'                                  => 'Fit crop',
     'height'                                    => 'Height',

@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'countries'                                 => 'Países',
     'daily'                                     => 'Diario',
     'fit_crop'                                  => 'Corte ajustado',
     'height'                                    => 'Alto',

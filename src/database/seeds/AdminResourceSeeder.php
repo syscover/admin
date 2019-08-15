@@ -15,8 +15,7 @@ class AdminResourceSeeder extends Seeder {
             // Admin package
             ['id' => 'admin',                           'name' => 'Administration Package',                 'package_id' => 20],
 
-            // Sections
-            ['id' => 'admin-report',                    'name' => 'Reports',                                'package_id' => 20],
+            // Sections            
             ['id' => 'admin-user',                      'name' => 'Users',                                  'package_id' => 20],
             ['id' => 'admin-country',                   'name' => 'Countries',                              'package_id' => 20],
             ['id' => 'admin-country-ta1',               'name' => 'Countries -- Territorial Areas 1',       'package_id' => 20],
@@ -24,6 +23,12 @@ class AdminResourceSeeder extends Seeder {
             ['id' => 'admin-country-ta3',               'name' => 'Countries -- Territorial Areas 3',       'package_id' => 20],
             ['id' => 'admin-lang',                      'name' => 'Languages',                              'package_id' => 20],
             ['id' => 'admin-package',                   'name' => 'Packages',                               'package_id' => 20],
+
+            // Reports
+            ['id' => 'admin-report',                    'name' => 'Reports',                                'package_id' => 20],
+            ['id' => 'admin-report-profile',            'name' => 'Reports - Profile',                      'package_id' => 20],
+            ['id' => 'admin-report-wildcard',           'name' => 'Reports - Wildcards',                    'package_id' => 20],
+            ['id' => 'admin-report-sql',                'name' => 'Reports - SQL',                          'package_id' => 20],
 
             // Field
             ['id' => 'admin-field',                     'name' => 'Custom fields',                          'package_id' => 20],

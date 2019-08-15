@@ -191,8 +191,9 @@ type AdminReport {
     filename: String!
     extension: String!
     frequency_id: Int!
-    sql: String!
+    sql: String
     file: CoreFile
+    wildcards: Object
 }
 
 type AdminResource {

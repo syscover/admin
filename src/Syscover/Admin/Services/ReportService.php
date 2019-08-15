@@ -19,8 +19,7 @@ class ReportService extends Service
             'profiles'      => 'required|array',
             'filename'      => 'required|between:2,255',
             'extension'     => 'required|between:2,255',
-            'frequency_id'  => 'required|integer',
-            'sql'           => 'required',
+            'frequency_id'  => 'required|integer'
         ]);
 
         return Report::create($data);
@@ -35,8 +34,7 @@ class ReportService extends Service
             'profiles'      => 'required|array',
             'filename'      => 'required|between:2,255',
             'extension'     => 'required|between:2,255',
-            'frequency_id'  => 'required|integer',
-            'sql'           => 'required',
+            'frequency_id'  => 'required|integer'
         ]);
 
         $object = Report::findOrFail($id);

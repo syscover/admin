@@ -70,6 +70,7 @@ adminDeleteProfile(id:Int!): AdminProfile @field(resolver: "Syscover\\Admin\\Gra
 adminCreateReport(payload:AdminReportInput!): AdminReport @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ReportGraphQLService@store")
 adminUpdateReport(payload:AdminReportInput!): AdminReport @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ReportGraphQLService@update")
 adminDeleteReport(id:Int!): AdminReport @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ReportGraphQLService@delete")
+adminRunReport(id:Int!): CoreFile @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ReportGraphQLService@run")
 
 # Resource
 adminCreateResource(payload:AdminResourceInput!): AdminResource @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ResourceGraphQLService@create")

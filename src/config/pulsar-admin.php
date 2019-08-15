@@ -114,4 +114,30 @@ return [
         (object)['id' => 4, 'name' => 'admin::pulsar.width_free_crop'],
         (object)['id' => 5, 'name' => 'admin::pulsar.height_free_crop']
     ],
+
+    //******************************************************************************************************************
+    //***   Resources that could contain attachments
+    //******************************************************************************************************************
+    'report_data_sources' => [
+        (object)[
+            'id'                => 1,    
+            'name'              => 'admin::pulsar.countries',                 
+            'translateable'     => true,        
+            'type'              => 'database',   
+            'model'             => 'Syscover\Admin\Models\Country',         
+            'package'           => 1,
+            'option_id'         => 'id',
+            'option_name'       => 'name'
+        ],
+        (object)[
+            'id'                => 2,    
+            'name'              => 'forem::pulsar.unemployed_situations',
+            'translateable'     => false,       
+            'type'              => 'config',     
+            'model'             => 'pulsar-forem.unemployed_situations',                                      
+            'package'           => 500,
+            'option_id'         => 'id',
+            'option_name'       => 'name'
+        ],
+    ],
 ];

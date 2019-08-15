@@ -10,9 +10,10 @@ use Syscover\Core\Models\CoreModel;
 class Report extends CoreModel
 {
     protected $table        = 'admin_report';
-    protected $fillable     = ['id', 'subject', 'emails', 'profiles', 'filename', 'extension', 'frequency_id', 'sql'];
+    protected $fillable     = ['id', 'subject', 'emails', 'profiles', 'filename', 'extension', 'frequency_id', 'sql', 'wildcards'];
     protected $casts        = [
-        'emails'    => 'array',
-        'profiles'  => 'array',
+        'emails'        => 'array',
+        'profiles'      => 'array',
+        'wildcards'     => 'array'
     ];
 }
