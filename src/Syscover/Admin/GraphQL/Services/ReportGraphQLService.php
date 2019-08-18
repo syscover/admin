@@ -22,30 +22,33 @@ class ReportGraphQLService extends CoreGraphQLService
         
         $reportRelations = collect(config('pulsar-admin.report_data_sources'));
 
-        foreach($report['wildcards'] as &$wildcard) 
+        if (is_array($report['wildcards']))
         {
-            $reportRelation = $reportRelations->firstWhere('id', $wildcard['data_source_id']);
-
-            if ($wildcard['data_source_id'] ?? false && $reportRelation)
+            foreach($report['wildcards'] as &$wildcard) 
             {
-                if ($reportRelation->type === 'database')
+                $reportRelation = $reportRelations->firstWhere('id', $wildcard['data_source_id']);
+    
+                if ($wildcard['data_source_id'] ?? false && $reportRelation)
                 {
-                    $model = new $reportRelation->model();
-                    $values = $model->all();
+                    if ($reportRelation->type === 'database')
+                    {
+                        $model = new $reportRelation->model();
+                        $values = $model->all();
+                    }
+                    elseif($reportRelation->type === 'config')
+                    {
+                        $values = collect(config($reportRelation->model));
+                    }
+    
+                    // set values for options
+                    $wildcard['option_values'] = $values->map(function($value) use ($wildcard, $reportRelation)
+                    {
+                        return ['id' => $value->{$reportRelation->option_id}, 'name' => $value->{$reportRelation->option_name}];
+                    });
                 }
-                elseif($reportRelation->type === 'config')
-                {
-                    $values = collect(config($reportRelation->model));
-                }
-
-                // set values for options
-                $wildcard['option_values'] = $values->map(function($value) use ($wildcard, $reportRelation)
-                {
-                    return ['id' => $value->{$reportRelation->option_id}, 'name' => $value->{$reportRelation->option_name}];
-                });
             }
         }
-
+        
         return $report;
     }
 
