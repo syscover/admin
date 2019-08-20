@@ -65,6 +65,7 @@ class ReportGraphQLService extends CoreGraphQLService
             }
             else
             {
+                // if data type is string, set wildcard like empty, if not set like null
                 $report->sql = str_replace('#' . $wildcard['name'] . '#', $wildcard['data_type_id'] === 1 ? '' : 'NULL', $report->sql);
             }
 
@@ -74,6 +75,7 @@ class ReportGraphQLService extends CoreGraphQLService
             }
             else
             {
+                // if data type is string, set wildcard like empty, if not set like null
                 $report->statement = str_replace('#' . $wildcard['name'] . '#', $wildcard['data_type_id'] === 1 ? '' : 'NULL', $report->statement);
             }
         }
