@@ -63,6 +63,19 @@ class ReportGraphQLService extends CoreGraphQLService
             {
                 $report->sql = str_replace('#' . $wildcard['name'] . '#', $wildcard['value'], $report->sql);
             }
+            else
+            {
+                $report->sql = str_replace('#' . $wildcard['name'] . '#', $wildcard['data_type_id'] === 1 ? '' : 'NULL', $report->sql);
+            }
+
+            if (! empty($wildcard['value']))
+            {
+                $report->statement = str_replace('#' . $wildcard['name'] . '#', $wildcard['value'], $report->statement);
+            }
+            else
+            {
+                $report->statement = str_replace('#' . $wildcard['name'] . '#', $wildcard['data_type_id'] === 1 ? '' : 'NULL', $report->statement);
+            }
         }
 
         return ReportService::executeReport($report);

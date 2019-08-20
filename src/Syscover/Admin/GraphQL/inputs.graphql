@@ -176,6 +176,7 @@ input AdminReportInput {
     filename: String!
     extension: String!
     frequency_id: Int!
+    statement: String
     sql: String
     wildcards: Object
 }

@@ -191,6 +191,7 @@ type AdminReport {
     filename: String!
     extension: String!
     frequency_id: Int!
+    statement: String
     sql: String
     file: CoreFile
     wildcards: Object

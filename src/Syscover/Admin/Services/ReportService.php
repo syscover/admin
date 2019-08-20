@@ -52,6 +52,9 @@ class ReportService extends Service
 
     public static function executeReport(Report $report)
     {
+        // Execute statement
+        if($report->statement) DB::statement(DB::raw($report->statement));
+
         // Execute query from report task
         $response = DB::select(DB::raw($report->sql));
 
@@ -61,6 +64,7 @@ class ReportService extends Service
         $headers = array_keys((array) head($response));
         array_unshift($response, $headers);
 
+        // store filename
         $filename = $report->filename . '-' . Str::uuid() . '.' . $report->extension;
         $filePath = 'public/admin/reports/' . $filename;
 
