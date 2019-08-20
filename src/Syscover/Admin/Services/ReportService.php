@@ -57,6 +57,10 @@ class ReportService extends Service
 
         if (count($response) === 0) return null;
 
+        // add headers
+        $headers = array_keys((array) head($response));
+        array_unshift($response, $headers);
+
         $filename = $report->filename . '-' . Str::uuid() . '.' . $report->extension;
         $filePath = 'public/admin/reports/' . $filename;
 
