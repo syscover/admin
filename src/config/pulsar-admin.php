@@ -131,10 +131,90 @@ return [
         ],
         (object)[
             'id'                => 2,    
+            'name'              => 'admin::pulsar.profiles',                 
+            'translateable'     => true,        
+            'type'              => 'database',   
+            'model'             => 'Syscover\Admin\Models\Profile',         
+            'package'           => 1,
+            'option_id'         => 'id',
+            'option_name'       => 'name'
+        ],
+        (object)[
+            'id'                => 3,    
             'name'              => 'forem::pulsar.unemployed_situations',
             'translateable'     => false,       
             'type'              => 'config',     
             'model'             => 'pulsar-forem.unemployed_situations',                                      
+            'package'           => 500,
+            'option_id'         => 'id',
+            'option_name'       => 'name'
+        ],
+        (object)[
+            'id'                => 4,    
+            'name'              => 'forem::pulsar.expedient',
+            'translateable'     => false,       
+            'type'              => 'database',     
+            'model'             => 'Syscover\Forem\Models\Expedient',                                      
+            'package'           => 500,
+            'option_id'         => 'id',
+            'option_name'       => 'name'
+        ],
+        (object)[
+            'id'                => 5,    
+            'name'              => 'forem::pulsar.action',
+            'translateable'     => false,       
+            'type'              => 'database',     
+            'model'             => 'Syscover\Forem\Models\Action',                                      
+            'package'           => 500,
+            'option_id'         => 'id',
+            'option_name'       => 'name'
+        ],
+        (object)[
+            'id'                => 6,    
+            'name'              => 'forem::pulsar.group',
+            'translateable'     => false,       
+            'type'              => 'database',     
+            'model'             => 'Syscover\Forem\Models\Group',                                      
+            'package'           => 500,
+            'option_id'         => 'id',
+            'option_name'       => 'name'
+        ],
+        (object)[
+            'id'                => 7,    
+            'name'              => 'forem::pulsar.employment_office',
+            'translateable'     => false,       
+            'type'              => 'database',     
+            'model'             => 'Syscover\Forem\Models\EmploymentOffice',                                      
+            'package'           => 500,
+            'option_id'         => 'id',
+            'option_name'       => 'name'
+        ],
+        (object)[
+            'id'                => 8,    
+            'name'              => 'forem::pulsar.province',
+            'translateable'     => false,       
+            'type'              => 'database',     
+            'model'             => 'Syscover\Forem\Models\Province',                                      
+            'package'           => 500,
+            'option_id'         => 'id',
+            'option_name'       => 'name'
+        ],
+        (object)[
+            'id'                => 9,    
+            'name'              => 'forem::pulsar.availabilities',
+            'translateable'     => false,       
+            'type'              => 'config',     
+            'model'             => 'pulsar-forem.availabilities',                                      
+            'package'           => 500,
+            'option_id'         => 'id',
+            'option_name'       => 'name'
+        ],
+        (object)[
+            'id'                => 9,    
+            'name'              => 'forem::pulsar.academic_levels',
+            'translateable'     => false,       
+            'type'              => 'config',     
+            'model'             => 'pulsar-forem.academic_levels',                                      
             'package'           => 500,
             'option_id'         => 'id',
             'option_name'       => 'name'

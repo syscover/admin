@@ -10,6 +10,7 @@ return [
     'message_reset_password_notification_02'    => 'Si no has solicitado un restablecimiento de contraseña, no se requiere ninguna acción adicional.',
     'monthly'                                   => 'Mensual',
     'once'                                      => 'Una vez',
+    'profiles'                                  => 'Perfiles',
     'quarterly'                                 => 'Trimestral',
     'reset_password'                            => 'cambiar su contraseña',
     'width'                                     => 'Ancho',

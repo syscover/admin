@@ -10,6 +10,7 @@ return [
     'message_reset_password_notification_02'    => 'If you did not request a password reset, no further action is required.',
     'monthly'                                   => 'Monthly',
     'once'                                      => 'Once',
+    'profiles'                                  => 'Profiles',
     'quarterly'                                 => 'Quarterly',
     'reset_password'                            => 'Reset your password',
     'width'                                     => 'Width',
