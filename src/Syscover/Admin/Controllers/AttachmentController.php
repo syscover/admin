@@ -28,6 +28,62 @@ class AttachmentController extends BaseController
         return response()->json($response);
     }
 
+    public function upload(Request $request) 
+    {
+        $files = $request->file('files');
+
+        if(! is_array($files)) $files = [$files];
+
+        $uploads = [];
+        foreach ($files as $file)
+        {
+            // save file in library directory, if no exist laravel create directory
+            $file->store('public/tmp');
+
+            // get mime type
+            $mime = $file->getMimeType();
+
+            $attachment = [
+                'name'      => $file->getClientOriginalName(),
+                'file_name' => $file->hashName(),
+                'extension' => $file->extension(),
+                'base_path' => base_path('storage/app/public/tmp'),
+                'url'       => asset('storage/tmp/' . $file->hashName()),
+                'mime'      => $mime,
+                'size'      => $file->getSize(),
+                'sort'      => null
+            ];
+
+            // check if is image
+            if(is_image($mime))
+            {
+                /**
+                 * config http://image.intervention.io with imagemagick
+                 */
+                Image::configure(['driver' => 'imagick']);
+                $image = Image::make(storage_path('app/public/tmp/' . $file->hashName()));
+
+                // check orientation to avoid error from mobile photo
+                $image = ImageService::checkOrientation($image);
+
+                // set image properties
+                $attachment['width']    = $image->width();
+                $attachment['height']   = $image->height();
+
+                // set fields to save from EXIF to avoid utf-8 characters, that they are includes by software like Photoshop
+                $attachment['data']     = ['exif' => collect($image->exif())->only(config('pulsar-core.exif_fields_allowed'))];
+            }
+
+            $uploads[] = $attachment;
+        }
+
+        $response['data'] = [
+            'uploads' => $uploads
+        ];
+
+        return response()->json($response);
+    }
+
     public function wysiwygUpload(Request $request) {
         $files = $request->file('file');
 

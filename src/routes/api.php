@@ -82,6 +82,9 @@ Route::post('api/v1/admin/attachment-upload/delete',                    'Syscove
 // ATTACHMENTS WYSIWYG
 Route::post('api/v1/admin/wysiwyg/upload',                              'Syscover\Admin\Controllers\AttachmentController@wysiwygUpload')->name('adminWysiwygUpload');
 
+// UPLOAD FILE
+Route::post('api/v1/admin/upload',                                      'Syscover\Admin\Controllers\AttachmentController@upload')->name('api.admin_upload');
+
 
 Route::group(['prefix' => 'api/v1', 'middleware' => ['api', 'client']], function () {
 
