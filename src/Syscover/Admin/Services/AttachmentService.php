@@ -120,11 +120,11 @@ class AttachmentService
                     'mime'                  => $attachment['mime'],
                     'extension'             => $attachment['extension'],
                     'size'                  => $attachment['size'],
-                    'width'                 => $attachment['width'],
-                    'height'                => $attachment['height'],
+                    'width'                 => $attachment['width'] ?? null,
+                    'height'                => $attachment['height']  ?? null,
                     'library_id'            => $attachment['attachment_library']['id'],
                     'library_file_name'     => $attachment['attachment_library']['file_name'],
-                    'data'                  => $attachment['data']
+                    'data'                  => $attachment['data'] ?? null
                 ]);
 
 
@@ -155,8 +155,8 @@ class AttachmentService
                             'mime'                  => $attachment['mime'],
                             'extension'             => $attachment['extension'],
                             'size'                  => $attachment['size'],
-                            'width'                 => $attachment['width'],
-                            'height'                => $attachment['height'],
+                            'width'                 => $attachment['width']  ?? null,
+                            'height'                => $attachment['height']  ?? null,
                             'data'                  => is_array($attachment['data']) ?  json_encode(array_merge($attachment['data'], $attachmentOld->data)) : json_encode($attachmentOld->data)
                         ]);
 
@@ -198,11 +198,11 @@ class AttachmentService
                         'mime'                  => $attachment['mime'],
                         'extension'             => $attachment['extension'],
                         'size'                  => $attachment['size'],
-                        'width'                 => $attachment['width'],
-                        'height'                => $attachment['height'],
+                        'width'                 => $attachment['width'] ?? null,
+                        'height'                => $attachment['height'] ?? null,
                         'library_id'            => $attachment['attachment_library']['id'],
                         'library_file_name'     => $attachment['attachment_library']['file_name'],
-                        'data'                  => $attachment['data']
+                        'data'                  => $attachment['data'] ?? null
                     ]);
 
                     // set fit attachment
