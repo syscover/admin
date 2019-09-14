@@ -111,9 +111,9 @@ class AttachmentService
                     'object_id'             => $objectId,
                     'object_type'           => $objectType,
                     'family_id'             => empty($attachment['family_id'])? null: $attachment['family_id'],
-                    'sort'                  => $attachment['sort'],
-                    'alt'                   => $attachment['alt'],
-                    'title'                 => $attachment['title'],
+                    'sort'                  => $attachment['sort'] ?? null,
+                    'alt'                   => $attachment['alt'] ?? null,
+                    'title'                 => $attachment['title'] ?? null,
                     'base_path'             => base_path($directory . '/' . $objectId),
                     'file_name'             => $attachment['file_name'],
                     'url'                   => asset($urlBase . '/' . $objectId . '/' . $attachment['file_name']),
@@ -122,8 +122,8 @@ class AttachmentService
                     'size'                  => $attachment['size'],
                     'width'                 => $attachment['width'] ?? null,
                     'height'                => $attachment['height']  ?? null,
-                    'library_id'            => $attachment['attachment_library']['id'],
-                    'library_file_name'     => $attachment['attachment_library']['file_name'],
+                    'library_id'            => $attachment['attachment_library']['id'] ?? null,
+                    'library_file_name'     => $attachment['attachment_library']['file_name'] ?? null,
                     'data'                  => $attachment['data'] ?? null
                 ]);
 
@@ -147,9 +147,9 @@ class AttachmentService
                         ->where('lang_id', $attachment['lang_id'])
                         ->update([
                             'family_id'             => empty($attachment['family_id'])? null: $attachment['family_id'],
-                            'sort'                  => $attachment['sort'],
-                            'alt'                   => $attachment['alt'],
-                            'title'                 => $attachment['title'],
+                            'sort'                  => $attachment ?? null,
+                            'alt'                   => $attachment['alt'] ?? null,
+                            'title'                 => $attachment['title'] ?? null,
                             'file_name'             => $attachment['file_name'],
                             'url'                   => $attachment['url'],
                             'mime'                  => $attachment['mime'],
@@ -189,9 +189,9 @@ class AttachmentService
                         'object_id'             => $objectId,
                         'object_type'           => $objectType,
                         'family_id'             => empty($attachment['family_id'])? null: $attachment['family_id'],
-                        'sort'                  => $attachment['sort'],
-                        'alt'                   => $attachment['alt'],
-                        'title'                 => $attachment['title'],
+                        'sort'                  => $attachment['sort'] ?? null,
+                        'alt'                   => $attachment['alt'] ?? null,
+                        'title'                 => $attachment['title'] ?? null,
                         'base_path'             => $attachment['base_path'],
                         'file_name'             => $newFileName,
                         'url'                   => asset($urlBase . '/' . $objectId . '/' . $newFileName),
@@ -200,8 +200,8 @@ class AttachmentService
                         'size'                  => $attachment['size'],
                         'width'                 => $attachment['width'] ?? null,
                         'height'                => $attachment['height'] ?? null,
-                        'library_id'            => $attachment['attachment_library']['id'],
-                        'library_file_name'     => $attachment['attachment_library']['file_name'],
+                        'library_id'            => $attachment['attachment_library']['id'] ?? null,
+                        'library_file_name'     => $attachment['attachment_library']['file_name'] ?? null,
                         'data'                  => $attachment['data'] ?? null
                     ]);
 
