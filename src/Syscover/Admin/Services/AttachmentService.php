@@ -174,7 +174,8 @@ class AttachmentService
                         self::setAttachmentSizes($attachmentObject, $urlBase, $objectId);
                     }
                 }
-                elseif ($action === 'store') // can to be data from new lang object
+                // method to create attachment in new lang object
+                elseif ($action === 'store')
                 {
                     $newFileName = self::getRandomFilename($attachment['extension']);
 
