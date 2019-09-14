@@ -51,9 +51,9 @@ class AttachmentService
                     'mime'          => $attachmentLibrary['mime'],
                     'extension'     => $attachmentLibrary['extension'],
                     'size'          => $attachmentLibrary['size'],
-                    'width'         => $attachmentLibrary['width'],
-                    'height'        => $attachmentLibrary['height'],
-                    'data'          => $attachmentLibrary['data']
+                    'width'         => $attachmentLibrary['width'] ?? null,
+                    'height'        => $attachmentLibrary['height'] ?? null,
+                    'data'          => $attachmentLibrary['data'] ?? null
                 ]);
 
                 // set attachment library by reference
