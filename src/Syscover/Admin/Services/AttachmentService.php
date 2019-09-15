@@ -147,7 +147,7 @@ class AttachmentService
                         ->where('lang_id', $attachment['lang_id'])
                         ->update([
                             'family_id'             => empty($attachment['family_id'])? null: $attachment['family_id'],
-                            'sort'                  => $attachment ?? null,
+                            'sort'                  => $attachment['sort'] ?? null,
                             'alt'                   => $attachment['alt'] ?? null,
                             'title'                 => $attachment['title'] ?? null,
                             'file_name'             => $attachment['file_name'],
