@@ -179,8 +179,19 @@ class AttachmentService
                 {
                     $newFileName = self::getRandomFilename($attachment['extension']);
 
-                    // move file from temp file to attachment directory
-                    File::copy($attachment['base_path'] . '/' . $attachment['file_name'], $attachment['base_path'] . '/' . $newFileName);
+                    // if is equal to base lang copy attachment
+                    if ($langId === base_lang())
+                    {
+                        File::copy($attachment['base_path'] . '/' . $attachment['file_name'], base_path($directory . '/' . $objectId . '/' . $newFileName));
+
+                        // set new base_path
+                        $attachment['base_path'] = base_path($directory . '/' . $objectId);
+                    }
+                    else
+                    {
+                        // move file from temp file to attachment directory
+                        File::copy($attachment['base_path'] . '/' . $attachment['file_name'], $attachment['base_path'] . '/' . $newFileName);
+                    }
 
                     // store new lang attachment that previous exist in database
                     $attachmentObject = Attachment::create([
