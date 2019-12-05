@@ -21,7 +21,7 @@ class AdminCreateTableAttachment extends Migration {
                 $table->integer('id')->unsigned();
                 $table->string('lang_id', 2);
                 $table->string('object_type');
-                $table->integer('object_id')->unsigned()->nullable();
+                $table->integer('object_id')->unsigned();
                 $table->integer('family_id')->unsigned()->nullable();
                 $table->integer('sort')->unsigned()->nullable();
                 $table->string('alt')->nullable();

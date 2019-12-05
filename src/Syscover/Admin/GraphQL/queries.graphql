@@ -95,11 +95,11 @@ adminPermission(sql:[CoreSQLInput]): AdminPermission @field(resolver: "Syscover\
 adminPermissionsPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\PermissionGraphQLService@paginate")
 
 # Profile
-""" Query to get packages list """
+""" Query to get profiles list """
 adminProfiles(sql:[CoreSQLInput]): [AdminProfile!]! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ProfileGraphQLService@get")
-""" Query to get package """
+""" Query to get profile """
 adminProfile(sql:[CoreSQLInput]): AdminProfile @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ProfileGraphQLService@find")
-""" Query to get packages paginated """
+""" Query to get profiles paginated """
 adminProfilesPagination(sql:[CoreSQLInput]): CorePagination! @field(resolver: "Syscover\\Admin\\GraphQL\\Services\\ProfileGraphQLService@paginate")
 
 # Report
