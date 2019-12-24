@@ -210,11 +210,21 @@ return [
             'option_name'       => 'name'
         ],
         (object)[
-            'id'                => 9,    
+            'id'                => 10,    
             'name'              => 'forem::pulsar.academic_levels',
             'translateable'     => false,       
             'type'              => 'config',     
             'model'             => 'pulsar-forem.academic_levels',                                      
+            'package'           => 500,
+            'option_id'         => 'id',
+            'option_name'       => 'name'
+        ],
+        (object)[
+            'id'                => 11,    
+            'name'              => 'forem::pulsar.teacher_profiles',
+            'translateable'     => false,       
+            'type'              => 'config',     
+            'model'             => 'pulsar-forem.profiles',                                      
             'package'           => 500,
             'option_id'         => 'id',
             'option_name'       => 'name'

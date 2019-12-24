@@ -35,7 +35,7 @@ class AttachmentService
         foreach($attachments as &$attachment)
         {
             // only save new attachments in library
-            if(! empty($attachment['uploaded'])  && $attachment['uploaded'] === true)
+            if(! empty($attachment['uploaded']) && $attachment['uploaded'] === true)
             {
                 // get attachment library from attachment
                 $attachmentLibrary = $attachment['attachment_library'];
@@ -67,6 +67,11 @@ class AttachmentService
     public static function storeAttachments($attachments, $directory, $urlBase, $objectType, $objectId, $langId)
     {
         self::manageAttachments($attachments, $directory, $urlBase, $objectType, $objectId, $langId, 'store');
+    }
+
+    public static function cloneAttachments($attachments, $directory, $urlBase, $objectType, $objectId, $langId)
+    {
+        self::manageAttachments($attachments, $directory, $urlBase, $objectType, $objectId, $langId, 'clone');
     }
 
     public static function updateAttachments($attachments, $directory, $urlBase, $objectType, $objectId, $langId)
@@ -175,17 +180,24 @@ class AttachmentService
                     }
                 }
                 // method to create attachment in new lang object
-                elseif ($action === 'store')
+                elseif ($action === 'store' || $action === 'clone')
                 {
                     $newFileName = self::getRandomFilename($attachment['extension']);
 
-                    // if is equal to base lang copy attachment
-                    if ($langId === base_lang())
+                    // copy attachment
+                    if ($action === 'clone')
                     {
                         File::copy($attachment['base_path'] . '/' . $attachment['file_name'], base_path($directory . '/' . $objectId . '/' . $newFileName));
-
+                        
                         // set new base_path
                         $attachment['base_path'] = base_path($directory . '/' . $objectId);
+
+                        $id = Attachment::max('id');
+                        $id++;
+
+                        // create new id to attachment cloned
+                        $attachment['id'] = $id;
+
                     }
                     else
                     {

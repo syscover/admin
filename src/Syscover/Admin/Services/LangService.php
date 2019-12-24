@@ -1,14 +1,15 @@
 <?php namespace Syscover\Admin\Services;
 
-use Syscover\Admin\Models\Lang;
+use Syscover\Core\Services\Service;
 use Syscover\Core\Exceptions\ModelNotChangeException;
+use Syscover\Admin\Models\Lang;
 
-class LangService
+class LangService extends Service
 {
-    public function store(array $data)
+    public function create(array $data)
     {
         $this->validate($data, [
-            'id'        => 'required|alpha|size:2|unique:lang,id',
+           // 'id'        => 'required|alpha|size:2|unique:lang,id',
             'name'      => 'required|between:2,255',
             'icon'      => 'required',
             'sort'      => 'min:0|numeric'
