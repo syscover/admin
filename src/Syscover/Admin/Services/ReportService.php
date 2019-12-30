@@ -57,6 +57,7 @@ class ReportService extends Service
         // Execute query from report task
         $response = DB::select(DB::raw($report->sql));
 
+        // execute php code to filter response
         if($report->filter) eval($report->filter);
 
         if (count($response) === 0) return null;
