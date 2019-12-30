@@ -178,6 +178,7 @@ input AdminReportInput {
     frequency_id: Int!
     statement: String
     sql: String
+    filter: String
     wildcards: Object
 }
 

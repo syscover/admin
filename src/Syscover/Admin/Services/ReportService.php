@@ -1,6 +1,5 @@
 <?php namespace Syscover\Admin\Services;
 
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
@@ -57,6 +56,8 @@ class ReportService extends Service
 
         // Execute query from report task
         $response = DB::select(DB::raw($report->sql));
+
+        if($report->filter) eval($report->filter);
 
         if (count($response) === 0) return null;
 

@@ -29,7 +29,8 @@ class AdminCreateTableReport extends Migration
                 $table->tinyInteger('frequency_id')->unsigned();
 
                 $table->text('statement')->nullable();
-				$table->text('sql')->nullable();
+                $table->text('sql')->nullable();
+                $table->text('filter')->nullable();
 				$table->json('wildcards');
 
 				$table->timestamps();

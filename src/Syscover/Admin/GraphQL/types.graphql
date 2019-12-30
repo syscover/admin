@@ -193,6 +193,7 @@ type AdminReport {
     frequency_id: Int!
     statement: String
     sql: String
+    filter: String
     file: CoreFile
     wildcards: Object
 }
