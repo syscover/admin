@@ -31,7 +31,7 @@ class AdminCreateTableReport extends Migration
                 $table->text('statement')->nullable();
                 $table->text('sql')->nullable();
                 $table->text('filter')->nullable();
-				$table->json('wildcards');
+				$table->json('wildcards')->nullable();
 
 				$table->timestamps();
                 $table->softDeletes();

@@ -229,5 +229,15 @@ return [
             'option_id'         => 'id',
             'option_name'       => 'name'
         ],
+        (object)[
+            'id'                => 12,    
+            'name'              => 'forem::pulsar.category',
+            'translateable'     => false,       
+            'type'              => 'database',     
+            'model'             => 'Syscover\Forem\Models\Category',                                      
+            'package'           => 500,
+            'option_id'         => 'id',
+            'option_name'       => 'name'
+        ],
     ],
 ];
