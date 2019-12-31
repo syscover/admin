@@ -58,7 +58,7 @@ class ReportService extends Service
         $response = DB::select(DB::raw($report->sql));
 
         // execute php code to filter response
-        if($report->filter) eval($report->filter);
+        if($report->filter) eval(str_replace('<?php', '', $report->filter));
 
         if (count($response) === 0) return null;
 
