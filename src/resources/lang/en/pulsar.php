@@ -4,6 +4,7 @@ return [
     'countries'                                 => 'Countries',
     'daily'                                     => 'Daily',
     'fit_crop'                                  => 'Fit crop',
+    'footer'                                    => 'If you have problems with the \":actionText\" button, copy and paste the following URL\n into your web browser: [:actionURL](:actionURL)',
     'greeting'                                  => 'Hello!',
     'height'                                    => 'Height',
     'height_free_crop'                          => 'Free crop and height adjustment',

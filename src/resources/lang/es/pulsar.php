@@ -4,6 +4,7 @@ return [
     'countries'                                 => 'Países',
     'daily'                                     => 'Diario',
     'fit_crop'                                  => 'Corte ajustado',
+    'footer'                                    => 'Si tienes problemas con el botón \":actionText\", copia y pega la siguiente UrL\n en tu navegador: [:actionURL](:actionURL)',
     'greeting'                                  => 'Hola!',
     'height'                                    => 'Alto',
     'height_free_crop'                          => 'Corte libre y ajuste al alto',
