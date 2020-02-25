@@ -239,5 +239,15 @@ return [
             'option_id'         => 'id',
             'option_name'       => 'name'
         ],
+        (object)[
+            'id'                => 13,    
+            'name'              => 'market::pulsar.order_status',
+            'translateable'     => true,       
+            'type'              => 'database',     
+            'model'             => 'Syscover\Market\Models\OrderStatus',                                      
+            'package'           => 150,
+            'option_id'         => 'id',
+            'option_name'       => 'name'
+        ],
     ],
 ];
