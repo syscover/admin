@@ -457,10 +457,10 @@ class AttachmentService
                 ! empty($attachmentFamily->quality)? 90 : $attachmentFamily->quality // set quality image
             );
 
-            $attachment->width = $image->width();
+            $attachment->width  = $image->width();
             $attachment->height = $image->height();
-            $attachment->size = $image->filesize();
-            $attachment->data = ['exif' => collect($image->exif())->only(config('pulsar-core.exif_fields_allowed'))];
+            $attachment->size   = $image->filesize();
+            $attachment->data   = ['exif' => collect($image->exif())->only(config('pulsar-core.exif_fields_allowed'))];
         }
 
 
